@@ -20,6 +20,15 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    moment: {
+      outputFormat: 'DD-MM-YYYY hh:mm:ss',
+      includeTimezone: 'all',
+      includeLocales: ['nl'],
+      allowEmpty: true
+    },
+    'vo-webuniversum': {
+      version: '2.8.3'
     }
   };
 

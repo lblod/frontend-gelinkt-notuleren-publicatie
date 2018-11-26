@@ -10,6 +10,13 @@ Router.map(function() {
   this.route('route-not-found', {
     path: '/*wildcard'
   });
+  this.route('zitting', { path: '/:id' }, function() {
+    this.route('agenda');
+    this.route('besluitenlijst', function() {
+      this.route('show', { path: '/:behandeling_id' });
+    });
+    this.route('notulen');
+  });
 });
 
 export default Router;
