@@ -5,7 +5,7 @@
     <ul class="clickable-box-list">
       {{#each model.agenda.agendapunten as |item index|}}
         <li class="{{unless model.isPublished "not-active"}}">
-          {{#link-to 'zitting.notulen' disabledWhen=(not model.isPublished) class='annotation annotation--agendapunt annotation--agendapunt--{{if item.geplandOpenbaar "open" "besloten"}}'}}
+          {{#link-to 'bestuurseenheid.zitting.notulen' disabledWhen=(not model.isPublished) class='annotation annotation--agendapunt annotation--agendapunt--{{if item.geplandOpenbaar "open" "besloten"}}'}}
             <span class="list-number">{{inc index}}</span>
             <span class="list-content">{{clean-spaces item.titel}}</span>
           {{/link-to}}

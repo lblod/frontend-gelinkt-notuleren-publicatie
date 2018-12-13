@@ -7,7 +7,9 @@
     <tr>
       <td>
         <div>
-          {{bestuurseenheid.naam}}
+          {{#link-to "bestuurseenheid" bestuurseenheid.id bestuurseenheid.classificatie.id}}
+            {{bestuurseenheid.naam}}
+          {{/link-to}}
         </div>
       </td>
       <td>
