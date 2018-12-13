@@ -1,0 +1,22 @@
+<table>
+  <tr>
+    <th>Naam</th>
+    <th>Label</th>
+  </tr>
+  {{#each model as |bestuurseenheid|}}
+    <tr>
+      <td>
+        <div>
+          {{bestuurseenheid.naam}}
+        </div>
+      </td>
+      <td>
+        <div>
+          {{bestuurseenheid.classificatie.label}}
+        </div>
+      </td>
+    </tr>
+  {{/each}}
+</table>
+
+{{outlet}}

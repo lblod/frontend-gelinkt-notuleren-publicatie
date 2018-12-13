@@ -17,6 +17,7 @@ Router.map(function() {
     });
     this.route('notulen');
   });
+  this.route('bestuurseenheden');
 });
 
 export default Router;
