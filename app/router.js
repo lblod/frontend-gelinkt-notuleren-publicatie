@@ -11,7 +11,7 @@ Router.map(function() {
     path: '/*wildcard'
   });
   this.route('bestuurseenheden');
-  this.route('bestuurseenheid', { path: '/:bestuurseenheid_id/:bestuurseenheid_classificatie_code_id' }, function() {
+  this.route('bestuurseenheid', { path: '/:bestuurseenheid_naam/:bestuurseenheid_classificatie_code_label' }, function() {
     this.route('zitting', { path: '/:id' }, function() {
       this.route('agenda');
       this.route('besluitenlijst', function() {

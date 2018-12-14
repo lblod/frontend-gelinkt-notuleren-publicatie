@@ -3,10 +3,11 @@ import DataTableRouteMixin from 'ember-data-table/mixins/route';
 
 export default Route.extend(DataTableRouteMixin, {
   modelName: 'zitting',
+
   mergeQueryOptions(params) {
     return {
-      'filter[bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][id]': params.bestuurseenheid_id,
-      'filter[bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][classificatie][id]': params.bestuurseenheid_classificatie_code_id,
+      'filter[bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][naam]': params.bestuurseenheid_naam,
+      'filter[bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][classificatie][label]': params.bestuurseenheid_classificatie_code_label,
       sort: '-geplande-start',
       include: 'agenda,behandelde-agendapunten,notulen,bestuursorgaan'
     };
