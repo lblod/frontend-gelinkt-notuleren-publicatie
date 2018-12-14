@@ -12,6 +12,7 @@ export default Route.extend(DataTableRouteMixin, {
       include: 'agenda,behandelde-agendapunten,notulen,bestuursorgaan'
     };
   },
+
   afterModel(zittingen/*, transition*/) {
     if (zittingen.get('length') > 0) {
       this.transitionTo('bestuurseenheid.zitting.agenda', zittingen.get('firstObject.id'));
