@@ -1,24 +1,34 @@
-<table>
-  <tr>
-    <th>Naam</th>
-    <th>Label</th>
-  </tr>
-  {{#each model as |bestuurseenheid|}}
-    <tr>
-      <td>
-        <div>
-          {{#link-to "bestuurseenheid" bestuurseenheid.naam bestuurseenheid.classificatie.label}}
-            {{bestuurseenheid.naam}}
-          {{/link-to}}
-        </div>
-      </td>
-      <td>
-        <div>
-          {{bestuurseenheid.classificatie.label}}
-        </div>
-      </td>
-    </tr>
-  {{/each}}
-</table>
+<div class="container-flex--scroll u-padding--round--large">
 
-{{outlet}}
+  <h1 class="h1">Publicatie Gelinkt Notuleren</h1>
+
+  <div>
+    {{#power-select
+        placeholder="OCMW, Gemeente, District, ..."
+        selected=bestuurseenheidClassificatieLabel
+        options=bestuurseenheidClassificatieLabels
+        onchange=(action "chooseBestuurseenheidClassificatieLabel")
+          as |bestuurseenheidClassificatieLabel|
+    }}
+      {{bestuurseenheidClassificatieLabel}}
+    {{/power-select}}
+  </div>
+  <hr />
+  <div>
+    {{#power-select
+        placeholder="Oost-Vlaanderen, Berchem, Hasselt, ..."
+        selected=bestuurseenheidNaam
+        options=bestuurseenheidNaamen
+        onchange=(action "chooseBestuurseenheidNaam")
+          as |bestuurseenheidNaam|
+    }}
+      {{bestuurseenheidNaam}}
+    {{/power-select}}
+  </div>
+  <hr />
+  <div>
+    {{#link-to "bestuurseenheid" bestuurseenheidNaam bestuurseenheidClassificatieLabel}}
+      <button class="button">Search</button>
+    {{/link-to}}
+  </div>
+</div>
