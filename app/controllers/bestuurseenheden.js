@@ -11,7 +11,7 @@ export default Controller.extend({
     return this.model.getEach('classificatie').getEach('label').uniq();
   }),
 
-  bestuurseenheidNaamen: computed('bestuurseenheidClassificatieLabel', function() {
+  bestuurseenheidNamen: computed('bestuurseenheidClassificatieLabel', function() {
     return this.model.filterBy('classificatie.label', this.bestuurseenheidClassificatieLabel).getEach('naam');
   }),
 
