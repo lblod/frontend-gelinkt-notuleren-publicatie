@@ -11,10 +11,13 @@ export default Controller.extend({
     return this.model.getEach('label').uniq()
   }),
 
-  bestuurseenheidNamen: computed('bestuurseenheidClassificatieLabel', function() {
+  bestuurseenheidNamen: computed('bestuurseenheidClassificatieLabel', 'bestuurseenheidNaam', function() {
     return this.get('store').query('bestuurseenheid', {
       filter: {
-        classificatie: this.bestuurseenheidClassificatieLabel
+        classificatie: {
+          label: this.bestuurseenheidClassificatieLabel
+        },
+        naam: this.bestuurseenheidNaam,
       },
     }).then(function(bestuurseenheden) {
       return bestuurseenheden.getEach('naam');
