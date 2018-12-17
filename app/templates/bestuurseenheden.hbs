@@ -30,10 +30,18 @@
   {{/if}}
 
   <hr>
-  <div>
-    {{#link-to "bestuurseenheid" bestuurseenheidNaam bestuurseenheidClassificatieLabel disabledWhen=(not this.naamIsSelected)}}
-      <button class="button">Search</button>
-    {{/link-to}}
-  </div>
+
+  {{#if naamIsSelected}}
+    <div>
+      {{#link-to "bestuurseenheid" bestuurseenheidNaam bestuurseenheidClassificatieLabel}}
+        <button class="button">Search</button>
+      {{/link-to}}
+    </div>
+  {{else}}
+    <div>
+      <button class="button button--disabled">Search</button>
+    </div>
+  {{/if}}
+
 
 </div>
