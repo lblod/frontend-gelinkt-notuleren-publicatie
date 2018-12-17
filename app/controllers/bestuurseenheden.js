@@ -5,10 +5,16 @@ import {
 import {
   debounce
 } from '@ember/runloop';
+import ENV from 'frontend-gelinkt-notuleren-publicatie/config/environment';
 
 export default Controller.extend({
   labelIsSelected: false,
   naamIsSelected: false,
+
+  init() {
+    this._super(...arguments);
+    this.set('footer', ENV['vo-webuniversum']['footer']);
+  },
 
   bestuurseenheidClassificatieLabels: computed(function() {
     return this.model.getEach('label').uniq();
