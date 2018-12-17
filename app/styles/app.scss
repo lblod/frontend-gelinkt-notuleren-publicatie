@@ -3,5 +3,12 @@
 @import 'ember-vo-webuniversum';
 
 @import 'colors';
+@import 'ember-power-select';
 
 @import 'clickable-box-list';
+
+/* shame */
+
+.vo-header-widget {
+  min-height: 45px;
+}
