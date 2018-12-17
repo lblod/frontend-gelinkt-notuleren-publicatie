@@ -52,15 +52,18 @@
 						      {{/power-select}}
 						    </div>
 						  {{/if}}
-					  	<div class="button-group">
-					      {{#link-to "bestuurseenheid" bestuurseenheidNaam bestuurseenheidClassificatieLabel}}
-					        <button class="button {{unless naamIsSelected "button--disabled"}}">Bekijk publicaties</button>
-					      {{/link-to}}
-					    </div>
+						  {{#if naamIsSelected}}
+						  	<div class="button-group">
+						      {{#link-to "bestuurseenheid" bestuurseenheidNaam bestuurseenheidClassificatieLabel}}
+						        <button class="button">Bekijk publicaties</button>
+						      {{/link-to}}
+						    </div>
+						  {{/if}}
 	          </div>
 	        </div>
 	      </div>
 	    </li>
   	</ul>
 	</div>
+	{{wu-widget src=footer}}
 </div>
