@@ -13,22 +13,27 @@
       {{bestuurseenheidClassificatieLabel}}
     {{/power-select}}
   </div>
+
+  {{#if labelIsSelected}}
+    <hr />
+    <div>
+      {{#power-select
+          placeholder="Oost-Vlaanderen, Berchem, Hasselt, ..."
+          selected=bestuurseenheidNaam
+          options=bestuurseenheidNaamen
+          onchange=(action "chooseBestuurseenheidNaam")
+            as |bestuurseenheidNaam|
+      }}
+        {{bestuurseenheidNaam}}
+      {{/power-select}}
+    </div>
+  {{/if}}
+
   <hr />
   <div>
-    {{#power-select
-        placeholder="Oost-Vlaanderen, Berchem, Hasselt, ..."
-        selected=bestuurseenheidNaam
-        options=bestuurseenheidNaamen
-        onchange=(action "chooseBestuurseenheidNaam")
-          as |bestuurseenheidNaam|
-    }}
-      {{bestuurseenheidNaam}}
-    {{/power-select}}
-  </div>
-  <hr />
-  <div>
-    {{#link-to "bestuurseenheid" bestuurseenheidNaam bestuurseenheidClassificatieLabel}}
+    {{#link-to "bestuurseenheid" bestuurseenheidNaam bestuurseenheidClassificatieLabel disabledWhen=(not this.naamIsSelected)}}
       <button class="button">Search</button>
     {{/link-to}}
   </div>
+
 </div>
