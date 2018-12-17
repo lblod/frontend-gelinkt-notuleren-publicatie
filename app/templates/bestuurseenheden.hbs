@@ -1,47 +1,49 @@
-<div class="container-flex--scroll u-padding--round--large">
+<div class="container-flex--scroll">
 
-  <h1 class="h1">Publicatie Gelinkt Notuleren</h1>
+  {{#wu-content-header title="Publicaties Gelinkt Notuleren"}}
+    <img sizes="100vw" src="/assets/images/banner-bruges.jpg" srcset="/assets/images/banner-bruges-320.jpg 320w, /assets/images/banner-bruges-1024.jpg 1024w, /assets/images/banner-bruges-1600.jpg 1600w" alt="" title="">
+  {{/wu-content-header}}
 
-  <div>
-    {{#power-select
-        placeholder="OCMW, Gemeente, District, ..."
-        selected=bestuurseenheidClassificatieLabel
-        options=bestuurseenheidClassificatieLabels
-        onchange=(action "chooseBestuurseenheidClassificatieLabel")
-          as |bestuurseenheidClassificatieLabel|
-    }}
-      {{bestuurseenheidClassificatieLabel}}
-    {{/power-select}}
-  </div>
+  <div class="u-padding--round--large">
+	  <div>
+	    {{#power-select
+	        placeholder="OCMW, Gemeente, District, ..."
+	        selected=bestuurseenheidClassificatieLabel
+	        options=bestuurseenheidClassificatieLabels
+	        onchange=(action "chooseBestuurseenheidClassificatieLabel")
+	          as |bestuurseenheidClassificatieLabel|
+	    }}
+	      {{bestuurseenheidClassificatieLabel}}
+	    {{/power-select}}
+	  </div>
 
-  {{#if labelIsSelected}}
-    <hr>
-    <div>
-      {{#power-select
-          placeholder="Oost-Vlaanderen, Berchem, Hasselt, ..."
-          selected=bestuurseenheidNaam
-          options=bestuurseenheidNamen
-          onchange=(action "chooseBestuurseenheidNaam")
-            as |bestuurseenheidNaam|
-      }}
-        {{bestuurseenheidNaam}}
-      {{/power-select}}
-    </div>
-  {{/if}}
+	  {{#if labelIsSelected}}
+	    <hr>
+	    <div>
+	      {{#power-select
+	          placeholder="Oost-Vlaanderen, Berchem, Hasselt, ..."
+	          selected=bestuurseenheidNaam
+	          options=bestuurseenheidNamen
+	          onchange=(action "chooseBestuurseenheidNaam")
+	            as |bestuurseenheidNaam|
+	      }}
+	        {{bestuurseenheidNaam}}
+	      {{/power-select}}
+	    </div>
+	  {{/if}}
 
-  <hr>
+	  <hr>
 
-  {{#if naamIsSelected}}
-    <div>
-      {{#link-to "bestuurseenheid" bestuurseenheidNaam bestuurseenheidClassificatieLabel}}
-        <button class="button">Search</button>
-      {{/link-to}}
-    </div>
-  {{else}}
-    <div>
-      <button class="button button--disabled">Search</button>
-    </div>
-  {{/if}}
-
-
+	  {{#if naamIsSelected}}
+	    <div>
+	      {{#link-to "bestuurseenheid" bestuurseenheidNaam bestuurseenheidClassificatieLabel}}
+	        <button class="button">Search</button>
+	      {{/link-to}}
+	    </div>
+	  {{else}}
+	    <div>
+	      <button class="button button--disabled">Search</button>
+	    </div>
+	  {{/if}}
+	</div>
 </div>
