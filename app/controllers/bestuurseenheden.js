@@ -11,17 +11,18 @@ export default Controller.extend({
   naamIsSelected: false,
 
   bestuurseenheidClassificatieLabels: computed(function() {
-    return this.model.getEach('label').uniq()
+    return this.model.getEach('label').uniq();
   }),
 
   bestuurseenheidNamen: computed('bestuurseenheidClassificatieLabel', 'bestuurseenheidNaam', function() {
     return this.get('store').query('bestuurseenheid', {
+      sort: 'naam',
       filter: {
         classificatie: {
           label: this.bestuurseenheidClassificatieLabel
         },
-        naam: this.bestuurseenheidNaam,
-      },
+        naam: this.bestuurseenheidNaam
+      }
     }).then(function(bestuurseenheden) {
       return bestuurseenheden.getEach('naam');
     });
