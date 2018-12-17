@@ -2,9 +2,6 @@ import Controller from '@ember/controller';
 import {
   computed
 } from '@ember/object';
-import {
-  filter
-} from '@ember/object/computed';
 
 export default Controller.extend({
   labelIsSelected: false,
