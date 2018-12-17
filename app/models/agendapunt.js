@@ -8,6 +8,7 @@ export default Model.extend({
   heeftOntwerpbesluit: attr(),
   titel: attr(),
   type: attr('string-set'),
+  position: attr('number'),
   vorigeAgendapunt: belongsTo('agendapunt', {inverse: null }),
   referenties: hasMany('agendapunt', {inverse: null }),
   agenda: belongsTo('agenda')
