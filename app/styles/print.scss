@@ -1,0 +1,33 @@
+/* ==========================================================================
+  Print
+  Style what printing looks like here.
+ ========================================================================== */
+
+@media print {
+
+	.tabs__wrapper,
+	.sidebar-zittingen-overview {
+		display: none;
+	}
+
+	.tabs__wrapper + .u-padding--round--large {
+		padding: 0 !important;
+	}
+
+	.container,
+	.grid,
+	.container-flex--contain,
+	.container-flex--scroll {
+		overflow: visible !important;
+		display: block;
+		position: static;
+		height: auto;
+		flex: none;
+		flex-direction: unset;
+		flex-wrap: unset;
+	}
+
+	.u-wide-on-print {
+		min-width: 100%;
+	}
+}
