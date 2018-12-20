@@ -10,6 +10,10 @@
 		display: none;
 	}
 
+	.sidebar-zittingen-detail {
+		min-width: 100%;
+	}
+
 	.tabs__wrapper + .u-padding--round--large {
 		padding: 0 !important;
 	}
@@ -25,9 +29,5 @@
 		flex: none;
 		flex-direction: unset;
 		flex-wrap: unset;
-	}
-
-	.u-wide-on-print {
-		min-width: 100%;
 	}
 }
