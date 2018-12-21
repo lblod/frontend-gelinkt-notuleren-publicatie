@@ -17,12 +17,6 @@ export default Route.extend(DataTableRouteMixin, {
     };
   },
 
-  afterModel(zittingen/*, transition*/) {
-    if (zittingen.get('length') > 0) {
-      this.transitionTo('bestuurseenheid.zitting.agenda', zittingen.get('firstObject.id'));
-    }
-  },
-
   setupController(controller, model) {
     this._super(controller, model);
     this.store.query('bestuurseenheid', {
