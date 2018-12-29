@@ -20,7 +20,7 @@
                           <a href="#" class="link--icon link--disabled">Agenda {{wu-icon "vi-clock"}}</a>
                         {{/if}}
 
-                        {{#if zitting.behandeldeAgendapunten}}
+                        {{#if zitting.hasBesluitenlijst}}
                           {{#link-to 'bestuurseenheid.zitting.besluitenlijst.index' zitting.id class="link--icon"}}
                             Besluitenlijst {{wu-icon "vi-document-small"}}
                           {{/link-to}}
@@ -56,7 +56,7 @@
 	  	<h1 class="h1">Er werden nog geen publicaties voor {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}} gevonden</h1>
 	    <p>Kom later nog eens terug, of
 	    	{{#link-to 'bestuurseenheden' class="link--icon"}}
-					<a href="/">zoek naar publicaties van een ander bestuur</a>.
+					zoek naar publicaties van een ander bestuur.
 				{{/link-to}}
 			</p>
 	  </div>

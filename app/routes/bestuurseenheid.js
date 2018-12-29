@@ -13,7 +13,7 @@ export default Route.extend(DataTableRouteMixin, {
       'filter[bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][naam]': params.bestuurseenheid_naam,
       'filter[bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][classificatie][label]': params.bestuurseenheid_classificatie_code_label,
       sort: '-geplande-start',
-      include: 'agenda,behandelde-agendapunten,notulen,bestuursorgaan'
+      include: 'agenda,agenda.agendapunten.behandeling,notulen,bestuursorgaan'
     };
   },
 
