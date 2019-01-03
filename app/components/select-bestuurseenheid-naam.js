@@ -3,7 +3,7 @@ import { task, timeout } from 'ember-concurrency';
 
 export default Component.extend({
     findBestuurseenheidNamen: task(function * () {
-      yield timeout(400); // Timeout for debouncing
+      yield timeout(200); // Timeout for debouncing
       let bestuurseenheidNamen = yield this.store.query('bestuurseenheid', {
         filter: {
           classificatie: {
