@@ -8,22 +8,11 @@
 
   	<h2 class="h3 u-spacer">Bekijk de gepubliceerde agenda's, besluiten en notulen van een bestuur</h2>
 
-    {{select-bestuurseenheid-classificatie-label model=model onSelect=(action 'setSelectLabelsProperties')}}
+    {{select-bestuurseenheid-classificatie-label model=model onSelect=(action 'setSelectLabelProperties')}}
 
 	  {{#if labelIsSelected}}
 	    <hr>
-	    <div>
-	      {{#power-select
-	          placeholder="Oost-Vlaanderen, Berchem, Hasselt, ..."
-	          selected=bestuurseenheidNaam
-	          options=bestuurseenheidNamen
-	          oninput=(action "chooseBestuurseenheidNaam")
-	          onchange=(action "chooseBestuurseenheidNaam")
-	            as |bestuurseenheidNaam|
-	      }}
-	        {{bestuurseenheidNaam}}
-	      {{/power-select}}
-	    </div>
+      {{select-bestuurseenheid-naam store=store onSelect=(action 'setSelectNaamProperties')}}
 	  {{/if}}
 
 	  <hr>

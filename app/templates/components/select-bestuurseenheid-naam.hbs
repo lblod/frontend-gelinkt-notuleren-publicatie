@@ -1,0 +1,15 @@
+<div>
+  {{#power-select
+      placeholder="Oost-Vlaanderen, Berchem, Hasselt, ..."
+      selected=bestuurseenheidNaam
+      options=bestuurseenheidNamen
+      search=(perform findBestuurseenheidNamen)
+      oninput=(action "chooseBestuurseenheidNaam")
+      onchange=(action "chooseBestuurseenheidNaam")
+        as |bestuurseenheidNaam|
+  }}
+    {{bestuurseenheidNaam}}
+  {{/power-select}}
+</div>
+
+{{yield}}
