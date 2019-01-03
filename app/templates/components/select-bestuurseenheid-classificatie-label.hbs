@@ -1,0 +1,13 @@
+<div>
+  {{#power-select
+      placeholder="OCMW, Gemeente, District, ..."
+      selected=bestuurseenheidClassificatieLabel
+      options=bestuurseenheidClassificatieLabels
+      onchange=(action "chooseBestuurseenheidClassificatieLabel")
+        as |bestuurseenheidClassificatieLabel|
+  }}
+    {{bestuurseenheidClassificatieLabel}}
+  {{/power-select}}
+</div>
+
+{{yield}}

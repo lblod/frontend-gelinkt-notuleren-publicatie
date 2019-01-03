@@ -8,17 +8,7 @@
 
   	<h2 class="h3 u-spacer">Bekijk de gepubliceerde agenda's, besluiten en notulen van een bestuur</h2>
 
-	  <div>
-	    {{#power-select
-	        placeholder="OCMW, Gemeente, District, ..."
-	        selected=bestuurseenheidClassificatieLabel
-	        options=bestuurseenheidClassificatieLabels
-	        onchange=(action "chooseBestuurseenheidClassificatieLabel")
-	          as |bestuurseenheidClassificatieLabel|
-	    }}
-	      {{bestuurseenheidClassificatieLabel}}
-	    {{/power-select}}
-	  </div>
+    {{select-bestuurseenheid-classificatie-label model=model onSelect=(action 'setSelectLabelsProperties')}}
 
 	  {{#if labelIsSelected}}
 	    <hr>

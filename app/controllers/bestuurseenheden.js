@@ -1,18 +1,10 @@
 import Controller from '@ember/controller';
-import {
-  computed
-} from '@ember/object';
-import {
-  debounce
-} from '@ember/runloop';
+import { computed } from '@ember/object';
+import { debounce } from '@ember/runloop';
 
 export default Controller.extend({
   labelIsSelected: false,
   naamIsSelected: false,
-
-  bestuurseenheidClassificatieLabels: computed(function() {
-    return this.model.getEach('label').uniq()
-  }),
 
   bestuurseenheidNamen: computed('bestuurseenheidClassificatieLabel', 'bestuurseenheidNaam', function() {
     return this.get('store').query('bestuurseenheid', {
@@ -27,16 +19,15 @@ export default Controller.extend({
     });
   }),
 
-
   doChooseBestuurseenheidNaam: function(bestuurseenheidNaam) {
     this.set('bestuurseenheidNaam', bestuurseenheidNaam);
     this.set('naamIsSelected', true);
   },
 
   actions: {
-    chooseBestuurseenheidClassificatieLabel(bestuurseenheidClassificatieLabel) {
+    setSelectLabelsProperties(labelIsSelected, bestuurseenheidClassificatieLabel) {
+      this.set('labelIsSelected', labelIsSelected);
       this.set('bestuurseenheidClassificatieLabel', bestuurseenheidClassificatieLabel);
-      this.set('labelIsSelected', true);
     },
 
     chooseBestuurseenheidNaam(bestuurseenheidNaam) {
