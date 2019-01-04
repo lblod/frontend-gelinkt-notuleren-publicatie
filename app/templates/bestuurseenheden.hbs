@@ -30,7 +30,7 @@
 	        <div class="step__content-wrapper">
 	          <div class="step__content">
 						  {{#if bestuurseenheidClassificatieLabel}}
-                {{select-bestuurseenheid-naam store=store onSelect=(action 'setBestuurseenheidNaam')}}
+                {{select-bestuurseenheid-naam bestuurseenheidClassificatieLabel=bestuurseenheidClassificatieLabel onSelect=(action 'setBestuurseenheidNaam')}}
 						  {{/if}}
 						  {{#if bestuurseenheidNaam}}
 						  	<div class="button-group">
