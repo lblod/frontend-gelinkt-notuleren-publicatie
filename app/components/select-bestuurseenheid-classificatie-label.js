@@ -3,7 +3,7 @@ import { task } from 'ember-concurrency';
 
 export default Component.extend({
     findBestuurseenheidClassificatieLabels: task(function * () {
-      let bestuurseenheidClassificatieLabels = yield this.model.getEach('label').uniq()
+      const bestuurseenheidClassificatieLabels = yield this.model.getEach('label').uniq();
       this.set('bestuurseenheidClassificatieLabels', bestuurseenheidClassificatieLabels);
     }),
 
@@ -15,7 +15,7 @@ export default Component.extend({
     actions: {
       chooseBestuurseenheidClassificatieLabel(bestuurseenheidClassificatieLabel) {
         this.set('bestuurseenheidClassificatieLabel', bestuurseenheidClassificatieLabel);
-        this.onSelect(true, bestuurseenheidClassificatieLabel);
+        this.onSelect(bestuurseenheidClassificatieLabel);
       }
-    }
+    },
 });

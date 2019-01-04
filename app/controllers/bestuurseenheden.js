@@ -2,13 +2,11 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
   actions: {
-    setSelectLabelProperties(labelIsSelected, bestuurseenheidClassificatieLabel) {
-      this.set('labelIsSelected', labelIsSelected);
+    setBestuurseenheidClassificatieLabel(bestuurseenheidClassificatieLabel) {
       this.set('bestuurseenheidClassificatieLabel', bestuurseenheidClassificatieLabel);
     },
 
-    setSelectNaamProperties(naamIsSelected, bestuurseenheidNaam) {
-      this.set('naamIsSelected', naamIsSelected);
+    setBestuurseenheidNaam(bestuurseenheidNaam) {
       this.set('bestuurseenheidNaam', bestuurseenheidNaam);
     }
   }

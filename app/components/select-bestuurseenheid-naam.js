@@ -4,17 +4,15 @@ import { task, timeout } from 'ember-concurrency';
 export default Component.extend({
     findBestuurseenheidNamen: task(function * () {
       yield timeout(200); // Timeout for debouncing
-      let bestuurseenheidNamen = yield this.store.query('bestuurseenheid', {
+      const bestuurseenheden = yield this.store.query('bestuurseenheid', {
         filter: {
           classificatie: {
             label: this.bestuurseenheidClassificatieLabel
           },
-          naam: this.bestuurseenheidNaam,
-        },
-      }).then(function(bestuurseenheden) {
-        return bestuurseenheden.getEach('naam');
+          naam: this.bestuurseenheidNaam
+        }
       });
-      this.set('bestuurseenheidNamen', bestuurseenheidNamen);
+      this.set('bestuurseenheidNamen', bestuurseenheden.getEach('naam'));
     }).restartable(),
 
     async didReceiveAttrs() {
@@ -26,7 +24,7 @@ export default Component.extend({
       chooseBestuurseenheidNaam(bestuurseenheidNaam) {
         this.set('bestuurseenheidNaam', bestuurseenheidNaam);
         this.findBestuurseenheidNamen.perform();
-        this.onSelect(true, bestuurseenheidNaam);
+        this.onSelect(bestuurseenheidNaam);
       }
     }
 });
