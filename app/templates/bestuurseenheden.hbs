@@ -7,26 +7,43 @@
   <div class="u-padding--round--large">
 
   	<h2 class="h3 u-spacer">Bekijk de gepubliceerde agenda's, besluiten en notulen van een bestuur</h2>
-
-    {{select-bestuurseenheid-classificatie-label model=model onSelect=(action 'setBestuurseenheidClassificatieLabel')}}
-
-    {{#if bestuurseenheidClassificatieLabel}}
-	    <hr>
-      {{select-bestuurseenheid-naam store=store onSelect=(action 'setBestuurseenheidNaam')}}
-	  {{/if}}
-
-	  <hr>
-
-	  {{#if bestuurseenheidNaam}}
-	    <div>
-	      {{#link-to "bestuurseenheid" bestuurseenheidNaam bestuurseenheidClassificatieLabel}}
-	        <button class="button">Search</button>
-	      {{/link-to}}
-	    </div>
-	  {{else}}
-	    <div>
-	      <button class="button button--disabled">Search</button>
-	    </div>
-	  {{/if}}
+  	<ul class="steps steps--has-line">
+	    <li class="step step--no-box">
+	      <div class="step__icon">1</div>
+	      <div class="step__wrapper">
+	        <div class="step__header">
+	          <h3 class="step__title">Stap 1: Kies het type bestuurseenheid &mdash; Gemeente, District, Provincie of OCMW.</h3>
+	        </div>
+	        <div class="step__content-wrapper">
+	          <div class="step__content">
+              {{select-bestuurseenheid-classificatie-label model=model onSelect=(action 'setBestuurseenheidClassificatieLabel')}}
+	          </div>
+	        </div>
+	      </div>
+	    </li>
+	    <li class="step {{unless bestuurseenheidClassificatieLabel "step--disabled"}} step--no-box">
+	      <div class="step__icon">2</div>
+	      <div class="step__wrapper">
+	        <div class="step__header">
+	          <h3 class="step__title">Stap 2: Kies de bestuurseenheid </h3>
+	        </div>
+	        <div class="step__content-wrapper">
+	          <div class="step__content">
+						  {{#if bestuurseenheidClassificatieLabel}}
+                {{select-bestuurseenheid-naam store=store onSelect=(action 'setBestuurseenheidNaam')}}
+						  {{/if}}
+						  {{#if bestuurseenheidNaam}}
+						  	<div class="button-group">
+						      {{#link-to "bestuurseenheid" bestuurseenheidNaam bestuurseenheidClassificatieLabel}}
+						        <button class="button">Bekijk publicaties</button>
+						      {{/link-to}}
+						    </div>
+						  {{/if}}
+	          </div>
+	        </div>
+	      </div>
+	    </li>
+  	</ul>
 	</div>
+	{{wu-widget src=footer}}
 </div>

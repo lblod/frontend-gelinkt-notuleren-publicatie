@@ -1,11 +1,10 @@
 {{#power-select
-    placeholder="OCMW, Gemeente, District, ..."
-    selected=bestuurseenheidClassificatieLabel
-    options=bestuurseenheidClassificatieLabels
-    onchange=(action "chooseBestuurseenheidClassificatieLabel")
-      as |bestuurseenheidClassificatieLabel|
-  }}
-  {{bestuurseenheidClassificatieLabel}}
+		 placeholder="Gemeente, District, Provincie of OCMW ..."
+		 selected=bestuurseenheidClassificatieLabel
+		 options=bestuurseenheidClassificatieLabels
+		 onchange=(action "chooseBestuurseenheidClassificatieLabel")
+		 as |bestuurseenheidClassificatieLabel|}}
+	{{bestuurseenheidClassificatieLabel}}
 {{/power-select}}
 
 {{yield}}

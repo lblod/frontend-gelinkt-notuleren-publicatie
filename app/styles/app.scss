@@ -3,6 +3,17 @@
 @import 'ember-vo-webuniversum';
 
 @import 'colors';
+@import 'print';
 
-@import 'temporary-header';
 @import 'clickable-box-list';
+@import 'restyle-ember-power-select';
+
+/* shame */
+
+.vo-header-widget {
+  min-height: 45px;
+}
+
+.side-navigation__item a {
+	word-break: initial;
+}

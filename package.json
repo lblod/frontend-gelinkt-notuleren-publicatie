@@ -1,6 +1,6 @@
 {
   "name": "frontend-gelinkt-notuleren-publicatie",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "private": true,
   "description": "Publication pages of gelinkt notuleren",
   "repository": {
@@ -25,8 +25,10 @@
     "@ember/optional-features": "^0.6.3",
     "@lblod/ember-vo-webuniversum": "^0.19.1",
     "@lblod/ember-vo-webuniversum-data-table": "^0.2.10",
+    "@lblod/ember-vo-webuniversum-widget": "^0.1.2",
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.1.0",
+    "ember-awesome-macros": "^3.1.0",
     "ember-cli": "~3.4.1",
     "ember-cli-app-version": "^3.2.0",
     "ember-cli-babel": "^6.16.0",
@@ -62,6 +64,7 @@
     "ember-source": "~3.4.0",
     "eslint-plugin-ember": "^5.2.0",
     "loader.js": "^4.7.0",
+    "postscribe": "^2.0.8",
     "qunit-dom": "^0.7.1",
     "sass": "^1.15.2"
   },
