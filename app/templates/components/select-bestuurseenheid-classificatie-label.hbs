@@ -1,8 +1,9 @@
 {{#power-select
 		 placeholder="Gemeente, District, Provincie of OCMW ..."
-		 selected=bestuurseenheidClassificatieLabel
+		 selected=selected
 		 options=bestuurseenheidClassificatieLabels
-		 onchange=(action "chooseBestuurseenheidClassificatieLabel")
+		 onchange=onSelect
+     allowClear=true
 		 as |bestuurseenheidClassificatieLabel|}}
 	{{bestuurseenheidClassificatieLabel}}
 {{/power-select}}

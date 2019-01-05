@@ -9,6 +9,7 @@ export default Controller.extend({
 
   actions: {
     setBestuurseenheidClassificatieLabel(bestuurseenheidClassificatieLabel) {
+      this.set('bestuurseenheidNaam', null);
       this.set('bestuurseenheidClassificatieLabel', bestuurseenheidClassificatieLabel);
     },
 

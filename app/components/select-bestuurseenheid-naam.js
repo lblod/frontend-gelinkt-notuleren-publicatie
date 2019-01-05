@@ -5,31 +5,27 @@ import { inject as service } from '@ember/service';
 export default Component.extend({
   store: service(),
 
-  findBestuurseenheidNamen: task(function*() {
+  findBestuurseenheidNamen: task(function*(search) {
     yield timeout(200); // Timeout for debouncing
 
-    const bestuurseenheden = yield this.store.query('bestuurseenheid', {
+    const queryParams =  {
       sort: 'naam',
       filter: {
         classificatie: {
           label: this.bestuurseenheidClassificatieLabel
-        },
-        naam: this.bestuurseenheidNaam
+        }
       }
-    });
+    };
+
+    if (search)
+      queryParams['filter[naam]'] = search;
+
+    const bestuurseenheden = yield this.store.query('bestuurseenheid', queryParams);
     this.set('bestuurseenheidNamen', bestuurseenheden.getEach('naam'));
   }).restartable(),
 
   async didReceiveAttrs() {
     this._super(...arguments);
     await this.findBestuurseenheidNamen.perform();
-  },
-
-  actions: {
-    chooseBestuurseenheidNaam(bestuurseenheidNaam) {
-      this.set('bestuurseenheidNaam', bestuurseenheidNaam);
-      this.findBestuurseenheidNamen.perform();
-      this.onSelect(bestuurseenheidNaam);
-    }
   }
 });

@@ -16,7 +16,7 @@
 	        </div>
 	        <div class="step__content-wrapper">
 	          <div class="step__content">
-              {{select-bestuurseenheid-classificatie-label model=model onSelect=(action 'setBestuurseenheidClassificatieLabel')}}
+              {{select-bestuurseenheid-classificatie-label model=model selected=bestuurseenheidClassificatieLabel onSelect=(action 'setBestuurseenheidClassificatieLabel')}}
 	          </div>
 	        </div>
 	      </div>
@@ -30,7 +30,7 @@
 	        <div class="step__content-wrapper">
 	          <div class="step__content">
 						  {{#if bestuurseenheidClassificatieLabel}}
-                {{select-bestuurseenheid-naam bestuurseenheidClassificatieLabel=bestuurseenheidClassificatieLabel onSelect=(action 'setBestuurseenheidNaam')}}
+                {{select-bestuurseenheid-naam bestuurseenheidClassificatieLabel=bestuurseenheidClassificatieLabel selected=bestuurseenheidNaam onSelect=(action (mut bestuurseenheidNaam))}}
 						  {{/if}}
 						  {{#if bestuurseenheidNaam}}
 						  	<div class="button-group">

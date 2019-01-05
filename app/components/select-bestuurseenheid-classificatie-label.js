@@ -10,12 +10,5 @@ export default Component.extend({
     async didReceiveAttrs() {
       this._super(...arguments);
       await this.findBestuurseenheidClassificatieLabels.perform();
-    },
-
-    actions: {
-      chooseBestuurseenheidClassificatieLabel(bestuurseenheidClassificatieLabel) {
-        this.set('bestuurseenheidClassificatieLabel', bestuurseenheidClassificatieLabel);
-        this.onSelect(bestuurseenheidClassificatieLabel);
-      }
-    },
+    }
 });
