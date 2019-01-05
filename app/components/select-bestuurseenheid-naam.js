@@ -9,6 +9,7 @@ export default Component.extend({
     yield timeout(200); // Timeout for debouncing
 
     const bestuurseenheden = yield this.store.query('bestuurseenheid', {
+      sort: 'naam',
       filter: {
         classificatie: {
           label: this.bestuurseenheidClassificatieLabel
