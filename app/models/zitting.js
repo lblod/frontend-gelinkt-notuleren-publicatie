@@ -1,7 +1,7 @@
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
-import { belongsTo, hasMany } from 'ember-data/relationships';
-import { filter, length, map } from 'ember-awesome-macros/array';
+import { belongsTo } from 'ember-data/relationships';
+import { filter, map } from 'ember-awesome-macros/array';
 import { notEmpty } from 'ember-awesome-macros';
 
 export default Model.extend({
