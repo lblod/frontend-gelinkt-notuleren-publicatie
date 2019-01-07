@@ -6,12 +6,12 @@
 @import 'print';
 
 @import 'clickable-box-list';
-@import 'restyle-ember-power-select';
+@import 'restyle-ember-power-select'; // remove when webuniversum is updated
 
 /* shame */
 
 .vo-header-widget {
-  min-height: 45px;
+  min-height: 45px; // remove when webuniversum is updated
 }
 
 .side-navigation__item a {
