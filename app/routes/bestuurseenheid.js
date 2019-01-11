@@ -10,8 +10,8 @@ export default Route.extend(DataTableRouteMixin, {
     this.set('bestuurseenheidClassificatieLabel', params.bestuurseenheid_classificatie_code_label);
 
     return {
-      'filter[bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][naam]': params.bestuurseenheid_naam,
-      'filter[bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][classificatie][label]': params.bestuurseenheid_classificatie_code_label,
+      'filter[bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][:exact:naam]': params.bestuurseenheid_naam,
+      'filter[bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][classificatie][:exact:label]': params.bestuurseenheid_classificatie_code_label,
       sort: '-geplande-start',
       include: 'agenda,agenda.agendapunten.behandeling,notulen,bestuursorgaan'
     };
@@ -20,8 +20,8 @@ export default Route.extend(DataTableRouteMixin, {
   setupController(controller, model) {
     this._super(controller, model);
     this.store.query('bestuurseenheid', {
-      'filter[naam]': this.bestuurseenheidNaam,
-      'filter[classificatie][label]': this.bestuurseenheidClassificatieLabel
+      'filter[:exact:naam]': this.bestuurseenheidNaam,
+      'filter[classificatie][:exact:label]': this.bestuurseenheidClassificatieLabel
     }).then(bestuurseenheden => controller.set('bestuurseenheid', bestuurseenheden.firstObject));
   }
 });

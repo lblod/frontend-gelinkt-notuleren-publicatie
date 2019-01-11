@@ -1,25 +1,28 @@
 <div class="container-flex--scroll u-padding--round--large">
   <h1 class="h1">Besluitenlijst van {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, zitting van {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}</h1>
+  <div class="grid grid--is-stacked">
+    {{#each agendapunten as |agendapunt|}}
+      {{#each agendapunt.behandeling.besluiten as |besluit|}}
+        <div class="{{if besluit.isExpanded "col--12-12" "col--6-12"}}" {{action "toggleExpand" besluit}}>
+          <div class="info-tile info-tile--expandable info-tile--capped annotation-structure annotation-structure--behandeling {{if besluit.isExpanded "info-tile--capped--animation" "info-tile--capped"}}">
+            <div class="info-tile__header__wrapper">
+              <h3 class="info-tile__header__title">{{clean-spaces besluit.titel}}</h3>
+              <p class="info-tile__header__subtitle">{{clean-spaces besluit.beschrijving}}</p>
+            </div>
 
-  <div class="annotation-structure">
-	  <ul class="clickable-box-list">
-	    {{#each agendapunten as |agendapunt index|}}
-	      {{#each agendapunt.behandeling.besluiten as |besluit|}}
-	        <li class="{{unless model.isPublished "not-active"}}">
-	        	{{#link-to 'bestuurseenheid.zitting.besluitenlijst.show' agendapunt.behandeling.id disabledWhen=(not model.isPublished) class='annotation annotation--agendapunt annotation--agendapunt--{{if item.geplandOpenbaar "open" "besloten"}}'}}
-		          <div class="list-number">{{inc index}}</div>
-		          <div class="list-content">
-		          	<div class="u-spacer--tiny">{{clean-spaces besluit.titel}}</div>
-			          <p class="info-tile__header__subtitle u-spacer--small">{{clean-spaces besluit.beschrijving}}</p>
-			        </div>
-		        {{/link-to}}
-	        </li>
-	      {{/each}}
-      {{else}}
-        <li>Geen besluitenlijst beschikbaar.</li>
+            <p class="info-tile__header__subtitle">
+              <strong>Besluit:</strong> {{agendapunt.behandeling.gevolg.content}}
+            </p>
+
+            {{#link-to 'bestuurseenheid.zitting.besluitenlijst.show' agendapunt.behandeling.id class="button button--alt button--alt--blue button--narrow button--small"}}
+              Bekijk volledige behandeling agendapunt
+            {{/link-to}}
+
+          </div>
+        </div>
       {{/each}}
-	  </ul>
-	</div>
+    {{/each}}
+  </div>
 </div>
 
 {{outlet}}
