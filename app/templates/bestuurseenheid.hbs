@@ -1,0 +1,65 @@
+<div class="container-flex--contain">
+
+  {{#if model.length}}
+    <div class="grid grid--collapse">
+      <div class="col--3-12 sidebar-zittingen-overview">
+        <div class="container-flex--contain">
+          <div class="sidebar">
+            <div class="sidebar__content">
+              <div class="side-navigation side-navigation--blocks">
+                <ul class="side-navigation__group">
+                  {{#each model as |zitting|}}
+                    <li onclick={{action "openZitting" zitting}} class="side-navigation__item {{if (eq selectedZitting zitting) "active"}}">
+                      <a href="#"><strong>{{get (await zitting.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, zitting van {{moment-format zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}</strong></a>
+                      <div class="link-group link-group--bordered link-group--tiny link-group--dark">
+                        {{#if zitting.agenda}}
+                          {{#link-to 'bestuurseenheid.zitting.agenda' zitting.id class="link--icon"}}
+                            Agenda {{wu-icon "vi-document-small"}}
+                          {{/link-to}}
+                        {{else}}
+                          <a href="#" class="link--icon link--disabled">Agenda {{wu-icon "vi-clock"}}</a>
+                        {{/if}}
+
+                        {{#if zitting.hasBesluitenlijst}}
+                          {{#link-to 'bestuurseenheid.zitting.besluitenlijst.index' zitting.id class="link--icon"}}
+                            Besluitenlijst {{wu-icon "vi-document-small"}}
+                          {{/link-to}}
+                        {{else}}
+                          <a href="#" class="link--icon link--disabled">Besluitenlijst {{wu-icon "vi-clock"}}</a>
+                        {{/if}}
+
+                        {{#if zitting.isPublished}}
+                          {{#link-to 'bestuurseenheid.zitting.notulen' zitting.id class="link--icon"}}
+                            Notulen {{wu-icon "vi-document-small"}}
+                          {{/link-to}}
+                        {{else}}
+                          <a href="#" class="link--icon link--disabled">Notulen {{wu-icon "vi-clock"}}</a>
+                        {{/if}}
+                      </div>
+                    </li>
+                  {{/each}}
+                </ul>
+              </div>
+            </div>
+            <div class="sidebar__footer">
+              {{number-pagination page=page size=size nbOfItems=model.length
+                  total=model.meta.count links=model.meta.pagination}}
+            </div>
+          </div>
+        </div>
+      </div>
+      {{outlet}}
+    </div>
+  {{else}}
+	<section class="region">
+	  <div class="layout layout--wide">
+	  	<h1 class="h1">Er werden nog geen publicaties voor {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}} gevonden</h1>
+	    <p>Kom later nog eens terug, of
+	    	{{#link-to 'bestuurseenheden' class="link--icon"}}
+					zoek naar publicaties van een ander bestuur.
+				{{/link-to}}
+			</p>
+	  </div>
+	</section>
+  {{/if}}
+</div>

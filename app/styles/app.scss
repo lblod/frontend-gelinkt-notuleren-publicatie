@@ -1,1 +1,14 @@
+@import 'ember-power-select';
 @import 'ember-vo-webuniversum-data-table';
+@import 'ember-vo-webuniversum';
+
+@import 'colors';
+@import 'print';
+
+@import 'clickable-box-list';
+
+/* shame */
+
+.side-navigation__item a {
+	word-break: initial;
+}

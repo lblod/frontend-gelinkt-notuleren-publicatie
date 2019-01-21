@@ -1,0 +1,11 @@
+{{#power-select
+		 placeholder="Gemeente, District, Provincie of OCMW ..."
+		 selected=selected
+		 options=bestuurseenheidClassificatieLabels
+		 onchange=onSelect
+     allowClear=true
+		 as |bestuurseenheidClassificatieLabel|}}
+	{{bestuurseenheidClassificatieLabel}}
+{{/power-select}}
+
+{{yield}}

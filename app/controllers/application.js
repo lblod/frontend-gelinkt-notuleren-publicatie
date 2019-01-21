@@ -1,11 +1,9 @@
 import Controller from '@ember/controller';
-import DefaultQueryParamsMixin from 'ember-data-table/mixins/default-query-params';
+import ENV from 'frontend-gelinkt-notuleren-publicatie/config/environment';
 
-export default Controller.extend(DefaultQueryParamsMixin, {
-  selectedZitting: null,
-  actions: {
-    openZitting(zitting) {
-      this.transitionToRoute('zitting.agenda', zitting.id);
-    }
+export default Controller.extend({
+  init() {
+    this._super(...arguments);
+    this.set('header', ENV['vo-webuniversum']['header']);
   }
 });

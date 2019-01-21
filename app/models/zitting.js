@@ -1,7 +1,8 @@
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
-import { belongsTo, hasMany } from 'ember-data/relationships';
-import { notEmpty } from '@ember/object/computed';
+import { belongsTo } from 'ember-data/relationships';
+import { filter, map } from 'ember-awesome-macros/array';
+import { notEmpty } from 'ember-awesome-macros';
 
 export default Model.extend({
   geplandeStart: attr('datetime'),
@@ -10,8 +11,8 @@ export default Model.extend({
   opLocatie: attr(),
   bestuursorgaan: belongsTo('bestuursorgaan'),
   afgeleidUit: attr(),
-  behandeldeAgendapunten: hasMany('behandeling-van-agendapunt'),
   agenda: belongsTo('agenda'),
 
-  isPublished: notEmpty('afgeleidUit')
+  isPublished: notEmpty('afgeleidUit'),
+  hasBesluitenlijst: notEmpty(filter(map('agenda.agendapunten', a => a.behandeling.get('id')), i => i))
 });
