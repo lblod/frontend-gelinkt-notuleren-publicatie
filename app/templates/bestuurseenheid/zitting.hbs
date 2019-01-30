@@ -1,24 +1,5 @@
-<div class="col--9-12 sidebar-zittingen-detail">
-  <div class="container-flex--contain">
-    <nav class="tabs__wrapper">
-      <ul class="tabs u-spacer--none" data-tabs-list="">
-        {{#if model.agenda}}
-          {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="tab" activeClass="tab--active"}}
-            <a class="tab__link">Agendapunten</a>
-          {{/link-to}}
-        {{/if}}
-        {{#if model.hasBesluitenlijst}}
-          {{#link-to 'bestuurseenheid.zitting.besluitenlijst.index' model.id tagName='li' class="tab" activeClass="tab--active"}}
-            <a class="tab__link">Besluitenlijst</a>
-          {{/link-to}}
-        {{/if}}
-        {{#if model.isPublished}}
-          {{#link-to 'bestuurseenheid.zitting.notulen' model.id tagName='li' class="tab" activeClass="tab--active"}}
-            <a class="tab__link">Notulen</a>
-          {{/link-to}}
-        {{/if}}
-      </ul>
-    </nav>
-    {{outlet}}
-  </div>
+<div class="col--9-12 col--12-12--s sidebar-zittingen-detail">
+	<div class="container-flex--contain">
+		{{outlet}}
+	</div>
 </div>

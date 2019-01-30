@@ -1,6 +1,14 @@
+<ul class="functional-header__sub__actions">
+  <li class="functional-header__sub__action">
+    <h2 class="functional-header__sub__title">
+      {{#link-to 'bestuurseenheid.zitting.zitting'}}Overzicht zitting{{/link-to}}
+    </h2>
+  </li>
+  <li class="functional-header__sub__action">Agenda</li>
+</ul>
+
 <div class="container-flex--scroll u-padding--round--large">
   <h1 class="h1">Agendapunten van {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, zitting van {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}</h1>
-
   <div class="annotation-structure">
     <ul class="clickable-box-list">
       {{#each agendapunten as |item index|}}
