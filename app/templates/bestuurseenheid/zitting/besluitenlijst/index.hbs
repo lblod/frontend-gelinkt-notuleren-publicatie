@@ -7,30 +7,84 @@
   <li class="functional-header__sub__action">Besluitenlijst</li>
 </ul>
 
+<div class="u-padding--round--small u-border--fat--bottom">
+  <h1 class="h5 u-spacer--tb--tiny">
+	  Besluitenlijst van {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}},
+		<br>
+		zitting van {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}
+	</h1>
+</div>
+
 <div class="container-flex--scroll u-padding--round--large">
-  <h1 class="h1">Besluitenlijst van {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, zitting van {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}</h1>
-  <div class="grid grid--is-stacked">
-    {{#each agendapunten as |agendapunt|}}
-      {{#each agendapunt.behandeling.besluiten as |besluit|}}
-        <div class="{{if besluit.isExpanded "col--12-12" "col--6-12"}}" {{action "toggleExpand" besluit}}>
-          <div class="info-tile info-tile--expandable info-tile--capped annotation-structure annotation-structure--behandeling {{if besluit.isExpanded "info-tile--capped--animation" "info-tile--capped"}}">
+  <div class="grid">
+  	<div class="col--7-12">
+	    {{#each agendapunten as |agendapunt|}}
+	      {{#each agendapunt.behandeling.besluiten as |besluit|}}
+          <div class="u-spacer--small info-tile info-tile--capped annotation-structure annotation-structure--behandeling}}">
             <div class="info-tile__header__wrapper">
               <h3 class="info-tile__header__title">{{clean-spaces besluit.titel}}</h3>
-              <p class="info-tile__header__subtitle">{{clean-spaces besluit.beschrijving}}</p>
-            </div>
+	            <div class="info-tile__header__subtitle">
+	              <h4>
+		              <strong>Korte omschrijving</strong>
+		            </h4>
+		            {{#if besluit.beschrijving}}
+			            <p>{{clean-spaces besluit.beschrijving}}</p>
+		            {{else}}
+		          		<p class="text-fade">Inhoud beschrijving niet gevonden</p>
+		          	{{/if}}
+	            </div>
+	          </div>
 
-            <p class="info-tile__header__subtitle">
-              <strong>Besluit:</strong> {{agendapunt.behandeling.gevolg.content}}
-            </p>
+            <div class="info-tile__header__subtitle u-spacer--small">
+              <h4>
+              	<strong>Besluit</strong>
+            	</h4>
+	            {{#if agendapunt.behandeling.gevolg.content}}
+	            	<p>{{agendapunt.behandeling.gevolg.content}}</p>
+	            {{else}}
+	          		<p class="text-fade">Inhoud besluit niet gevonden</p>
+	          	{{/if}}
+	          </div>
 
             {{#link-to 'bestuurseenheid.zitting.besluitenlijst.show' agendapunt.behandeling.id class="button button--alt button--alt--blue button--narrow button--small"}}
-              Bekijk volledige behandeling agendapunt
+              Bekijk volledige behandeling agendapunt <i class="vi vi-arrow vi-u-xs"></i>
             {{/link-to}}
-
           </div>
-        </div>
-      {{/each}}
-    {{/each}}
+	      {{/each}}
+	    {{/each}}
+	  </div>
+
+	  <div class="col--4-12 push--1-12 u-bg--blue-gray-lighter">
+  		<dl class="small">
+  			<dt>Publicatie</dt>
+  			<dd>
+  				<strong>24 januari 2019</strong>
+  			</dd>
+  			<br>
+  			<dt>Verificatiesleutel</dt>
+  			<dd>
+  				<strong><i class="fa fa-lock vi-u-xs"></i>&nbsp;123R8883-3122344-455123R888-33122344455</strong>
+	  			<p class="small"><a href="#">Verifieer publicatie met origineel</a></p>
+  			</dd>
+  			<br>
+  			<dt>Nietig verklaarde versies</dt>
+  			<dd>
+  				<div>
+	  				<strong><a href="#">Publicatie op 10.12.2019</a></strong>
+	  				<p class="smaller text-fade u-spacer--tiny">Gepubliceerd op 10.12.2019</p>
+	  			</div>
+  				<div>
+	  				<strong><a href="#">Publicatie op 10.12.2019</a></strong>
+	  				<p class="smaller text-fade u-spacer--tiny">Gepubliceerd op 10.12.2019</p>
+	  			</div>
+  				<div>
+	  				<strong><a href="#">Publicatie op 10.12.2019</a></strong>
+	  				<p class="smaller text-fade u-spacer--tiny">Gepubliceerd op 10.12.2019</p>
+	  			</div>
+  			</dd>
+  			<br>
+  		</dl>
+	  </div>
   </div>
 </div>
 
