@@ -1,4 +1,5 @@
-{{#power-select
+<div class="u-spacer--small">
+	{{#power-select
      placeholder="Oost-Vlaanderen, Berchem, Hasselt, ..."
      selected=selected
      options=bestuurseenheidNamen
@@ -6,8 +7,9 @@
      onchange=onSelect
      allowClear=true
      as |bestuurseenheidNaam|
-  }}
-  {{bestuurseenheidNaam}}
-{{/power-select}}
+	  }}
+	  {{bestuurseenheidNaam}}
+	{{/power-select}}
+</div>
 
 {{yield}}
