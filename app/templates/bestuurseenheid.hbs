@@ -9,7 +9,7 @@
               <div class="side-navigation side-navigation--blocks">
                 <ul class="side-navigation__group">
                   {{#each model as |zitting|}}
-                  	{{#link-to 'bestuurseenheid.zitting.agenda' zitting.id tagName='li' class="side-navigation__item" activeClass="active"}}
+                  	{{#link-to 'bestuurseenheid.zitting.zitting' zitting.id tagName='li' class="side-navigation__item" activeClass="active"}}
                       <a href="#">
                     		{{get (await zitting.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}},
                       	<br>
