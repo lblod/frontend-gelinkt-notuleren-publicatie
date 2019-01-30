@@ -9,34 +9,56 @@
               <div class="side-navigation side-navigation--blocks">
                 <ul class="side-navigation__group">
                   {{#each model as |zitting|}}
-                    <li onclick={{action "openZitting" zitting}} class="side-navigation__item {{if (eq selectedZitting zitting) "active"}}">
-                      <a href="#"><strong>{{get (await zitting.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, zitting van {{moment-format zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}</strong></a>
-                      <div class="link-group link-group--bordered link-group--tiny link-group--dark">
-                        {{#if zitting.agenda}}
-                          {{#link-to 'bestuurseenheid.zitting.agenda' zitting.id class="link--icon"}}
-                            Agenda {{wu-icon "vi-document-small"}}
-                          {{/link-to}}
-                        {{else}}
-                          <a href="#" class="link--icon link--disabled">Agenda {{wu-icon "vi-clock"}}</a>
-                        {{/if}}
+                  	{{#link-to 'bestuurseenheid.zitting.agenda' zitting.id tagName='li' class="side-navigation__item" activeClass="active"}}
+                      <a href="#">
+                    		{{get (await zitting.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}},
+                      	<br>
+                      	zitting van {{moment-format zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}
+	                      <br>
+	                      <span class="u-spacer--top--tiny u-display--block">
+		                      {{#if zitting.isPublished}}
+		                      	{{#wu-pill class="pill--primary-blue"}}
+		                      		<i class="vi vi-news"></i> Notulen publiek
+														{{/wu-pill}}
+		                      {{else if zitting.hasBesluitenlijst}}
+		                      	{{#wu-pill class="pill--primary-blue"}}
+		                      		<i class="vi vi-news"></i> Besluitenlijst publiek
+														{{/wu-pill}}
+		                      {{else if zitting.agenda}}
+		                      	{{#wu-pill}}
+		                      		<i class="vi vi-news"></i> Agenda publiek
+														{{/wu-pill}}
+		                      {{/if}}
 
-                        {{#if zitting.hasBesluitenlijst}}
-                          {{#link-to 'bestuurseenheid.zitting.besluitenlijst.index' zitting.id class="link--icon"}}
-                            Besluitenlijst {{wu-icon "vi-document-small"}}
-                          {{/link-to}}
-                        {{else}}
-                          <a href="#" class="link--icon link--disabled">Besluitenlijst {{wu-icon "vi-clock"}}</a>
-                        {{/if}}
-
-                        {{#if zitting.isPublished}}
-                          {{#link-to 'bestuurseenheid.zitting.notulen' zitting.id class="link--icon"}}
-                            Notulen {{wu-icon "vi-document-small"}}
-                          {{/link-to}}
-                        {{else}}
-                          <a href="#" class="link--icon link--disabled">Notulen {{wu-icon "vi-clock"}}</a>
-                        {{/if}}
-                      </div>
-                    </li>
+													{{!-- When we adapt the pages
+ 		                      {{#if zitting.isPublished}}
+		                      	{{#wu-pill class="pill--primary-blue"}}
+		                      		<i class="vi vi-news"></i> Notulen publiek
+														{{/wu-pill}}
+		                      {{else if zitting.ontwerpNotulen}}
+		                      	{{#wu-pill class="pill--primary-blue"}}
+		                      		<i class="vi vi-edit"></i> Ontwerpnotulen publiek
+														{{/wu-pill}}
+		                      {{else if zitting.hasBesluitenlijst}}
+		                      	{{#wu-pill class="pill--primary-yellow"}}
+		                      		<i class="vi vi-news"></i> Besluitenlijst publiek
+														{{/wu-pill}}
+		                      {{else if zitting.spoedeisendeAgenda}}
+		                      	{{#wu-pill}}
+		                      		<i class="vi vi-clock"></i> Spoedeisende agenda publiek
+														{{/wu-pill}}
+		                      {{else if zitting.aanvullendeAgenda}}
+		                      	{{#wu-pill}}
+		                      		<i class="vi vi-news"></i> Aanvullende agenda publiek
+														{{/wu-pill}}
+		                      {{else if zitting.ontwerpAgenda}}
+		                      	{{#wu-pill}}
+		                      		<i class="vi vi-edit"></i> Ontwerpagenda publiek
+														{{/wu-pill}}
+		                      {{/if}} --}}
+		                    </span>
+	                    </a>
+                  	{{/link-to}}
                   {{/each}}
                 </ul>
               </div>
