@@ -1,16 +1,34 @@
 <ul class="functional-header__sub__actions">
   <li class="functional-header__sub__action">
     <h2 class="functional-header__sub__title">
-      {{#link-to 'bestuurseenheid.zitting.zitting'}}Overzicht zitting{{/link-to}}
+	  	{{#link-to 'bestuurseenheden' tagname="a"}}
+				Zoekpagina
+			{{/link-to}}
+    </h2>
+  </li>
+  <li class="functional-header__sub__action">
+    <h2 class="functional-header__sub__title">
+	  	{{#link-to 'bestuurseenheid' tagname="a"}}
+	  		<!-- TODO: fix naam bestuurseenheid --> Bestuurseenheid
+			{{/link-to}}
+    </h2>
+  </li>
+  <li class="functional-header__sub__action">
+    <h2 class="functional-header__sub__title">
+	  	{{#link-to 'bestuurseenheid' tagname="a"}}
+				Zitting van {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, op {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}
+			{{/link-to}}
     </h2>
   </li>
   <li class="functional-header__sub__action">Notulen</li>
 </ul>
 
-<div class="container-flex--scroll u-padding--round--large">
+<div class="container-flex--scroll u-padding--round">
   <div class="grid">
-    <div class="col--7-12">
-    	{{{model.afgeleidUit}}}
+  	<div class="col--7-12 col--1-1--s">
+  		<div class="u-spacer--top--small">
+	    	{{{model.afgeleidUit}}}
+	    </div>
     </div>
   </div>
 </div>

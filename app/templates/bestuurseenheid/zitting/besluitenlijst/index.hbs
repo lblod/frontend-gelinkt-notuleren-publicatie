@@ -1,23 +1,37 @@
 <ul class="functional-header__sub__actions">
   <li class="functional-header__sub__action">
     <h2 class="functional-header__sub__title">
-      {{#link-to 'bestuurseenheid.zitting.zitting'}}Overzicht{{/link-to}}
+	  	{{#link-to 'bestuurseenheden'}}
+				Zoekpagina
+			{{/link-to}}
+    </h2>
+  </li>
+  <li class="functional-header__sub__action">
+    <h2 class="functional-header__sub__title">
+	  	{{#link-to 'bestuurseenheid'}}
+	  		<!-- TODO: fix naam bestuurseenheid --> Bestuurseenheid
+			{{/link-to}}
+    </h2>
+  </li>
+  <li class="functional-header__sub__action">
+    <h2 class="functional-header__sub__title">
+	  	{{#link-to 'bestuurseenheid'}}
+				Zitting van {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, op {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}
+			{{/link-to}}
     </h2>
   </li>
   <li class="functional-header__sub__action">Besluitenlijst</li>
 </ul>
 
-<div class="u-padding--round--small u-border--fat--bottom">
-  <h1 class="h5 u-spacer--tb--tiny">
-	  Besluitenlijst van {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}},
-		<br>
-		zitting van {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}
-	</h1>
-</div>
+<div class="container-flex--scroll u-padding--round">
 
-<div class="container-flex--scroll u-padding--round--large">
   <div class="grid">
-  	<div class="col--7-12">
+  	<div class="col--7-12 col--1-1--s">
+		  <h1 class="h1 u-spacer--top--small">
+			  Besluitenlijst van {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, zitting van {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}
+			</h1>
+  	</div>
+  	<div class="col--7-12 col--1-1--s">
 	    {{#each agendapunten as |agendapunt|}}
 	      {{#each agendapunt.behandeling.besluiten as |besluit|}}
           <div class="u-spacer--small info-tile info-tile--capped annotation-structure annotation-structure--behandeling}}">
@@ -54,7 +68,7 @@
 	    {{/each}}
 	  </div>
 
-	  <div class="col--4-12 push--1-12 u-bg--blue-gray-lighter">
+	  <div class="col--4-12 push--1-12 col--1-1--s u-bg--blue-gray-lighter">
   		<dl class="small">
   			<dt>Publicatie</dt>
   			<dd>
