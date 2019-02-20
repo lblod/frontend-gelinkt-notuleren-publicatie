@@ -6,5 +6,10 @@ export default Route.extend({
     return this.store.findRecord('zitting', id, {
       include: 'bestuursorgaan,agenda.agendapunten.behandeling.besluiten'
     });
+  },
+
+  setupController(controller, model) {
+    this._super(controller, model);
+    controller.set('bestuurseenheid', this.modelFor('bestuurseenheid'));
   }
 });

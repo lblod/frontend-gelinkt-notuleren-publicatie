@@ -9,13 +9,13 @@
   <li class="functional-header__sub__action">
     <h2 class="functional-header__sub__title">
 	  	{{#link-to 'bestuurseenheid'}}
-	  		<!-- TODO: fix naam bestuurseenheid --> Bestuurseenheid
+        {{bestuurseenheid.naam}}
 			{{/link-to}}
     </h2>
   </li>
   <li class="functional-header__sub__action">
     <h2 class="functional-header__sub__title">
-	  	{{#link-to 'bestuurseenheid'}}
+      {{#link-to 'bestuurseenheid.zitting.zitting'}}
 				Zitting van {{get (await zitting.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, op {{moment-format zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}
 			{{/link-to}}
     </h2>

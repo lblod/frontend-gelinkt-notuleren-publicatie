@@ -8,5 +8,10 @@ export default Route.extend({
 			sort: '-geplande-start',
 			include: 'agenda,agenda.agendapunten.behandeling,notulen,bestuursorgaan'
     });
+  },
+
+  setupController(controller, model) {
+    this._super(controller, model);
+    controller.set('bestuurseenheid', this.modelFor('bestuurseenheid'));
   }
 });
