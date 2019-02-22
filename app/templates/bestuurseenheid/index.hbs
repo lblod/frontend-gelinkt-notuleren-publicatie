@@ -8,14 +8,14 @@
 	    </h2>
 	  </li>
 	  <li class="functional-header__sub__action">
-			{{bestuurseenheid.naam}}
+			{{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}}
 	  </li>
 	</ul>
 	<div class="container-flex--scroll u-padding--round--small">
 	  <div class="grid grid--align-center">
 	  	<div class="col--8-12 col--1-1--s">
 			  <h1 class="h1 u-spacer--top--small">
-					Publicaties van {{bestuurseenheid.naam}}
+					Publicaties van {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}}
 				</h1>
 			  {{#if model.length}}
 		      {{#each model as |zitting|}}
