@@ -18,7 +18,7 @@ Router.map(function() {
         this.route('show', { path: '/:behandeling_id' });
       });
       this.route('notulen');
-      this.route('zitting');
+      this.route('show');
     });
   });
   this.route('contact');

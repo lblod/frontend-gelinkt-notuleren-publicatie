@@ -15,7 +15,7 @@
   </li>
   <li class="functional-header__sub__action">
     <h2 class="functional-header__sub__title">
-      {{#link-to 'bestuurseenheid.zitting.zitting' tagname="a"}}
+      {{#link-to 'bestuurseenheid.zitting.index' tagname="a"}}
 				Zitting van {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, op {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}
 			{{/link-to}}
     </h2>

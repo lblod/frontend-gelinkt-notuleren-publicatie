@@ -111,7 +111,7 @@
 		        Gemiddelde publicatietijd besluitenlijst: 10 dagen na de <strong>volgende</strong> zitting.
 		      </li>
 		    {{/unless}}
-		  	{{#if model.agenda}}
+		  	{{#if model.hasAgenda}}
 			    {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="step"}}
 						<div class="step__icon">
 							10
