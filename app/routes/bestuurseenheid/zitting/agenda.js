@@ -4,7 +4,7 @@ export default Route.extend({
   model() {
     const id = this.modelFor('bestuurseenheid.zitting').get('id');
     return this.store.findRecord('zitting', id, {
-      include: 'bestuursorgaan,agenda,agenda.agendapunten'
+      include: 'bestuursorgaan,agendapunten'
     });
   },
 

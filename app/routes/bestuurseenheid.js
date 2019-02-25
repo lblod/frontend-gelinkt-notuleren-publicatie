@@ -7,9 +7,8 @@ export default Route.extend({
 		const bestuurseenheden=await this.store.query('bestuurseenheid',
 			{
 				'filter[:exact:naam]': params.bestuurseenheid_naam,
-				'filter[classificatie][:exact:label]': params.bestuurseenheid_classificatie_code_label,
-			}
-		)
-		return bestuurseenheden.get('firstObject')
+				'filter[classificatie][:exact:label]': params.bestuurseenheid_classificatie_code_label
+			});
+		return bestuurseenheden.get('firstObject');
 	}
 });

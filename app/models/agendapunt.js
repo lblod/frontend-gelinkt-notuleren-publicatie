@@ -11,6 +11,6 @@ export default Model.extend({
   position: attr('number'),
   vorigeAgendapunt: belongsTo('agendapunt', {inverse: null }),
   referenties: hasMany('agendapunt', {inverse: null }),
-  agenda: belongsTo('agenda'),
+  zitting: belongsTo('zitting'),
   behandeling: belongsTo('behandeling-van-agendapunt')
 });

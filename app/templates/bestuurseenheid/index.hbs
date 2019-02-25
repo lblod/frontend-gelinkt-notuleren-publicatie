@@ -35,7 +35,7 @@
 				            		<i class="vi vi-news"></i> Besluitenlijst publiek
 											{{/wu-pill}}
 				            {{/if}}
-				            {{#if zitting.agenda}}
+				            {{#if zitting.hasAgenda}}
 				            	{{#wu-pill class="pill--small u-spacer--right--tiny u-spacer--bottom--tiny"}}
 				            		<i class="vi vi-news"></i> Agenda publiek
 											{{/wu-pill}}
@@ -75,7 +75,7 @@
 				          </span>
 				      	</div>
 			      		<div class="col--6-12 col--1-1--s u-align-right u-align-left--s">
-			      			{{#link-to 'bestuurseenheid.zitting.show' zitting.id tagName="button" class="button button--small"}}
+			      			{{#link-to 'bestuurseenheid.zitting.index' zitting.id tagName="button" class="button button--small"}}
 			      				<i class="vi vi-arrow vi-u-s button__icon"></i>
 			      				Bekijk publicaties
 			      			{{/link-to}}
