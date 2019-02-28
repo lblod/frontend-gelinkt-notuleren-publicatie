@@ -12,6 +12,6 @@ module('Integration | Helper | clean-spaces', function(hooks) {
 
     await render(hbs`{{clean-spaces inputValue}}`);
 
-    assert.equal(this.element.textContent.trim(), '1234');
+    assert.dom(this.element).hasText('1234');
   });
 });
