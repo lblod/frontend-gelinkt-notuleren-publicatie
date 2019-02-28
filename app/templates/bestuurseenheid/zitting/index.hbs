@@ -61,14 +61,13 @@
 		        Gemiddelde publicatietijd notulen: 10 dagen na de <strong>volgende</strong> zitting.
 		      </li>
 		    {{/if}}
-		    {{#if model.hasBesluitenlijst}} <!-- Fix: bug sometimes besluitenlijst does not appear -->
+		    {{#if model.hasBesluitenlijst}}
 			    {{#link-to 'bestuurseenheid.zitting.besluitenlijst' model.id tagName='li' class="step"}}
 						<div class="step__icon">
-							10
-							<span class="step__icon__sub">nov</span>
-							<!-- Als tijd niet weergegeven kan worden, gewoon een icoon
+							<!-- 10
+							     <span class="step__icon__sub">nov</span> -->
+							<!-- Als tijd niet weergegeven kan worden, gewoon een icoon -->
 							<i class="vi vi-news"></i>
-							-->
 						</div>
 						<div class="step__wrapper">
 							<div class="step__header">
@@ -104,6 +103,9 @@
 		  	{{#if model.hasAgenda}}
 			    {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="step"}}
 						<div class="step__icon">
+							<!-- 10
+							     <span class="step__icon__sub">nov</span> -->
+							<!-- Als tijd niet weergegeven kan worden, gewoon een icoon -->
 							<i class="vi vi-news"></i>
 						</div>
 						<div class="step__wrapper">

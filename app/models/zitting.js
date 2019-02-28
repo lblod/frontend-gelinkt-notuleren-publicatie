@@ -14,6 +14,6 @@ export default Model.extend({
   agendapunten: hasMany('agendapunt'),
 
   isPublished: notEmpty('afgeleidUit'), // TODO replace with validation on notulen
-  hasBesluitenlijst: notEmpty(filter(map('agendapunten', a => a.behandeling.get('id')), i => i)),
+  hasBesluitenlijst: notEmpty(filter(map('agendapunten', a => a.behandeling.get('id')), i => i)), // TODO doesn't work if agendapunten still needs to be loaded (not included in model hook)
   hasAgenda: notEmpty('agendapunten')
 });
