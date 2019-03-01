@@ -1,0 +1,93 @@
+{{breadcrumb-header}}
+
+<div class="container-flex--scroll u-padding--round">
+  <div class="grid">
+  	<div class="col--7-12 col--1-1--s">
+  		<div class="u-spacer--top--small">
+
+				<h1 class="h1 u-spacer">
+					Agenda voor {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, zitting van {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}
+				</h1>
+
+				{{!-- <nav class="tabs__wrapper u-spacer--tiny">
+				  <ul class="tabs" data-tabs-list="">
+				    {{#if model.spoedeisendeAgenda}}
+				      {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="tab" activeClass="tab--active"}}
+				        <a class="tab__link">Spoedeisende agenda</a>
+				      {{/link-to}}
+				    {{/if}}
+				    {{#if model.aanvullendeAgenda}}
+				      {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="tab" activeClass="tab--active"}}
+				        <a class="tab__link">Aanvullende agenda</a>
+				      {{/link-to}}
+				    {{/if}}
+				    {{#if model.ontwerpAgenda}}
+				      {{#link-to 'bestuurseenheid.zitting.ontwerpAgenda' model.id tagName='li' class="tab" activeClass="tab--active"}}
+				        <a class="tab__link">Ontwerpagenda</a>
+				      {{/link-to}}
+				    {{/if}}
+
+				    {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="tab" activeClass="tab--active"}}
+				      <a class="tab__link">Spoedeisende agenda</a>
+				    {{/link-to}}
+				    {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="tab"}}
+				      <a class="tab__link">Aanvullende agenda</a>
+				    {{/link-to}}
+				    {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="tab"}}
+				      <a class="tab__link">Ontwerpagenda</a>
+				    {{/link-to}}
+				  </ul>
+				</nav> --}}
+			</div>
+		</div>
+
+		<div class="col--7-12 col--1-1--s">
+	    <ul class="clickable-box-list u-spacer--large">
+	      {{#each agendapunten as |item index|}}
+	        <li class="{{unless model.isPublished "not-active"}}">
+	          {{#link-to 'bestuurseenheid.zitting.notulen' disabledWhen=(not model.isPublished) class='annotation annotation--agendapunt annotation--agendapunt--{{if item.geplandOpenbaar "open" "besloten"}}'}}
+	            <span class="list-number">{{inc index}}</span>
+	            <span class="list-content">{{clean-spaces item.titel}}</span>
+	          {{/link-to}}
+	        </li>
+	      {{else}}
+	        <li>Geen agendapunten beschikbaar.</li>
+	      {{/each}}
+	    </ul>
+		</div>
+
+{{!-- 	  <div class="col--4-12 col--1-1--s push--1-12 u-bg--blue-gray-lighter">
+  		<dl class="small">
+  			<dt>Publicatie</dt>
+  			<dd>
+  				<strong>24 januari 2019</strong>
+  			</dd>
+  			<br>
+  			<dt>Verificatiesleutel</dt>
+  			<dd>
+  				<strong><i class="fa fa-lock vi-u-xs"></i>&nbsp;123R8883-3122344-455123R888-33122344455</strong>
+	  			<p class="small"><a href="#">Verifieer publicatie met origineel</a></p>
+  			</dd>
+  			<br>
+  			<dt>Nietig verklaarde versies</dt>
+  			<dd>
+  				<div>
+	  				<strong><a href="#">Publicatie op 10.12.2019</a></strong>
+	  				<p class="smaller text-fade u-spacer--tiny">Gepubliceerd op 10.12.2019</p>
+	  			</div>
+  				<div>
+	  				<strong><a href="#">Publicatie op 10.12.2019</a></strong>
+	  				<p class="smaller text-fade u-spacer--tiny">Gepubliceerd op 10.12.2019</p>
+	  			</div>
+  				<div>
+	  				<strong><a href="#">Publicatie op 10.12.2019</a></strong>
+	  				<p class="smaller text-fade u-spacer--tiny">Gepubliceerd op 10.12.2019</p>
+	  			</div>
+  			</dd>
+  			<br>
+  		</dl>
+  	</div> --}}
+	</div>
+</div>
+
+{{outlet}}

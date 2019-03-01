@@ -1,27 +1,4 @@
-<ul class="functional-header__sub__actions">
-  <li class="functional-header__sub__action">
-    <h2 class="functional-header__sub__title">
-	  	{{#link-to 'bestuurseenheden' tagname="a"}}
-				Zoekpagina
-			{{/link-to}}
-    </h2>
-  </li>
-  <li class="functional-header__sub__action">
-    <h2 class="functional-header__sub__title">
-	  	{{#link-to 'bestuurseenheid' tagname="a"}}
-        {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}}
-			{{/link-to}}
-    </h2>
-  </li>
-  <li class="functional-header__sub__action">
-    <h2 class="functional-header__sub__title">
-      {{#link-to 'bestuurseenheid.zitting.index' tagname="a"}}
-				Zitting van {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, op {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}
-			{{/link-to}}
-    </h2>
-  </li>
-  <li class="functional-header__sub__action">Notulen</li>
-</ul>
+{{breadcrumb-header}}
 
 <div class="container-flex--scroll u-padding--round">
   <div class="grid">

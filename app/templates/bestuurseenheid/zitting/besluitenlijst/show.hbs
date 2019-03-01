@@ -1,34 +1,4 @@
-<ul class="functional-header__sub__actions">
-  <li class="functional-header__sub__action">
-    <h2 class="functional-header__sub__title">
-	  	{{#link-to 'bestuurseenheden'}}
-				Zoekpagina
-			{{/link-to}}
-    </h2>
-  </li>
-  <li class="functional-header__sub__action">
-    <h2 class="functional-header__sub__title">
-	  	{{#link-to 'bestuurseenheid'}}
-        {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}}
-			{{/link-to}}
-    </h2>
-  </li>
-  <li class="functional-header__sub__action">
-    <h2 class="functional-header__sub__title">
-      {{#link-to 'bestuurseenheid.zitting.index'}}
-				Zitting van {{get (await zitting.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, op {{moment-format zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}
-			{{/link-to}}
-    </h2>
-  </li>
-  <li class="functional-header__sub__action">
-    <h2 class="functional-header__sub__title">
-      {{#link-to 'bestuurseenheid.zitting.besluitenlijst.index'}}
-    		Besluitenlijst
-			{{/link-to}}
-		</h2>
-   </li>
-  <li class="functional-header__sub__action">Behandeling van agendapunt</li>
-</ul>
+{{breadcrumb-header}}
 
 <div class="container-flex--scroll u-padding--round">
   <div class="grid">

@@ -1,0 +1,39 @@
+<ul class="functional-header__sub__actions">
+  <li class="functional-header__sub__action">
+    <h2 class="functional-header__sub__title">
+	  	{{#link-to 'bestuurseenheden'}}
+				Zoekpagina
+			{{/link-to}}
+    </h2>
+  </li>
+
+  <li class="functional-header__sub__action">
+    {{#if depthLevel2}}
+      {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}}
+    {{else}}
+      <h2 class="functional-header__sub__title">
+        {{#link-to 'bestuurseenheid'}}
+          {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}}
+        {{/link-to}}
+      </h2>
+    {{/if}}
+  </li>
+
+  <li class="functional-header__sub__action">
+    <!-- If it is the deepest level of the route, we show the element as a string ... -->
+    {{#if depthLevel3}}
+       Zitting van {{bestuursorgaanInTijd.naam}}, op {{moment-format zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}
+    <!-- ... and if we are deep enough to show it, we show the element as a link. -->
+    {{else if depthGreaterThan3}}
+      <h2 class="functional-header__sub__title">
+        {{#link-to 'bestuurseenheid.zitting.index'}}
+          Zitting van {{bestuursorgaanInTijd.naam}}, op {{moment-format zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}
+        {{/link-to}}
+      </h2>
+    {{/if}}
+  </li>
+
+  {{#if depthLevel4}}
+    <li class="functional-header__sub__action">{{formattedRouteName}}</li>
+  {{/if}}
+</ul>

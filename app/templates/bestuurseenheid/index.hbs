@@ -1,16 +1,5 @@
 <div class="container-flex--contain">
-	<ul class="functional-header__sub__actions">
-	  <li class="functional-header__sub__action">
-	    <h2 class="functional-header__sub__title">
-		  	{{#link-to 'bestuurseenheden' tagname="a"}}
-					Zoekpagina
-				{{/link-to}}
-	    </h2>
-	  </li>
-	  <li class="functional-header__sub__action">
-			{{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}}
-	  </li>
-	</ul>
+	{{breadcrumb-header}}
 	<div class="container-flex--scroll u-padding--round--small">
 	  <div class="grid grid--align-center">
 	  	<div class="col--8-12 col--1-1--s">
