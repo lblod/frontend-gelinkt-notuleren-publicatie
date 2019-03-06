@@ -14,11 +14,8 @@ Router.map(function() {
   this.route('bestuurseenheid', { path: '/:bestuurseenheid_naam/:bestuurseenheid_classificatie_code_label' }, function() {
     this.route('zitting', { path: '/:id' }, function() {
       this.route('agenda');
-      this.route('besluitenlijst', function() {
-        this.route('show', { path: '/:behandeling_id' });
-      });
+      this.route('besluitenlijst');
       this.route('notulen');
-      this.route('show');
     });
   });
   this.route('contact');

@@ -25,17 +25,17 @@
 									<h2 class="h4">{{get (await zitting.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}</h2>
 			      			<p class="u-spacer--tiny">{{moment-format zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}</p>
 				          <span class="u-display--block">
-				            {{#if zitting.isPublished}}
+				            {{#if (await zitting.notulen)}}
 				            	{{#wu-pill class="pill--small pill--primary-blue u-spacer--right--tiny u-spacer--bottom--tiny"}}
 				            		<i class="vi vi-news"></i> Notulen publiek
 											{{/wu-pill}}
 				            {{/if}}
-				            {{#if zitting.hasBesluitenlijst}}
+				            {{#if (get (await zitting.besluiten) 'length')}}
 				            	{{#wu-pill class="pill--small pill--primary-yellow u-spacer--right--tiny u-spacer--bottom--tiny"}}
 				            		<i class="vi vi-news"></i> Besluitenlijst publiek
 											{{/wu-pill}}
 				            {{/if}}
-				            {{#if zitting.hasAgenda}}
+				            {{#if (get (await zitting.agendapunten) 'length')}}
 				            	{{#wu-pill class="pill--small u-spacer--right--tiny u-spacer--bottom--tiny"}}
 				            		<i class="vi vi-news"></i> Agenda publiek
 											{{/wu-pill}}
