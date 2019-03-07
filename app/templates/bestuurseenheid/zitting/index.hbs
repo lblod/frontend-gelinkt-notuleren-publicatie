@@ -10,104 +10,107 @@
 		  </h1>
 
 		  <ul class="steps steps--timeline">
-		    {{#if model.isPublished}}
-			    {{#link-to 'bestuurseenheid.zitting.notulen' model.id tagName='li' class="step"}}
-						<div class="step__icon">
-							<i class="vi vi-news"></i>
-						</div>
-						<div class="step__wrapper">
-							<div class="step__header">
-								<div class="step__header__titles">
-									{{#link-to 'bestuurseenheid.zitting.notulen' model.id tagName='h3' class="step__title"}}Notulen publiek{{/link-to}}
-								</div>
-						    <div class="step__header__info">
-		              {{#wu-pill class="pill--primary-blue"}}
-		              	<i class="vi vi-news"></i> Notulen publiek
-									{{/wu-pill}}
-						      <i class="vi vi-arrow"></i>
-						    </div>
-							</div>
-						</div>
-					{{/link-to}}
-        {{else}}
-					<li class="step step--disabled">
-						<div class="step__icon">
-							<i class="vi vi-clock"></i>
-						</div>
-						<div class="step__wrapper">
-							<div class="step__header">
-								<div class="step__header__titles">
-									<h3 class="step__title">Notulen nog niet publiek</h3>
-								</div>
-							</div>
-						</div>
-					</li>
-		      <li class="duration-step">
-		        Gemiddelde publicatietijd notulen: 10 dagen na de <strong>volgende</strong> zitting.
-		      </li>
-		    {{/if}}
-		    {{#if model.hasBesluitenlijst}}
-			    {{#link-to 'bestuurseenheid.zitting.besluitenlijst' model.id tagName='li' class="step"}}
-						<div class="step__icon">
-							<!-- 10
-							     <span class="step__icon__sub">nov</span> -->
-							<!-- Als tijd niet weergegeven kan worden, gewoon een icoon -->
-							<i class="vi vi-news"></i>
-						</div>
-						<div class="step__wrapper">
-							<div class="step__header">
-								<div class="step__header__titles">
-									<h3 class="step__title">Besluitenlijst publiek</h3>
-								</div>
-						    <div class="step__header__info">
-		              <!-- {{#wu-pill class="pill--primary-yellow"}}
-		              	   <i class="vi vi-news"></i> Besluitenlijst publiek
-									     {{/wu-pill}} -->
-						      <i class="vi vi-arrow"></i>
-						    </div>
-							</div>
-						</div>
-					{{/link-to}}
-        {{else}}
-					<li class="step step--disabled">
-						<div class="step__icon">
-							<i class="vi vi-clock"></i>
-						</div>
-						<div class="step__wrapper">
-							<div class="step__header">
-								<div class="step__header__titles">
-									<h3 class="step__title">Besluitenlijst nog niet publiek</h3>
-								</div>
-							</div>
-						</div>
-					</li>
-		      <li class="duration-step">
-		        Gemiddelde publicatietijd besluitenlijst: 10 dagen na de <strong>volgende</strong> zitting.
-		      </li>
-		    {{/if}}
-		  	{{#if model.hasAgenda}}
-			    {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="step"}}
-						<div class="step__icon">
-							<!-- 10
-							     <span class="step__icon__sub">nov</span> -->
-							<!-- Als tijd niet weergegeven kan worden, gewoon een icoon -->
-							<i class="vi vi-news"></i>
-						</div>
-						<div class="step__wrapper">
-							<div class="step__header">
-								<div class="step__header__titles">
-									<h3 class="step__title">Agenda publiek</h3>
-								</div>
-						    <div class="step__header__info">
-		              <!-- {{#wu-pill}}
-		              	   <i class="vi vi-news"></i> Spoedeisende agenda publiek
-									     {{/wu-pill}} -->
-						      <i class="vi vi-arrow"></i>
-						    </div>
-							</div>
-						</div>
-					{{/link-to}}
-		    {{/if}}
+        {{#unless (is-pending model.notulen)}}
+ 		      {{#if model.notulen}}
+			      {{#link-to 'bestuurseenheid.zitting.notulen' model.id tagName='li' class="step"}}
+						  <div class="step__icon">
+							  {{moment-format notulenPublicationDate 'D'}}
+							  <span class="step__icon__sub">{{moment-format notulenPublicationDate 'MMM'}}</span>
+						  </div>
+						  <div class="step__wrapper">
+							  <div class="step__header">
+								  <div class="step__header__titles">
+									  {{#link-to 'bestuurseenheid.zitting.notulen' model.id tagName='h3' class="step__title"}}Notulen publiek{{/link-to}}
+								  </div>
+						      <div class="step__header__info">
+		                <!-- {{#wu-pill class="pill--primary-blue"}}
+		              	     <i class="vi vi-news"></i> Notulen publiek
+									       {{/wu-pill}} -->
+						        <i class="vi vi-arrow"></i>
+						      </div>
+							  </div>
+						  </div>
+					  {{/link-to}}
+          {{else}}
+					  <li class="step step--disabled">
+						  <div class="step__icon">
+							  <i class="vi vi-clock"></i>
+						  </div>
+						  <div class="step__wrapper">
+							  <div class="step__header">
+								  <div class="step__header__titles">
+									  <h3 class="step__title">Notulen nog niet publiek</h3>
+								  </div>
+							  </div>
+						  </div>
+					  </li>
+		        <li class="duration-step">
+		          Gemiddelde publicatietijd notulen: 10 dagen na de <strong>volgende</strong> zitting.
+		        </li>
+		      {{/if}}
+        {{/unless}}
+        {{#unless (is-pending model.besluiten)}}
+		      {{#if model.besluiten.length}}
+			      {{#link-to 'bestuurseenheid.zitting.besluitenlijst' model.id tagName='li' class="step"}}
+						  <div class="step__icon">
+							  {{moment-format besluitenlijstPublicationDate 'D'}}
+							  <span class="step__icon__sub">{{moment-format besluitenlijstPublicationDate 'MMM'}}</span>
+						  </div>
+						  <div class="step__wrapper">
+							  <div class="step__header">
+								  <div class="step__header__titles">
+									  <h3 class="step__title">Besluitenlijst publiek</h3>
+								  </div>
+						      <div class="step__header__info">
+		                <!-- {{#wu-pill class="pill--primary-yellow"}}
+		              	     <i class="vi vi-news"></i> Besluitenlijst publiek
+									       {{/wu-pill}} -->
+						        <i class="vi vi-arrow"></i>
+						      </div>
+							  </div>
+						  </div>
+					  {{/link-to}}
+          {{else}}
+					  <li class="step step--disabled">
+						  <div class="step__icon">
+							  <i class="vi vi-clock"></i>
+						  </div>
+						  <div class="step__wrapper">
+							  <div class="step__header">
+								  <div class="step__header__titles">
+									  <h3 class="step__title">Besluitenlijst nog niet publiek</h3>
+								  </div>
+							  </div>
+						  </div>
+					  </li>
+		        <li class="duration-step">
+		          Gemiddelde publicatietijd besluitenlijst: 10 dagen na de <strong>volgende</strong> zitting.
+		        </li>
+		      {{/if}}
+        {{/unless}}
+        {{#unless (is-pending model.agendapunten)}}
+		  	  {{#if model.agendapunten.length}}
+			      {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="step"}}
+						  <div class="step__icon">
+							  {{moment-format agendaPublicationDate 'D'}}
+							  <span class="step__icon__sub">{{moment-format agendaPublicationDate 'MMM'}}</span>
+						  </div>
+						  <div class="step__wrapper">
+							  <div class="step__header">
+								  <div class="step__header__titles">
+									  <h3 class="step__title">Agenda publiek</h3>
+								  </div>
+						      <div class="step__header__info">
+		                <!-- {{#wu-pill}}
+		              	     <i class="vi vi-news"></i> Spoedeisende agenda publiek
+									       {{/wu-pill}} -->
+						        <i class="vi vi-arrow"></i>
+						      </div>
+							  </div>
+						  </div>
+					  {{/link-to}}
+		      {{/if}}
+        {{/unless}}
 			</ul>
 		</div>
 	</div>

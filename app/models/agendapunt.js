@@ -9,8 +9,9 @@ export default Model.extend({
   titel: attr(),
   type: attr('string-set'),
   position: attr('number'),
-  vorigeAgendapunt: belongsTo('agendapunt', {inverse: null }),
-  referenties: hasMany('agendapunt', {inverse: null }),
+  vorigeAgendapunt: belongsTo('agendapunt', { inverse: null }),
+  referenties: hasMany('agendapunt', { inverse: null }),
   zitting: belongsTo('zitting'),
-  behandeling: belongsTo('behandeling-van-agendapunt')
+  behandeling: belongsTo('behandeling-van-agendapunt'),
+  publications: hasMany('published-resource', { inverse: null })
 });

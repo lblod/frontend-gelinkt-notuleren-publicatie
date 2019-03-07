@@ -1,6 +1,6 @@
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
-import { belongsTo } from 'ember-data/relationships';
+import { belongsTo, hasMany } from 'ember-data/relationships';
 
 export default Model.extend({
   beschrijving: attr(),
@@ -11,5 +11,6 @@ export default Model.extend({
   taal: attr(),
   titel: attr(),
   score: attr(),
-  volgendUitBehandelingVanAgendapunt: belongsTo('behandeling-van-agendapunt', { inverse: 'besluiten'})
+  volgendUitBehandelingVanAgendapunt: belongsTo('behandeling-van-agendapunt', { inverse: 'besluiten' }),
+  publications: hasMany('published-resource', { inverse: null })
 });

@@ -56,5 +56,7 @@ inflector.irregular('tasklist', 'tasklists');
 inflector.irregular('task', 'tasks');
 inflector.irregular('tasklist-solution', 'tasklist-solutions');
 inflector.irregular('task-solution', 'task-solutions');
+inflector.irregular('published-resource', 'published-resources');
+inflector.irregular('notulen', 'notulen');
 // Meet Ember Inspector's expectation of an export
 export default {};
