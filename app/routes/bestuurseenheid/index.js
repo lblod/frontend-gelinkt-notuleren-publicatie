@@ -8,9 +8,4 @@ export default Route.extend({
 			sort: '-geplande-start'
     });
   },
-
-  setupController(controller, model) {
-    this._super(controller, model);
-    controller.set('bestuurseenheid', this.modelFor('bestuurseenheid'));
-  }
 });

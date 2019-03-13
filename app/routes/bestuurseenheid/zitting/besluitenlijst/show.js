@@ -10,6 +10,5 @@ export default Route.extend({
   setupController(controller, model) {
     this._super(controller, model);
     controller.set('zitting', this.modelFor('bestuurseenheid.zitting'));
-    controller.set('bestuurseenheid', this.modelFor('bestuurseenheid'));
   }
 });
