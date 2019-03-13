@@ -1,8 +1,6 @@
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import { belongsTo, hasMany } from 'ember-data/relationships';
-import { filter, map } from 'ember-awesome-macros/array';
-import { notEmpty } from 'ember-awesome-macros';
 
 export default Model.extend({
   geplandeStart: attr('datetime'),
@@ -10,10 +8,8 @@ export default Model.extend({
   geeindigdOpTijdstip: attr('datetime'),
   opLocatie: attr(),
   bestuursorgaan: belongsTo('bestuursorgaan'),
-  afgeleidUit: attr(), // replace with relation to notulen
   agendapunten: hasMany('agendapunt'),
-
-  isPublished: notEmpty('afgeleidUit'), // TODO replace with validation on notulen
-  hasBesluitenlijst: notEmpty(filter(map('agendapunten', a => a.behandeling.get('id')), i => i)), // TODO doesn't work if agendapunten still needs to be loaded (not included in model hook)
-  hasAgenda: notEmpty('agendapunten')
+  behandelingVanAgendapunten: hasMany('behandeling-van-agendapunt'), // bvap are directly linked to zitting because they might be published without an agenda
+  besluiten: hasMany('besluit'), // besluiten are directly linked to zitting because they might be published without an agenda
+  notulen: belongsTo('notulen')
 });

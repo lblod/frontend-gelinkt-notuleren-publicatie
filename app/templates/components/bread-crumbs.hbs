@@ -1,0 +1,20 @@
+<ul class="functional-header__sub__actions">
+  <li class="functional-header__sub__action">
+    <h2 class="functional-header__sub__title">
+      {{#link-to 'bestuurseenheden'}}
+        Zoekpagina
+      {{/link-to}}
+    </h2>
+  </li>
+  {{#each routeHierarchy as |route|}}
+    <li class="functional-header__sub__action">
+    {{#if hasBlock}}
+      {{yield this route}}
+    {{else}}
+      <h2 class="functional-header__sub__title">
+      {{bread-crumb route=route breadCrumbs=this}}
+      </h2>
+    {{/if}}
+    </li>
+  {{/each}}
+</ul>

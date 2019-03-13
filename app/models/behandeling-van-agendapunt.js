@@ -10,5 +10,6 @@ export default Model.extend({
   volgendeBehandelingVanAgendapunt: belongsTo('behandeling-van-agendapunt', { inverse: 'vorigeBehandelingVanAgendapunt' }),
   onderwerp: belongsTo('agendapunt', {inverse: 'behandeling' }),
   besluiten: hasMany('besluit', {inverse: 'volgendUitBehandelingVanAgendapunt'}),
-  zitting: belongsTo('zitting')
+  zitting: belongsTo('zitting'),
+  publication: belongsTo('published-resource', { inverse: null })
 });

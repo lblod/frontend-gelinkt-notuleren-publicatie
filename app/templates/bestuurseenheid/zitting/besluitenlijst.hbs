@@ -1,1 +1,63 @@
+<div class="container-flex--scroll u-padding--round">
+
+  <div class="grid">
+  	<div class="col--7-12 col--1-1--s">
+		  <h1 class="h1 u-spacer--top--small">
+			  Besluitenlijst van {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, zitting van {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}
+			</h1>
+  	</div>
+  	<div class="col--7-12 col--1-1--s">
+	    {{#each model.besluiten as |besluit|}}
+        <div class="u-spacer--small info-tile annotation-structure">
+          <div class="info-tile__header__wrapper">
+            <h3 class="info-tile__header__title">{{clean-spaces besluit.titel}}</h3>
+	          <div class="info-tile__header__subtitle">
+	            <h4>
+		            <strong>Korte omschrijving</strong>
+		          </h4>
+		          {{#if besluit.beschrijving}}
+			          <p>{{clean-spaces besluit.beschrijving}}</p>
+		          {{else}}
+		          	<p class="text-fade">Korte beschrijving niet gevonden</p>
+		          {{/if}}
+	          </div>
+	        </div>
+        </div>
+	    {{/each}}
+	  </div>
+
+	  {{!-- <div class="col--4-12 push--1-12 col--1-1--s u-bg--blue-gray-lighter">
+  	<dl class="small">
+  	<dt>Publicatie</dt>
+  	<dd>
+  	<strong>24 januari 2019</strong>
+  	</dd>
+  	<br>
+  	<dt>Verificatiesleutel</dt>
+  	<dd>
+  	<strong><i class="fa fa-lock vi-u-xs"></i>&nbsp;123R8883-3122344-455123R888-33122344455</strong>
+	  <p class="small"><a href="#">Verifieer publicatie met origineel</a></p>
+  	</dd>
+  	<br>
+  	<dt>Nietig verklaarde versies</dt>
+  	<dd>
+  	<div>
+	  <strong><a href="#">Publicatie op 10.12.2019</a></strong>
+	  <p class="smaller text-fade u-spacer--tiny">Gepubliceerd op 10.12.2019</p>
+	  </div>
+  	<div>
+	  <strong><a href="#">Publicatie op 10.12.2019</a></strong>
+	  <p class="smaller text-fade u-spacer--tiny">Gepubliceerd op 10.12.2019</p>
+	  </div>
+  	<div>
+	  <strong><a href="#">Publicatie op 10.12.2019</a></strong>
+	  <p class="smaller text-fade u-spacer--tiny">Gepubliceerd op 10.12.2019</p>
+	  </div>
+  	</dd>
+  	<br>
+  	</dl>
+	  </div> --}}
+  </div>
+</div>
+
 {{outlet}}
