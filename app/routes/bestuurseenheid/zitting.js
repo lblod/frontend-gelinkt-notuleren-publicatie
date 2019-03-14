@@ -12,8 +12,6 @@ export default Route.extend({
   },
 
   async afterModel(model) {
-    this.controllerFor('application').set('selectedZitting', model);
-
     const bestuursorgaan = await model.bestuursorgaan;
     const bestuursorgaanInTijd = await bestuursorgaan.isTijdsspecialisatieVan;
     const date = model.geplandeStart;
