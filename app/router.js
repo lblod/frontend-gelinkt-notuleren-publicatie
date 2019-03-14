@@ -7,9 +7,6 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('route-not-found', {
-    path: '/*wildcard'
-  });
   this.route('bestuurseenheid', { path: '/:bestuurseenheid_naam/:bestuurseenheid_classificatie_code_label' }, function() {
     this.route('zitting', { path: '/:id' }, function() {
       this.route('agenda', function() {});
@@ -23,6 +20,7 @@ Router.map(function() {
     this.route('disclaimer');
     this.route('cookieverklaring');
   });
+  this.route('route-not-found', { path: '/404' });
 });
 
 export default Router;
