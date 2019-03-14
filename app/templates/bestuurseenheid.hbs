@@ -1,3 +1,13 @@
-{{bread-crumbs tagName="ul" linkable=true crumbClass="breadcrumb-item"}}
+{{#bread-crumbs tagName="ul" linkable=true crumbClass="breadcrumb-item" class="functional-header__sub__actions" as |component route|}}
+  {{#bread-crumb route=route breadCrumbs=component class="functional-header__sub__action"}}
+    <h2 class="functional-header__sub__title">
+      {{#if route.linkable}}
+        {{#link-to route.path}}{{route.title}}{{/link-to}}
+      {{else}}
+        {{route.title}}
+      {{/if}}
+    </h2>
+  {{/bread-crumb}}
+{{/bread-crumbs}}
 
 {{outlet}}

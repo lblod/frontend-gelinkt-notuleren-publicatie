@@ -18,10 +18,18 @@ export default Route.extend({
 
   async afterModel(model) {
     if (model) {
-      const breadCrumb = {
-        title: `${this.bestuurseenheidClassificatieLabel} ${this.bestuurseenheidNaam}`
+      const rootCrumb = {
+        title: 'Zoekpagina',
+        linkable: true,
+        path: 'index',
+        isHead: true
       };
-      this.set('breadCrumb', breadCrumb);
+      const breadCrumb = {
+        title: `${this.bestuurseenheidClassificatieLabel} ${this.bestuurseenheidNaam}`,
+        linkable: true,
+        path: 'bestuurseenheid'
+      };
+      this.set('breadCrumbs', [rootCrumb, breadCrumb]);
     } else {
       this.transitionTo('route-not-found');
     }
