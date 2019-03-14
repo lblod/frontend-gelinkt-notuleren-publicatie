@@ -10,7 +10,6 @@ Router.map(function() {
   this.route('route-not-found', {
     path: '/*wildcard'
   });
-  this.route('bestuurseenheden');
   this.route('bestuurseenheid', { path: '/:bestuurseenheid_naam/:bestuurseenheid_classificatie_code_label' }, function() {
     this.route('zitting', { path: '/:id' }, function() {
       this.route('agenda', function() {});

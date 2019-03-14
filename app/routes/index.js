@@ -1,7 +1,9 @@
 import Route from '@ember/routing/route';
 
 export default Route.extend({
-  beforeModel() {
-    this.transitionTo('bestuurseenheden');
+  model() {
+    return this.store.query('bestuurseenheid-classificatie-code', {
+      sort: 'label'
+    });
   }
 });
