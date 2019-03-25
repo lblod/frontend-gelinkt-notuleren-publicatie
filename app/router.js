@@ -12,6 +12,7 @@ Router.map(function() {
       this.route('agenda', function() {});
       this.route('besluitenlijst', function() {});
       this.route('notulen', function() {});
+      this.route('bekendmakingen');
     });
   });
   this.route('contact');
