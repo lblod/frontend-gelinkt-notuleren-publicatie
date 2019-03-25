@@ -15,51 +15,19 @@
 				          <span class="u-display--block">
 				            {{#if (await zitting.notulen)}}
 				            	{{#wu-pill class="pill--small pill--primary-blue u-spacer--right--tiny u-spacer--bottom--tiny"}}
-				            		<i class="vi vi-news"></i> Notulen publiek
+				            		<i class="vi vi-news"></i> Notulen
 											{{/wu-pill}}
 				            {{/if}}
 				            {{#if (get (await zitting.besluiten) 'length')}}
 				            	{{#wu-pill class="pill--small pill--primary-yellow u-spacer--right--tiny u-spacer--bottom--tiny"}}
-				            		<i class="vi vi-news"></i> Besluitenlijst publiek
+				            		<i class="vi vi-news"></i> Besluitenlijst
 											{{/wu-pill}}
 				            {{/if}}
 				            {{#if (get (await zitting.agendapunten) 'length')}}
 				            	{{#wu-pill class="pill--small u-spacer--right--tiny u-spacer--bottom--tiny"}}
-				            		<i class="vi vi-news"></i> Agenda publiek
+				            		<i class="vi vi-news"></i> Agenda
 											{{/wu-pill}}
 				            {{/if}}
-
-										{{!-- When we adapt the pages
-				              {{#if zitting.isPublished}}
-				            	{{#wu-pill class="pill--primary-blue"}}
-				            		<i class="vi vi-news"></i> Notulen publiek
-											{{/wu-pill}}
-				            {{/if}}
-				            {{#if zitting.ontwerpNotulen}}
-				            	{{#wu-pill class="pill--primary-blue"}}
-				            		<i class="vi vi-edit"></i> Ontwerpnotulen publiek
-											{{/wu-pill}}
-				            {{/if}}
-				            {{#if zitting.hasBesluitenlijst}}
-				            	{{#wu-pill class="pill--primary-yellow"}}
-				            		<i class="vi vi-news"></i> Besluitenlijst publiek
-											{{/wu-pill}}
-				            {{/if}}
-				            {{#if zitting.spoedeisendeAgenda}}
-				            	{{#wu-pill}}
-				            		<i class="vi vi-clock"></i> Spoedeisende agenda publiek
-											{{/wu-pill}}
-				            {{/if}}
-				            {{#if zitting.aanvullendeAgenda}}
-				            	{{#wu-pill}}
-				            		<i class="vi vi-news"></i> Aanvullende agenda publiek
-											{{/wu-pill}}
-				            {{/if}}
-				            {{#if zitting.ontwerpAgenda}}
-				            	{{#wu-pill}}
-				            		<i class="vi vi-edit"></i> Ontwerpagenda publiek
-											{{/wu-pill}}
-				            {{/if}} --}}
 				          </span>
 				      	</div>
 			      		<div class="col--6-12 col--1-1--s u-align-right u-align-left--s">
