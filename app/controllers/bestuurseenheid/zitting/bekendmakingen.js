@@ -6,5 +6,11 @@ export default Controller.extend({
     'volgendUitBehandelingVanAgendapunt.position',
     'volgendUitBehandelingVanAgendapunt.onderwerp.position'
   ]),
-  besluiten: sort('model.besluiten', 'besluitenSort')
+  besluiten: sort('model.besluiten', 'besluitenSort'),
+
+  actions: {
+    toggleExpand(besluit) {
+      besluit.set('isExpanded', !besluit.get('isExpanded'));
+    }
+  }
 });
