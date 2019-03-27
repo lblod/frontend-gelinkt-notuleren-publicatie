@@ -1,63 +1,63 @@
 <div class="container-flex--contain">
-	<div class="container-flex--scroll u-padding--round--small">
-	  <div class="grid grid--align-center">
-	  	<div class="col--8-12 col--1-1--s">
-			  {{#if model.length}}
-			    <h1 class="h1 u-spacer--top--small">
-					  Publicaties van {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}}
-				  </h1>
-		      {{#each model as |zitting|}}
-		      	<div class="u-spacer">
-			      	<div class="grid grid--is-stacked">
-			      		<div class="col--6-12 col--1-1--s">
-									<h2 class="h4">{{get (await zitting.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}</h2>
-			      			<p class="u-spacer--tiny">{{moment-format zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}</p>
-				          <span class="u-display--block">
-				            {{#if (await zitting.notulen)}}
-				            	{{#wu-pill class="pill--small pill--primary-blue u-spacer--right--tiny u-spacer--bottom--tiny"}}
-				            		<i class="vi vi-news"></i> Notulen
-											{{/wu-pill}}
-				            {{/if}}
-				            {{#if (get (await zitting.besluiten) 'length')}}
-				            	{{#wu-pill class="pill--small pill--primary-yellow u-spacer--right--tiny u-spacer--bottom--tiny"}}
-				            		<i class="vi vi-news"></i> Besluitenlijst
-											{{/wu-pill}}
-				            {{/if}}
-				            {{#if (get (await zitting.agendapunten) 'length')}}
-				            	{{#wu-pill class="pill--small u-spacer--right--tiny u-spacer--bottom--tiny"}}
-				            		<i class="vi vi-news"></i> Agenda
-											{{/wu-pill}}
-				            {{/if}}
-				          </span>
-				      	</div>
-			      		<div class="col--6-12 col--1-1--s u-align-right u-align-left--s">
-			      			{{#link-to 'bestuurseenheid.zitting.index' zitting.id tagName="button" class="button button--small"}}
-			      				<i class="vi vi-arrow vi-u-s button__icon"></i>
-			      				Bekijk publicaties
-			      			{{/link-to}}
-				        </div>
-				      </div>
-		          <div class="u-hr u-spacer--tb"></div>
-		        </div>
-		      {{/each}}
-			    {{!-- <div class="sidebar__footer">
-			      {{number-pagination page=page size=size nbOfItems=model.length
-			          total=model.meta.count links=model.meta.pagination}}
-			    </div> --}}
-			    {{outlet}}
-			  {{else}}
-					<section class="region">
-					  <div class="layout layout--wide">
-					  	<h1 class="h1">Er werden nog geen publicaties voor {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}} gevonden</h1>
-					    <p>Kom later nog eens terug, of
-					    	{{#link-to 'index' class="link--icon"}}
-									zoek naar publicaties van een ander bestuur.
-								{{/link-to}}
-							</p>
-					  </div>
-					</section>
-			  {{/if}}
-			</div>
-		</div>
-	</div>
+  <div class="container-flex--scroll u-padding--round--small">
+    <div class="grid grid--align-center">
+      <div class="col--8-12 col--1-1--s">
+        {{#if model.length}}
+          <h1 class="h1 u-spacer--top--small">
+            Publicaties van {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}}
+          </h1>
+          {{#each model as |zitting|}}
+            <div class="u-spacer">
+              <div class="grid grid--is-stacked">
+                <div class="col--6-12 col--1-1--s">
+                  <h2 class="h4">{{get (await zitting.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}</h2>
+                  <p class="u-spacer--tiny">{{moment-format zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}</p>
+                  <span class="u-display--block">
+                    {{#if (await zitting.notulen)}}
+                      {{#wu-pill class="pill--small pill--primary-blue u-spacer--right--tiny u-spacer--bottom--tiny"}}
+                        <i class="vi vi-news"></i> Notulen
+                      {{/wu-pill}}
+                    {{/if}}
+                    {{#if (get (await zitting.besluiten) 'length')}}
+                      {{#wu-pill class="pill--small pill--primary-yellow u-spacer--right--tiny u-spacer--bottom--tiny"}}
+                        <i class="vi vi-news"></i> Besluitenlijst
+                      {{/wu-pill}}
+                    {{/if}}
+                    {{#if (get (await zitting.agendapunten) 'length')}}
+                      {{#wu-pill class="pill--small u-spacer--right--tiny u-spacer--bottom--tiny"}}
+                        <i class="vi vi-news"></i> Agenda
+                      {{/wu-pill}}
+                    {{/if}}
+                  </span>
+                </div>
+                <div class="col--6-12 col--1-1--s u-align-right u-align-left--s">
+                  {{#link-to 'bestuurseenheid.zitting.index' zitting.id tagName="button" class="button button--small"}}
+                    <i class="vi vi-arrow vi-u-s button__icon"></i>
+                    Bekijk publicaties
+                  {{/link-to}}
+                </div>
+              </div>
+              <div class="u-hr u-spacer--tb"></div>
+            </div>
+          {{/each}}
+          {{!-- <div class="sidebar__footer">
+            {{number-pagination page=page size=size nbOfItems=model.length
+                total=model.meta.count links=model.meta.pagination}}
+          </div> --}}
+          {{outlet}}
+        {{else}}
+          <section class="region">
+            <div class="layout layout--wide">
+              <h1 class="h1">Er werden nog geen publicaties voor {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}} gevonden</h1>
+              <p>Kom later nog eens terug, of
+                {{#link-to 'index' class="link--icon"}}
+                  zoek naar publicaties van een ander bestuur.
+                {{/link-to}}
+              </p>
+            </div>
+          </section>
+        {{/if}}
+      </div>
+    </div>
+  </div>
 </div>
