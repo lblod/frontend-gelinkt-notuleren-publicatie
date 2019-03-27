@@ -54,8 +54,8 @@
 
         {{!-- @Miet -> Currently a soon as besluitenlijst or bekendmaking is published, this option will pop up.
                       Backend needs update I guess to deal with the correct condition --}}
-        {{#unless (is-pending model.besluiten)}}
-          {{#if model.besluiten.length}}
+        {{#unless (is-pending model.uittreksels)}}
+          {{#if model.uittreksels.length}}
             {{#link-to 'bestuurseenheid.zitting.bekendmakingen' model.id tagName='li' class="step"}}
               <div class="step__icon">
                 {{!-- TODO: provide correct field --}}
