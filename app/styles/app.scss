@@ -17,18 +17,6 @@
 	word-break: word-break;
 }
 
-.info-tile--capped .info-tile__header__wrapper {
-	height: auto;
-	max-height: 19rem;
-	border-bottom: 1px dashed $blue-gray-light;
-	padding-bottom: 0;
-	margin-bottom: 2rem;
-
-	&:after {
-		content: normal;
-	}
-}
-
 .small {
 	font-size: 0.9em;
 }
@@ -42,88 +30,146 @@
 }
 
 
-  [typeof="besluit:Zitting"] {
+[typeof="besluit:Zitting"] {
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: flanders-serif,serif;
-      line-height: 1.1;
-      position: relative;
-      margin-bottom: 0;
-    }
-
-    .h1 {
-      font-style: 4rem;
-    }
-
-    h1:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-      line-height: 1;
-      font-weight: 300;
-      font-size: 4.8rem;
-    }
-
-      @media screen and (max-width: 767px) {
-        h1:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-          font-size: 3.6rem;
-        }
-      }
-
-    h2:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-      font-size: 3.6rem;
-      font-weight: 500;
-    }
-
-      @media screen and (max-width: 767px) {
-         h2:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-          font-size: 3rem;
-        }
-      }
-
-    h3:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-      font-size: 3rem;
-      font-weight: 700;
-    }
-
-      @media screen and (max-width: 767px) {
-         h3:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-          font-size: 2.8rem;
-        }
-      }
-
-    h4:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-      font-size: 2.4rem;
-      font-weight: 500;
-    }
-
-      @media screen and (max-width: 767px) {
-        h4:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-          font-size: 2.4rem;
-        }
-      }
-
-    h5:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-      font-weight: 400;
-      font-size: 2.1rem;
-    }
-
-      @media screen and (max-width: 767px) {
-        h5:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-          font-size: 2.1rem;
-        }
-      }
-
-    h6:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-      font-weight: 500;
-      font-size: 1.8rem;
-    }
-
-      @media screen and (max-width: 767px) {
-        h6:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-          font-size: 1.8rem;
-        }
-      }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: flanders-serif,serif;
+    line-height: 1.1;
+    position: relative;
+    margin-bottom: 0;
   }
+
+  .h1 {
+    font-style: 4rem;
+  }
+
+  h1:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
+    line-height: 1;
+    font-weight: 300;
+    font-size: 4.8rem;
+  }
+
+    @media screen and (max-width: 767px) {
+      h1:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
+        font-size: 3.6rem;
+      }
+    }
+
+  h2:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
+    font-size: 3.6rem;
+    font-weight: 500;
+  }
+
+    @media screen and (max-width: 767px) {
+       h2:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
+        font-size: 3rem;
+      }
+    }
+
+  h3:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+    @media screen and (max-width: 767px) {
+       h3:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
+        font-size: 2.8rem;
+      }
+    }
+
+  h4:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
+    font-size: 2.4rem;
+    font-weight: 500;
+  }
+
+    @media screen and (max-width: 767px) {
+      h4:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
+        font-size: 2.4rem;
+      }
+    }
+
+  h5:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
+    font-weight: 400;
+    font-size: 2.1rem;
+  }
+
+    @media screen and (max-width: 767px) {
+      h5:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
+        font-size: 2.1rem;
+      }
+    }
+
+  h6:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
+    font-weight: 500;
+    font-size: 1.8rem;
+  }
+
+	  @media screen and (max-width: 767px) {
+	    h6:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
+	      font-size: 1.8rem;
+	    }
+	  }
+}
+
+[property="dc:subject"] {
+	text-transform: uppercase;
+	color: $gray-light;
+	letter-spacing: 1px;
+	font-size: 1.4rem;
+	line-height: 1.8;
+}
+
+[property="besluit:geplandOpenbaar"],
+[property="besluit:openbaar"] {
+	text-transform: uppercase;
+	color: $gray-light;
+	letter-spacing: 1px;
+	font-size: 1.4rem;
+	line-height: 1.8;
+}
+
+[typeof="besluit:BehandelingVanAgendapunt"],
+[property="ext:behandelt"],
+[property="besluit:heeftAgendapunt"],
+[typeof="besluit:Agendapunt"] {
+  display: block !important;
+  position: relative;
+  margin-left: 3rem;
+
+  [property="besluit:geplandOpenbaar"] i,
+  [property="besluit:openbaar"] i {
+    font-size: 1.6rem;
+    position: absolute;
+    left: -2.75rem;
+    top: 0.2rem;
+    padding-left: 1px;
+    z-index: 2;
+    color: $gray-light;
+  }
+
+  [property="besluit:geplandOpenbaar"][content="false"] i,
+  [property="besluit:openbaar"][content="false"] i {
+    color: darken($primary-yellow, 15%);
+  }
+}
+
+.rdfa-annotations.show-rdfa-blocks {
+
+  p[property="dc:subject"] {
+    display: block;
+  }
+
+  [typeof="besluit:BehandelingVanAgendapunt"]:hover {
+    .annotation--agendapunt--besloten__icon,
+    .annotation--agendapunt--open__icon,
+    .annotation--agendapunt--persoonlijk__icon {
+      opacity: 1;
+      left: auto;
+    }
+  }
+}
