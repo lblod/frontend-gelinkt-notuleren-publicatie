@@ -18,7 +18,7 @@
                         <i class="vi vi-news"></i> Notulen
                       {{/wu-pill}}
                     {{/if}}
-                    {{#if (get (await zitting.besluiten) 'length')}}
+                    {{#if (await zitting.besluitenlijst.id) }}
                       {{#wu-pill class="pill--small pill--primary-yellow u-spacer--right--tiny u-spacer--bottom--tiny"}}
                         <i class="vi vi-news"></i> Besluitenlijst
                       {{/wu-pill}}

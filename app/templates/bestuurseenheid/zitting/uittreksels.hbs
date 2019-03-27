@@ -1,0 +1,67 @@
+<div class="container-flex--scroll u-padding--round">
+
+  <div class="grid">
+    <div class="col--7-12 col--9-12--m col--1-1--s">
+      <h1 class="h1 u-spacer--top--small">
+        Bekendmakingen van {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, zitting van {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}
+      </h1>
+    </div>
+
+    <div class="col--7-12 col--9-12--m col--1-1--s u-padding--bottom--large">
+      <div class="grid grid--is-stacked">
+        {{#each besluiten as |besluit|}}
+          <div class="{{if besluit.isExpanded "col--12-12" "col--11-12"}}" {{action "toggleExpand" besluit}}>
+            <div class="info-tile info-tile--expandable info-tile--capped {{if besluit.isExpanded "info-tile--capped--expand" "info-tile--capped"}}">
+              <h3 class="info-tile__header__title">Gegenereerde titel van de bekendmaking {{clean-spaces besluit.titel}}</h3>
+              <p class="info-tile__header__subtitle">Korte omschrijving van de bekendmaking {{clean-spaces besluit.beschrijving}}</p>
+              <div class="info-tile__content">
+                {{!-- {{#if bekendmaking.beschrijving}} --}}
+                <span class="u-hidden">06dc2978-afbb-4f13-baaa-c3d3fb04289d</span>
+                <div property="ext:behandelt" resource="http://data.lblod.info/id/behandelingen-van-agendapunten/5fb26cd8-0a5e-4659-a692-aadabb7ff378" typeof="besluit:BehandelingVanAgendapunt">
+                  <span property="dc:subject" resource="http://data.lblod.info/id/agendapunten/94806dd0-1f1a-4944-bfda-5e5958d29bfc">Agendapunt -</span>
+                  <span property="besluit:openbaar" datatype="xsd:boolean" content="false">
+                    <i class="fa fa-eye-slash"></i>
+                    <span>Besloten behandeling</span>
+                  </span>
+                  <h3 class="h4" property="ext:behandelingVanAgendapuntTitel"> Test 1 </h3>
+                  <br>
+                  <br>
+                  <h4 class="h6">Aanwezigen bij agendapunt</h4>
+                  <br>
+                  <div property="ext:insertAanwezigenText">Beheer aanwezigen bij agendapunt</div>
+                  <br>
+                  <br>
+                  <h4 class="h6">Stemmingen bij agendapunt</h4>
+                  <br>
+                  <div property="ext:insertStemmingText">Beheer de stemmingen bij dit agendapunt</div>
+                  <br>
+                  <br>
+                  <div>Voeg sjabloon in</div>
+                  <br>
+                </div>
+                <span class="u-hidden">29fbfd92-50f7-4b62-bacc-15fc7bc94a1f</span>
+                {{!-- {{else}}
+
+                Zie snippet onderaan
+
+                {{/if}} --}}
+              </div>
+            </div>
+          </div>
+        {{/each}}
+        <div class="{{if besluit.isExpanded "col--12-12" "col--11-12"}}" {{action "toggleExpand" besluit}}>
+          <div class="info-tile {{if besluit.isExpanded "info-tile--capped--expand" "info-tile--capped"}}">
+            <h3 class="info-tile__header__title">NIET PUBLIEK Gegenereerde titel van de bekendmaking {{clean-spaces besluit.titel}}</h3>
+            <p class="info-tile__header__subtitle">Korte omschrijving van de bekendmaking {{clean-spaces besluit.beschrijving}}</p>
+            <div class="info-tile__content">
+              {{!-- {{#if bekendmaking.beschrijving}} --}}
+              <p class="text-fade">Agendapunt werd behandeld tijdens de zitting, maar niet publiek gemaakt.</p>
+              {{!-- {{/if}} --}}
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+
+  </div>
+</div>
