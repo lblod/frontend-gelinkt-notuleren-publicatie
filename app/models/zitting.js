@@ -9,7 +9,8 @@ export default Model.extend({
   opLocatie: attr(),
   bestuursorgaan: belongsTo('bestuursorgaan'),
   agendapunten: hasMany('agendapunt'),
-  behandelingVanAgendapunten: hasMany('behandeling-van-agendapunt'), // bvap are directly linked to zitting because they might be published without an agenda
-  besluiten: hasMany('besluit'), // besluiten are directly linked to zitting because they might be published without an agenda
+  agendas: hasMany('agenda'),
+  uittreksels: hasMany('uittreksel'),
+  besluitenlijst: belongsTo('besluitenlijst'),
   notulen: belongsTo('notulen')
 });
