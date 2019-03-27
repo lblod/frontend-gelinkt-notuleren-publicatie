@@ -6,5 +6,5 @@ export default Controller.extend({
     'volgendUitBehandelingVanAgendapunt.position',
     'volgendUitBehandelingVanAgendapunt.onderwerp.position'
   ]),
-  besluiten: sort('model.besluiten', 'besluitenSort')
+  besluiten: sort('model.besluitenlijst.besluiten', 'besluitenSort')
 });

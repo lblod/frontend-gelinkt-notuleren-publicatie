@@ -100,8 +100,8 @@
           {{/if}}
         {{/unless}}
 
-        {{#unless (is-pending model.besluiten)}}
-          {{#if model.besluiten.length}}
+        {{#unless (is-pending model.besluitenlijst)}}
+          {{#if model.besluitenlijst.id}}
             {{#link-to 'bestuurseenheid.zitting.besluitenlijst' model.id tagName='li' class="step"}}
               <div class="step__icon">
                 {{#if besluitenlijstPublicationDate}}
