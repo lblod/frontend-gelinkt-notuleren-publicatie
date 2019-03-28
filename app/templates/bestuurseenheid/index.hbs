@@ -12,23 +12,38 @@
                 <div class="col--6-12 col--1-1--s">
                   <h2 class="h4">{{get (await zitting.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}</h2>
                   <p class="u-spacer--tiny">{{moment-format zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}</p>
-                  <span class="u-display--block">
+                  <ul>
+                  </ul>
+                  <ul class="inline-list">
                     {{#if (await zitting.notulen)}}
-                      {{#wu-pill class="pill--small pill--primary-blue u-spacer--right--tiny u-spacer--bottom--tiny"}}
-                        <i class="vi vi-news"></i> Notulen
-                      {{/wu-pill}}
+                    	<li>
+	                      {{#wu-pill class="pill--small pill--primary-blue"}}
+	                        <i class="vi vi-news"></i> Notulen
+	                      {{/wu-pill}}
+	                    </li>
                     {{/if}}
                     {{#if (await zitting.besluitenlijst.id) }}
-                      {{#wu-pill class="pill--small pill--primary-yellow u-spacer--right--tiny u-spacer--bottom--tiny"}}
-                        <i class="vi vi-news"></i> Besluitenlijst
-                      {{/wu-pill}}
+                    	<li>
+	                      {{#wu-pill class="pill--small pill--primary-yellow"}}
+	                        <i class="vi vi-news"></i> Besluitenlijst
+	                      {{/wu-pill}}
+	                    </li>
+                    {{/if}}
+                    {{#if (get (await zitting.uittreksels) 'length')}}
+                    	<li>
+	                      {{#wu-pill class="pill--small pill--primary-yellow"}}
+	                        <i class="vi vi-news"></i> Bekendmakingen
+	                      {{/wu-pill}}
+	                    </li>
                     {{/if}}
                     {{#if (get (await zitting.agendapunten) 'length')}}
-                      {{#wu-pill class="pill--small u-spacer--right--tiny u-spacer--bottom--tiny"}}
-                        <i class="vi vi-news"></i> Agenda
-                      {{/wu-pill}}
+                    	<li>
+	                      {{#wu-pill class="pill--small"}}
+	                        <i class="vi vi-news"></i> Agenda
+	                      {{/wu-pill}}
+	                    </li>
                     {{/if}}
-                  </span>
+                  </ul>
                 </div>
                 <div class="col--6-12 col--1-1--s u-align-right u-align-left--s">
                   {{#link-to 'bestuurseenheid.zitting.index' zitting.id tagName="button" class="button button--small"}}
