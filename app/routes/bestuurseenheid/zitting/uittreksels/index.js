@@ -7,7 +7,6 @@ export default Route.extend({
   },
 
   model() {
-       this.breadCrumb = { title: 'Bekendmakingen' };
     const id = this.modelFor('bestuurseenheid.zitting').get('id');
     return this.store.findRecord('zitting', id, {
       // TODO add pagination in template instead of retrieving besluiten through include
