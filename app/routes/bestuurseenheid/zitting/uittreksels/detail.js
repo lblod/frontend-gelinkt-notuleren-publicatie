@@ -8,9 +8,8 @@ export default Route.extend({
 
   model(params) {
     const zittingId = this.modelFor('bestuurseenheid.zitting').get('id');
-
     return Ember.RSVP.hash({
-      uittreksel: this.store.findRecord('uittreksel', params.id,
+      uittreksel: this.store.findRecord('uittreksel', params.uittrekselId,
                                         {include: 'behandeling-van-agendapunt.onderwerp,behandeling-van-agendapunt.besluiten'}),
       zitting: this.store.findRecord('zitting', zittingId)
     });
