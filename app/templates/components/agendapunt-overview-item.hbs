@@ -1,0 +1,9 @@
+<div class="{{unless uittreksel "not-active"}}">
+  {{#link-to 'bestuurseenheid.zitting.uittreksels.detail' uittreksel.id
+     disabledWhen=(not uittreksel)
+     class='annotation annotation--agendapunt annotation--agendapunt--{{if agendapunt.geplandOpenbaar "open" "besloten"}}'}}
+    <span class="list-number">{{inc index}}</span>
+    <span class="list-content">{{clean-spaces agendapunt.titel}}</span>
+  {{/link-to}}
+</div>
+{{yield}}

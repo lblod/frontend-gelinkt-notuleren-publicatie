@@ -1,0 +1,17 @@
+<div class="info-tile__header__wrapper">
+  <h3 class="info-tile__header__title">{{clean-spaces besluit.titel}}</h3>
+  <div class="info-tile__header__subtitle">
+    <h4>
+      <strong>Korte omschrijving</strong>
+    </h4>
+    {{#if besluit.beschrijving}}
+      <p>{{clean-spaces besluit.beschrijving}}</p>
+      {{#if uittreksel}}
+        {{#link-to 'bestuurseenheid.zitting.uittreksels.detail' uittreksel.id}} Ga naar uittreksel {{/link-to}}
+      {{/if}}
+    {{else}}
+      <p class="text-fade">Korte beschrijving niet gevonden</p>
+    {{/if}}
+  </div>
+</div>
+{{yield}}

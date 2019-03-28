@@ -1,0 +1,13 @@
+<div class="info-tile">
+  <h3 class="info-tile__header__title">Gegenereerde titel van de bekendmaking {{clean-spaces besluit.titel}}</h3>
+  <p class="info-tile__header__subtitle">Korte omschrijving van de bekendmaking {{clean-spaces besluit.beschrijving}}</p>
+  {{#link-to 'bestuurseenheid.zitting.uittreksels.detail' uittreksel.id}} Ga naar het detail  {{/link-to}}
+
+  {{!--
+  @miet: voor de installatievergaderingen zijn de tekst van de uittreksels nog niet beschikbaar.
+  Ge kunt dat ook hier filteren door if uittreksel.inhoud te doen en dan een tekstje te zetten.
+  You know ember well enough smiley (ge kunt dat ook in de ander componenten doen)
+  --}}
+</div>
+
+{{yield}}
