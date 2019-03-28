@@ -13,7 +13,7 @@ Router.map(function() {
       this.route('besluitenlijst', function() {});
       this.route('notulen', function() {});
       this.route('uittreksels', function(){
-        this.route('overview', { path: '/'});
+        this.route('index', { path: '/'});
         this.route('detail', { path: '/:uittrekselId'});
       });
     });
