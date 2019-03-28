@@ -4,16 +4,18 @@
       <h1 class="h1 u-spacer--top--small">
         Bekendmakingen van {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, zitting van {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}
       </h1>
-    </div>
-
-    <div class="col--7-12 col--9-12--m col--1-1--s u-padding--bottom--large">
       <div class="grid grid--is-stacked">
         {{#each uittreksels as |uittreksel|}}
-          {{uittreksel-overview-item uittreksel=uittreksel}}
+	      	<div class="col--12-12">
+  	        {{uittreksel-overview-item uittreksel=uittreksel}}
+		      </div>
+        {{else}}
+	      	<div class="col--12-12">
+	          <p>Geen bekendmakingen beschikbaar.</p>
+	        </div>
         {{/each}}
       </div>
     </div>
-
   </div>
 </div>
 {{outlet}}
