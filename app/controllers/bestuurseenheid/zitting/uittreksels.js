@@ -1,18 +1,11 @@
 import Controller from '@ember/controller';
-import { sort } from '@ember/object/computed';
+import { sort, reads, mapBy } from '@ember/object/computed';
 
 export default Controller.extend({
-  besluitenSort: Object.freeze([
-    'position',
-    'onderwerp.position'
+  bvapSort: Object.freeze([
+    'behandelingVanAgendapunt.position',
+    'behandelingVanAgendapunt.onderwerp.position'
   ]),
 
-  besluiten: sort('model.behandelingVanAgendapunten', 'besluitenSort'),
-
-  actions: {
-    toggleExpand(besluit) {
-      besluit.set('isExpanded', !besluit.get('isExpanded'));
-    }
-  }
-
+  uittreksels: sort('model.uittreksels', 'bvapSort')
 });
