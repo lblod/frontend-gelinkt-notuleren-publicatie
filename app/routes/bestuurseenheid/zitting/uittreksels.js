@@ -10,7 +10,7 @@ export default Route.extend({
     const id = this.modelFor('bestuurseenheid.zitting').get('id');
     return this.store.findRecord('zitting', id, {
       // TODO add pagination in template instead of retrieving besluiten through include
-      include: 'uittreksels.behandeling-van-agendapunten.onderwerp,uittreksels.behandeling-van-agendapunten.besluiten'
+      include: 'uittreksels.behandeling-van-agendapunt.onderwerp,uittreksels.behandeling-van-agendapunt.besluiten'
     });
   }
 });
