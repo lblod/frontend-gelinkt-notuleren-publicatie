@@ -12,7 +12,10 @@ Router.map(function() {
       this.route('agenda', function() {});
       this.route('besluitenlijst', function() {});
       this.route('notulen', function() {});
-      this.route('uittreksels');
+      this.route('uittreksels', function(){
+        this.route('overview', { path: '/'});
+        this.route('detail', { path: '/:id'});
+      });
     });
   });
   this.route('contact');
