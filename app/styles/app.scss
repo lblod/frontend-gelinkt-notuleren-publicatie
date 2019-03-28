@@ -5,8 +5,6 @@
 @import 'colors';
 @import 'print';
 
-@import 'clickable-box-list';
-
 /* shame */
 
 .side-navigation__item a {
@@ -29,6 +27,9 @@
 	font-size: 0.7em;
 }
 
+.info-tile.u-background--gray-lightest {
+	background-color: $blue-gray-lightest !important;
+}
 
 [typeof="besluit:Zitting"] {
 

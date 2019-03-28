@@ -1,16 +1,21 @@
 <div class="container-flex--scroll u-padding--round">
-
   <div class="grid">
-    <div class="col--7-12 col--1-1--s">
+    <div class="col--7-12 col--9-12--m col--1-1--s">
       <h1 class="h1 u-spacer--top--small">
         Besluitenlijst van {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, zitting van {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}
       </h1>
-    </div>
-    <div class="col--7-12 col--1-1--s">
-      {{#each besluiten as |besluit|}}
-        {{besluit-overview-item besluit=besluit class="u-spacer--small info-tile annotation-structure"}}
-      {{/each}}
-    </div>
+      <div class="grid grid--is-stacked">
+	      {{#each besluiten as |besluit|}}
+	      	<div class="col--12-12">
+		        {{besluit-overview-item besluit=besluit}}
+		      </div>
+        {{else}}
+	      	<div class="col--12-12">
+	          <p>Geen besluiten beschikbaar.</p>
+	        </div>
+        {{/each}}
+	    </div>
+	  </div>
 
     {{!-- <div class="col--4-12 push--1-12 col--1-1--s u-bg--blue-gray-lighter">
     <dl class="small">

@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
-  tagName: 'li',
+  tagName: 'div',
   store: service(),
   findUittreksel: task(function *(){
     let uittreksels = yield this.store.query('uittreksel', {

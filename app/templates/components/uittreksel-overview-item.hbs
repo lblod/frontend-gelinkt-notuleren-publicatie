@@ -1,13 +1,25 @@
-<div class="info-tile">
-  <h3 class="info-tile__header__title">Gegenereerde titel van de bekendmaking {{clean-spaces besluit.titel}}</h3>
-  <p class="info-tile__header__subtitle">Korte omschrijving van de bekendmaking {{clean-spaces besluit.beschrijving}}</p>
-  {{#link-to 'bestuurseenheid.zitting.uittreksels.detail' uittreksel.id}} Ga naar het detail  {{/link-to}}
-
-  {{!--
-  @miet: voor de installatievergaderingen zijn de tekst van de uittreksels nog niet beschikbaar.
-  Ge kunt dat ook hier filteren door if uittreksel.inhoud te doen en dan een tekstje te zetten.
-  You know ember well enough smiley (ge kunt dat ook in de ander componenten doen)
-  --}}
+<div class="info-tile {{unless uittreksel "u-background--gray-lightest"}}">
+	<div class="info-tile__header__wrapper">
+	  <div class="grid">
+	  	<div class="col--8-12">
+			  <h3 class="info-tile__header__title u-spacer--tinier">{{clean-spaces besluit.titel}}</h3>
+				{{#if besluit.beschrijving}}
+				  <p class="info-tile__header__subtitle">{{clean-spaces besluit.beschrijving}}</p>
+			  {{else}}
+			    <p class="text-fade">Korte beschrijving niet gevonden</p>
+			  {{/if}}
+				{{#unless uittreksel.inhoud}}
+					<p class="smallest text-fade uppercase u-spacer--top--tiny">Volledige inhoud niet publiek</p>
+				{{/unless}}
+			</div>
+	  	<div class="col--4-12 u-align-right">
+				{{#if uittreksel.inhoud}}
+				  {{#link-to 'bestuurseenheid.zitting.uittreksels.detail' uittreksel.id tagName="button" class="button button--alt button--alt--blue button--narrow button--small"}}
+		      	Bekijk volledige inhoud <i class="vi vi-arrow vi-u-s button__icon"></i>
+				  {{/link-to}}
+				{{/if}}
+			</div>
+		</div>
+	</div>
 </div>
-
 {{yield}}

@@ -2,53 +2,52 @@
 
 <div class="container-flex--scroll u-padding--round">
   <div class="grid">
-    <div class="col--7-12 col--1-1--s">
-      <div class="u-spacer--top--small">
+    <div class="col--7-12 col--9-12--m col--1-1--s">
+      <h1 class="h1 u-spacer--top--small">
+        Agenda voor {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, zitting van {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}
+      </h1>
 
-        <h1 class="h1 u-spacer">
-          Agenda voor {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, zitting van {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}
-        </h1>
-
-        {{!-- <nav class="tabs__wrapper u-spacer--tiny">
-          <ul class="tabs" data-tabs-list="">
-            {{#if model.spoedeisendeAgenda}}
-              {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="tab" activeClass="tab--active"}}
-                <a class="tab__link">Spoedeisende agenda</a>
-              {{/link-to}}
-            {{/if}}
-            {{#if model.aanvullendeAgenda}}
-              {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="tab" activeClass="tab--active"}}
-                <a class="tab__link">Aanvullende agenda</a>
-              {{/link-to}}
-            {{/if}}
-            {{#if model.ontwerpAgenda}}
-              {{#link-to 'bestuurseenheid.zitting.ontwerpAgenda' model.id tagName='li' class="tab" activeClass="tab--active"}}
-                <a class="tab__link">Ontwerpagenda</a>
-              {{/link-to}}
-            {{/if}}
-
+      {{!-- <nav class="tabs__wrapper u-spacer--tiny">
+        <ul class="tabs" data-tabs-list="">
+          {{#if model.spoedeisendeAgenda}}
             {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="tab" activeClass="tab--active"}}
               <a class="tab__link">Spoedeisende agenda</a>
             {{/link-to}}
-            {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="tab"}}
+          {{/if}}
+          {{#if model.aanvullendeAgenda}}
+            {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="tab" activeClass="tab--active"}}
               <a class="tab__link">Aanvullende agenda</a>
             {{/link-to}}
-            {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="tab"}}
+          {{/if}}
+          {{#if model.ontwerpAgenda}}
+            {{#link-to 'bestuurseenheid.zitting.ontwerpAgenda' model.id tagName='li' class="tab" activeClass="tab--active"}}
               <a class="tab__link">Ontwerpagenda</a>
             {{/link-to}}
-          </ul>
-        </nav> --}}
-      </div>
-    </div>
+          {{/if}}
 
-    <div class="col--7-12 col--1-1--s">
-      <ul class="clickable-box-list u-spacer--large">
+          {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="tab" activeClass="tab--active"}}
+            <a class="tab__link">Spoedeisende agenda</a>
+          {{/link-to}}
+          {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="tab"}}
+            <a class="tab__link">Aanvullende agenda</a>
+          {{/link-to}}
+          {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="tab"}}
+            <a class="tab__link">Ontwerpagenda</a>
+          {{/link-to}}
+        </ul>
+      </nav> --}}
+
+      <div class="grid grid--is-stacked">
         {{#each agendapunten as |item index|}}
-          {{agendapunt-overview-item agendapunt=item index=index}}
+        	<div class="col--12-12">
+	          {{agendapunt-overview-item agendapunt=item index=index}}
+	        </div>
         {{else}}
-          <li>Geen agendapunten beschikbaar.</li>
+          <div>
+          	<p>Geen agendapunten beschikbaar.</p>
+          </div>
         {{/each}}
-      </ul>
+      </div>
     </div>
 
 {{!--     <div class="col--4-12 col--1-1--s push--1-12 u-bg--blue-gray-lighter">
