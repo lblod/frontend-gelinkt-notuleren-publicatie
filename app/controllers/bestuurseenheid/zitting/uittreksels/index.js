@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import { sort, reads, mapBy } from '@ember/object/computed';
+import { sort } from '@ember/object/computed';
 
 export default Controller.extend({
   bvapSort: Object.freeze([

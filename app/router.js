@@ -14,7 +14,7 @@ Router.map(function() {
       this.route('notulen', function() {});
       this.route('uittreksels', function(){
         this.route('index', { path: '/'});
-        this.route('detail', { path: '/:uittrekselId'});
+        this.route('detail', { path: '/:uittreksel_id'});
       });
     });
   });
