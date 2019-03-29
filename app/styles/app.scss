@@ -117,7 +117,9 @@
 	  }
 }
 
-[property="dc:subject"] {
+[typeof="besluit:Agendapunt"] > [property="dc:subject"],
+[property="ext:behandelt"] > span:first-child,
+[property="besluit:gebeurtNa"] + span {
 	text-transform: uppercase;
 	color: $gray-light;
 	letter-spacing: 1px;
