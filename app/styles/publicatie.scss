@@ -3,6 +3,14 @@
   Style what publicaties looks like here.
  ========================================================================== */
 
+/* overview page */
+
+.info-tile.u-background--gray-lightest {
+	background-color: $blue-gray-lightest !important;
+}
+
+/* detail pages */
+
 [typeof="besluit:Zitting"] {
 
   h1,

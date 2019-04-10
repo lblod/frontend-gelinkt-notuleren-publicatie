@@ -8,10 +8,6 @@
 
 /* shame */
 
-.side-navigation__item a {
-	word-break: initial;
-}
-
 .u-word-break--word-break {
 	word-break: word-break;
 }
@@ -26,8 +22,4 @@
 
 .smallest {
 	font-size: 0.7em;
-}
-
-.info-tile.u-background--gray-lightest {
-	background-color: $blue-gray-lightest !important;
 }
