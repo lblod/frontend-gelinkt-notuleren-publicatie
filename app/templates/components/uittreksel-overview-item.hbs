@@ -2,11 +2,15 @@
 	<div class="info-tile__header__wrapper">
 	  <div class="grid">
 	  	<div class="col--8-12">
-			  <h3 class="info-tile__header__title u-spacer--tinier">{{clean-spaces besluit.titel}}</h3>
+				{{#if besluit.beschrijving}}
+			  	<h3 class="info-tile__header__title u-spacer--tinier">{{clean-spaces besluit.titel}}</h3>
+			  {{else}}
+			    <p class="info-tile__header__title u-spacer--tinier text-fade">Titel niet gevonden</p>
+			  {{/if}}
 				{{#if besluit.beschrijving}}
 				  <p class="info-tile__header__subtitle">{{clean-spaces besluit.beschrijving}}</p>
 			  {{else}}
-			    <p class="text-fade">Korte beschrijving niet gevonden</p>
+			    <p class="info-tile__header__subtitle text-fade">Korte beschrijving niet gevonden</p>
 			  {{/if}}
 				{{#unless uittreksel.inhoud}}
 					<p class="smallest text-fade uppercase u-spacer--top--tiny">Volledige inhoud niet publiek</p>
