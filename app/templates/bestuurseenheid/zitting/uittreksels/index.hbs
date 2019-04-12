@@ -2,7 +2,7 @@
   <div class="grid">
     <div class="col--7-12 col--9-12--m col--1-1--s">
       <h1 class="h1 u-spacer--top--small">
-        Bekendmakingen van {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, zitting van {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}
+        Bekendmakingen en uittreksels van {{get (await model.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}, zitting van {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}
       </h1>
       <div class="grid grid--is-stacked">
         {{#each uittreksels as |uittreksel|}}
