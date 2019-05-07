@@ -7,7 +7,7 @@ export default Model.extend({
   gestartOpTijdstip: attr('datetime'),
   geeindigdOpTijdstip: attr('datetime'),
   opLocatie: attr(),
-  bestuursorgaan: belongsTo('bestuursorgaan'),
+  bestuursorgaan: belongsTo('bestuursorgaan', { inverse: null }),
   agendapunten: hasMany('agendapunt'),
   agendas: hasMany('agenda'),
   uittreksels: hasMany('uittreksel'),

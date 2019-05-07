@@ -7,7 +7,7 @@ export default Route.extend({
     this.breadCrumb = this.breadCrumb || {};
   },
 
-  model(params) {
+  async model(params) {
     return this.store.findRecord('zitting', params.id);
   },
 
