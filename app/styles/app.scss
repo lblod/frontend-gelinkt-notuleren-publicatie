@@ -23,3 +23,19 @@
 .smallest {
 	font-size: 0.7em;
 }
+
+.vrije-tekst {
+	[property="ext:behandelt"] {
+		margin: 0;
+	}
+
+	[property="ext:behandelt"] > * {
+		display: none;
+	}
+
+	[property="dc:subject"] {
+		display: block;
+		font-family: flanders-sans,sans-serif;
+    font-size: 1.8rem;
+	}
+}
