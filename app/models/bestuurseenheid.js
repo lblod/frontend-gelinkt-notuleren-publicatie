@@ -11,7 +11,7 @@ export default Model.extend({
     inverse: null
   }),
   bestuursorganen: hasMany('bestuursorgaan', {
-    inverse: 'bestuurseenheid'
+    inverse: null
   }),
   uri: attr()
 });
