@@ -11,6 +11,6 @@ export default Model.extend({
   taal: attr(),
   titel: attr(),
   score: attr(),
-  volgendUitBehandelingVanAgendapunt: belongsTo('behandeling-van-agendapunt', { inverse: 'besluiten' }),
+  volgendUitBehandelingVanAgendapunt: belongsTo('behandeling-van-agendapunt', { inverse: null }),
   publications: hasMany('published-resource', { inverse: null })
 });
