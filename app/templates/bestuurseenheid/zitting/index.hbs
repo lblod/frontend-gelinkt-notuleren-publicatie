@@ -22,7 +22,10 @@
               <div class="step__wrapper">
                 <div class="step__header">
                   <div class="step__header__titles">
-                    {{#link-to 'bestuurseenheid.zitting.notulen' model.id tagName='h3' class="step__title"}}Notulen{{/link-to}}
+                    {{#link-to 'bestuurseenheid.zitting.notulen' model.id tagName='h3' class="step__title"}}
+                      <span property="http://data.lblod.info/vocabularies/besluitPublicatie/linkToPublications"></span>
+                      Notulen
+                    {{/link-to}}
                   </div>
                   <div class="step__header__info">
                     <!-- {{#wu-pill class="pill--primary-blue"}}
@@ -66,6 +69,7 @@
               <div class="step__wrapper">
                 <div class="step__header">
                   <div class="step__header__titles">
+                    <span property="http://data.lblod.info/vocabularies/besluitPublicatie/linkToPublications"></span>
                     <h3 class="step__title">Bekendmakingen en uittreksels</h3>
                   </div>
                   <div class="step__header__info">
@@ -107,6 +111,7 @@
               <div class="step__wrapper">
                 <div class="step__header">
                   <div class="step__header__titles">
+                    <span property="http://data.lblod.info/vocabularies/besluitPublicatie/linkToPublications"></span>
                     <h3 class="step__title">Besluitenlijst</h3>
                   </div>
                   <div class="step__header__info">
@@ -147,6 +152,7 @@
               <div class="step__wrapper">
                 <div class="step__header">
                   <div class="step__header__titles">
+                    <span property="http://data.lblod.info/vocabularies/besluitPublicatie/linkToPublications"></span>
                     <h3 class="step__title">Agenda</h3>
                   </div>
                   <div class="step__header__info">
