@@ -1,51 +1,61 @@
 {{#if besluit.titel}}
-<div class="info-tile {{unless uittreksel "u-background--gray-lightest"}}">
-	<div class="info-tile__header__wrapper">
-	  <div class="grid">
-	  	<div class="col--8-12">
-				{{#if besluit.beschrijving}}
-			  	<h3 class="info-tile__header__title u-spacer--tinier">{{clean-spaces besluit.titel}}</h3>
-			  {{else}}
-			    <p class="info-tile__header__title u-spacer--tinier text-fade">Titel niet gevonden</p>
-			  {{/if}}
-				{{#if besluit.beschrijving}}
-				  <p class="info-tile__header__subtitle">{{clean-spaces besluit.beschrijving}}</p>
-			  {{else}}
-			    <p class="info-tile__header__subtitle text-fade">Korte beschrijving niet gevonden</p>
-			  {{/if}}
-				{{#unless uittreksel.inhoud}}
-					<p class="smallest text-fade uppercase u-spacer--top--tiny">Volledige inhoud niet publiek</p>
-				{{/unless}}
-			</div>
-	  	<div class="col--4-12 u-align-right u-padding--right--small">
-				{{#if uittreksel.inhoud}}
-				  {{#link-to 'bestuurseenheid.zitting.uittreksels.detail' uittreksel.id tagName="button" class="button button--alt button--alt--blue button--narrow button--small"}}
-		      	Bekijk volledige inhoud <i class="vi vi-arrow vi-u-s button__icon"></i>
-				  {{/link-to}}
-				{{/if}}
-			</div>
-		</div>
-	</div>
-</div>
+  <div class="info-tile {{unless uittreksel "u-background--gray-lightest"}}">
+    <div class="info-tile__header__wrapper">
+      <div class="grid">
+        <div class="col--8-12">
+          {{#if besluit.beschrijving}}
+            <h3 class="info-tile__header__title u-spacer--tinier">
+              <span property="eli:title" content={{besluit.titel}}></span>
+              {{clean-spaces besluit.titel}}
+            </h3>
+          {{else}}
+            <p class="info-tile__header__title u-spacer--tinier text-fade">Titel niet gevonden</p>
+          {{/if}}
+          {{#if besluit.beschrijving}}
+            <p class="info-tile__header__subtitle">
+              <span property="eli:description" content={{besluit.beschrijving}}></span>
+              {{clean-spaces besluit.beschrijving}}
+            </p>
+          {{else}}
+            <p class="info-tile__header__subtitle text-fade">Korte beschrijving niet gevonden</p>
+          {{/if}}
+          {{#unless uittreksel.inhoud}}
+            <p class="smallest text-fade uppercase u-spacer--top--tiny">Volledige inhoud niet publiek</p>
+          {{/unless}}
+        </div>
+        <div class="col--4-12 u-align-right u-padding--right--small">
+          {{#if uittreksel.inhoud}}
+            {{#link-to 'bestuurseenheid.zitting.uittreksels.detail' uittreksel.id tagName="button" class="button button--alt button--alt--blue button--narrow button--small"}}
+              <span property="http://data.lblod.info/vocabularies/besluitPublicatie/linkToPublications"></span>
+              Bekijk volledige inhoud <i class="vi vi-arrow vi-u-s button__icon"></i>
+            {{/link-to}}
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
 {{else if uittreksel.inhoud}}
-<div>
-	<div class="info-tile {{unless uittreksel "u-background--gray-lightest"}}">
-		<div class="info-tile__header__wrapper">
-		  <div class="grid">
-		  	<div class="col--8-12 vrije-tekst">
-					{{{uittreksel.inhoud}}}
-			    <p class="info-tile__header__subtitle text-fade">Geen korte beschrijving.</p>
-				</div>
-		  	<div class="col--4-12 u-align-right u-padding--right--small">
-					{{#if uittreksel.inhoud}}
-					  {{#link-to 'bestuurseenheid.zitting.uittreksels.detail' uittreksel.id tagName="button" class="button button--alt button--alt--blue button--narrow button--small"}}
-			      	Bekijk volledige inhoud <i class="vi vi-arrow vi-u-s button__icon"></i>
-					  {{/link-to}}
-					{{/if}}
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+  <div>
+    <div class="info-tile {{unless uittreksel "u-background--gray-lightest"}}">
+      <div class="info-tile__header__wrapper">
+        <div class="grid">
+          <div class="col--8-12 vrije-tekst">
+            <span property="prov:value" content={{uittreksel.inhoud}}></span>
+            {{{uittreksel.inhoud}}}
+            <p class="info-tile__header__subtitle text-fade">Geen korte beschrijving.</p>
+          </div>
+          <div class="col--4-12 u-align-right u-padding--right--small">
+            {{#if uittreksel.inhoud}}
+              {{#link-to 'bestuurseenheid.zitting.uittreksels.detail' uittreksel.id tagName="button" class="button button--alt button--alt--blue button--narrow button--small"}}
+                <span property="http://data.lblod.info/vocabularies/besluitPublicatie/linkToPublications"></span>
+                Bekijk volledige inhoud <i class="vi vi-arrow vi-u-s button__icon"></i>
+              {{/link-to}}
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {{/if}}
+
 {{yield}}

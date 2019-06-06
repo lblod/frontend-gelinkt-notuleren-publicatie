@@ -12,5 +12,18 @@ export default Model.extend({
   agendas: hasMany('agenda'),
   uittreksels: hasMany('uittreksel'),
   besluitenlijst: belongsTo('besluitenlijst'),
-  notulen: belongsTo('notulen')
+  notulen: belongsTo('notulen'),
+
+  rdfaBindings: {
+    geplandeStart: "besluit:geplandeStart",
+    gestartOpTijdstip: "prov:startedAtTime",
+    geeindigdOpTijdstip: "prov:endedAtTime",
+    opLocatie: "prov:atLocation",
+    bestuursorgaan: "besluit:isGehoudenDoor",
+    agendapunten: "besluit:behandelt",
+    agendas: "ext:agenda",
+    uittreksels: "ext:uittreksel",
+    besluitenlijst: "ext:besluitenlijst",
+    notulen: "besluit:heeftNotulen",
+  }
 });

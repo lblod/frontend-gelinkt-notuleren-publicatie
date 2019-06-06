@@ -6,11 +6,12 @@ export default Route.extend({
     this.breadCrumb = this.breadCrumb || { title: 'Besluitenlijst' };
   },
 
-  model() {
+  async model() {
     const id = this.modelFor('bestuurseenheid.zitting').get('id');
-    return this.store.findRecord('zitting', id, {
+    return (await this.store.query('zitting', {
       // TODO add pagination in template instead of retrieving besluiten through include
+      'filter[id]': id,
       include: 'besluitenlijst.besluiten.volgend-uit-behandeling-van-agendapunt.onderwerp'
-    });
+    })).get('firstObject');
   }
 });

@@ -1,26 +1,29 @@
 <div class="info-tile {{unless uittreksel "u-background--gray-lightest"}}">
+  <span property="besluit:geplandOpenbaar" datatype="xsd:boolean" content="{{agendapunt.geplandOpenbaar}}"/>
   <div class="grid">
-  	<div class="col--8-12">
-  		<div class="grid">
-  			<div class="col--1-12">
-			    <p class="h2 text-light sans-serif u-spacer--none">{{inc index}}</p>
-			  </div>
-  			<div class="col--11-12">
-			    <h2 class="list-content">{{clean-spaces agendapunt.titel}}</h2>
-			    {{!-- open en besloten? --}}
-					{{#unless uittreksel.inhoud}}
-						<p class="smallest text-fade uppercase u-spacer--top--tiny">Inhoud niet publiek</p>
-					{{/unless}}
-			  </div>
-			</div>
-	  </div>
-  	<div class="col--4-12 u-align-right">
-			{{#if uittreksel.inhoud}}
-			  {{#link-to 'bestuurseenheid.zitting.uittreksels.detail' uittreksel.id tagName="button" class="button button--alt button--alt--blue button--narrow button--small"}}
-	      	Bekijk volledige inhoud <i class="vi vi-arrow vi-u-s button__icon"></i>
-			  {{/link-to}}
-			{{/if}}
-		</div>
-	</div>
+    <div class="col--8-12">
+      <div class="grid">
+        <div class="col--1-12">
+          <p class="h2 text-light sans-serif u-spacer--none">{{inc index}}</p>
+        </div>
+        <div class="col--11-12">
+          <h2 class="list-content" property="dct:title">{{clean-spaces agendapunt.titel}}</h2>
+          {{!-- open en besloten? --}}
+          {{#unless uittreksel.inhoud}}
+          <p class="smallest text-fade uppercase u-spacer--top--tiny">Inhoud niet publiek</p>
+          {{/unless}}
+        </div>
+      </div>
+    </div>
+    <div class="col--4-12 u-align-right">
+      {{#if uittreksel.inhoud}}
+      {{#link-to 'bestuurseenheid.zitting.uittreksels.detail' uittreksel.id tagName="button" class="button button--alt button--alt--blue button--narrow button--small"}}
+        <span property="http://data.lblod.info/vocabularies/besluitPublicatie/linkToPublications"></span>
+        Bekijk volledige inhoud <i class="vi vi-arrow vi-u-s button__icon"></i>
+      {{/link-to}}
+      {{/if}}
+    </div>
+  </div>
 </div>
+
 {{yield}}
