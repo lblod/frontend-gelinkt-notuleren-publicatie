@@ -182,32 +182,28 @@
     <ul class="steps steps--timeline">
       {{#if model.notulen}}
         {{#link-to 'bestuurseenheid.zitting.notulen' model.id tagName='li' class="step"}}
-          {{#link-to 'bestuurseenheid.zitting.notulen' model.id tagName='h3' class="step__title"}}
-            <span property="http://data.lblod.info/vocabularies/besluitPublicatie/linkToPublications"></span>
+          <a href={{href-to 'bestuurseenheid.zitting.notulen' model.id}} tagName="h3" class="step__title" property="http://data.lblod.info/vocabularies/besluitPublicatie/linkToPublications">
             Notulen
-          {{/link-to}}
+          </a>
         {{/link-to}}
       {{/if}}
 
       {{#if model.uittreksels.length}}
-        {{#link-to 'bestuurseenheid.zitting.uittreksels' model.id tagName='li' class="step"}}
-          <span property="http://data.lblod.info/vocabularies/besluitPublicatie/linkToPublications"></span>
+        <a href={{href-to 'bestuurseenheid.zitting.uittreksels' model.id}} tagName="li" class="step" property="http://data.lblod.info/vocabularies/besluitPublicatie/linkToPublications">
           <h3 class="step__title">Bekendmakingen en uittreksels</h3>
-        {{/link-to}}
+        </a>
       {{/if}}
 
       {{#if model.besluitenlijst.id}}
-        {{#link-to 'bestuurseenheid.zitting.besluitenlijst' model.id tagName='li' class="step"}}
-          <span property="http://data.lblod.info/vocabularies/besluitPublicatie/linkToPublications"></span>
+        <a href={{href-to 'bestuurseenheid.zitting.besluitenlijst' model.id}} tagName="li" class="step" property="http://data.lblod.info/vocabularies/besluitPublicatie/linkToPublications">
           <h3 class="step__title">Besluitenlijst</h3>
-        {{/link-to}}
+        </a>
       {{/if}}
 
       {{#if model.agendapunten.length}}
-        {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="step"}}
-          <span property="http://data.lblod.info/vocabularies/besluitPublicatie/linkToPublications"></span>
+        <a href={{href-to 'bestuurseenheid.zitting.agenda' model.id}} tagName="li" class="step" property="http://data.lblod.info/vocabularies/besluitPublicatie/linkToPublications">
           <h3 class="step__title">Agenda</h3>
-        {{/link-to}}
+        </a>
       {{/if}}
     </ul>
   </div>
