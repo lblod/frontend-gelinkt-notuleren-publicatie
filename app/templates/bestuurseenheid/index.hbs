@@ -8,35 +8,47 @@
           </h1>
           {{#each model as |zitting|}}
             <div class="u-spacer">
-              <div class="grid grid--is-stacked">
+              {{#with-rdfa-context model=zitting class="grid grid--is-stacked" as |ctx|}}
                 <div class="col--6-12 col--1-1--s">
-                  <h2 class="h4">{{get (await zitting.bestuursorgaan.isTijdsspecialisatieVan) 'naam'}}</h2>
-                  <p class="u-spacer--tiny">{{moment-format zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}</p>
+                  {{#ctx.get prop="bestuursorgaan" as |attrs _ bInTimeCtx|}}
+                    <h2 class="h4" {{rdfa attrs}}>
+                      {{#bInTimeCtx.get prop="isTijdsspecialisatieVan" as |attrs _ bCtx|}}
+                        <span {{rdfa attrs}}>
+                          {{bCtx.get prop="naam"}}
+                        </span>
+                      {{/bInTimeCtx.get}}
+                    </h2>
+                  {{/ctx.get}}
+                  <p>
+                    {{#ctx.get prop="geplandeStart" as |attrs value|}}
+                      <span {{rdfa attrs}} class="u-spacer--tiny">{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
+                    {{/ctx.get}}
+                  </p>
                   <ul>
                   </ul>
                   <ul class="inline-list">
-                    {{#if (await zitting.notulen)}}
+                    {{#if zitting.notulen.id}}
                     	<li>
 	                      {{#wu-pill class="pill--small pill--primary-blue"}}
 	                        <i class="vi vi-news"></i> Notulen
 	                      {{/wu-pill}}
 	                    </li>
                     {{/if}}
-                    {{#if (await zitting.besluitenlijst.id) }}
+                    {{#if zitting.besluitenlijst.id }}
                     	<li>
 	                      {{#wu-pill class="pill--small pill--primary-yellow"}}
 	                        <i class="vi vi-news"></i> Besluitenlijst
 	                      {{/wu-pill}}
 	                    </li>
                     {{/if}}
-                    {{#if (get (await zitting.uittreksels) 'length')}}
+                    {{#if zitting.uittreksels.length}}
                     	<li>
 	                      {{#wu-pill class="pill--small pill--primary-yellow"}}
 	                        <i class="vi vi-news"></i> Bekendmakingen en uittreksels
 	                      {{/wu-pill}}
 	                    </li>
                     {{/if}}
-                    {{#if (get (await zitting.agendapunten) 'length')}}
+                    {{#if zitting.agendas.length}}
                     	<li>
 	                      {{#wu-pill class="pill--small"}}
 	                        <i class="vi vi-news"></i> Agenda
@@ -46,12 +58,13 @@
                   </ul>
                 </div>
                 <div class="col--6-12 col--1-1--s u-align-right u-align-left--s">
-                  <a href={{href-to 'bestuurseenheid.zitting.index' zitting.id}} tagName="button" class="button button--small" property="http://data.lblod.info/vocabularies/besluitPublicatie/linkToPublications">
+                  <a {{rdfa (hash property="lblod:linkToPublication" href=(href-to "bestuurseenheid.zitting.index" zitting.id))}}
+                    class="button button--small">
                     <i class="vi vi-arrow vi-u-s button__icon"></i>
                     Bekijk publicaties
                   </a>
                 </div>
-              </div>
+              {{/with-rdfa-context}}
               <div class="u-hr u-spacer--tb"></div>
             </div>
           {{/each}}

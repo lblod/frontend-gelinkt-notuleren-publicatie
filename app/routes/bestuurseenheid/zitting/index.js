@@ -6,7 +6,7 @@ export default Route.extend({
     return (await this.store.query('zitting', {
       // TODO add pagination in template instead of retrieving agendapunten through include
       'filter[id]': id,
-      include: 'notulen,agendapunten,uittreksels,besluitenlijst'
+      include: 'notulen,agendas,uittreksels,besluitenlijst,agendapunten'
     })).get('firstObject');
   },
 
