@@ -9,6 +9,6 @@ COPY . .
 RUN ember build -prod
 
 
-FROM semtech/ember-proxy-service:1.4.0
+FROM cecemel/ember-fastboot-proxy-service:0.3.0
 
 COPY --from=builder /app/dist /app
