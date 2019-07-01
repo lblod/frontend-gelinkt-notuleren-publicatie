@@ -1,0 +1,11 @@
+{{#with-rdfa-context model=model class="grid" as |ctx|}}
+  {{#ctx.get prop="type" link=true as |attrs|}}
+    <a {{rdfa attrs}}>Agenda document</a>
+  {{/ctx.get}}
+
+  {{#ctx.get prop="inhoud" as |attrs inhoud|}}
+    <div {{rdfa attrs}}>
+      {{{ inhoud }}}
+    </div>
+  {{/ctx.get}}
+{{/with-rdfa-context}}

@@ -33,7 +33,10 @@
             <div class="step__wrapper">
               <div class="step__header">
                 <div class="step__header__titles">
-                  {{#ctx.get prop="notulen" href-to=(href-to "bestuurseenheid.zitting.notulen" model.id) class="step__title"}}Notulen{{/ctx.get}}
+                  <h3 class="step__title">Notulen</h3>
+                  <span  class="u-hidden">
+                    {{ctx.get prop="notulen" href-to=(href-to "bestuurseenheid.zitting.notulen" model.id)}}
+                  </span>
                 </div>
                 <div class="step__header__info">
                   <i class="vi vi-arrow"></i>
@@ -73,10 +76,10 @@
             <div class="step__wrapper">
               <div class="step__header">
                 <div class="step__header__titles">
-                  <a {{rdfa (hash property="lblod:linkToPublication" href=(href-to "bestuurseenheid.zitting.uittreksels" model.id))}}
-                      class="step__title">
-                    Bekendmakingen en uittreksels
-                  </a>
+                  <h3 class="step__title">Bekendmakingen en uittreksels</h3>
+                  <span  class="u-hidden">
+                    {{ctx.each prop="uittreksels" link-to="bestuurseenheid.zitting.uittreksels.detail.raw"}}
+                  </span>
                 </div>
                 <div class="step__header__info">
                   <i class="vi vi-arrow"></i>
@@ -112,9 +115,10 @@
             <div class="step__wrapper">
               <div class="step__header">
                 <div class="step__header__titles">
-                  {{#ctx.get prop="besluitenlijst" href-to=(href-to "bestuurseenheid.zitting.besluitenlijst" model.id) class="step__title"}}
-                    Besluitenlijst
-                  {{/ctx.get}}
+                  <h3 class="step__title">Besluitenlijst</h3>
+                  <span  class="u-hidden">
+                    {{ctx.get prop="besluitenlijst" href-to=(href-to "bestuurseenheid.zitting.besluitenlijst.raw" model.id)}}
+                  </span>
                 </div>
                 <div class="step__header__info">
                   <i class="vi vi-arrow"></i>
@@ -151,9 +155,10 @@
             <div class="step__wrapper">
               <div class="step__header">
                 <div class="step__header__titles">
-                  {{#ctx.get prop="agendas" href-to=(href-to "bestuurseenheid.zitting.agenda" model.id) class="step__title"}}
-                    Agenda
-                  {{/ctx.get}}
+                  <h3 class="step__title">Agenda</h3>
+                  <span  class="u-hidden">
+                    {{ctx.each prop="agendas" href-to=(href-to "bestuurseenheid.zitting.agenda.raw" model.id)}}
+                  </span>
                 </div>
                 <div class="step__header__info">
                   <i class="vi vi-arrow"></i>

@@ -1,0 +1,75 @@
+<div class="container-flex--scroll u-padding--round">
+  {{#with-rdfa-context model=model.besluitenlijst class="grid" as |besluitenlijstCtx|}}
+    {{#besluitenlijstCtx.get prop="type" link=true as |attrs|}}
+      <a {{rdfa attrs}} class="u-hidden"></a>
+    {{/besluitenlijstCtx.get}}
+
+    {{#with-rdfa-context model=model class="col--7-12 col--9-12--m col--1-1--s" as |ctx|}}
+      <h1 class="h1 u-spacer--top--small">
+        {{#ctx.get prop="besluitenlijst" as |attrs|}}
+          <span {{rdfa attrs}}>Besluitenlijst</span>
+        {{/ctx.get}}
+        van
+        {{#ctx.get prop="bestuursorgaan" as |attrs _ bInTimeCtx|}}
+          <span {{rdfa attrs}}>
+            {{#bInTimeCtx.get prop="isTijdsspecialisatieVan" as |attrs _ bCtx|}}
+              <span {{rdfa attrs}}>
+                {{bCtx.get prop="naam"}}
+              </span>
+            {{/bInTimeCtx.get}}
+          </span>
+        {{/ctx.get}}
+        , zitting van
+        {{#ctx.get prop="geplandeStart" as |attrs value|}}
+          <span {{rdfa attrs}} class="u-spacer--tiny">{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
+        {{/ctx.get}}
+      </h1>
+
+      <div class="grid grid--is-stacked">
+        {{#each besluiten as |besluit|}}
+          <div class="col--12-12">
+            {{besluit-overview-item besluit=besluit}}
+          </div>
+        {{else}}
+          <div class="col--12-12">
+            <p>Geen besluiten beschikbaar.</p>
+          </div>
+        {{/each}}
+      </div>
+
+      {{!-- <div class="col--4-12 push--1-12 col--1-1--s u-bg--blue-gray-lighter">
+        <dl class="small">
+        <dt>Publicatie</dt>
+        <dd>
+        <strong>24 januari 2019</strong>
+        </dd>
+        <br>
+        <dt>Verificatiesleutel</dt>
+        <dd>
+        <strong><i class="fa fa-lock vi-u-xs"></i>&nbsp;123R8883-3122344-455123R888-33122344455</strong>
+        <p class="small"><a href="#">Verifieer publicatie met origineel</a></p>
+        </dd>
+        <br>
+        <dt>Nietig verklaarde versies</dt>
+        <dd>
+        <div>
+        <strong><a href="#">Publicatie op 10.12.2019</a></strong>
+        <p class="smaller text-fade u-spacer--tiny">Gepubliceerd op 10.12.2019</p>
+        </div>
+        <div>
+        <strong><a href="#">Publicatie op 10.12.2019</a></strong>
+        <p class="smaller text-fade u-spacer--tiny">Gepubliceerd op 10.12.2019</p>
+        </div>
+        <div>
+        <strong><a href="#">Publicatie op 10.12.2019</a></strong>
+        <p class="smaller text-fade u-spacer--tiny">Gepubliceerd op 10.12.2019</p>
+        </div>
+        </dd>
+        <br>
+        </dl>
+        </div> --}}
+    {{/with-rdfa-context}}
+  {{/with-rdfa-context}}
+</div>
+
+{{outlet}}

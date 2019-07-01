@@ -1,17 +1,15 @@
 <div class="container-flex--scroll u-padding--round">
-  {{#with-rdfa-context model=model.notulen class="grid" as |notulenCtx|}}
-    {{#notulenCtx.get prop="type" link=true as |attrs|}}
+  {{#with-rdfa-context model=model class="grid" as |ctx|}}
+    {{#ctx.get prop="type" link=true as |attrs|}}
       <a {{rdfa attrs}} class="u-hidden"></a>
-    {{/notulenCtx.get}}
-
-    {{#with-rdfa-context model=model class="u-hidden" as |ctx|}}
-      {{ctx.get prop="notulen"}}
-    {{/with-rdfa-context}}
+    {{/ctx.get}}
 
   	<div class="col--7-12 col--1-1--s">
-  		<div class="u-spacer--top--small u-spacer--bottom--large">
-	    	{{{model.notulen.inhoud}}}
-	    </div>
+      {{#ctx.get prop="inhoud" as |attrs inhoud|}}
+        <div {{rdfa attrs}} class="u-spacer--top--small u-spacer--bottom--large">
+          {{{ inhoud }}}
+        </div>
+      {{/ctx.get}}
     </div>
 
 {{!-- 	  <div class="col--4-12 col--1-1--s push--1-12 u-bg--blue-gray-lighter">

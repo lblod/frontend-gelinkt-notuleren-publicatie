@@ -4,6 +4,7 @@ import { hasMany } from 'ember-data/relationships';
 
 export default Model.extend({
   uri: attr(),
+  inhoud: attr(),
   agendapunten: hasMany('agendapunt'),
 
   type: 'http://data.lblod.info/id/document-types/agenda',

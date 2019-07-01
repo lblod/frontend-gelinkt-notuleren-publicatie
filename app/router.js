@@ -9,12 +9,18 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('bestuurseenheid', { path: '/:bestuurseenheid_naam/:bestuurseenheid_classificatie_code_label' }, function() {
     this.route('zitting', { path: '/:id' }, function() {
-      this.route('agenda', function() {});
-      this.route('besluitenlijst', function() {});
+      this.route('agenda', function() {
+        this.route('raw');
+      });
+      this.route('besluitenlijst', function() {
+        this.route('raw');
+      });
       this.route('notulen', function() {});
       this.route('uittreksels', function(){
         this.route('index', { path: '/'});
-        this.route('detail', { path: '/:uittreksel_id'});
+        this.route('detail', { path: '/:uittreksel_id'}, function() {
+          this.route('raw');
+        });
       });
     });
   });

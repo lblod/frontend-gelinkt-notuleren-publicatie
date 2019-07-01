@@ -24,10 +24,9 @@
         </div>
         <div class="col--4-12 u-align-right u-padding--right--small">
           {{#if uittreksel.inhoud}}
-            <a {{rdfa (hash property="lblod:linkToPublication" href=(href-to "bestuurseenheid.zitting.uittreksels.detail" uittreksel.id))}}
-                      class="button button--alt button--alt--blue button--narrow button--small">
+            {{#link-to "bestuurseenheid.zitting.uittreksels.detail" uittreksel.id class="button button--alt button--alt--blue button--narrow button--small"}}
               Bekijk volledige inhoud <i class="vi vi-arrow vi-u-s button__icon"></i>
-            </a>
+            {{/link-to}}
           {{/if}}
         </div>
       </div>
@@ -43,10 +42,9 @@
             </div>
             <div class="col--4-12 u-align-right u-padding--right--small">
               {{#if uittreksel.inhoud}}
-                <a {{rdfa (hash property="lblod:linkToPublication" href=(href-to "bestuurseenheid.zitting.uittreksels.detail" uittreksel.id))}}
-                      class="button button--alt button--alt--blue button--narrow button--small">
+                {{#link-to "bestuurseenheid.zitting.uittreksels.detail" uittreksel.id class="button button--alt button--alt--blue button--narrow button--small"}}
                   Bekijk volledige inhoud <i class="vi vi-arrow vi-u-s button__icon"></i>
-                </a>
+                {{/link-to}}
               {{/if}}
             </div>
           </div>
