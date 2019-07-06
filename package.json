@@ -23,7 +23,6 @@
   "devDependencies": {
     "@ember/jquery": "^0.5.2",
     "@ember/optional-features": "^0.6.3",
-    "@lblod/ember-rdfa-helpers": "git+https://github.com/lblod/ember-rdfa-helpers.git#v0.4.0",
     "@lblod/ember-vo-webuniversum": "^0.20.0",
     "@lblod/ember-vo-webuniversum-widget": "^0.1.2",
     "broccoli-asset-rev": "^2.7.0",
@@ -63,6 +62,7 @@
     "ember-power-select": "^2.2.1",
     "ember-promise-helpers": "^1.0.6",
     "ember-qunit": "^3.4.1",
+    "ember-rdfa-helpers": "0.4.0",
     "ember-resolver": "^5.0.1",
     "ember-source": "~3.8.0",
     "eslint-plugin-ember": "^5.2.0",
