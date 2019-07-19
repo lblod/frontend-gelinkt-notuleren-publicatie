@@ -1,11 +1,21 @@
-{{#with-rdfa-context model=model class="grid" as |ctx|}}
-  {{#ctx.get prop="type" link=true as |attrs|}}
-    <a {{rdfa attrs}}>Besluitenlijst document</a>
-  {{/ctx.get}}
+<div class="container-flex--scroll u-padding--round">
+  <div class="grid">
+	  <div {{rdfa attrs}} class="col--8-12">
+			{{#with-rdfa-context model=model as |ctx|}}
+			  {{#ctx.get prop="type" link=true as |attrs|}}
+				  <h1 class="h1 u-spacer--top--small">
+				  	Type document
+				  	<br>
+				    <a {{rdfa attrs}}>Besluitenlijst document</a>
+				  </h1>
+			  {{/ctx.get}}
 
-  {{#ctx.get prop="inhoud" as |attrs inhoud|}}
-    <div {{rdfa attrs}}>
-      {{{ inhoud }}}
-    </div>
-  {{/ctx.get}}
-{{/with-rdfa-context}}
+			  {{#ctx.get prop="inhoud" as |attrs inhoud|}}
+			    <div {{rdfa attrs}} class="document-publish">
+			      {{{ inhoud }}}
+			    </div>
+			  {{/ctx.get}}
+			{{/with-rdfa-context}}
+		</div>
+	</div>
+</div>
