@@ -20,13 +20,13 @@
 
       <div class="grid grid--is-stacked">
         {{#each uittreksels as |uittreksel|}}
-	      	<div class="col--12-12">
-  	        <UittrekselOverviewItem @uittreksel={{uittreksel}} />
-		      </div>
+          <div class="col--12-12">
+            <UittrekselOverviewItem @uittreksel={{uittreksel}} />
+          </div>
         {{else}}
-	      	<div class="col--12-12">
-	          <p>Geen bekendmakingen of uittreksels beschikbaar.</p>
-	        </div>
+          <div class="col--12-12">
+            <p>Geen bekendmakingen of uittreksels beschikbaar.</p>
+          </div>
         {{/each}}
       </div>
     </WithRdfaContext>

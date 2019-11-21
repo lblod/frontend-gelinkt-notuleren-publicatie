@@ -6,44 +6,44 @@
 
   <div class="u-padding--round--large">
 
-  	<h2 class="h3 u-spacer">Zoek naar gepubliceerde agenda's, besluiten en notulen van een bestuur</h2>
-  	<ul class="steps steps--has-line">
-	    <li class="step step--no-box">
-	      <div class="step__icon">1</div>
-	      <div class="step__wrapper">
-	        <div class="step__header">
-	          <h3 class="step__title">Stap 1: Kies het type bestuurseenheid</h3>
-	        </div>
-	        <div class="step__content-wrapper">
-	          <div class="step__content">
+    <h2 class="h3 u-spacer">Zoek naar gepubliceerde agenda's, besluiten en notulen van een bestuur</h2>
+    <ul class="steps steps--has-line">
+      <li class="step step--no-box">
+        <div class="step__icon">1</div>
+        <div class="step__wrapper">
+          <div class="step__header">
+            <h3 class="step__title">Stap 1: Kies het type bestuurseenheid</h3>
+          </div>
+          <div class="step__content-wrapper">
+            <div class="step__content">
               <SelectBestuurseenheidClassificatieLabel @model={{model}} @selected={{bestuurseenheidClassificatieLabel}} @onSelect={{action "setBestuurseenheidClassificatieLabel"}} />
-	          </div>
-	        </div>
-	      </div>
-	    </li>
-	    <li class="step {{unless bestuurseenheidClassificatieLabel "step--disabled"}} step--no-box">
-	      <div class="step__icon">2</div>
-	      <div class="step__wrapper">
-	        <div class="step__header">
-	          <h3 class="step__title">Stap 2: Kies de bestuurseenheid </h3>
-	        </div>
-	        <div class="step__content-wrapper">
-	          <div class="step__content">
-						  {{#if bestuurseenheidClassificatieLabel}}
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="step {{unless bestuurseenheidClassificatieLabel "step--disabled"}} step--no-box">
+        <div class="step__icon">2</div>
+        <div class="step__wrapper">
+          <div class="step__header">
+            <h3 class="step__title">Stap 2: Kies de bestuurseenheid </h3>
+          </div>
+          <div class="step__content-wrapper">
+            <div class="step__content">
+              {{#if bestuurseenheidClassificatieLabel}}
                 <SelectBestuurseenheidNaam @bestuurseenheidClassificatieLabel={{bestuurseenheidClassificatieLabel}} @selected={{bestuurseenheidNaam}} @onSelect={{action (mut bestuurseenheidNaam)}} />
-						  {{/if}}
-						  {{#if bestuurseenheidNaam}}
-						  	<div class="button-group">
-						      <LinkTo @route="bestuurseenheid" @models={{array bestuurseenheidNaam bestuurseenheidClassificatieLabel}}>
-						        <button class="button button--large">Zoek publicaties</button>
-						      </LinkTo>
-						    </div>
-						  {{/if}}
-	          </div>
-	        </div>
-	      </div>
-	    </li>
-  	</ul>
-	</div>
-<FastbootedFooter />
+              {{/if}}
+              {{#if bestuurseenheidNaam}}
+                <div class="button-group">
+                  <LinkTo @route="bestuurseenheid" @models={{array bestuurseenheidNaam bestuurseenheidClassificatieLabel}}>
+                    <button class="button button--large">Zoek publicaties</button>
+                  </LinkTo>
+                </div>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <FastbootedFooter />
 </div>

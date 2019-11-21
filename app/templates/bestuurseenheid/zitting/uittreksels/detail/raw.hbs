@@ -1,21 +1,21 @@
 <div class="container-flex--scroll u-padding--round">
   <div class="grid">
-	  <div {{rdfa elements}} class="col--8-12">
-			<WithRdfaContext @model={{model}} as |ctx|>
-			  <ctx.get @prop="type" @link={{true}} as |elements|>
-				  <h1 class="h1 u-spacer--top--small">
-				  	Type document
-				  	<br>
-				    <a {{rdfa elements}}>Uittreksel document</a>
-				  </h1>
-			  </ctx.get>
+    <div {{rdfa elements}} class="col--8-12">
+      <WithRdfaContext @model={{model}} as |ctx|>
+        <ctx.get @prop="type" @link={{true}} as |elements|>
+          <h1 class="h1 u-spacer--top--small">
+            Type document
+            <br>
+            <a {{rdfa elements}}>Uittreksel document</a>
+          </h1>
+        </ctx.get>
 
-			  <ctx.get @prop="inhoud" as |elements inhoud|>
-			    <div {{rdfa elements}} class="document-publish">
-			      {{{ inhoud }}}
-			    </div>
-			  </ctx.get>
-			</WithRdfaContext>
-		</div>
-	</div>
+        <ctx.get @prop="inhoud" as |elements inhoud|>
+          <div {{rdfa elements}} class="document-publish">
+            {{{ inhoud }}}
+          </div>
+        </ctx.get>
+      </WithRdfaContext>
+    </div>
+  </div>
 </div>
