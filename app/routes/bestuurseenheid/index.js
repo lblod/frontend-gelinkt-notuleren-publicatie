@@ -4,8 +4,9 @@ export default Route.extend({
   model() {
     const id = this.modelFor('bestuurseenheid').get('id');
     return this.store.query('zitting', {
-			'filter[bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][:id:]': id,
-			sort: '-geplande-start'
+      'include': 'bestuursorgaan,bestuursorgaan.is-tijdsspecialisatie-van,notulen,besluitenlijst,uittreksels,agendas',
+      'filter[bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][:id:]': id,
+      sort: '-geplande-start'
     });
   },
 
