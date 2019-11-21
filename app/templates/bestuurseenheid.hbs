@@ -1,13 +1,13 @@
-{{#bread-crumbs tagName="ul" linkable=true crumbClass="breadcrumb-item" class="functional-header__sub__actions" as |component route|}}
-  {{#bread-crumb route=route breadCrumbs=component class="functional-header__sub__action"}}
+<BreadCrumbs @tagName="ul" @linkable={{true}} @crumbClass="breadcrumb-item" @class="functional-header__sub__actions" as |component route|>
+  <BreadCrumb @route={{route}} @breadCrumbs={{component}} @class="functional-header__sub__action">
     <h2 class="functional-header__sub__title">
       {{#if route.linkable}}
-        {{#link-to route.path}}{{route.title}}{{/link-to}}
+        <LinkTo @route={{route.path}}>{{route.title}}</LinkTo>
       {{else}}
         {{route.title}}
       {{/if}}
     </h2>
-  {{/bread-crumb}}
-{{/bread-crumbs}}
+  </BreadCrumb>
+</BreadCrumbs>
 
 {{outlet}}

@@ -8,51 +8,51 @@
           </h1>
           {{#each model as |zitting|}}
             <div class="u-spacer">
-              {{#with-rdfa-context model=zitting class="grid grid--is-stacked" as |ctx|}}
+              <WithRdfaContext @model={{zitting}} @class="grid grid--is-stacked" as |ctx|>
                 <div class="col--6-12 col--1-1--s">
-                  {{#ctx.get prop="bestuursorgaan" as |attrs _ bInTimeCtx|}}
-                    <h2 class="h4" {{rdfa attrs}}>
-                      {{#bInTimeCtx.get prop="isTijdsspecialisatieVan" as |attrs _ bCtx|}}
-                        <span {{rdfa attrs}}>
-                          {{bCtx.get prop="naam"}}
+                  <ctx.get @prop="bestuursorgaan" as |elements _ bInTimeCtx|>
+                    <h2 class="h4" {{rdfa elements}}>
+                      <bInTimeCtx.get @prop="isTijdsspecialisatieVan" as |elements _ bCtx|>
+                        <span {{rdfa elements}}>
+                          <bCtx.get @prop="naam" />
                         </span>
-                      {{/bInTimeCtx.get}}
+                      </bInTimeCtx.get>
                     </h2>
-                  {{/ctx.get}}
+                  </ctx.get>
                   <p>
-                    {{#ctx.get prop="geplandeStart" as |attrs value|}}
-                      <span {{rdfa attrs}} class="u-spacer--tiny">{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
-                    {{/ctx.get}}
+                    <ctx.get @prop="geplandeStart" as |elements value|>
+                      <span {{rdfa elements}} class="u-spacer--tiny">{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
+                    </ctx.get>
                   </p>
                   <ul>
                   </ul>
                   <ul class="inline-list">
                     {{#if zitting.notulen.id}}
                     	<li>
-	                      {{#wu-pill class="pill--small pill--primary-blue"}}
+	                      <WuPill @class="pill--small pill--primary-blue">
 	                        <i class="vi vi-news"></i> Notulen
-	                      {{/wu-pill}}
+	                      </WuPill>
 	                    </li>
                     {{/if}}
                     {{#if zitting.besluitenlijst.id }}
                     	<li>
-	                      {{#wu-pill class="pill--small pill--primary-yellow"}}
+	                      <WuPill @class="pill--small pill--primary-yellow">
 	                        <i class="vi vi-news"></i> Besluitenlijst
-	                      {{/wu-pill}}
+	                      </WuPill>
 	                    </li>
                     {{/if}}
                     {{#if zitting.uittreksels.length}}
                     	<li>
-	                      {{#wu-pill class="pill--small pill--primary-yellow"}}
+	                      <WuPill @class="pill--small pill--primary-yellow">
 	                        <i class="vi vi-news"></i> Bekendmakingen en uittreksels
-	                      {{/wu-pill}}
+	                      </WuPill>
 	                    </li>
                     {{/if}}
                     {{#if zitting.agendas.length}}
                     	<li>
-	                      {{#wu-pill class="pill--small"}}
+	                      <WuPill @class="pill--small">
 	                        <i class="vi vi-news"></i> Agenda
-	                      {{/wu-pill}}
+	                      </WuPill>
 	                    </li>
                     {{/if}}
                   </ul>
@@ -63,7 +63,7 @@
                     Bekijk publicaties
                   </a>
                 </div>
-              {{/with-rdfa-context}}
+              </WithRdfaContext>
               <div class="u-hr u-spacer--tb"></div>
             </div>
           {{/each}}
@@ -77,9 +77,9 @@
             <div class="layout layout--wide">
               <h1 class="h1">Er werden nog geen publicaties voor {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}} gevonden</h1>
               <p>Kom later nog eens terug, of
-                {{#link-to 'index' class="link--icon"}}
+                <LinkTo @route="index" class="link--icon">
                   zoek naar publicaties van een ander bestuur.
-                {{/link-to}}
+                </LinkTo>
               </p>
             </div>
           </section>

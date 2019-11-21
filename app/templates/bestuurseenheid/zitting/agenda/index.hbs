@@ -1,34 +1,34 @@
-{{breadcrumb-header}}
+<BreadcrumbHeader />
 
 <div class="container-flex--scroll u-padding--round">
-  {{#with-rdfa-context model=model.agenda class="grid" as |agendaCtx|}}
-    {{#agendaCtx.get prop="type" link=true as |attrs|}}
-      <a {{rdfa attrs}} class="u-hidden"></a>
-    {{/agendaCtx.get}}
+  <WithRdfaContext @model={{model.agenda}} @class="grid" as |agendaCtx|>
+    <agendaCtx.get @prop="type" @link={{true}} as |elements|>
+      <a {{rdfa elements}} class="u-hidden"></a>
+    </agendaCtx.get>
 
-    {{#with-rdfa-context model=model class="col--7-12 col--9-12--m col--1-1--s" as |ctx|}}
+    <WithRdfaContext @model={{model}} @class="col--7-12 col--9-12--m col--1-1--s" as |ctx|>
       <h1 class="h1 u-spacer--top--small">
-        {{#ctx.get prop="agenda" as |attrs|}}
-          <span {{rdfa attrs}}>Agenda</span>
-        {{/ctx.get}}
+        <ctx.get @prop="agenda" as |elements|>
+          <span {{rdfa elements}}>Agenda</span>
+        </ctx.get>
         voor
-        {{#ctx.get prop="bestuursorgaan" as |attrs _ bInTimeCtx|}}
-          <span {{rdfa attrs}}>
-            {{#bInTimeCtx.get prop="isTijdsspecialisatieVan" as |attrs _ bCtx|}}
-              <span {{rdfa attrs}}>
-                {{bCtx.get prop="naam"}}
+        <ctx.get @prop="bestuursorgaan" as |elements _ bInTimeCtx|>
+          <span {{rdfa elements}}>
+            <bInTimeCtx.get @prop="isTijdsspecialisatieVan" as |elements _ bCtx|>
+              <span {{rdfa elements}}>
+                <bCtx.get @prop="naam" />
               </span>
-            {{/bInTimeCtx.get}}
+            </bInTimeCtx.get>
           </span>
-        {{/ctx.get}}
+        </ctx.get>
         , zitting van
-        {{#ctx.get prop="geplandeStart" as |attrs value|}}
-          <span {{rdfa attrs}} class="u-spacer--tiny">{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
-        {{/ctx.get}}
+        <ctx.get @prop="geplandeStart" as |elements value|>
+          <span {{rdfa elements}} class="u-spacer--tiny">{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
+        </ctx.get>
       </h1>
 
       {{!-- <nav class="tabs__wrapper u-spacer--tiny">
-             <ul class="tabs" data-tabs-list="">
+             <ul class="tabs" data-tabs-list>
              {{#if model.spoedeisendeAgenda}}
              {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="tab" activeClass="tab--active"}}
              <a class="tab__link">Spoedeisende agenda</a>
@@ -59,18 +59,18 @@
 
       <div class="grid grid--is-stacked">
         {{#if model.agendapunten.length}}
-          {{#ctx.each prop="sortedAgendapunten" as |attrs agendapunt agendapuntCtx index|}}
-        	  <div {{rdfa attrs}} class="col--12-12">
-              {{agendapunt-overview-item agendapunt=agendapunt ctx=agendapuntCtx index=index}}
+          <ctx.each @prop="sortedAgendapunten" as |elements agendapunt agendapuntCtx index|>
+            <div {{rdfa elements}} class="col--12-12">
+              <AgendapuntOverviewItem @agendapunt={{agendapunt}} @ctx={{agendapuntCtx}} @index={{index}} />
             </div>
-          {{/ctx.each}}
+          </ctx.each>
         {{else}}
           <div>
           	<p>Geen agendapunten beschikbaar.</p>
           </div>
         {{/if}}
       </div>
-    {{/with-rdfa-context}}
+    </WithRdfaContext>
 
     <!-- <div class="col--4-12 col--1-1--s push--1-12 u-bg--blue-gray-lighter">
          <dl class="small">
@@ -103,5 +103,5 @@
          <br>
          </dl>
          </div> -->
-  {{/with-rdfa-context}}
+  </WithRdfaContext>
 </div>

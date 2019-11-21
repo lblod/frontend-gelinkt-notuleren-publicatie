@@ -1,16 +1,7 @@
 <div class="u-spacer--small">
-  {{#power-select
-    placeholder="Oost-Vlaanderen, Berchem, Hasselt, ..."
-    selected=selected
-    searchEnabled=true
-    options=bestuurseenheidNamen
-    search=(perform findBestuurseenheidNamen)
-    onChange=onSelect
-    allowClear=true
-    as |bestuurseenheidNaam|
-  }}
+  <PowerSelect @placeholder="Oost-Vlaanderen, Berchem, Hasselt, ..." @selected={{selected}} @searchEnabled={{true}} @options={{bestuurseenheidNamen}} @search={{perform findBestuurseenheidNamen}} @onChange={{onSelect}} @allowClear={{true}} as |bestuurseenheidNaam|>
     {{bestuurseenheidNaam}}
-  {{/power-select}}
+  </PowerSelect>
 </div>
 
 {{yield}}

@@ -1,42 +1,42 @@
 <div class="container-flex--scroll u-padding--round">
-  {{#with-rdfa-context model=model.uittreksel class="grid" as |uittrekselCtx|}}
-    {{#uittrekselCtx.get prop="type" link=true as |attrs|}}
-      <a {{rdfa attrs}} class="u-hidden"></a>
-    {{/uittrekselCtx.get}}
+  <WithRdfaContext @model={{model.uittreksel}} @class="grid" as |uittrekselCtx|>
+    <uittrekselCtx.get @prop="type" @link={{true}} as |elements|>
+      <a {{rdfa elements}} class="u-hidden"></a>
+    </uittrekselCtx.get>
 
     <!-- TODO add RDFa relation to zitting when RDFa helpers support inverse relations -->
-    {{#with-rdfa-context model=model.zitting class="col--7-12 col--9-12--m col--1-1--s" as |ctx|}}
+    <WithRdfaContext @model={{model.zitting}} @class="col--7-12 col--9-12--m col--1-1--s" as |ctx|>
       <h1 class="h1 u-spacer--top--small">
         Uittreksel van
-        {{#ctx.get prop="bestuursorgaan" as |attrs _ bInTimeCtx|}}
-          <span {{rdfa attrs}}>
-            {{#bInTimeCtx.get prop="isTijdsspecialisatieVan" as |attrs _ bCtx|}}
-              <span {{rdfa attrs}}>
-                {{bCtx.get prop="naam"}}
+        <ctx.get @prop="bestuursorgaan" as |elements _ bInTimeCtx|>
+          <span {{rdfa elements}}>
+            <bInTimeCtx.get @prop="isTijdsspecialisatieVan" as |elements _ bCtx|>
+              <span {{rdfa elements}}>
+                <bCtx.get @prop="naam" />
               </span>
-            {{/bInTimeCtx.get}}
+            </bInTimeCtx.get>
           </span>
-        {{/ctx.get}}
+        </ctx.get>
         , zitting van
-        {{#ctx.get prop="geplandeStart" as |attrs value|}}
-          <span {{rdfa attrs}} class="u-spacer--tiny">{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
-        {{/ctx.get}}
+        <ctx.get @prop="geplandeStart" as |elements value|>
+          <span {{rdfa elements}} class="u-spacer--tiny">{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
+        </ctx.get>
       </h1>
-    {{/with-rdfa-context}}
+    </WithRdfaContext>
 
     <div class="col--7-12 col--9-12--m col--1-1--s u-padding--bottom--large">
       <div class="grid grid--is-stacked">
         {{#if model.uittreksel.inhoud}}
-          {{#uittrekselCtx.get prop="inhoud" as |attrs inhoud|}}
-            <div {{rdfa attrs}}>
+          <uittrekselCtx.get @prop="inhoud" as |elements inhoud|>
+            <div {{rdfa elements}}>
               {{{inhoud}}}
             </div>
-          {{/uittrekselCtx.get}}
+          </uittrekselCtx.get>
         {{else}}
           Inhoud niet beschikbaar.
         {{/if}}
       </div>
     </div>
 
-  {{/with-rdfa-context}}
+  </WithRdfaContext>
 </div>

@@ -1,8 +1,8 @@
 <div class="container-flex--scroll">
 
-  {{#wu-content-header title="Publicaties Gelinkt Notuleren"}}
+  <WuContentHeader @title="Publicaties Gelinkt Notuleren">
     <img sizes="100vw" src="/assets/images/banner-bruges.jpg" srcset="/assets/images/banner-bruges-320.jpg 320w, /assets/images/banner-bruges-1024.jpg 1024w, /assets/images/banner-bruges-1600.jpg 1600w" alt="" title="">
-  {{/wu-content-header}}
+  </WuContentHeader>
 
   <div class="u-padding--round--large">
 
@@ -16,7 +16,7 @@
 	        </div>
 	        <div class="step__content-wrapper">
 	          <div class="step__content">
-              {{select-bestuurseenheid-classificatie-label model=model selected=bestuurseenheidClassificatieLabel onSelect=(action 'setBestuurseenheidClassificatieLabel')}}
+              <SelectBestuurseenheidClassificatieLabel @model={{model}} @selected={{bestuurseenheidClassificatieLabel}} @onSelect={{action "setBestuurseenheidClassificatieLabel"}} />
 	          </div>
 	        </div>
 	      </div>
@@ -30,13 +30,13 @@
 	        <div class="step__content-wrapper">
 	          <div class="step__content">
 						  {{#if bestuurseenheidClassificatieLabel}}
-                {{select-bestuurseenheid-naam bestuurseenheidClassificatieLabel=bestuurseenheidClassificatieLabel selected=bestuurseenheidNaam onSelect=(action (mut bestuurseenheidNaam))}}
+                <SelectBestuurseenheidNaam @bestuurseenheidClassificatieLabel={{bestuurseenheidClassificatieLabel}} @selected={{bestuurseenheidNaam}} @onSelect={{action (mut bestuurseenheidNaam)}} />
 						  {{/if}}
 						  {{#if bestuurseenheidNaam}}
 						  	<div class="button-group">
-						      {{#link-to "bestuurseenheid" bestuurseenheidNaam bestuurseenheidClassificatieLabel}}
+						      <LinkTo @route="bestuurseenheid" @models={{array bestuurseenheidNaam bestuurseenheidClassificatieLabel}}>
 						        <button class="button button--large">Zoek publicaties</button>
-						      {{/link-to}}
+						      </LinkTo>
 						    </div>
 						  {{/if}}
 	          </div>
@@ -45,5 +45,5 @@
 	    </li>
   	</ul>
 	</div>
-{{fastbooted-footer}}
+<FastbootedFooter />
 </div>

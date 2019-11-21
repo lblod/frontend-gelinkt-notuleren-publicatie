@@ -1,34 +1,34 @@
 <div class="container-flex--scroll u-padding--round">
-  {{#with-rdfa-context model=model.besluitenlijst class="grid" as |besluitenlijstCtx|}}
-    {{#besluitenlijstCtx.get prop="type" link=true as |attrs|}}
-      <a {{rdfa attrs}} class="u-hidden"></a>
-    {{/besluitenlijstCtx.get}}
+  <WithRdfaContext @model={{model.besluitenlijst}} @class="grid" as |besluitenlijstCtx|>
+    <besluitenlijstCtx.get @prop="type" @link={{true}} as |elements|>
+      <a {{rdfa elements}} class="u-hidden"></a>
+    </besluitenlijstCtx.get>
 
-    {{#with-rdfa-context model=model class="col--7-12 col--9-12--m col--1-1--s" as |ctx|}}
+    <WithRdfaContext @model={{model}} @class="col--7-12 col--9-12--m col--1-1--s" as |ctx|>
       <h1 class="h1 u-spacer--top--small">
-        {{#ctx.get prop="besluitenlijst" as |attrs|}}
-          <span {{rdfa attrs}}>Besluitenlijst</span>
-        {{/ctx.get}}
+        <ctx.get @prop="besluitenlijst" as |elements|>
+          <span {{rdfa elements}}>Besluitenlijst</span>
+        </ctx.get>
         van
-        {{#ctx.get prop="bestuursorgaan" as |attrs _ bInTimeCtx|}}
-          <span {{rdfa attrs}}>
-            {{#bInTimeCtx.get prop="isTijdsspecialisatieVan" as |attrs _ bCtx|}}
-              <span {{rdfa attrs}}>
-                {{bCtx.get prop="naam"}}
+        <ctx.get @prop="bestuursorgaan" as |elements _ bInTimeCtx|>
+          <span {{rdfa elements}}>
+            <bInTimeCtx.get @prop="isTijdsspecialisatieVan" as |elements _ bCtx|>
+              <span {{rdfa elements}}>
+                <bCtx.get @prop="naam" />
               </span>
-            {{/bInTimeCtx.get}}
+            </bInTimeCtx.get>
           </span>
-        {{/ctx.get}}
+        </ctx.get>
         , zitting van
-        {{#ctx.get prop="geplandeStart" as |attrs value|}}
-          <span {{rdfa attrs}} class="u-spacer--tiny">{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
-        {{/ctx.get}}
+        <ctx.get @prop="geplandeStart" as |elements value|>
+          <span {{rdfa elements}} class="u-spacer--tiny">{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
+        </ctx.get>
       </h1>
 
       <div class="grid grid--is-stacked">
         {{#each besluiten as |besluit|}}
           <div class="col--12-12">
-            {{besluit-overview-item besluit=besluit}}
+            <BesluitOverviewItem @besluit={{besluit}} />
           </div>
         {{else}}
           <div class="col--12-12">
@@ -68,8 +68,8 @@
         <br>
         </dl>
         </div> --}}
-    {{/with-rdfa-context}}
-  {{/with-rdfa-context}}
+    </WithRdfaContext>
+  </WithRdfaContext>
 </div>
 
 {{outlet}}

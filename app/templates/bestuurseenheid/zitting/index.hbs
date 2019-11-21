@@ -1,27 +1,27 @@
 <div class="container-flex--scroll u-padding--round--small">
   <div class="grid grid--align-center">
-    {{#with-rdfa-context model=model class="col--8-12 col--1-1--s" as |ctx|}}
+    <WithRdfaContext @model={{model}} @class="col--8-12 col--1-1--s" as |ctx|>
       <h1 class="h1 u-spacer--top--small">
         Publicaties voor de zitting van
-        {{#ctx.get prop="bestuursorgaan" as |attrs _ bInTimeCtx|}}
-          <span {{rdfa attrs}}>
-            {{#bInTimeCtx.get prop="isTijdsspecialisatieVan" as |attrs _ bCtx|}}
-              <span {{rdfa attrs}}>
-                {{bCtx.get prop="naam"}}
+        <ctx.get @prop="bestuursorgaan" as |elements _ bInTimeCtx|>
+          <span {{rdfa elements}}>
+            <bInTimeCtx.get @prop="isTijdsspecialisatieVan" as |elements _ bCtx|>
+              <span {{rdfa elements}}>
+                <bCtx.get @prop="naam" />
               </span>
-            {{/bInTimeCtx.get}}
+            </bInTimeCtx.get>
           </span>
-        {{/ctx.get}}
+        </ctx.get>
         <br>
         op
-        {{#ctx.get prop="geplandeStart" as |attrs value|}}
-          <span {{rdfa attrs}}>{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
-        {{/ctx.get}}
+        <ctx.get @prop="geplandeStart" as |elements value|>
+          <span {{rdfa elements}}>{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
+        </ctx.get>
       </h1>
 
       <ul class="steps steps--timeline">
         {{#if model.notulen}}
-          {{#link-to 'bestuurseenheid.zitting.notulen' model.id tagName='li' class="step"}}
+          <LinkTo @route="bestuurseenheid.zitting.notulen" @model={{model.id}} @tagName="li" class="step">
             <div class="step__icon">
               {{#if notulenPublicationDate}}
                 {{moment-format notulenPublicationDate 'D'}}
@@ -35,7 +35,7 @@
                 <div class="step__header__titles">
                   <h3 class="step__title">Notulen</h3>
                   <span  class="u-hidden">
-                    {{ctx.get prop="notulen" href-to=(href-to "bestuurseenheid.zitting.notulen" model.id)}}
+                    <ctx.get @prop="notulen" @href-to={{href-to "bestuurseenheid.zitting.notulen" model.id}} />
                   </span>
                 </div>
                 <div class="step__header__info">
@@ -43,7 +43,7 @@
                 </div>
               </div>
             </div>
-          {{/link-to}}
+          </LinkTo>
         {{else}}
           <li class="step step--disabled">
             <div class="step__icon">
@@ -63,7 +63,7 @@
                Backend needs update I guess to deal with the correct condition --}}
 
         {{#if model.uittreksels.length}}
-          {{#link-to 'bestuurseenheid.zitting.uittreksels' model.id tagName='li' class="step"}}
+          <LinkTo @route="bestuurseenheid.zitting.uittreksels" @model={{model.id}} @tagName="li" class="step">
             <div class="step__icon">
               {{!-- TODO: provide correct field --}}
               {{#if besluitenlijstPublicationDate}}
@@ -78,7 +78,7 @@
                 <div class="step__header__titles">
                   <h3 class="step__title">Bekendmakingen en uittreksels</h3>
                   <span  class="u-hidden">
-                    {{ctx.each prop="uittreksels" link-to="bestuurseenheid.zitting.uittreksels.detail.raw"}}
+                    <ctx.each @prop="uittreksels" @link-to="bestuurseenheid.zitting.uittreksels.detail.raw" />
                   </span>
                 </div>
                 <div class="step__header__info">
@@ -86,7 +86,7 @@
                 </div>
               </div>
             </div>
-          {{/link-to}}
+          </LinkTo>
         {{else}}
           <li class="step step--disabled">
             <div class="step__icon">
@@ -103,7 +103,7 @@
         {{/if}}
 
         {{#if model.besluitenlijst.id}}
-          {{#link-to 'bestuurseenheid.zitting.besluitenlijst' model.id tagName='li' class="step"}}
+          <LinkTo @route="bestuurseenheid.zitting.besluitenlijst" @model={{model.id}} @tagName="li" class="step">
             <div class="step__icon">
               {{#if besluitenlijstPublicationDate}}
                 {{moment-format besluitenlijstPublicationDate 'D'}}
@@ -117,7 +117,7 @@
                 <div class="step__header__titles">
                   <h3 class="step__title">Besluitenlijst</h3>
                   <span  class="u-hidden">
-                    {{ctx.get prop="besluitenlijst" href-to=(href-to "bestuurseenheid.zitting.besluitenlijst.raw" model.id)}}
+                    <ctx.get @prop="besluitenlijst" @href-to={{href-to "bestuurseenheid.zitting.besluitenlijst.raw" model.id}} />
                   </span>
                 </div>
                 <div class="step__header__info">
@@ -125,7 +125,7 @@
                 </div>
               </div>
             </div>
-          {{/link-to}}
+          </LinkTo>
         {{else}}
           <li class="step step--disabled">
             <div class="step__icon">
@@ -143,7 +143,7 @@
 
 
         {{#if model.agenda.id}}
-          {{#link-to 'bestuurseenheid.zitting.agenda' model.id tagName='li' class="step"}}
+          <LinkTo @route="bestuurseenheid.zitting.agenda" @model={{model.id}} @tagName="li" class="step">
             <div class="step__icon">
               {{#if agendaPublicationDate}}
                 {{moment-format agendaPublicationDate 'D'}}
@@ -157,7 +157,7 @@
                 <div class="step__header__titles">
                   <h3 class="step__title">Agenda</h3>
                   <span  class="u-hidden">
-                    {{ctx.each prop="agendas" href-to=(href-to "bestuurseenheid.zitting.agenda.raw" model.id)}}
+                    <ctx.each @prop="agendas" @href-to={{href-to "bestuurseenheid.zitting.agenda.raw" model.id}} />
                   </span>
                 </div>
                 <div class="step__header__info">
@@ -165,7 +165,7 @@
                 </div>
               </div>
             </div>
-          {{/link-to}}
+          </LinkTo>
         {{else}}
           <li class="step step--disabled">
             <div class="step__icon">
@@ -181,7 +181,7 @@
           </li>
         {{/if}}
       </ul>
-    {{/with-rdfa-context}}
+    </WithRdfaContext>
   </div>
 </div>
 

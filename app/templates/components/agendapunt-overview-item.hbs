@@ -1,21 +1,21 @@
 <div class="info-tile {{unless uittreksel "u-background--gray-lightest"}}">
   <div class="grid">
     <div class="col--8-12">
-      {{#ctx.get prop="titel" as |attrs title|}}
-        <h2 {{rdfa attrs}} class="list-content">{{clean-spaces title}}</h2>
-      {{/ctx.get}}
-      {{#ctx.get prop="geplandOpenbaar" as |attrs|}}
-        <span {{rdfa attrs}} class="u-hidden"></span>
-      {{/ctx.get}}
+      <@ctx.get @prop="titel" as |elements title|>
+        <h2 {{rdfa elements}} class="list-content">{{clean-spaces title}}</h2>
+      </@ctx.get>
+      <@ctx.get @prop="geplandOpenbaar" as |elements|>
+        <span {{rdfa elements}} class="u-hidden"></span>
+      </@ctx.get>
       {{#unless uittreksel.inhoud}}
         <p class="smallest text-fade uppercase u-spacer--top--tiny">Inhoud niet publiek</p>
       {{/unless}}
     </div>
     <div class="col--4-12 u-align-right">
       {{#if uittreksel.inhoud}}
-        {{#link-to "bestuurseenheid.zitting.uittreksels.detail" uittreksel.id tagName="button" class="button button--alt button--alt--blue button--narrow button--small"}}
+        <LinkTo @route="bestuurseenheid.zitting.uittreksels.detail" @model={{uittreksel.id}} @tagName="button" class="button button--alt button--alt--blue button--narrow button--small">
           Bekijk volledige inhoud <i class="vi vi-arrow vi-u-s button__icon"></i>
-        {{/link-to}}
+        </LinkTo>
       {{/if}}
     </div>
   </div>
