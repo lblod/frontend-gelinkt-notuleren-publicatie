@@ -136,7 +136,7 @@ _lookupEngineRoute(routeName) {
 
       assert(`[ember-crumbly] \`route:${path}\` was not found`, route);
 
-      const multipleBreadCrumbs = route.get('breadCrumbs');
+      const multipleBreadCrumbs = route.breadCrumbs;
 
       if (multipleBreadCrumbs) {
         multipleBreadCrumbs.forEach((breadCrumb) => {
