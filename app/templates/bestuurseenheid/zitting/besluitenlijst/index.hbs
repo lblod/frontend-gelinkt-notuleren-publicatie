@@ -1,4 +1,22 @@
 <div class="container-flex--scroll u-padding--round">
+  <h2>
+  <span resource={{model.uri}} typeof="besluit:Zitting">
+    <span resource={{model.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
+      <span resource={{model.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
+        <span property="besluit:bestuurt" resource={{model.bestuursorgaan.isTijdsspecialisatieVan.bestuurseenheid.uri}} typeof="besluit:Bestuurseenheid">
+          <span property="org:classification" resource={{model.bestuursorgaan.isTijdsspecialisatieVan.bestuurseenheid.classificatie.uri}}>
+            <span property="skos:prefLabel">
+              {{model.bestuursorgaan.isTijdsspecialisatieVan.bestuurseenheid.classificatie.label}}
+            </span>
+          </span>
+          <span property="skos:prefLabel">
+            {{model.bestuursorgaan.isTijdsspecialisatieVan.bestuurseenheid.naam}}
+          </span>
+        </span>
+     </span>
+    </span>
+  </span>
+  </h2>
   <div typeof="foaf:Document" resource={{model.besluitenlijst.uri}} class="grid">
     {{!-- CONSTANTS --}}
     <a class="u-hidden" href="https://data.vlaanderen.be/id/concept/BesluitDocumentType/3fa67785-ffdc-4b30-8880-2b99d97b4dee" property="dct:type"></a>
@@ -19,7 +37,6 @@
           {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}
         </span>
       </h1>
-
       <div class="grid grid--is-stacked">
         {{#each model.besluitenlijst.besluiten as |besluit|}}
           <div class="col--12-12">

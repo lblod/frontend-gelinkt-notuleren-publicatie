@@ -11,7 +11,7 @@ export default Route.extend({
     return (await this.store.query('zitting', {
       // TODO add pagination in template instead of retrieving besluiten through include
       'filter[id]': id,
-      include: 'besluitenlijst.besluiten.volgend-uit-behandeling-van-agendapunt.onderwerp'
+      include: `bestuursorgaan,bestuursorgaan.is-tijdsspecialisatie-van,bestuursorgaan.is-tijdsspecialisatie-van.bestuurseenheid,bestuursorgaan.is-tijdsspecialisatie-van.bestuurseenheid.classificatie,besluitenlijst.besluiten.volgend-uit-behandeling-van-agendapunt.onderwerp`
     })).get('firstObject');
   }
 });
