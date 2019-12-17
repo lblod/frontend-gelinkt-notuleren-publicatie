@@ -25,7 +25,7 @@
 
     <div typeof="besluit:Zitting" resource={{model.uri}} class="col--7-12 col--9-12--m col--1-1--s">
       <h1 class="h1 u-spacer--top--small">
-        <span resource={{model.uri}} typeof="foaf:Document" property="besluit:heeftBesluitenlijst">Besluitenlijst</span>
+        <span resource={{model.besluitenlijst.uri}} typeof="foaf:Document" property="besluit:heeftBesluitenlijst">Besluitenlijst</span>
         van
         <span resource={{model.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
           <span resource={{model.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
