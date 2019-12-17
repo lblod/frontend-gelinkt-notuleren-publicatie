@@ -1,19 +1,15 @@
-<WithRdfaContext @model={{besluit}} @class="info-tile" @classBinding="uittreksel:u-background--gray-lightest" as |ctx|>
+<div typeof="besluit:Besluit" resource={{besluit.uri}} class="info-tile">
   <div class="info-tile__header__wrapper">
     <div class="grid">
       <div class="col--8-12">
         <!-- TODO add RDFa volgendUitBehandelingVanAgendapunt.onderwerp.zitting when RDFa helpers support inverse relations -->
-        <ctx.get @prop="titel" as |elements title|>
-          <h3 {{rdfa elements}} class="info-tile__header__title u-spacer--tinier">
-            {{clean-spaces title}}
-          </h3>
-        </ctx.get>
+        <h3 class="info-tile__header__title u-spacer--tinier" property="eli:title">
+          {{clean-spaces besluit.titel}}
+        </h3>
         {{#if besluit.beschrijving}}
-          <ctx.get @prop="beschrijving" as |elements description|>
-            <p {{rdfa elements}} class="info-tile__header__subtitle">
-              {{clean-spaces besluit.beschrijving}}
-            </p>
-          </ctx.get>
+          <p class="info-tile__header__subtitle" property="eli:description">
+            {{besluit.beschrijving}}
+          </p>
         {{else}}
           <p class="text-fade">Korte beschrijving niet gevonden</p>
         {{/if}}
@@ -23,12 +19,12 @@
       </div>
       <div class="col--4-12 u-align-right">
         {{#if uittreksel}}
-          <LinkTo @route="bestuurseenheid.zitting.uittreksels.detail" @model={{uittreksel.id}} class="button button--alt button--alt--blue button--narrow button--small">
+          {{#link-to "bestuurseenheid.zitting.uittreksels.detail" uittreksel.id class="button button--alt button--alt--blue button--narrow button--small"}}
             Bekijk volledige inhoud <i class="vi vi-arrow vi-u-s button__icon"></i>
-          </LinkTo>
+          {{/link-to}}
         {{/if}}
       </div>
     </div>
   </div>
-</WithRdfaContext>
+</div>
 {{yield}}

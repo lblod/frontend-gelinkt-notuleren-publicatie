@@ -1,75 +1,33 @@
 <div class="container-flex--scroll u-padding--round">
-  <WithRdfaContext @model={{model.besluitenlijst}} @class="grid" as |besluitenlijstCtx|>
-    <besluitenlijstCtx.get @prop="type" @link={{true}} as |elements|>
-      <a {{rdfa elements}} class="u-hidden"></a>
-    </besluitenlijstCtx.get>
+  <div typeof="foaf:Document" resource={{model.besluitenlijst.uri}} class="grid">
+    {{!-- CONSTANTS --}}
+    <a class="u-hidden" href="https://data.vlaanderen.be/id/concept/BesluitDocumentType/3fa67785-ffdc-4b30-8880-2b99d97b4dee" property="dct:type"></a>
+    <span class="u-hidden" resource={{model.besluitenlijst.uri}} typeof="https://data.vlaanderen.be/id/concept/BesluitDocumentType/3fa67785-ffdc-4b30-8880-2b99d97b4dee"></span>
+    {{!-- END CONSTANTS --}}
 
-    <WithRdfaContext @model={{model}} @class="col--7-12 col--9-12--m col--1-1--s" as |ctx|>
+    <div typeof="besluit:Zitting" resource={{model.uri}} class="col--7-12 col--9-12--m col--1-1--s">
       <h1 class="h1 u-spacer--top--small">
-        <ctx.get @prop="besluitenlijst" as |elements|>
-          <span {{rdfa elements}}>Besluitenlijst</span>
-        </ctx.get>
+        <span resource={{model.uri}} typeof="foaf:Document" property="besluit:heeftBesluitenlijst">Besluitenlijst</span>
         van
-        <ctx.get @prop="bestuursorgaan" as |elements _ bInTimeCtx|>
-          <span {{rdfa elements}}>
-            <bInTimeCtx.get @prop="isTijdsspecialisatieVan" as |elements _ bCtx|>
-              <span {{rdfa elements}}>
-                <bCtx.get @prop="naam" />
-              </span>
-            </bInTimeCtx.get>
+        <span resource={{model.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
+          <span resource={{model.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
+            <span property="skos:prefLabel">{{model.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
           </span>
-        </ctx.get>
+        </span>
         , zitting van
-        <ctx.get @prop="geplandeStart" as |elements value|>
-          <span {{rdfa elements}} class="u-spacer--tiny">{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
-        </ctx.get>
+        <span class="u-spacer--tiny" property="besluit:geplandeStart" content={{model.geplandeStart}} datatype="xsd:dateTime">
+          {{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}
+        </span>
       </h1>
 
       <div class="grid grid--is-stacked">
-        {{#each besluiten as |besluit|}}
+        {{#each model.besluitenlijst.besluiten as |besluit|}}
           <div class="col--12-12">
             <BesluitOverviewItem @besluit={{besluit}} />
           </div>
-        {{else}}
-          <div class="col--12-12">
-            <p>Geen besluiten beschikbaar.</p>
-          </div>
         {{/each}}
       </div>
-
-      {{!-- <div class="col--4-12 push--1-12 col--1-1--s u-bg--blue-gray-lighter">
-        <dl class="small">
-        <dt>Publicatie</dt>
-        <dd>
-        <strong>24 januari 2019</strong>
-        </dd>
-        <br>
-        <dt>Verificatiesleutel</dt>
-        <dd>
-        <strong><i class="fa fa-lock vi-u-xs"></i>&nbsp;123R8883-3122344-455123R888-33122344455</strong>
-        <p class="small"><a href="#">Verifieer publicatie met origineel</a></p>
-        </dd>
-        <br>
-        <dt>Nietig verklaarde versies</dt>
-        <dd>
-        <div>
-        <strong><a href="#">Publicatie op 10.12.2019</a></strong>
-        <p class="smaller text-fade u-spacer--tiny">Gepubliceerd op 10.12.2019</p>
-        </div>
-        <div>
-        <strong><a href="#">Publicatie op 10.12.2019</a></strong>
-        <p class="smaller text-fade u-spacer--tiny">Gepubliceerd op 10.12.2019</p>
-        </div>
-        <div>
-        <strong><a href="#">Publicatie op 10.12.2019</a></strong>
-        <p class="smaller text-fade u-spacer--tiny">Gepubliceerd op 10.12.2019</p>
-        </div>
-        </dd>
-        <br>
-        </dl>
-        </div> --}}
-    </WithRdfaContext>
-  </WithRdfaContext>
+    </div>
+  </div>
 </div>
-
 {{outlet}}
