@@ -12,9 +12,7 @@ Router.map(function() {
       this.route('agenda', function() {
         this.route('raw');
       });
-      this.route('besluitenlijst', function() {
-        this.route('raw');
-      });
+      this.route('besluitenlijst', function() {});
       this.route('notulen', function() {});
       this.route('uittreksels', function(){
         this.route('index', { path: '/'});
