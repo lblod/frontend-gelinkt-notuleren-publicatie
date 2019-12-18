@@ -6,6 +6,7 @@ export default Model.extend({
   uri: attr(),
   inhoud: attr(),
   besluiten: hasMany('besluit'),
+  publicatiedatum: attr('date'),
 
   type: 'http://data.lblod.info/id/document-types/besluitenlijst',
 
@@ -13,6 +14,7 @@ export default Model.extend({
     class: 'foaf:Document',
     type: 'dct:type',
     inhoud: 'prov:value',
-    publication: 'prov:wasDerivedFrom'
+    publication: 'prov:wasDerivedFrom',
+    publicatieDatum: 'eli:date_publication'
   })
 });
