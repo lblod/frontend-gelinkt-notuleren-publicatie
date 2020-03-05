@@ -50,7 +50,7 @@
           </span>
         </span>
         , zitting van
-        <span class="u-spacer--tiny" property="prov:startedAtTime" content={{model.gestartOpTijdstip}} datatype="xsd:dateTime">
+        <span class="u-spacer--tiny" property="prov:startedAtTime" content={{moment-format model.gestartOpTijdstip 'YYYY-MM-DDTHH:mm:ss'}} datatype="xsd:dateTime">
           {{moment-format model.gestartOpTijdstip 'D MMMM YYYY, HH:mm'}}
         </span>
       </h1>
