@@ -1,42 +1,29 @@
 <div class="container-flex--scroll u-padding--round">
-  <WithRdfaContext @model={{model.uittreksel}} @class="grid" as |uittrekselCtx|>
-    <uittrekselCtx.get @prop="type" @link={{true}} as |elements|>
-      <a {{rdfa elements}} class="u-hidden"></a>
-    </uittrekselCtx.get>
+    <a class="u-hidden" href="http://data.lblod.info/id/document-types/uittreksel" property="dct:type"></a>
 
     <!-- TODO add RDFa relation to zitting when RDFa helpers support inverse relations -->
-    <WithRdfaContext @model={{model.zitting}} @class="col--7-12 col--9-12--m col--1-1--s" as |ctx|>
+    <div typeof="besluit:Zitting" resource={{model.zitting.uri}}>
       <h1 class="h1 u-spacer--top--small">
         Uittreksel van
-        <ctx.get @prop="bestuursorgaan" as |elements _ bInTimeCtx|>
-          <span {{rdfa elements}}>
-            <bInTimeCtx.get @prop="isTijdsspecialisatieVan" as |elements _ bCtx|>
-              <span {{rdfa elements}}>
-                <bCtx.get @prop="naam" />
-              </span>
-            </bInTimeCtx.get>
+        <span resource={{model.zitting.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
+          <span resource={{model.zitting.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
+            <span property="skos:prefLabel">Gemeenteraad Aalst</span>
           </span>
-        </ctx.get>
+        </span>
         , zitting van
-        <ctx.get @prop="geplandeStart" as |elements value|>
-          <span {{rdfa elements}} class="u-spacer--tiny">{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
-        </ctx.get>
+        <span class="u-spacer--tiny" property="besluit:geplandeStart" content={{iso-date model.zitting.geplandeStart}} datatype="xsd:dateTime">{{moment-format model.zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}</span>
       </h1>
-    </WithRdfaContext>
+    </div>
 
     <div class="col--7-12 col--9-12--m col--1-1--s u-padding--bottom--large">
       <div class="grid grid--is-stacked">
         {{#if model.uittreksel.inhoud}}
-          <uittrekselCtx.get @prop="inhoud" as |elements inhoud|>
-            <div {{rdfa elements}}>
-              {{{inhoud}}}
-            </div>
-          </uittrekselCtx.get>
+          <div property="prov:value">
+            {{{model.uittreksel.inhoud}}}
+          </div>
         {{else}}
           Inhoud niet beschikbaar.
         {{/if}}
       </div>
     </div>
-
-  </WithRdfaContext>
 </div>
