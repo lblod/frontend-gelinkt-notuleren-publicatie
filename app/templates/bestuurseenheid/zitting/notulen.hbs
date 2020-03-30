@@ -1,20 +1,15 @@
 <div class="container-flex--scroll u-padding--round document-publish">
-  <WithRdfaContext @model={{model.notulen}} @class="grid" as |ctx|>
-    <ctx.get @prop="type" @link={{true}} as |elements|>
-      <a {{rdfa elements}} class="u-hidden"></a>
-    </ctx.get>
+  <a class="u-hidden" href="http://data.lblod.info/id/document-types/notulen" property="dct:type"></a>
 
-    <div class="col--7-12 col--1-1--s">
-      <ctx.get @prop="inhoud" as |elements inhoud|>
-        <div {{rdfa elements}} class="u-spacer--top--small u-spacer--bottom--large">
-          <div resource="{{model.zitting.uri}}" typeof="besluit:Zitting">
-            <div property="besluit:heeftNotulen" resource="{{model.notulen.uri}}">
-              {{{ inhoud }}}
-            </div>
-          </div>
+  <div class="col--7-12 col--1-1--s">
+    <div class="u-spacer--top--small u-spacer--bottom--large" property="prov:value">
+      <div resource="{{model.zitting.uri}}" typeof="besluit:Zitting">
+        <div property="besluit:heeftNotulen" resource={{model.notulen.uri}}>
+          {{{ model.notulen.inhoud }}}
         </div>
-      </ctx.get>
+      </div>
     </div>
+  </div>
 
 {{!--     <div class="col--4-12 col--1-1--s push--1-12 u-bg--blue-gray-lighter">
       <dl class="small u-spacer--top">
@@ -47,6 +42,5 @@
         <br>
       </dl>
     </div> --}}
-  </WithRdfaContext>
 </div>
 {{outlet}}
