@@ -1,7 +1,4 @@
 <div class="container-flex--scroll u-padding--round">
-    <a class="u-hidden" href="http://data.lblod.info/id/document-types/uittreksel" property="dct:type"></a>
-
-    <!-- TODO add RDFa relation to zitting when RDFa helpers support inverse relations -->
     <div typeof="besluit:Zitting" resource={{model.zitting.uri}}>
       <h1 class="h1 u-spacer--top--small">
         Uittreksel van
@@ -18,9 +15,7 @@
     <div class="col--7-12 col--9-12--m col--1-1--s u-padding--bottom--large">
       <div class="grid grid--is-stacked">
         {{#if model.uittreksel.inhoud}}
-          <div property="prov:value">
-            {{{model.uittreksel.inhoud}}}
-          </div>
+          {{{model.uittreksel.inhoud}}}
         {{else}}
           Inhoud niet beschikbaar.
         {{/if}}
