@@ -14,7 +14,7 @@
       <div class="col--7-12 col--9-12--m col--1-1--s u-padding--bottom--large">
         <div class="grid grid--is-stacked">
           {{#if model.uittreksel.inhoud}}
-            <div property="besluit:heeftUittreksel" resource="{{model.uittreksel.uri}}" typeof="foaf:Document https://data.vlaanderen.be/id/concept/BesluitDocumentType/9d5bfaca-bbf2-49dd-a830-769f91a6377b">
+            <div property="besluit:heeftUittreksel" resource={{model.uittreksel.uri}} typeof="foaf:Document https://data.vlaanderen.be/id/concept/BesluitDocumentType/9d5bfaca-bbf2-49dd-a830-769f91a6377b">
               <div property="prov:value">
                 {{{model.uittreksel.inhoud}}}
               </div>
@@ -26,3 +26,4 @@
       </div>
     </div>
 </div>
+
