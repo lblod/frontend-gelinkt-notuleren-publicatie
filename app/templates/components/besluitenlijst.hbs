@@ -1,0 +1,20 @@
+{{#each besluiten as |besluit|}}
+  <div class="col--12-12">
+    <BesluitOverviewItem @besluit={{besluit}} />
+  </div>
+{{/each}}
+{{#each extraBesluiten as |besluit|}}
+  {{!-- using an extra array so the first one above renders properly with fastboot --}}
+  <div class="col--12-12">
+    <BesluitOverviewItem @besluit={{besluit}} />
+  </div>
+{{/each}}
+{{#if fetchBesluiten.isRunning}}
+  <div class="col--12-12">
+    {{wu-loader}}
+  </div>
+{{else}}
+  {{#if this.nextPage }}
+    <button onclick={{perform fetchBesluiten this.nextPage}}>meer laden</button>
+  {{/if}}
+{{/if}}
