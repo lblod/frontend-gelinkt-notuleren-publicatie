@@ -13,7 +13,6 @@
       , zitting van
       <span property="besluit:geplandeStart" content={{iso-date model.geplandeStart}} datatype="xsd:dateTime" class="u-spacer--tiny">{{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}</span>
     </h1>
-  </div>
 
       {{!-- <nav class="tabs__wrapper u-spacer--tiny">
              <ul class="tabs" data-tabs-list>
@@ -47,8 +46,8 @@
 
       <div class="grid grid--is-stacked">
         {{#if model.agendapunten.length}}
-          {{#each model.agendapunten as |agendapunt index|}}
-            <div resource={{agendapunt.uri}} typeof="besluit:Agendapunt" property="besluit:behandelt" class="col--12-12">
+          {{#each model.sortedAgendapunten as |agendapunt index|}}
+            <div resource={{sortedAgendapunten.uri}} typeof="besluit:Agendapunt" property="besluit:behandelt" class="col--12-12">
               <AgendapuntOverviewItem @agendapunt={{agendapunt}} @index={{index}} />
             </div>
           {{/each}}
@@ -90,4 +89,5 @@
          <br>
          </dl>
          </div> -->
+  </div>
 </div>
