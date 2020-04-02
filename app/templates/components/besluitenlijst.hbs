@@ -13,8 +13,10 @@
   <div class="col--12-12">
     {{wu-loader}}
   </div>
-{{else}}
-  {{#if this.nextPage }}
-    <button onclick={{perform fetchBesluiten this.nextPage}}>meer laden</button>
-  {{/if}}
 {{/if}}
+{{#if this.nextPage}}
+  <div class="col--12-12">
+    <button onclick={{perform fetchBesluiten this.nextPage}} class="button button--large">meer laden</button>
+  </div>
+{{/if}}
+
