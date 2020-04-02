@@ -5,9 +5,9 @@
         <div class="col--8-12">
           <!-- TODO add RDFa volgendUitBehandelingVanAgendapunt.onderwerp.zitting when RDFa helpers support inverse relations -->
           <ctx.get @prop="titel" as |elements title|>
-            <h3 {{rdfa elements}} class="info-tile__header__title u-spacer--tinier">
+            <h2 {{rdfa elements}} class="info-tile__header__title u-spacer--tinier">
               {{clean-spaces title}}
-            </h3>
+            </h2>
           </ctx.get>
           {{#if besluit.beschrijving}}
             <ctx.get @prop="beschrijving" as |elements description|>

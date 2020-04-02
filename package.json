@@ -1,6 +1,6 @@
 {
   "name": "frontend-gelinkt-notuleren-publicatie",
-  "version": "0.12.2",
+  "version": "0.12.4",
   "private": true,
   "description": "Publication pages of gelinkt notuleren",
   "repository": {
@@ -23,7 +23,7 @@
   "devDependencies": {
     "@ember/jquery": "^1.1.0",
     "@ember/optional-features": "^1.1.0",
-    "@lblod/ember-vo-webuniversum": "^0.22.5",
+    "@lblod/ember-vo-webuniversum": "^0.22.7",
     "@lblod/ember-vo-webuniversum-widget": "^0.1.2",
     "broccoli-asset-rev": "^3.0.0",
     "ember-ajax": "^5.0.0",
