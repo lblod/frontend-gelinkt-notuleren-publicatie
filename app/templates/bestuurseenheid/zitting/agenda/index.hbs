@@ -1,29 +1,19 @@
 <div class="container-flex--scroll u-padding--round">
-  <WithRdfaContext @model={{model.agenda}} @class="grid" as |agendaCtx|>
-    <agendaCtx.get @prop="type" @link={{true}} as |elements|>
-      <a {{rdfa elements}} class="u-hidden"></a>
-    </agendaCtx.get>
+  <a href="http://data.lblod.info/id/document-types/agenda" property="dct:type" class="u-hidden"></a>
 
-    <WithRdfaContext @model={{model}} @class="col--7-12 col--9-12--m col--1-1--s" as |ctx|>
-      <h1 class="h1 u-spacer--top--small">
-        <ctx.get @prop="agenda" as |elements|>
-          <span {{rdfa elements}}>Agenda</span>
-        </ctx.get>
-        voor
-        <ctx.get @prop="bestuursorgaan" as |elements _ bInTimeCtx|>
-          <span {{rdfa elements}}>
-            <bInTimeCtx.get @prop="isTijdsspecialisatieVan" as |elements _ bCtx|>
-              <span {{rdfa elements}}>
-                <bCtx.get @prop="naam" />
-              </span>
-            </bInTimeCtx.get>
-          </span>
-        </ctx.get>
-        , zitting van
-        <ctx.get @prop="geplandeStart" as |elements value|>
-          <span {{rdfa elements}} class="u-spacer--tiny">{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
-        </ctx.get>
-      </h1>
+  <div class="col--7-12 col--9-12--m col--1-1--s" typeof="besluit:Zitting" resource={{model.uri}}>
+    <h1 class="h1 u-spacer--top--small">
+      <span resource={{model.agenda.uri}} typeof="foaf:Document" property="besluit:heeftAgenda">Agenda</span>
+      voor
+      <span resource={{model.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
+        <span resource={{model.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
+          <span property="skos:prefLabel">{{model.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
+        </span>
+      </span>
+      , zitting van
+      <span property="besluit:geplandeStart" content={{iso-date model.geplandeStart}} datatype="xsd:dateTime" class="u-spacer--tiny">{{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}</span>
+    </h1>
+  </div>
 
       {{!-- <nav class="tabs__wrapper u-spacer--tiny">
              <ul class="tabs" data-tabs-list>
@@ -57,18 +47,17 @@
 
       <div class="grid grid--is-stacked">
         {{#if model.agendapunten.length}}
-          <ctx.each @prop="sortedAgendapunten" as |elements agendapunt agendapuntCtx index|>
-            <div {{rdfa elements}} class="col--12-12">
-              <AgendapuntOverviewItem @agendapunt={{agendapunt}} @ctx={{agendapuntCtx}} @index={{index}} />
+          {{#each model.agendapunten as |agendapunt index|}}
+            <div resource={{agendapunt.uri}} typeof="besluit:Agendapunt" property="besluit:behandelt" class="col--12-12">
+              <AgendapuntOverviewItem @agendapunt={{agendapunt}} @index={{index}} />
             </div>
-          </ctx.each>
+          {{/each}}
         {{else}}
           <div>
-          	<p>Geen agendapunten beschikbaar.</p>
+            <p>Geen agendapunten beschikbaar.</p>
           </div>
         {{/if}}
       </div>
-    </WithRdfaContext>
 
     <!-- <div class="col--4-12 col--1-1--s push--1-12 u-bg--blue-gray-lighter">
          <dl class="small">
@@ -101,5 +90,4 @@
          <br>
          </dl>
          </div> -->
-  </WithRdfaContext>
 </div>

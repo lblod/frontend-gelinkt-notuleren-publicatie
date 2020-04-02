@@ -1,20 +1,14 @@
 <div class="container-flex--scroll u-padding--round">
   <div class="grid">
-    <div {{rdfa elements}} class="col--8-12">
-      <WithRdfaContext @model={{model}} as |ctx|>
-        <ctx.get @prop="type" @link={{true}} as |elements|>
-          <h1 class="h1 u-spacer--top--small">
-            Type document
-            <br>
-            <a {{rdfa elements}}>Agenda document</a>
-          </h1>
-        </ctx.get>
-        <ctx.get @prop="inhoud" as |elements inhoud|>
-          <div class="document-publish">
-            {{{ inhoud }}}
-          </div>
-        </ctx.get>
-      </WithRdfaContext>
+    <div typeof="besluit:Zitting" resource={{model.uri}} class="col--8-12">
+      <h1 class="h1 u-spacer--top--small">
+        Type document
+        <br>
+        <a  href="http://data.lblod.info/id/document-types/agenda" property="dct:type">Agenda document</a>
+      </h1>
+      <div class="document-publish">
+        {{{model.inhoud}}}
+      </div>
     </div>
   </div>
 </div>

@@ -1,12 +1,8 @@
 <div class="info-tile {{unless uittreksel "u-background--gray-lightest"}}">
   <div class="grid">
     <div class="col--8-12">
-      <@ctx.get @prop="titel" as |elements title|>
-        <h2 {{rdfa elements}} class="list-content">{{clean-spaces title}}</h2>
-      </@ctx.get>
-      <@ctx.get @prop="geplandOpenbaar" as |elements|>
-        <span {{rdfa elements}} class="u-hidden"></span>
-      </@ctx.get>
+      <h2 property="dct:title" class="list-content">{{clean-spaces this.agendapunt.titel}}</h2>
+      <span property="besluit:geplandOpenbaar" content={{this.agendapunt.geplandOpenbaar}} class="u-hidden"></span>
       {{#unless uittreksel.inhoud}}
         <p class="smallest text-fade uppercase u-spacer--top--tiny">Inhoud niet publiek</p>
       {{/unless}}
