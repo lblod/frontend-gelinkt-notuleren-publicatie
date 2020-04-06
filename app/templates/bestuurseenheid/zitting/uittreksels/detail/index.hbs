@@ -4,7 +4,9 @@
         Uittreksel van
         <span resource={{model.zitting.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
           <span resource={{model.zitting.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
-            <span property="skos:prefLabel">Gemeenteraad Aalst</span>
+            <span property="skos:prefLabel">
+              {{model.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam}}
+            </span>
           </span>
         </span>
         , zitting van
