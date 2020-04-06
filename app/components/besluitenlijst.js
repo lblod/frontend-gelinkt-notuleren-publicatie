@@ -10,7 +10,6 @@ export default Component.extend({
     const besluiten = yield this.store.query('besluit', { page: {number: page, size: 100}, "filter[besluitenlijst][:id:]": this.besluitenlijst.id, sort: "volgend-uit-behandeling-van-agendapunt.onderwerp.position" });
     besluiten.forEach((besluit) => this.extraBesluiten.pushObject(besluit));
     const meta = besluiten.meta;
-    const last = meta.pagination.last.number;
     this.last = meta.pagination.last.number;
     this.page = page;
     if (this.last > this.page) {
