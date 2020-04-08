@@ -29,7 +29,7 @@
         <br>
         Datum publicatie:
         {{#if model.besluitenlijst.publicatiedatum}}
-          <span property="eli:date_publication" content={{iso-date model.besluitenlijst.publicatiedatum 'YYYY-MM-DD'}} datatype="xsd:date">
+          <span property="eli:date_publication" content={{moment-format model.besluitenlijst.publicatiedatum 'YYYY-MM-DD'}} datatype="xsd:date">
             {{moment-format model.besluitenlijst.publicatiedatum 'D MMMM YYYY'}}
           </span>
         {{else}}
