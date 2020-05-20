@@ -35,7 +35,7 @@
                 <div class="step__header__titles">
                   <h2 class="step__title">Notulen</h2>
                   <span  class="u-hidden">
-                    <ctx.get @prop="notulen" @href-to={{href-to "bestuurseenheid.zitting.notulen" model.id}} />
+                    <ctx.get @prop="notulen" @property="lblod:linkToPublication" @href-to={{href-to "bestuurseenheid.zitting.notulen" model.id}} />
                   </span>
                 </div>
                 <div class="step__header__info">
@@ -78,7 +78,7 @@
                 <div class="step__header__titles">
                   <h3 class="step__title">Bekendmakingen en uittreksels</h3>
                   <span  class="u-hidden">
-                    <ctx.each @prop="uittreksels" @link-to="bestuurseenheid.zitting.uittreksels.detail.raw" />
+                    <ctx.each @prop="uittreksels" @property="lblod:linkToPublication" @link-to="bestuurseenheid.zitting.uittreksels.detail.raw" />
                   </span>
                 </div>
                 <div class="step__header__info">
@@ -117,7 +117,7 @@
                 <div class="step__header__titles">
                   <h2 class="step__title">Besluitenlijst</h2>
                   <span  class="u-hidden">
-                    <ctx.get @prop="besluitenlijst" @href-to={{href-to "bestuurseenheid.zitting.besluitenlijst" model.id}} />
+                    <ctx.get @prop="besluitenlijst" @property="lblod:linkToPublication" @href-to={{href-to "bestuurseenheid.zitting.besluitenlijst" model.id}} />
                   </span>
                 </div>
                 <div class="step__header__info">
@@ -157,7 +157,7 @@
                 <div class="step__header__titles">
                   <h2 class="step__title">Agenda</h2>
                   <span  class="u-hidden">
-                    <ctx.each @prop="agendas" @href-to={{href-to "bestuurseenheid.zitting.agenda.raw" model.id}} />
+                    <ctx.each @prop="agendas" @property="lblod:linkToPublication" @href-to={{href-to "bestuurseenheid.zitting.agenda.raw" model.id}} />
                   </span>
                 </div>
                 <div class="step__header__info">
