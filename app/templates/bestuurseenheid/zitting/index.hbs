@@ -1,22 +1,16 @@
 <div class="container-flex--scroll u-padding--round--small">
   <div class="grid grid--align-center">
-    <WithRdfaContext @model={{model}} @class="col--8-12 col--1-1--s" as |ctx|>
+    <div typeof="besluit:Zitting" resource={{model.uri}} class="col--8-12 col--1-1--s">
       <h1 class="h1 u-spacer--top--small">
         Publicaties voor de zitting van
-        <ctx.get @prop="bestuursorgaan" as |elements _ bInTimeCtx|>
-          <span {{rdfa elements}}>
-            <bInTimeCtx.get @prop="isTijdsspecialisatieVan" as |elements _ bCtx|>
-              <span {{rdfa elements}}>
-                <bCtx.get @prop="naam" />
-              </span>
-            </bInTimeCtx.get>
+        <span resource={{model.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
+          <span resource={{model.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
+            <span property="skos:prefLabel">{{model.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
           </span>
-        </ctx.get>
+        </span>
         <br>
         op
-        <ctx.get @prop="geplandeStart" as |elements value|>
-          <span {{rdfa elements}}>{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
-        </ctx.get>
+        <span property="besluit:geplandeStart" content={{iso-date model.geplandeStart}} datatype="xsd:dateTime">{{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}</span>
       </h1>
 
       <ul class="steps steps--timeline">
@@ -34,8 +28,8 @@
               <div class="step__header">
                 <div class="step__header__titles">
                   <h2 class="step__title">Notulen</h2>
-                  <span  class="u-hidden">
-                    <ctx.get @prop="notulen" @property="lblod:linkToPublication" @href-to={{href-to "bestuurseenheid.zitting.notulen" model.id}} />
+                  <span class="u-hidden">
+                    <a href={{href-to "bestuurseenheid.zitting.notulen" model.id}} resource={{model.notulen.uri}} typeof="foaf:Document" property="besluit:heeftNotulen"></a>
                   </span>
                 </div>
                 <div class="step__header__info">
@@ -78,7 +72,9 @@
                 <div class="step__header__titles">
                   <h3 class="step__title">Bekendmakingen en uittreksels</h3>
                   <span  class="u-hidden">
-                    <ctx.each @prop="uittreksels" @property="lblod:linkToPublication" @link-to="bestuurseenheid.zitting.uittreksels.detail.raw" />
+                    {{#each model.uittreksels as |uittreksel index|}}
+                      <a href={{href-to "bestuurseenheid.zitting.uittreksels.detail.raw" model.id}} resource={{uittreksel.uri}} typeof="foaf:Document" property="besluit:heeftUittreksel"></a>
+                    {{/each}}
                   </span>
                 </div>
                 <div class="step__header__info">
@@ -117,7 +113,7 @@
                 <div class="step__header__titles">
                   <h2 class="step__title">Besluitenlijst</h2>
                   <span  class="u-hidden">
-                    <ctx.get @prop="besluitenlijst" @property="lblod:linkToPublication" @href-to={{href-to "bestuurseenheid.zitting.besluitenlijst" model.id}} />
+                    <a href={{href-to "bestuurseenheid.zitting.besluitenlijst" model.id}} resource={{model.besluitenlijst.uri}} typeof="foaf:Document" property="besluit:heeftBesluitenlijst"></a>
                   </span>
                 </div>
                 <div class="step__header__info">
@@ -157,7 +153,9 @@
                 <div class="step__header__titles">
                   <h2 class="step__title">Agenda</h2>
                   <span  class="u-hidden">
-                    <ctx.each @prop="agendas" @property="lblod:linkToPublication" @href-to={{href-to "bestuurseenheid.zitting.agenda.raw" model.id}} />
+                    {{#each model.agendas as |agenda index|}}
+                      <a href={{href-to "bestuurseenheid.zitting.agenda.raw" model.id}} resource={{agenda.uri}} typeof="foaf:Document" property="besluit:heeftAgenda"></a>
+                    {{/each}}
                   </span>
                 </div>
                 <div class="step__header__info">
@@ -181,7 +179,7 @@
           </li>
         {{/if}}
       </ul>
-    </WithRdfaContext>
+    </div>
   </div>
 </div>
 
