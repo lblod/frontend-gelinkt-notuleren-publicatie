@@ -1,20 +1,16 @@
 {{#if besluit.id}}
-  {{#with-rdfa-context model=besluit class="info-tile" classBinding="uittreksel:u-background--gray-lightest" as |ctx|}}
+  <div typeof="besluit:Besluit" resource={{besluit.uri}} class="info-tile u-background--gray-lightest">
     <div class="info-tile__header__wrapper">
       <div class="grid">
         <div class="col--8-12">
           <!-- TODO add RDFa volgendUitBehandelingVanAgendapunt.onderwerp.zitting when RDFa helpers support inverse relations -->
-          <ctx.get @prop="titel" as |elements title|>
-            <h2 {{rdfa elements}} class="info-tile__header__title u-spacer--tinier">
-              {{clean-spaces title}}
-            </h2>
-          </ctx.get>
+          <h2 class="info-tile__header__title u-spacer--tinier" property="eli:title">
+            {{clean-spaces besluit.titel}}
+          </h2>
           {{#if besluit.beschrijving}}
-            <ctx.get @prop="beschrijving" as |elements description|>
-              <p {{rdfa elements}} class="info-tile__header__subtitle">
-                {{clean-spaces besluit.beschrijving}}
-              </p>
-            </ctx.get>
+            <p class="info-tile__header__subtitle" property="eli:description">
+              {{clean-spaces besluit.beschrijving}}
+            </p>
           {{else}}
             <p class="info-tile__header__subtitle text-fade">Korte beschrijving niet gevonden</p>
           {{/if}}
@@ -31,6 +27,7 @@
         </div>
       </div>
     </div>
+  </div>
 {{else if uittreksel.inhoud}}
   <div>
     <div class="info-tile {{unless uittreksel "u-background--gray-lightest"}}">
@@ -51,7 +48,6 @@
       </div>
     </div>
   </div>
-  {{/with-rdfa-context}}
 {{/if}}
 
 {{yield}}
