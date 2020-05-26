@@ -5,6 +5,8 @@ import { task } from 'ember-concurrency';
 export default Component.extend({
   tagName: 'div',
   store: service(),
+  fastboot: service(),
+
   findUittreksel: task(function *(){
     let uittreksels = yield this.store.query('uittreksel', {
       'filter[behandeling-van-agendapunt][besluiten][id]': this.besluit.id
@@ -14,6 +16,10 @@ export default Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
-    this.findUittreksel.perform();
+    if (this.fastboot.isFastBoot) {
+      this.fastboot.deferRendering(this.findUittreksel.perform());
+    } else {
+      this.findUittreksel.perform()
+    }
   }
 });
