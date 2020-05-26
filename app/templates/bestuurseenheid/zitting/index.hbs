@@ -29,7 +29,9 @@
                 <div class="step__header__titles">
                   <h2 class="step__title">Notulen</h2>
                   <span class="u-hidden">
-                    <a href={{href-to "bestuurseenheid.zitting.notulen" model.id}} resource={{model.notulen.uri}} typeof="foaf:Document" property="besluit:heeftNotulen lblod:linkToPublication"></a>
+                    <a href={{href-to "bestuurseenheid.zitting.notulen" model.id}} property="lblod:linkToPublication">
+                      <span resource={{model.notulen.uri}} typeof="foaf:Document" property="besluit:heeftNotulen"/>
+                    </a>
                   </span>
                 </div>
                 <div class="step__header__info">
@@ -73,7 +75,9 @@
                   <h3 class="step__title">Bekendmakingen en uittreksels</h3>
                   <span  class="u-hidden">
                     {{#each model.uittreksels as |uittreksel index|}}
-                      <a href={{href-to "bestuurseenheid.zitting.uittreksels.detail.raw" model.id}} resource={{uittreksel.uri}} typeof="foaf:Document" property="besluit:heeftUittreksel lblod:linkToPublication"></a>
+                      <a href={{href-to "bestuurseenheid.zitting.uittreksels.detail.raw" model.id}} property="lblod:linkToPublication">
+                        <span resource={{uittreksel.uri}} typeof="foaf:Document" property="besluit:heeftUittreksel"/>
+                      </a>
                     {{/each}}
                   </span>
                 </div>
@@ -113,7 +117,9 @@
                 <div class="step__header__titles">
                   <h2 class="step__title">Besluitenlijst</h2>
                   <span  class="u-hidden">
-                    <a href={{href-to "bestuurseenheid.zitting.besluitenlijst" model.id}} resource={{model.besluitenlijst.uri}} typeof="foaf:Document" property="besluit:heeftBesluitenlijst lblod:linkToPublication"></a>
+                    <a href={{href-to "bestuurseenheid.zitting.besluitenlijst" model.id}} property="lblod:linkToPublication">
+                      <span resource={{model.besluitenlijst.uri}} typeof="foaf:Document" property="besluit:heeftBesluitenlijst"/>
+                    </a>
                   </span>
                 </div>
                 <div class="step__header__info">
@@ -154,7 +160,9 @@
                   <h2 class="step__title">Agenda</h2>
                   <span  class="u-hidden">
                     {{#each model.agendas as |agenda index|}}
-                      <a href={{href-to "bestuurseenheid.zitting.agenda.raw" model.id}} resource={{agenda.uri}} typeof="foaf:Document" property="besluit:heeftAgenda lblod:linkToPublication"></a>
+                      <a href={{href-to "bestuurseenheid.zitting.agenda.raw" model.id}} resource={{agenda.uri}} property="lblod:linkToPublication">
+                        <span resource={{agenda.uri}} typeof="foaf:Document" property="besluit:heeftAgenda"/>
+                      </a>
                     {{/each}}
                   </span>
                 </div>
