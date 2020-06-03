@@ -16,7 +16,7 @@ export default Model.extend({
   besluitenlijst: belongsTo('besluitenlijst'),
   notulen: belongsTo('notulen'),
 
-  agenda: alias('agendas.firstObject'),
+  agenda: alias('agendas.firstObject'), // TODO doesn's seem to work on the template
   agendapuntenSort: Object.freeze(['position']),
   sortedAgendapunten: sort('agendapunten', 'agendapuntenSort'),
 
