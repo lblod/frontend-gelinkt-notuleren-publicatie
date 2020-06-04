@@ -160,7 +160,7 @@
                   <h2 class="step__title">Agenda</h2>
                   <span  class="u-hidden">
                     {{#each model.agendas as |agenda index|}}
-                      <a href={{href-to "bestuurseenheid.zitting.agenda.raw" model.id}} resource={{agenda.uri}} property="lblod:linkToPublication">
+r                      <a href={{href-to "bestuurseenheid.zitting.agenda.raw" model.id}} property="lblod:linkToPublication">
                         <span resource={{agenda.uri}} typeof="foaf:Document" property="besluit:heeftAgenda"/>
                       </a>
                     {{/each}}
