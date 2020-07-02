@@ -16,12 +16,12 @@
           </div>
           <div class="step__content-wrapper">
             <div class="step__content">
-              <SelectBestuurseenheidClassificatieLabel @model={{model}} @selected={{bestuurseenheidClassificatieLabel}} @onSelect={{action "setBestuurseenheidClassificatieLabel"}} />
+              <SelectBestuurseenheidClassificatieLabel @model={{model}} @selected={{bestuurseenheidClassificatie}} @onSelect={{action "setBestuurseenheidClassificatie"}} />
             </div>
           </div>
         </div>
       </li>
-      <li class="step {{unless bestuurseenheidClassificatieLabel "step--disabled"}} step--no-box">
+      <li class="step {{unless bestuurseenheidClassificatie "step--disabled"}} step--no-box">
         <div class="step__icon">2</div>
         <div class="step__wrapper">
           <div class="step__header">
@@ -29,12 +29,12 @@
           </div>
           <div class="step__content-wrapper">
             <div class="step__content">
-              {{#if bestuurseenheidClassificatieLabel}}
-                <SelectBestuurseenheidNaam @bestuurseenheidClassificatieLabel={{bestuurseenheidClassificatieLabel}} @selected={{bestuurseenheidNaam}} @onSelect={{action (mut bestuurseenheidNaam)}} />
+              {{#if bestuurseenheidClassificatie}}
+                <SelectBestuurseenheidNaam @bestuurseenheidClassificatie={{bestuurseenheidClassificatie}} @selected={{bestuurseenheidNaam}} @onSelect={{action (mut bestuurseenheidNaam)}} />
               {{/if}}
               {{#if bestuurseenheidNaam}}
                 <div class="button-group">
-                  <LinkTo @route="bestuurseenheid" @models={{array bestuurseenheidNaam bestuurseenheidClassificatieLabel}}>
+                  <LinkTo @route="bestuurseenheid" @models={{array bestuurseenheidNaam bestuurseenheidClassificatie.label}}>
                     <button class="button button--large">Zoek publicaties</button>
                   </LinkTo>
                 </div>

@@ -2,9 +2,9 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
   actions: {
-    setBestuurseenheidClassificatieLabel(bestuurseenheidClassificatieLabel) {
+    setBestuurseenheidClassificatie(bestuurseenheidClassificatie) {
       this.set('bestuurseenheidNaam', null);
-      this.set('bestuurseenheidClassificatieLabel', bestuurseenheidClassificatieLabel);
+      this.set('bestuurseenheidClassificatie', bestuurseenheidClassificatie);
     },
 
     setBestuurseenheidNaam(bestuurseenheidNaam) {
