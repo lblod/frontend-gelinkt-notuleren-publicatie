@@ -12,7 +12,7 @@ export default Component.extend({
       sort: 'naam',
       filter: {
         classificatie: {
-          label: this.bestuurseenheidClassificatieLabel
+          id: this.bestuurseenheidClassificatie.value
         }
       }
     };
