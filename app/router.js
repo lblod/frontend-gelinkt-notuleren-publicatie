@@ -1,10 +1,10 @@
 import EmberRouter from '@ember/routing/router';
-import config from './config/environment';
+import config from 'frontend-gelinkt-notuleren-publicatie/config/environment';
 
-const Router = EmberRouter.extend({
-  location: config.locationType,
-  rootURL: config.rootURL
-});
+export default class Router extends EmberRouter {
+  location = config.locationType;
+  rootURL = config.rootURL;
+}
 
 Router.map(function() {
   this.route('bestuurseenheid', { path: '/:bestuurseenheid_naam/:bestuurseenheid_classificatie_code_label' }, function() {
@@ -30,5 +30,3 @@ Router.map(function() {
   });
   this.route('route-not-found', { path: '/404' });
 });
-
-export default Router;

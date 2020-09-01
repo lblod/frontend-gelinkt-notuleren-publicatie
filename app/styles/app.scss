@@ -1,40 +1,9 @@
 @import 'ember-power-select';
 @import 'ember-vo-webuniversum';
 
-@import 'colors';
-@import 'print';
-@import 'publicatie';
+@import 'deprecated/colors';
+@import 'deprecated/print';
+@import 'deprecated/publicatie';
 
 /* shame */
-
-.u-word-break--word-break {
-	word-break: word-break;
-}
-
-.small {
-	font-size: 0.9em;
-}
-
-.smaller {
-	font-size: 0.8em;
-}
-
-.smallest {
-	font-size: 0.7em;
-}
-
-.vrije-tekst {
-	[property="ext:behandelt"] {
-		margin: 0;
-	}
-
-	[property="ext:behandelt"] > * {
-		display: none;
-	}
-
-	[property="dc:subject"] {
-		display: block;
-		font-family: flanders-sans,sans-serif;
-    font-size: 1.8rem;
-	}
-}
+@import 'shame';
