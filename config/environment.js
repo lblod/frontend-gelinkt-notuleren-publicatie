@@ -17,9 +17,8 @@ module.exports = function(environment) {
       }
     },
     fastboot: {
-      hostWhitelist: [/^localhost:\d+$/, /^.*$/] // 'example.com', 'subdomain.example.com' // TODO: these regexpses with actual allowed domains, this is a major flaw.
+      hostWhitelist: [/^localhost(:[0-9]*)?/, "localhost"] // 'example.com', 'subdomain.example.com' // TODO: these regexpses with actual allowed domains, this is a major flaw.
     },
-
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
@@ -29,11 +28,6 @@ module.exports = function(environment) {
       includeTimezone: 'all',
       includeLocales: ['nl'],
       allowEmpty: true
-    },
-    'vo-webuniversum': {
-      version: '2.8.3',
-      header: '//widgets.vlaanderen.be/widget/live/45336c3ff84f48769c4e287dbfbac45a',
-      footer: '//widgets.vlaanderen.be/widget/live/fc32aa7af5884782921ca6b67f97b062'
     }
   };
 

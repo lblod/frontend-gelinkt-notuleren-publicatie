@@ -1,49 +1,47 @@
-<div class="container-flex--scroll">
+<AuContentHeader @titlePartOne="Publicaties" @titlePartTwo="Gelinkt Notuleren" @pictureSize="large">
+  <img
+    sizes="100vw"
+    src="/assets/images/banner-bruges.jpg"
+    srcset="/assets/images/banner-bruges-320.jpg 320w, /assets/images/banner-bruges-1024.jpg 1024w, /assets/images/banner-bruges-1600.jpg 1600w" alt="Foto van Brugge.">
+</AuContentHeader>
 
-  <WuContentHeader @title="Publicaties Gelinkt Notuleren">
-    <img sizes="100vw" src="/assets/images/banner-bruges.jpg" srcset="/assets/images/banner-bruges-320.jpg 320w, /assets/images/banner-bruges-1024.jpg 1024w, /assets/images/banner-bruges-1600.jpg 1600w" alt="" title="">
-  </WuContentHeader>
-
-  <div class="u-padding--round--large">
-
-    <h2 class="h3 u-spacer">Zoek naar gepubliceerde agenda's, besluiten en notulen van een bestuur</h2>
-    <ul class="steps steps--has-line">
-      <li class="step step--no-box">
-        <div class="step__icon">1</div>
-        <div class="step__wrapper">
-          <div class="step__header">
-            <h3 class="step__title">Stap 1: Kies het type bestuurseenheid</h3>
-          </div>
-          <div class="step__content-wrapper">
-            <div class="step__content">
-              <SelectBestuurseenheidClassificatieLabel @model={{model}} @selected={{bestuurseenheidClassificatie}} @onSelect={{action "setBestuurseenheidClassificatie"}} />
-            </div>
+<div class="u-padding--round--large">
+  <h2 class="h3 u-spacer">Zoek naar gepubliceerde agenda's, besluiten en notulen van een bestuur</h2>
+  <ul class="steps steps--has-line">
+    <li class="step step--no-box">
+      <div class="step__icon">1</div>
+      <div class="step__wrapper">
+        <div class="step__header">
+          <h3 class="step__title">Stap 1: Kies het type bestuurseenheid</h3>
+        </div>
+        <div class="step__content-wrapper">
+          <div class="step__content">
+            <SelectBestuurseenheidClassificatieLabel @model={{model}} @selected={{bestuurseenheidClassificatie}} @onSelect={{action "setBestuurseenheidClassificatie"}} />
           </div>
         </div>
-      </li>
-      <li class="step {{unless bestuurseenheidClassificatie "step--disabled"}} step--no-box">
-        <div class="step__icon">2</div>
-        <div class="step__wrapper">
-          <div class="step__header">
-            <h3 class="step__title">Stap 2: Kies de bestuurseenheid </h3>
-          </div>
-          <div class="step__content-wrapper">
-            <div class="step__content">
-              {{#if bestuurseenheidClassificatie}}
-                <SelectBestuurseenheidNaam @bestuurseenheidClassificatie={{bestuurseenheidClassificatie}} @selected={{bestuurseenheidNaam}} @onSelect={{action (mut bestuurseenheidNaam)}} />
-              {{/if}}
-              {{#if bestuurseenheidNaam}}
-                <div class="button-group">
-                  <LinkTo @route="bestuurseenheid" @models={{array bestuurseenheidNaam bestuurseenheidClassificatie.label}}>
-                    <button class="button button--large">Zoek publicaties</button>
-                  </LinkTo>
-                </div>
-              {{/if}}
-            </div>
+      </div>
+    </li>
+    <li class="step {{unless bestuurseenheidClassificatie "step--disabled"}} step--no-box">
+      <div class="step__icon">2</div>
+      <div class="step__wrapper">
+        <div class="step__header">
+          <h3 class="step__title">Stap 2: Kies de bestuurseenheid </h3>
+        </div>
+        <div class="step__content-wrapper">
+          <div class="step__content">
+            {{#if bestuurseenheidClassificatie}}
+              <SelectBestuurseenheidNaam @bestuurseenheidClassificatie={{bestuurseenheidClassificatie}} @selected={{bestuurseenheidNaam}} @onSelect={{action (mut bestuurseenheidNaam)}} />
+            {{/if}}
+            {{#if bestuurseenheidNaam}}
+              <div class="button-group">
+                <LinkTo @route="bestuurseenheid" @models={{array bestuurseenheidNaam bestuurseenheidClassificatie.label}}>
+                  <button class="button button--large">Zoek publicaties</button>
+                </LinkTo>
+              </div>
+            {{/if}}
           </div>
         </div>
-      </li>
-    </ul>
-  </div>
-  <FastbootedFooter />
+      </div>
+    </li>
+  </ul>
 </div>
