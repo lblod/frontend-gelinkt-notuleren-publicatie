@@ -1,5 +1,5 @@
 <BreadCrumbs @tagName="ul" @linkable={{true}} @crumbClass="breadcrumb-item" @class="functional-header__sub__actions" as |component route|>
-  <BreadCrumb @route={{route}} @breadCrumbs={{component}} @class="functional-header__sub__action">
+  <BreadCrumb @breadCrumbs={{component}} @class="functional-header__sub__action">
     <p class="functional-header__sub__title">
       {{#if route.linkable}}
         <LinkTo @route={{route.path}}>{{route.title}}</LinkTo>
@@ -10,4 +10,10 @@
   </BreadCrumb>
 </BreadCrumbs>
 
-{{outlet}}
+<div class="container-flex--contain">
+  <div class="container-flex--scroll">
+    <div class="u-padding--round">
+      {{outlet}}
+    </div>
+  </div>
+</div>
