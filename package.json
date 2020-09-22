@@ -26,6 +26,7 @@
     "@lblod/ember-vo-webuniversum": "^0.22.7",
     "@lblod/ember-vo-webuniversum-widget": "^0.1.2",
     "broccoli-asset-rev": "^3.0.0",
+    "ember-a11y-refocus": "^1.0.0",
     "ember-ajax": "^5.0.0",
     "ember-awesome-macros": "^5.0.1",
     "ember-cli": "~3.12.0",

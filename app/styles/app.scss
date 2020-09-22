@@ -8,33 +8,44 @@
 /* shame */
 
 .u-word-break--word-break {
-	word-break: word-break;
+  word-break: word-break;
 }
 
 .small {
-	font-size: 0.9em;
+  font-size: 0.9em;
 }
 
 .smaller {
-	font-size: 0.8em;
+  font-size: 0.8em;
 }
 
 .smallest {
-	font-size: 0.7em;
+  font-size: 0.7em;
 }
 
 .vrije-tekst {
-	[property="ext:behandelt"] {
-		margin: 0;
-	}
+  [property="ext:behandelt"] {
+    margin: 0;
+  }
 
-	[property="ext:behandelt"] > * {
-		display: none;
-	}
+  [property="ext:behandelt"] > * {
+    display: none;
+  }
 
-	[property="dc:subject"] {
-		display: block;
-		font-family: flanders-sans,sans-serif;
+  [property="dc:subject"] {
+    display: block;
+    font-family: flanders-sans,sans-serif;
     font-size: 1.8rem;
-	}
+  }
+}
+
+#ember-a11y-refocus-nav-message {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
