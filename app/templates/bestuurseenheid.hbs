@@ -1,11 +1,7 @@
 <BreadCrumbs @tagName="ul" @linkable={{true}} @crumbClass="breadcrumb-item" @class="functional-header__sub__actions" as |component route|>
-  <BreadCrumb @route={{route}} @breadCrumbs={{component}} @class="functional-header__sub__action">
+  <BreadCrumb @route={{route}} @breadCrumbs={{component}} @linkClass="au-c-link" @class="functional-header__sub__action">
     <p class="functional-header__sub__title">
-      {{#if route.linkable}}
-        <LinkTo @route={{route.path}}>{{route.title}}</LinkTo>
-      {{else}}
         {{route.title}}
-      {{/if}}
     </p>
   </BreadCrumb>
 </BreadCrumbs>
