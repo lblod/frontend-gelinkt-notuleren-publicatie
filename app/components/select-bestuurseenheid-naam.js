@@ -24,8 +24,8 @@ export default Component.extend({
     this.set('bestuurseenheidNamen', bestuurseenheden.getEach('naam'));
   }).restartable(),
 
-  async didReceiveAttrs() {
+  didReceiveAttrs() {
     this._super(...arguments);
-    await this.findBestuurseenheidNamen.perform();
+    this.findBestuurseenheidNamen.perform();
   }
 });

@@ -7,8 +7,8 @@ export default Component.extend({
       this.set('bestuurseenheidClassificatie', bestuurseenheidClassificatie);
     }),
 
-    async didReceiveAttrs() {
+    didReceiveAttrs() {
       this._super(...arguments);
-      await this.findbestuurseenheidClassificatie.perform();
+      this.findbestuurseenheidClassificatie.perform();
     }
 });
