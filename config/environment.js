@@ -17,7 +17,12 @@ module.exports = function(environment) {
       }
     },
     fastboot: {
-      hostWhitelist: [/^localhost:\d+$/, /^.*$/] // Please make sure you know what you commit when changing this line.
+      hostWhitelist: [/^localhost:\d+$/,
+                      "localhost",
+                      "publicatie.gelinkt-notuleren.vlaanderen.be",
+                      "publicatie.dev.gelinkt-notuleren.lblod.info",
+                      "publicatie.gelinkt-notuleren.lblod.info"
+                     ]
     },
     APP: {
       // Here you can pass flags/options to your application instance
