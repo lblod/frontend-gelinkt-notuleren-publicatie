@@ -21,7 +21,8 @@ module.exports = function(environment) {
                       "localhost",
                       "publicatie.gelinkt-notuleren.vlaanderen.be",
                       "publicatie.dev.gelinkt-notuleren.lblod.info",
-                      "publicatie.gelinkt-notuleren.lblod.info"
+                      "publicatie.gelinkt-notuleren.lblod.info",
+                      "backend" //mu-semtech
                      ]
     },
     APP: {
