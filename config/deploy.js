@@ -12,13 +12,13 @@ module.exports = function(deployTarget) {
     'ssh-index': {
       username: 'root',
       host: 'rpio-dev.s.redpencil.io',
-      remoteDir: '/data/app-gelinkt-notuleren-dev/publicatie-app',
+      remoteDir: '/data/app-gn-publicatie-dev/publicatie-app',
       agent: process.env.SSH_AUTH_SOCK,
       port: 22,
       allowOverwrite: true
     },
     'rsync': {
-      dest: '/data/app-gelinkt-notuleren-dev/publicatie-app',
+      dest: '/data/app-gn-publicatie-dev/publicatie-app',
       username: 'root',
       host: 'rpio-dev.s.redpencil.io',
       port: 22,
