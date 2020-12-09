@@ -2,6 +2,9 @@
   <div class="grid">
     <div class="col--8-12">
       <h2 property="dct:title" class="list-content">{{clean-spaces this.agendapunt.titel}}</h2>
+      {{#if this.agendapunt.beschrijving}}
+        <p property="dct:description">{{clean-spaces this.agendapunt.beschrijving}}</p>
+      {{/if}}
       <span property="besluit:geplandOpenbaar" content={{this.agendapunt.geplandOpenbaar}} class="u-hidden"></span>
       {{#unless uittreksel.inhoud}}
         <p class="smallest text-fade uppercase u-spacer--top--tiny">Inhoud niet publiek</p>
