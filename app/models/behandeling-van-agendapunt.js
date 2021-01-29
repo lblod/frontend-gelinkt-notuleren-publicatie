@@ -14,6 +14,7 @@ export default Model.extend({
   besluiten: hasMany('besluit', { inverse: 'volgendUitBehandelingVanAgendapunt' }),
   zitting: belongsTo('zitting'),
   publication: belongsTo('published-resource', { inverse: null }),
+  stemmingen: hasMany('stemming', { inverse: null }),
 
   rdfaBindings: Object.freeze({
     class: 'besluit:BehandelingVanAgendapunt',
