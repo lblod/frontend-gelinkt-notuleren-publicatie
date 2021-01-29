@@ -9,4 +9,5 @@ export default class StemmingModel extends Model {
   // @attr title;
   @attr("string") gevolg;
   @attr("string") onderwerp;
+  @attr("string") uri;
 }
