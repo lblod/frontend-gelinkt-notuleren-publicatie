@@ -16,6 +16,12 @@
         {{#unless uittreksel}}
           <p class="smallest text-fade uppercase u-spacer--top--tiny">Volledige inhoud niet publiek</p>
         {{/unless}}
+        <h3 class="h4">Stemmingen</h3>
+        {{#each stemmingen as |stemming|}}
+          <div typeof="http://data.vlaanderen.be/ns/besluit#Stemming" resource="{{stemming.uri}}" property="http://data.vlaanderen.be/ns/besluit#heeftStemming">
+            <p> <strong>Onderwerp:</strong> <span property="http://data.vlaanderen.be/ns/besluit#onderwerp">{{stemming.onderwerp}}</span>, <strong>Gevolg:</strong> <span property="http://data.vlaanderen.be/ns/besluit#gevolg">{{stemming.gevolg}}</span></p>
+          </div>
+        {{/each}}
       </div>
       <div class="col--4-12 u-align-right">
         {{#if uittreksel}}
