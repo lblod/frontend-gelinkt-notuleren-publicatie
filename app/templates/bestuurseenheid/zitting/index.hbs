@@ -29,7 +29,7 @@
                 <div class="step__header__titles">
                   <h2 class="step__title">Notulen</h2>
                   <span class="u-hidden">
-                    <a href={{href-to "bestuurseenheid.zitting.notulen" model.id}} property="lblod:linkToPublication">
+                    <a href={{href-to "bestuurseenheid.zitting.notulen" model.id}} property="lblodBesluit:linkToPublication">
                       <span resource={{model.notulen.uri}} typeof="foaf:Document" property="besluit:heeftNotulen"/>
                     </a>
                   </span>
@@ -75,7 +75,7 @@
                   <h3 class="step__title">Bekendmakingen en uittreksels</h3>
                   <span  class="u-hidden">
                     {{#each model.uittreksels as |uittreksel index|}}
-                      <a href={{href-to "bestuurseenheid.zitting.uittreksels.detail.raw" model.id}} property="lblod:linkToPublication">
+                      <a href={{href-to "bestuurseenheid.zitting.uittreksels.detail.raw" model.id}} property="lblodBesluit:linkToPublication">
                         <span resource={{uittreksel.uri}} typeof="foaf:Document" property="besluit:heeftUittreksel"/>
                       </a>
                     {{/each}}
@@ -117,7 +117,7 @@
                 <div class="step__header__titles">
                   <h2 class="step__title">Besluitenlijst</h2>
                   <span  class="u-hidden">
-                    <a href={{href-to "bestuurseenheid.zitting.besluitenlijst" model.id}} property="lblod:linkToPublication">
+                    <a href={{href-to "bestuurseenheid.zitting.besluitenlijst" model.id}} property="lblodBesluit:linkToPublication">
                       <span resource={{model.besluitenlijst.uri}} typeof="foaf:Document" property="besluit:heeftBesluitenlijst"/>
                     </a>
                   </span>
@@ -160,7 +160,7 @@
                   <h2 class="step__title">Agenda</h2>
                   <span  class="u-hidden">
                     {{#each model.agendas as |agenda index|}}
-r                      <a href={{href-to "bestuurseenheid.zitting.agenda.raw" model.id}} property="lblod:linkToPublication">
+r                      <a href={{href-to "bestuurseenheid.zitting.agenda.raw" model.id}} property="lblodBesluit:linkToPublication">
                         <span resource={{agenda.uri}} typeof="foaf:Document" property="besluit:heeftAgenda"/>
                       </a>
                     {{/each}}
