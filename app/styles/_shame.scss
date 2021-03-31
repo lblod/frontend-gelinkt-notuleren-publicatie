@@ -35,3 +35,14 @@
 .au-c-container {
   height: 100%;
 }
+
+// Fix title and comma spacing
+[property="dc:title"] {
+  [property="http://data.vlaanderen.be/ns/besluit#isGehoudenDoor"] {
+    margin-right: -1rem;
+  }
+}
+
+[property="skos:prefLabel"] {
+  margin-right: -1rem;
+}
