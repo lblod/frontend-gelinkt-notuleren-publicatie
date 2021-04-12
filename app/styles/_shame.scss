@@ -35,3 +35,36 @@
 .au-c-container {
   height: 100%;
 }
+
+// Fix title and comma spacing
+[property="dc:title"] {
+  [property="http://data.vlaanderen.be/ns/besluit#isGehoudenDoor"] {
+    margin-right: -.4ex;
+  }
+}
+
+.h1 [property="skos:prefLabel"] {
+  margin-right: -.4ex;
+}
+
+// Add comma separator between mandatees
+[property="besluit:heeftAanwezige"] + [property="besluit:heeftAanwezige"] [property="mandaat:isBestuurlijkeAliasVan"],
+[property="besluit:heeftAanwezigeBijStart"] + [property="besluit:heeftAanwezigeBijStart"] [property="mandaat:isBestuurlijkeAliasVan"],
+[typeof="http://data.vlaanderen.be/ns/mandaat#Mandataris"] + [typeof="http://data.vlaanderen.be/ns/mandaat#Mandataris"] [property="mandaat:isBestuurlijkeAliasVan"] {
+  &:before {
+    content: ', ';
+  }
+}
+
+
+[property="mandaat:isBestuurlijkeAliasVan"] {
+  margin-right: -.4ex;
+}
+
+[property="besluit:heeftAanwezige"] {
+  margin-right: -.4ex;
+
+  [property="mandaat:isBestuurlijkeAliasVan"] {
+    margin-right: 0;
+  }
+}
