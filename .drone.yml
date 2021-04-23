@@ -6,7 +6,7 @@ steps:
 - name: build-dry-run
   image: plugins/docker
   settings:
-    repo: lblod/ember_rdfa_editor
+    repo: lblod/frontend-gelinkt-notuleren-publicatie
     dry_run: true
     purge: true
 - name: test
@@ -25,7 +25,7 @@ steps:
 - name: push-latest-build
   image: plugins/docker
   settings:
-    repo: lblod/ember_rdfa_editor
+    repo: lblod/frontend-gelinkt-notuleren-publicatie
     username:
       from_secret: docker_username
     password:
@@ -34,6 +34,9 @@ steps:
 trigger:
   branch:
     - master
+  event:
+    exclude:
+      - pull_request
 ---
 kind: pipeline
 type: docker
@@ -42,13 +45,13 @@ steps:
 - name: build-dry-run
   image: plugins/docker
   settings:
-    repo: lblod/ember_rdfa_editor
+    repo: lblod/frontend-gelinkt-notuleren-publicatie
     dry_run: true
     purge: true
 - name: push-tagged-build
   image: plugins/docker
   settings:
-    repo: lblod/ember_rdfa_editor
+    repo: lblod/frontend-gelinkt-notuleren-publicatie
     tags: ${DRONE_TAG##v}
     username:
       from_secret: docker_username
