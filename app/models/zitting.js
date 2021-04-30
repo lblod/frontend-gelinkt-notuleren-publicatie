@@ -1,26 +1,24 @@
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import { belongsTo, hasMany } from 'ember-data/relationships';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 import { alias, sort } from '@ember/object/computed';
 
-export default Model.extend({
-  uri: attr(),
-  geplandeStart: attr('datetime'),
-  gestartOpTijdstip: attr('datetime'),
-  geeindigdOpTijdstip: attr('datetime'),
-  opLocatie: attr(),
-  bestuursorgaan: belongsTo('bestuursorgaan', { inverse: null }),
-  agendapunten: hasMany('agendapunt'),
-  agendas: hasMany('agenda'),
-  uittreksels: hasMany('uittreksel'),
-  besluitenlijst: belongsTo('besluitenlijst'),
-  notulen: belongsTo('notulen'),
+export default class ZittingModel extends Model {
+  @attr uri;
+  @attr('datetime') geplandeStart;
+  @attr('datetime') gestartOpTijdstip;
+  @attr('datetime') geeindigdOpTijdstip;
+  @attr opLocatie;
+  @belongsTo('bestuursorgaan', { inverse: null }) bestuursorgaan;
+  @hasMany('agendapunt') agendapunten;
+  @hasMany('agenda') agendas;
+  @hasMany('uittreksel') uittreksels;
+  @belongsTo('besluitenlijst') besluitenlijst;
+  @belongsTo('notulen') notulen;
 
-  agenda: alias('agendas.firstObject'), // TODO doesn's seem to work on the template
-  agendapuntenSort: Object.freeze(['position']),
-  sortedAgendapunten: sort('agendapunten', 'agendapuntenSort'),
+  @alias('agendas.firstObject') agenda; // TODO doesn's seem to work on the template
+  agendapuntenSort = ['position'];
+  @sort('agendapunten', 'agendapuntenSort') sortedAgendapunten;
 
-  rdfaBindings: Object.freeze({
+  rdfaBindings = {
     class: "besluit:Zitting",
     geplandeStart: {
       property: "besluit:geplandeStart",
@@ -43,5 +41,5 @@ export default Model.extend({
     uittreksels: "besluit:heeftUittreksel", // TODO update in backend
     besluitenlijst: "besluit:heeftBesluitenlijst", // TODO update in backend
     notulen: "besluit:heeftNotulen"
-  })
-});
+  }
+}

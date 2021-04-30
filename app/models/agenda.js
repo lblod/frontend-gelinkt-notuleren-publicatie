@@ -1,18 +1,16 @@
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import { hasMany } from 'ember-data/relationships';
+import Model, { attr, hasMany } from '@ember-data/model';
 
-export default Model.extend({
-  uri: attr(),
-  inhoud: attr(),
-  agendapunten: hasMany('agendapunt'),
+export default class AgendaModel extends Model {
+  @attr uri;
+  @attr inhoud;
+  @hasMany('agendapunt') agendapunten;
 
-  type: 'http://data.lblod.info/id/document-types/agenda',
+  type = 'http://data.lblod.info/id/document-types/agenda';
 
-  rdfaBindings: Object.freeze({
+  rdfaBindings = Object.freeze({
     class: 'foaf:Document',
     type: 'dct:type',
     inhoud: 'prov:value',
     publication: 'prov:wasDerivedFrom'
   })
-});
+}

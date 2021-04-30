@@ -1,18 +1,16 @@
-import DS from 'ember-data';
-import attr from 'ember-data/attr';
-import { belongsTo } from 'ember-data/relationships';
+import Model, { attr, belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-  uri: attr(),
-  inhoud: attr(),
-  behandelingVanAgendapunt: belongsTo('behandeling-van-agendapunt'),
+export default class UittrekselModel extends Model {
+  @attr uri;
+  @attr inhoud;
+  @belongsTo('behandeling-van-agendapunt') behandelingVanAgendapunt;
 
-  type: 'http://data.lblod.info/id/document-types/uittreksel',
+  type = 'http://data.lblod.info/id/document-types/uittreksel';
 
-  rdfaBindings: Object.freeze({
+  rdfaBindings = {
     class: 'foaf:Document',
     type: 'dct:type',
     inhoud: 'prov:value',
     publication: 'prov:wasDerivedFrom'
-  })
-});
+  }
+}
