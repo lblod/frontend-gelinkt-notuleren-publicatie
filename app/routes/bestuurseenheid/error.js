@@ -1,7 +1,6 @@
 import Route from '@ember/routing/route';
 
-export default Route.extend({
-
+export default class BestuurseenheidErrorRoute extends Route {
   /**
    * The model hooks (beforeModel, model, and afterModel) of an error substate are not called.
    * Only the setupController method of the error substate is called with the error as the model.**/
@@ -15,6 +14,6 @@ export default Route.extend({
         this.transitionTo('error');
       }
     }
-    this._super(...arguments);
+    super.setupController(...arguments);
   }
-});
+}
