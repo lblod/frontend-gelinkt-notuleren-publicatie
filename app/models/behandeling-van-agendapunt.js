@@ -1,22 +1,20 @@
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import { belongsTo, hasMany } from 'ember-data/relationships';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 
-export default Model.extend({
-  uri: attr(),
-  openbaar: attr(),
-  afgeleidUit: attr(),
-  gevolg: attr('language-string'),
-  position: attr('number'),
-  vorigeBehandelingVanAgendapunt: belongsTo('behandeling-van-agendapunt', { inverse: 'volgendeBehandelingVanAgendapunt' }),
-  volgendeBehandelingVanAgendapunt: belongsTo('behandeling-van-agendapunt', { inverse: 'vorigeBehandelingVanAgendapunt' }),
-  onderwerp: belongsTo('agendapunt', { inverse: 'behandeling' }),
-  besluiten: hasMany('besluit', { inverse: 'volgendUitBehandelingVanAgendapunt' }),
-  zitting: belongsTo('zitting'),
-  publication: belongsTo('published-resource', { inverse: null }),
-  stemmingen: hasMany('stemming', { inverse: null }),
+export default class BehandelingVanAgendapuntModel extends Model {
+  @attr uri;
+  @attr openbaar;
+  @attr afgeleidUit;
+  @attr('language-string') gevolg;
+  @attr('number') position;
+  @belongsTo('behandeling-van-agendapunt', { inverse: 'volgendeBehandelingVanAgendapunt' }) vorigeBehandelingVanAgendapunt;
+  @belongsTo('behandeling-van-agendapunt', { inverse: 'vorigeBehandelingVanAgendapunt' }) volgendeBehandelingVanAgendapunt;
+  @belongsTo('agendapunt', { inverse: 'behandeling' }) onderwerp;
+  @hasMany('besluit', { inverse: 'volgendUitBehandelingVanAgendapunt' }) besluiten;
+  @belongsTo('zitting') zitting;
+  @belongsTo('published-resource', { inverse: null }) publication;
+  @hasMany('stemming', { inverse: null }) stemmingen;
 
-  rdfaBindings: Object.freeze({
+  rdfaBindings = {
     class: 'besluit:BehandelingVanAgendapunt',
     openbaar: {
       property: 'besluit:openbaar',
@@ -27,5 +25,5 @@ export default Model.extend({
     vorigeBehandelingVanAgendapunt: 'besluit:gebeurtNa',
     onderwerp: 'dct:subject',
     besluiten: 'prov:generated'
-  })
-});
+  }
+}

@@ -1,13 +1,12 @@
-import Model, { attr, hasMany } from '@ember-data/model';
+import Model, { attr } from '@ember-data/model';
 
 export default class StemmingModel extends Model {
-
-  @attr("number") aantalOnthouders;
-  @attr("number") aantalTegenstanders;
-  @attr("number") aantalVoorstanders;
+  @attr aantalOnthouders;
+  @attr aantalTegenstanders;
+  @attr aantalVoorstanders;
   @attr geheim;
   // @attr title;
-  @attr("string") gevolg;
-  @attr("string") onderwerp;
-  @attr("string") uri;
+  @attr gevolg;
+  @attr onderwerp;
+  @attr uri;
 }

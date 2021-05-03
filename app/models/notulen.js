@@ -1,18 +1,16 @@
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import { hasMany } from 'ember-data/relationships';
+import Model, { attr, hasMany } from '@ember-data/model';
 
-export default Model.extend({
-  uri: attr(),
-  inhoud: attr(),
-  publications: hasMany('published-resource', { inverse: null }),
+export default class NotulenModel extends Model {
+  @attr uri;
+  @attr inhoud;
+  @hasMany('published-resource', { inverse: null }) publications;
 
-  type: 'http://data.lblod.info/id/document-types/notulen',
+  type = 'http://data.lblod.info/id/document-types/notulen';
 
-  rdfaBindings: Object.freeze({
+  rdfaBindings = {
     class: 'foaf:Document',
     type: 'dct:type',
     inhoud: 'prov:value',
     publications: 'prov:wasDerivedFrom'
-  })
-});
+  }
+}

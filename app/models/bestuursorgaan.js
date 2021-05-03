@@ -1,18 +1,16 @@
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import { belongsTo, hasMany } from 'ember-data/relationships';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 
-export default Model.extend({
-  uri: attr(),
-  naam: attr(),
-  bindingEinde: attr('date'),
-  bindingStart: attr('date'),
-  bestuurseenheid: belongsTo('bestuurseenheid', { inverse: null }),
-  classificatie: belongsTo('bestuursorgaan-classificatie-code', { inverse: null }),
-  isTijdsspecialisatieVan: belongsTo('bestuursorgaan', { inverse: null }),
-  heeftTijdsspecialisaties: hasMany('bestuursorgaan', { inverse: null }),
+export default class BestuursorgaanModel extends Model {
+  @attr uri;
+  @attr naam;
+  @attr('date') bindingEinde;
+  @attr('date') bindingStart;
+  @belongsTo('bestuurseenheid', { inverse: null }) bestuurseenheid;
+  @belongsTo('bestuursorgaan-classificatie-code', { inverse: null }) classificatie;
+  @belongsTo('bestuursorgaan', { inverse: null }) isTijdsspecialisatieVan;
+  @hasMany('bestuursorgaan', { inverse: null }) heeftTijdsspecialisaties;
 
-  rdfaBindings: Object.freeze({
+  rdfaBindings = {
     class: "besluit:Bestuursorgaan",
     naam: "skos:prefLabel",
     bindingEinde: "mandaat:bindingEinde",
@@ -20,5 +18,5 @@ export default Model.extend({
     bestuurseenheid: "besluit:bestuurt",
     classificatie: "besluit:classificatie",
     isTijdsspecialisatieVan: "mandaat:isTijdspecialisatieVan"
-  })
-});
+  }
+}
