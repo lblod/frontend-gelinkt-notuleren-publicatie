@@ -1,13 +1,38 @@
-import Component from '@ember/component';
-import { task, timeout } from 'ember-concurrency';
+import Component from '@glimmer/component';
+import { restartableTask, timeout } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 
-export default Component.extend({
-  store: service(),
+import { tracked } from '@glimmer/tracking';
+import { use, Resource } from 'ember-could-get-used-to-this';
 
-  findBestuurseenheidNamen: task(function*(search) {
-    yield timeout(200); // Timeout for debouncing
+class BestuureenheidsNamen extends Resource {
+  @service store;
+  @tracked bestuureenheidNamen = [];
 
+
+  get value() {
+    return this.bestuureenheidNamen;
+  }
+
+  setup() {
+    let [bestuurseenheidClassificatie, searchText] = this.args.positional;
+    this.bestuurseenheidClassificatie = bestuurseenheidClassificatie;
+    this.findOrganisationNamesTask.perform(searchText);
+  }
+
+  // update() {
+  //   debugger;
+  //   let [bestuurseenheidClassificatie, searchText] = this.args.positional;
+  //   this.bestuurseenheidClassificatie = bestuurseenheidClassificatie;
+  //   this.findOrganisationNamesTask.perform(searchText);
+  // }
+
+  teardown() {
+    // this.findOrganisationNamesTask.cancelAll();
+  }
+
+  @restartableTask
+  *findOrganisationNamesTask(searchText) {
     const queryParams =  {
       sort: 'naam',
       filter: {
@@ -17,15 +42,32 @@ export default Component.extend({
       }
     };
 
-    if (search)
-      queryParams['filter[naam]'] = search;
+    if (searchText)
+      queryParams['filter[naam]'] = searchText;
 
     const bestuurseenheden = yield this.store.query('bestuurseenheid', queryParams);
-    this.set('bestuurseenheidNamen', bestuurseenheden.getEach('naam'));
-  }).restartable(),
+    debugger;
 
-  didReceiveAttrs() {
-    this._super(...arguments);
-    this.findBestuurseenheidNamen.perform();
+    // this.bestuureenheidNamen = [
+    //   ...bestuurseenheden.getEach('naam')
+    // ]
   }
-});
+}
+
+export default class SelectBestuurseenheidNaamComponent extends Component {
+  @use bestuureenheidNamen = new BestuureenheidsNamen(() => {
+    return [
+      this.args.bestuurseenheidClassificatie,
+      this.searchText,
+    ];
+  });
+  @tracked searchText = '';
+
+  @restartableTask
+  *search(text) {
+    yield timeout(200); // Timeout for debouncing
+
+    console.log('searching')
+    this.searchText = text;
+  }
+}
