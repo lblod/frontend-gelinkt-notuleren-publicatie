@@ -1,29 +1,48 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { task } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
-import { A } from '@ember/array';
-export default Component.extend({
-  besluiten: null,
-  tagName: '',
-  store: service(),
-  fetchBesluiten:  task(function * (page = 0) {
-    const besluiten = yield this.store.query('besluit', { page: {number: page, size: 100}, "filter[besluitenlijst][:id:]": this.besluitenlijst.id, sort: "volgend-uit-behandeling-van-agendapunt.onderwerp.position" });
-    besluiten.forEach((besluit) => this.extraBesluiten.pushObject(besluit));
-    const meta = besluiten.meta;
-    this.last = meta.pagination.last.number;
-    this.page = page;
-    if (this.last > this.page) {
-      this.set('nextPage', this.page + 1);
-    }
-  }),
 
-  willRender() {
-    const meta = this.besluiten.meta;
-    const last = meta.pagination.last.number;
-    if (last > 0) {
-      this.set('nextPage', 1);
+export default class BesluitenlijstComponent extends Component {
+  @service store;
+
+  @tracked extraBesluiten = [];
+  @tracked currentPage = 0;
+  @tracked nextPage;
+  @tracked lastPage;
+
+  constructor() {
+    super(...arguments);
+
+    const meta = this.args.besluiten.meta;
+    const lastPage = meta.pagination.last.number;
+    if (lastPage > 0) {
+      this.nextPage = 1;
     }
-    this.set('extraBesluiten', A());
   }
-});
+
+  @task
+  *fetchBesluiten(page = 0) {
+    const besluiten = yield this.store.query('besluit', {
+      page: {
+        number: page,
+        size: 100
+      },
+      "filter[besluitenlijst][:id:]": this.args.besluitenlijst.id,
+      sort: "volgend-uit-behandeling-van-agendapunt.onderwerp.position"
+    });
+
+    this.extraBesluiten = [
+      ...this.extraBesluiten,
+      ...besluiten.toArray(),
+    ]
+
+    const meta = besluiten.meta;
+    this.lastPage = meta.pagination.last.number;
+    this.currentPage = page;
+    if (this.lastPage > this.currentPage) {
+      this.nextPage, this.currentPage + 1;
+    }
+  }
+}
 
