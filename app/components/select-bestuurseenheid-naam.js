@@ -1,8 +1,10 @@
+/* eslint-disable ember/no-classic-components, ember/no-classic-classes, ember/no-component-lifecycle-hooks */
 import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
+  tagName: '',
   store: service(),
 
   findBestuurseenheidNamen: task(function*(search) {
