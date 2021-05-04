@@ -4,7 +4,8 @@
     @placeholder="Oost-Vlaanderen, Berchem, Hasselt, ..."
     @selected={{@selected}}
     @searchEnabled={{true}}
-    @options={{this.bestuureenheidNamen}}
+    {{!-- @options={{this.bestuureenheidNamen}} --}}
+    @option={{array}}
     {{!-- @search={{fn (mut this.searchText)}} --}}
     @search={{perform this.search}}
     @onChange={{@onSelect}}
@@ -14,4 +15,5 @@
   >
     {{bestuurseenheidNaam}}
   </PowerSelect>
+  {{log this.isLoadingData}}
 </div>

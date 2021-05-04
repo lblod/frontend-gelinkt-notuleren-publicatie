@@ -1,13 +1,49 @@
 import Component from '@glimmer/component';
-import { restartableTask, timeout } from 'ember-concurrency';
+import { restartableTask, task, timeout } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 
 import { tracked } from '@glimmer/tracking';
 import { use, Resource } from 'ember-could-get-used-to-this';
 
+class LoadDataResource extends Resource {
+  @service store;
+  @tracked data = [];
+
+  get value() {
+    return this.data;
+  }
+
+  setup() {
+    this.loadData(this.args.positional[0], this.args.positional[1]);
+  }
+
+  async loadData(classificatie, searchText) {
+    const queryParams =  {
+      // sort: 'naam',
+      // filter: {
+      //   classificatie: {
+      //     id: classificatie.value
+      //   }
+      // }
+    };
+
+    // if (searchText)
+    //   queryParams['filter[naam]'] = searchText;
+    // const response = await fetch('/bestuurseenheden?filter[classificatie][id]=5ab0e9b8a3b2ca7c5e000001&sort=naam');
+    // const json = await response.json();
+
+    const bestuurseenheden = await this.store.findAll('bestuurseenheid');
+    this.data = bestuurseenheden.getEach('naam');
+    // this.data = [
+    //   // ...bestuurseenheden.getEach('naam')
+    //   // 'hello'
+    // ];
+    console.log('load data completed', this.data);
+  }
+}
 class BestuureenheidsNamen extends Resource {
   @service store;
-  @tracked bestuureenheidNamen = [];
+  bestuureenheidNamen = [];
 
 
   get value() {
@@ -17,11 +53,10 @@ class BestuureenheidsNamen extends Resource {
   setup() {
     let [bestuurseenheidClassificatie, searchText] = this.args.positional;
     this.bestuurseenheidClassificatie = bestuurseenheidClassificatie;
-    this.findOrganisationNamesTask.perform(searchText);
+    this.findOrganisationNamesTask(searchText);
   }
 
   // update() {
-  //   debugger;
   //   let [bestuurseenheidClassificatie, searchText] = this.args.positional;
   //   this.bestuurseenheidClassificatie = bestuurseenheidClassificatie;
   //   this.findOrganisationNamesTask.perform(searchText);
@@ -31,8 +66,7 @@ class BestuureenheidsNamen extends Resource {
     // this.findOrganisationNamesTask.cancelAll();
   }
 
-  @restartableTask
-  *findOrganisationNamesTask(searchText) {
+  async findOrganisationNamesTask(searchText) {
     const queryParams =  {
       sort: 'naam',
       filter: {
@@ -45,22 +79,16 @@ class BestuureenheidsNamen extends Resource {
     if (searchText)
       queryParams['filter[naam]'] = searchText;
 
-    const bestuurseenheden = yield this.store.query('bestuurseenheid', queryParams);
-    debugger;
-
-    // this.bestuureenheidNamen = [
-    //   ...bestuurseenheden.getEach('naam')
-    // ]
+    const bestuurseenheden = await this.store.query('bestuurseenheid', queryParams);
+    this.bestuureenheidNamen = [
+      ...bestuurseenheden.getEach('naam')
+    ];
   }
 }
 
 export default class SelectBestuurseenheidNaamComponent extends Component {
-  @use bestuureenheidNamen = new BestuureenheidsNamen(() => {
-    return [
-      this.args.bestuurseenheidClassificatie,
-      this.searchText,
-    ];
-  });
+  // @use bestuureenheidNamen = new BestuureenheidsNamen(() => [this.args.bestuurseenheidClassificatie, this.searchText]);
+  @use isLoadingData = new LoadDataResource(() => [this.args.bestuurseenheidClassificatie, this.searchText]);
   @tracked searchText = '';
 
   @restartableTask
