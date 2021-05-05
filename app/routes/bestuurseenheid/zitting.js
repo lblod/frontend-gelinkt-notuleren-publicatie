@@ -1,25 +1,20 @@
 import Route from '@ember/routing/route';
 import moment from 'moment';
 
-export default Route.extend({
-  init() {
-    this._super(...arguments);
-    this.breadCrumb = this.breadCrumb || {};
-  },
+export default class BestuurseenheidZittingRoute extends Route {
+  breadCrumb = {};
 
-  async model(params) {
+  model(params) {
     return this.store.findRecord('zitting', params.id);
-  },
+  }
 
-  async afterModel(model) {
-    const bestuursorgaan = await model.bestuursorgaan;
+  async afterModel(zitting) {
+    const bestuursorgaan = await zitting.bestuursorgaan;
     const bestuursorgaanInTijd = await bestuursorgaan.isTijdsspecialisatieVan;
-    const date = model.geplandeStart;
+    const date = zitting.geplandeStart;
 
-    const breadCrumb = {
+    this.breadCrumb = {
       title: `Zitting van ${bestuursorgaanInTijd.naam}, op ${moment(date).format('D MMMM YYYY, HH:mm')}`
     };
-
-    this.set('breadCrumb', breadCrumb);
   }
-});
+}

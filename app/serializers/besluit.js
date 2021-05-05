@@ -1,12 +1,11 @@
 import ApplicationSerializer from './application';
 
-export default ApplicationSerializer.extend({
-
+export default class BesluitSerializer extends ApplicationSerializer {
   /**
       Parse the links in the JSONAPI response and convert to a meta-object
   */
   normalizeResponse(store, clazz, payload) {
-    const result = this._super(...arguments);
+    const result = super.normalizeResponse(...arguments);
     result.meta = result.meta || {};
 
     if (payload.links) {
@@ -16,7 +15,7 @@ export default ApplicationSerializer.extend({
       result.meta.count = payload.meta.count;
     }
     return result;
-  },
+  }
 
   /**
      Transforms link URLs to objects containing metadata
@@ -57,4 +56,4 @@ export default ApplicationSerializer.extend({
 
     return meta;
   }
-});
+}

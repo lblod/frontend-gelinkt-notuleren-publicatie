@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class BestuurseenheidZittingIndexRoute extends Route {
   async model() {
     const id = this.modelFor('bestuurseenheid.zitting').get('id');
     return (await this.store.query('zitting', {
@@ -8,11 +8,11 @@ export default Route.extend({
       // notulen, agendas, uittreksels and besluitenlijst are included because of FastBoot
       'filter[id]': id,
       include: 'notulen,agendas,uittreksels,besluitenlijst,agendapunten'
-    })).get('firstObject');
-  },
+    })).firstObject;
+  }
 
   setupController(controller, model) {
-    this._super(controller, model);
+    super.setupController(controller, model);
     controller.set('bestuurseenheid', this.modelFor('bestuurseenheid'));
   }
-});
+}
