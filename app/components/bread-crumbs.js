@@ -1,3 +1,9 @@
+/* eslint-disable
+  ember/no-classic-components,ember/no-classic-classes,
+  ember/no-private-routing-service,ember/require-tagless-components,
+  ember/no-get, ember/no-get-with-default,
+  no-prototype-builtins
+*/
 import Component from '@ember/component';
 import { copy } from 'ember-copy';
 import { assert } from '@ember/debug';
