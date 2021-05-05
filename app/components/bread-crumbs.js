@@ -1,7 +1,7 @@
 /* eslint-disable
   ember/no-classic-components,ember/no-classic-classes,
   ember/no-private-routing-service,ember/require-tagless-components,
-  ember/no-get, ember/no-get-with-default,
+  ember/no-get,
   no-prototype-builtins
 */
 import Component from '@ember/component';
@@ -11,7 +11,6 @@ import { deprecate } from '@ember/application/deprecations';
 import { typeOf, isPresent } from '@ember/utils';
 import {
   setProperties,
-  getWithDefault,
   computed,
   get
 } from '@ember/object';
@@ -41,7 +40,7 @@ export default Component.extend({
   routeHierarchy: computed('currentUrl', 'currentRouteName', 'reverse', {
     get() {
       get(this, 'currentUrl');
-      const currentRouteName = getWithDefault(this, 'currentRouteName', false);
+      const currentRouteName = this.currentRouteName ? this.currentRouteName : false;
 
       assert('[ember-crumbly] Could not find a current route', currentRouteName);
 
@@ -56,7 +55,7 @@ export default Component.extend({
   breadCrumbClass: computed('outputStyle', {
     get() {
       let className = 'breadcrumb';
-      const outputStyle = getWithDefault(this, 'outputStyle', '');
+      const outputStyle = this.outputStyle ? this.outputStyle : '';
       if (isPresent(outputStyle)) {
         deprecate('outputStyle option will be deprecated in the next major release', false, { id: 'ember-crumbly.outputStyle', until: '2.0.0' });
       }
@@ -149,9 +148,13 @@ _lookupEngineRoute(routeName) {
           breadCrumbs.pushObject(breadCrumb);
         });
       } else {
-        let breadCrumb = copy(getWithDefault(route, 'breadCrumb', {
+        let breadCrumb = {
           title: classify(name)
-        }));
+        };
+
+        if (route.breadCrumb) {
+          breadCrumb = copy(route.breadCrumb);
+        }
 
         if (typeOf(breadCrumb) === 'null') {
           return;
