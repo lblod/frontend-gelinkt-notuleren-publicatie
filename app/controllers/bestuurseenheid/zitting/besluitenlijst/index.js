@@ -1,10 +1,11 @@
 import Controller from '@ember/controller';
 import { sort } from '@ember/object/computed';
 
-export default Controller.extend({
-  besluitenSort: Object.freeze([
+export default class BestuurseenheidZittingBesluitenLijstIndexController extends Controller {
+  besluitenSort = [
     'volgendUitBehandelingVanAgendapunt.position',
     'volgendUitBehandelingVanAgendapunt.onderwerp.position'
-  ]),
-  besluiten: sort('model.besluitenlijst.besluiten', 'besluitenSort')
-});
+  ];
+
+  @sort('model.besluitenlijst.besluiten', 'besluitenSort') besluiten;
+}

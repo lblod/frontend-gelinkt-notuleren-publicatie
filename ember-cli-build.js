@@ -13,6 +13,9 @@ module.exports = function (defaults) {
         'node_modules/@appuniversum/appuniversum',
         'node_modules/@appuniversum/ember-appuniversum/app/styles',
       ]
+    },
+    '@lblod/ember-vo-webuniversum': {
+      'shouldImportComponentCss': false,
     }
   });
 
