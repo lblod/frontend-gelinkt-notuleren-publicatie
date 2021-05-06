@@ -2,11 +2,11 @@
   <div class="container-flex--scroll u-padding--round--small">
     <div class="grid grid--align-center">
       <div class="col--8-12 col--1-1--s">
-        {{#if model.length}}
+        {{#if this.model.length}}
           <h1 class="h1 u-spacer--top--small">
-            Publicaties van {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}}
+            Publicaties van {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}}
           </h1>
-          {{#each model as |zitting|}}
+          {{#each this.model as |zitting|}}
             <div class="u-spacer">
               <WithRdfaContext @model={{zitting}} @class="grid grid--is-stacked" as |ctx|>
                 <div class="col--6-12 col--1-1--s">
@@ -75,7 +75,7 @@
         {{else}}
           <section class="region">
             <div class="layout layout--wide">
-              <h1 class="h1">Er werden nog geen publicaties voor {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}} gevonden</h1>
+              <h1 class="h1">Er werden nog geen publicaties voor {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}} gevonden</h1>
               <p>Kom later nog eens terug, of
                 <LinkTo @route="index" class="link--icon">
                   zoek naar publicaties van een ander bestuur.
