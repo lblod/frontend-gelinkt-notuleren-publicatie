@@ -1,22 +1,23 @@
-{{#each besluiten as |besluit|}}
+{{#each @besluiten as |besluit|}}
   <div class="col--12-12">
     <BesluitOverviewItem @besluit={{besluit}} />
   </div>
 {{/each}}
-{{#each extraBesluiten as |besluit|}}
+{{#each this.extraBesluiten as |besluit|}}
   {{!-- using an extra array so the first one above renders properly with fastboot --}}
   <div class="col--12-12">
     <BesluitOverviewItem @besluit={{besluit}} />
   </div>
 {{/each}}
-{{#if fetchBesluiten.isRunning}}
+{{#if this.fetchBesluiten.isRunning}}
   <div class="col--12-12">
-    {{wu-loader}}
+    <AuLoader />
   </div>
 {{/if}}
 {{#if this.nextPage}}
   <div class="col--12-12">
-    <button onclick={{perform fetchBesluiten this.nextPage}} class="button button--large">meer laden</button>
+    <AuButton @size="large" {{on "click" (perform this.fetchBesluiten this.nextPage)}}>
+      meer laden
+    </AuButton>
   </div>
 {{/if}}
-

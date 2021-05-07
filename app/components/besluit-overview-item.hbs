@@ -1,31 +1,31 @@
-<div typeof="besluit:Besluit" resource={{besluit.uri}} class="info-tile">
+<div typeof="besluit:Besluit" resource={{@besluit.uri}} class="info-tile">
   <div class="info-tile__header__wrapper">
     <div class="grid">
       <div class="col--8-12">
-        <link property="prov:wasGeneratedBy" resource={{besluit.volgendUitBehandelingVanAgendapunt.uri}}>
+        <link property="prov:wasGeneratedBy" resource={{@besluit.volgendUitBehandelingVanAgendapunt.uri}}>
         <h3 class="info-tile__header__title u-spacer--tinier" property="eli:title">
-          {{clean-spaces besluit.titel}}
+          {{clean-spaces @besluit.titel}}
         </h3>
-        {{#if besluit.beschrijving}}
+        {{#if @besluit.beschrijving}}
           <p class="info-tile__header__subtitle" property="eli:description">
-            {{besluit.beschrijving}}
+            {{@besluit.beschrijving}}
           </p>
         {{else}}
           <p class="text-fade">Korte beschrijving niet gevonden</p>
         {{/if}}
-        {{#unless uittreksel}}
+        {{#unless this.uittreksel}}
           <p class="smallest text-fade uppercase u-spacer--top--tiny">Volledige inhoud niet publiek</p>
         {{/unless}}
         <h3 class="h4">Stemmingen</h3>
-        {{#each stemmingen as |stemming|}}
+        {{#each this.stemmingen as |stemming|}}
           <div typeof="http://data.vlaanderen.be/ns/besluit#Stemming" resource="{{stemming.uri}}" property="http://data.vlaanderen.be/ns/besluit#heeftStemming">
             <p> <strong>Onderwerp:</strong> <span property="http://data.vlaanderen.be/ns/besluit#onderwerp">{{stemming.onderwerp}}</span>, <strong>Gevolg:</strong> <span property="http://data.vlaanderen.be/ns/besluit#gevolg">{{stemming.gevolg}}</span></p>
           </div>
         {{/each}}
       </div>
       <div class="col--4-12 u-align-right">
-        {{#if uittreksel}}
-          <LinkTo @route="bestuurseenheid.zitting.uittreksels.detail" @model={{uittreksel.id}} property="lblodBesluit:linkToPublication" class="button button--alt button--alt--blue button--narrow button--small">
+        {{#if this.uittreksel}}
+          <LinkTo @route="bestuurseenheid.zitting.uittreksels.detail" @model={{this.uittreksel.id}} property="lblodBesluit:linkToPublication" class="button button--alt button--alt--blue button--narrow button--small">
             Bekijk volledige inhoud <i class="vi vi-arrow vi-u-s button__icon"></i>
           </LinkTo>
         {{/if}}
@@ -33,4 +33,3 @@
     </div>
   </div>
 </div>
-{{yield}}

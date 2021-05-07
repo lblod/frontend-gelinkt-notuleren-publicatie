@@ -19,9 +19,12 @@
       </h1>
 
       <div class="grid grid--is-stacked">
-        {{#each uittreksels as |uittreksel|}}
+        {{#each this.uittreksels as |uittreksel|}}
           <div class="col--12-12">
-            <UittrekselOverviewItem @uittreksel={{uittreksel}} />
+            <UittrekselOverviewItem
+              @uittreksel={{uittreksel}}
+              @besluit={{uittreksel.behandelingVanAgendapunt.besluiten.firstObject}}
+            />
           </div>
         {{else}}
           <div class="col--12-12">
