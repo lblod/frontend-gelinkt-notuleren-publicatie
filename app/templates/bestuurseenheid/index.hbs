@@ -73,15 +73,13 @@
           </div> --}}
           {{outlet}}
         {{else}}
-          <section class="region">
-            <div class="layout layout--wide">
-              <h1 class="h1">Er werden nog geen publicaties voor {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}} gevonden</h1>
-              <p>Kom later nog eens terug, of
-                <LinkTo @route="index" class="link--icon">
-                  zoek naar publicaties van een ander bestuur.
-                </LinkTo>
-              </p>
-            </div>
+          <section class="au-o-layout au-o-region-large">
+            <h1 class="h1">Er werden nog geen publicaties voor {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}} gevonden</h1>
+            <p>Kom later nog eens terug, of
+              <LinkTo @route="index" class="link--icon">
+                zoek naar publicaties van een ander bestuur.
+              </LinkTo>
+            </p>
           </section>
         {{/if}}
       </div>
