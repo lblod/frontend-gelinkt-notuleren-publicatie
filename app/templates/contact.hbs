@@ -1,20 +1,36 @@
-<section class="region">
-  <div class="layout layout--wide">
-    <h1 class="h1">Contact</h1>
-    <form class="u-spacer--large js-formvalidation-bound">
-      <div class="form__row">
-        <label class="form__label form__label--large form__label--block" for="select">Waar gaat uw bericht over?</label>
-        <WuRadioButton @label="Een functionaliteit, bug of probleem" @value="GelinktNotuleren@vlaanderen.be?subject=Functionaliteit of bug of probleem" @onChange={{fn (mut this.mailto)}} @isBlock={{true}} />
-        <WuRadioButton @label="Een inhoudelijke vraag" @value="GelinktNotuleren@vlaanderen.be?subject=Inhoudelijke vraag" @onChange={{fn (mut this.mailto)}} @isBlock={{true}} />
-        <div class="form__error" aria-describedby="radio-buttons"></div>
+<section class="au-o-layout au-o-region-large">
+  <AuHeading class="au-u-margin-bottom-large">Contact</AuHeading>
+  <form>
+    <fieldset class="au-u-margin-bottom-small">
+      <legend class="au-u-h4 au-u-margin-bottom-tiny">Waar gaat uw bericht over?</legend>
+      <div>
+        <AuControlRadio
+          @name="contact-subject"
+          @label="Een functionaliteit, bug of probleem"
+          @value="GelinktNotuleren@vlaanderen.be?subject=Functionaliteit of bug of probleem"
+          @onChange={{fn (mut this.mailto)}}
+        />
       </div>
+      <div>
+        <AuControlRadio
+          @name="contact-subject"
+          @label="Een inhoudelijke vraag"
+          @value="GelinktNotuleren@vlaanderen.be?subject=Inhoudelijke vraag"
+          @onChange={{fn (mut this.mailto)}}
+        />
+      </div>
+    </fieldset>
 
-      {{#if this.mailto}}
-        <a href={{concat "mailto:" this.mailto}} class="button button--large">Bericht versturen</a>
-      {{else}}
-        <WuButton @label="Bericht versturen" @onClick={{null}} @size="large" @disabled={{true}} />
-      {{/if}}
-    </form>
-    <p class="u-spacer--large">Of neem rechtstreeks contact op via mail <a href="mailto:gelinktnotuleren@vlaanderen.be">GelinktNotuleren@vlaanderen.be</a>.</p>
-  </div>
+    {{#if this.mailto}}
+      <a href={{concat "mailto:" this.mailto}} class="au-c-button au-c-button--large">Bericht versturen</a>
+    {{else}}
+      <AuButton @size="large" @disabled={{true}}>
+        Bericht versturen
+      </AuButton>
+    {{/if}}
+    <p class="au-u-margin-top-large au-u-margin-bottom-large">
+      Of neem rechtstreeks contact op via mail
+      <a href="mailto:gelinktnotuleren@vlaanderen.be">GelinktNotuleren@vlaanderen.be</a>.
+    </p>
+  </form>
 </section>
