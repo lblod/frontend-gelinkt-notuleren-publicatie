@@ -1,90 +1,87 @@
-<div class="container-flex--contain">
-  <div class="container-flex--scroll u-padding--round--small">
-    <div class="grid grid--align-center">
-      <div class="col--8-12 col--1-1--s">
-        {{#if model.length}}
-          <h1 class="h1 u-spacer--top--small">
-            Publicaties van {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}}
-          </h1>
-          {{#each model as |zitting|}}
-            <div class="u-spacer">
-              <WithRdfaContext @model={{zitting}} @class="grid grid--is-stacked" as |ctx|>
-                <div class="col--6-12 col--1-1--s">
-                  <ctx.get @prop="bestuursorgaan" as |elements _ bInTimeCtx|>
-                    <h2 class="h4" {{rdfa elements}}>
-                      <bInTimeCtx.get @prop="isTijdsspecialisatieVan" as |elements _ bCtx|>
-                        <span {{rdfa elements}}>
-                          <bCtx.get @prop="naam" />
-                        </span>
-                      </bInTimeCtx.get>
-                    </h2>
-                  </ctx.get>
+<div class="au-o-region-large">
+  <div class="au-o-layout">
+    {{#if model.length}}
+      <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Publicaties van {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}}</AuHeading>
+      <ul class="au-c-list">
+      {{#each model as |zitting|}}
+        <li class="au-c-list__item">
+          <WithRdfaContext @model={{zitting}} class="au-o-box au-o-box--small au-c-card au-c-card--divided" as |ctx|>
+            <div class="au-c-card__header">
+              <ctx.get @prop="bestuursorgaan" as |elements _ bInTimeCtx|>
+                <h2 class="au-c-heading au-c-heading--4" {{rdfa elements}}>
+                  <bInTimeCtx.get @prop="isTijdsspecialisatieVan" as |elements _ bCtx|>
+                    <span {{rdfa elements}}>
+                      <bCtx.get @prop="naam" />
+                    </span>
+                  </bInTimeCtx.get>
+                </h2>
+              </ctx.get>
+            </div>
+            <div class="au-c-card__content au-u-padding-top-small">
+              <div class="au-o-grid au-o-grid--small">
+                <div class="au-c-content au-c-content--large au-o-grid__item au-u-3-4@medium">
                   <p>
                     <ctx.get @prop="geplandeStart" as |elements value|>
-                      <span {{rdfa elements}} class="u-spacer--tiny">{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
+                      <span {{rdfa elements}}>{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
                     </ctx.get>
                   </p>
-                  <ul>
-                  </ul>
-                  <ul class="inline-list">
+                  <ul class="au-c-list-horizontal au-u-margin-top-small">
                     {{#if zitting.notulen.id}}
-                      <li>
-                        <WuPill @class="pill--small pill--primary-blue">
-                          <i class="vi vi-news"></i> Notulen
-                        </WuPill>
+                      <li class="au-c-list-horizontal__item">
+                        <AuPill @skin="action" @icon="draft" @iconAlignment="left">
+                          Notulen
+                        </AuPill>
                       </li>
                     {{/if}}
                     {{#if zitting.besluitenlijst.id }}
-                      <li>
-                        <WuPill @class="pill--small pill--primary-yellow">
-                          <i class="vi vi-news"></i> Besluitenlijst
-                        </WuPill>
+                      <li class="au-c-list-horizontal__item">
+                        <AuPill @skin="warning" @icon="draft" @iconAlignment="left">
+                          Besluitenlijst
+                        </AuPill>
                       </li>
                     {{/if}}
                     {{#if zitting.uittreksels.length}}
-                      <li>
-                        <WuPill @class="pill--small pill--primary-yellow">
-                          <i class="vi vi-news"></i> Bekendmakingen en uittreksels
-                        </WuPill>
+                      <li class="au-c-list-horizontal__item">
+                        <AuPill @skin="warning" @icon="draft" @iconAlignment="left">
+                          Bekendmakingen en uittreksels
+                        </AuPill>
                       </li>
                     {{/if}}
                     {{#if zitting.agendas.length}}
-                      <li>
-                        <WuPill @class="pill--small">
-                          <i class="vi vi-news"></i> Agenda
-                        </WuPill>
+                      <li class="au-c-list-horizontal__item">
+                        <AuPill @icon="draft" @iconAlignment="left">
+                          Agenda
+                        </AuPill>
                       </li>
                     {{/if}}
                   </ul>
                 </div>
-                <div class="col--6-12 col--1-1--s u-align-right u-align-left--s">
-                  <a property="lblodBesluit:linkToPublication" href={{href-to "bestuurseenheid.zitting.index" zitting.id}} class="button button--small">
-                    <i class="vi vi-arrow vi-u-s button__icon"></i>
+                <div class="au-o-grid__item au-u-1-4@medium">
+                  <a property="lblodBesluit:linkToPublication" href={{href-to "bestuurseenheid.zitting.index" zitting.id}} class="au-c-button au-c-button--block">
                     Bekijk publicaties
+                    <AuIcon @icon="arrow-right" @alignment="right" />
                   </a>
                 </div>
-              </WithRdfaContext>
-              <div class="u-hr u-spacer--tb"></div>
+              </div>
             </div>
-          {{/each}}
-          {{!-- <div class="sidebar__footer">
-            {{number-pagination page=page size=size nbOfItems=model.length
-                total=model.meta.count links=model.meta.pagination}}
-          </div> --}}
-          {{outlet}}
-        {{else}}
-          <section class="region">
-            <div class="layout layout--wide">
-              <h1 class="h1">Er werden nog geen publicaties voor {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}} gevonden</h1>
-              <p>Kom later nog eens terug, of
-                <LinkTo @route="index" class="link--icon">
-                  zoek naar publicaties van een ander bestuur.
-                </LinkTo>
-              </p>
-            </div>
-          </section>
-        {{/if}}
-      </div>
-    </div>
+          </WithRdfaContext>
+        </li>
+      {{/each}}
+      </ul>
+      {{!-- <div class="sidebar__footer">
+        {{number-pagination page=page size=size nbOfItems=model.length
+            total=model.meta.count links=model.meta.pagination}}
+      </div> --}}
+      {{outlet}}
+    {{else}}
+    <AuContent>
+      <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Er werden nog geen publicaties voor {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}} gevonden</AuHeading>
+      <p>Kom later nog eens terug, of
+        <LinkTo @route="index" class="au-c-link">
+          zoek naar publicaties van een ander bestuur.
+        </LinkTo>
+      </p>
+    </AuContent>
+    {{/if}}
   </div>
 </div>

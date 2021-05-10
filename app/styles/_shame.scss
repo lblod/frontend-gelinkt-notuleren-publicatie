@@ -10,6 +10,18 @@
   }
 }
 
+// List
+.au-c-list {
+  list-style: none;
+  margin-bottom: 0;
+}
+
+.au-c-list__item {
+  & + & {
+    margin-top: $au-unit-small;
+  }
+}
+
 // Steps
 .au-c-steps {
   list-style: none;
