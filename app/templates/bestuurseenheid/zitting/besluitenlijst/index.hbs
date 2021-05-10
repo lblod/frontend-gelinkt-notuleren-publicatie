@@ -1,49 +1,47 @@
-<div class="container-flex--scroll u-padding--round">
-  <div class="grid">
-    <div typeof="besluit:Zitting" resource={{model.zitting.uri}} class="col--7-12 col--9-12--m col--1-1--s">
-      <h1 class="h1 u-spacer--tb--small">Besluitenlijst van
-        <span resource={{model.zitting.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
-          <span resource={{model.zitting.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
-            <span property="skos:prefLabel">{{model.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
-          </span>
-        </span>, zitting van
-        {{#if model.zitting.gestartOpTijdstip}}
-          <span class="u-spacer--tiny" property="prov:startedAtTime" content={{iso-date model.zitting.gestartOpTijdstip}} datatype="xsd:dateTime">
-            {{moment-format model.zitting.gestartOpTijdstip 'D MMMM YYYY, HH:mm'}}
-          </span>
-        {{else}}
-          {{!-- fallback for old data --}}
-          <span class="u-spacer--tiny" property="prov:startedAtTime" content={{iso-date model.zitting.geplandeStart}} datatype="xsd:dateTime">
-            {{moment-format model.zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}
-          </span>
-        {{/if}}
-      </h1>
-      <div property="besluit:heeftBesluitenlijst" resource={{model.besluitenlijst.uri}} typeof="https://data.vlaanderen.be/id/concept/BesluitDocumentType/3fa67785-ffdc-4b30-8880-2b99d97b4dee foaf:Document">
-        <div class="u-spacer">
-          <p class="h5 u-spacer--tiny">
-            Besluitenlijst goedgekeurd door
-            <span property="eli:passed_by" resource={{model.zitting.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan">
-              <span resource={{model.zitting.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
-                <span property="skos:prefLabel">{{model.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
-              </span>
+<div class="au-o-layout">
+  <div typeof="besluit:Zitting" resource={{model.zitting.uri}} class="au-o-region-large">
+    <h1 class="h1 u-spacer--tb--small">Besluitenlijst van
+      <span resource={{model.zitting.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
+        <span resource={{model.zitting.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
+          <span property="skos:prefLabel">{{model.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
+        </span>
+      </span>, zitting van
+      {{#if model.zitting.gestartOpTijdstip}}
+        <span class="u-spacer--tiny" property="prov:startedAtTime" content={{iso-date model.zitting.gestartOpTijdstip}} datatype="xsd:dateTime">
+          {{moment-format model.zitting.gestartOpTijdstip 'D MMMM YYYY, HH:mm'}}
+        </span>
+      {{else}}
+        {{!-- fallback for old data --}}
+        <span class="u-spacer--tiny" property="prov:startedAtTime" content={{iso-date model.zitting.geplandeStart}} datatype="xsd:dateTime">
+          {{moment-format model.zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}
+        </span>
+      {{/if}}
+    </h1>
+    <div property="besluit:heeftBesluitenlijst" resource={{model.besluitenlijst.uri}} typeof="https://data.vlaanderen.be/id/concept/BesluitDocumentType/3fa67785-ffdc-4b30-8880-2b99d97b4dee foaf:Document">
+      <div class="u-spacer">
+        <p class="h5 u-spacer--tiny">
+          Besluitenlijst goedgekeurd door
+          <span property="eli:passed_by" resource={{model.zitting.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan">
+            <span resource={{model.zitting.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
+              <span property="skos:prefLabel">{{model.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
             </span>
-          </p>
-          <p class="h5">
-            Datum publicatie:
-            {{#if model.besluitenlijst.publicatiedatum}}
-              <span property="eli:date_publication" content={{moment-format model.besluitenlijst.publicatiedatum 'YYYY-MM-DD'}} datatype="xsd:date">
-                {{moment-format model.besluitenlijst.publicatiedatum 'D MMMM YYYY'}}
-              </span>
-            {{else}}
-              {{!-- old data does not have this field --}}
-              ongekend
-            {{/if}}
-          </p>
-        </div>
-        <div typeof="besluit:Zitting" resource={{model.zitting.uri}}>
-          <div class="grid grid--is-stacked">
-            <Besluitenlijst @besluitenlijst={{model.besluitenlijst}} @besluiten={{model.besluiten}} />
-          </div>
+          </span>
+        </p>
+        <p class="h5">
+          Datum publicatie:
+          {{#if model.besluitenlijst.publicatiedatum}}
+            <span property="eli:date_publication" content={{moment-format model.besluitenlijst.publicatiedatum 'YYYY-MM-DD'}} datatype="xsd:date">
+              {{moment-format model.besluitenlijst.publicatiedatum 'D MMMM YYYY'}}
+            </span>
+          {{else}}
+            {{!-- old data does not have this field --}}
+            ongekend
+          {{/if}}
+        </p>
+      </div>
+      <div typeof="besluit:Zitting" resource={{model.zitting.uri}}>
+        <div class="grid grid--is-stacked">
+          <Besluitenlijst @besluitenlijst={{model.besluitenlijst}} @besluiten={{model.besluiten}} />
         </div>
       </div>
     </div>

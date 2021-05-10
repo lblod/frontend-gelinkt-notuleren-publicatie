@@ -1,39 +1,37 @@
-<div class="container-flex--scroll u-padding--round">
-  <div class="grid">
-    <WithRdfaContext @model={{model}} @class="col--7-12 col--9-12--m col--1-1--s" as |ctx|>
-      <h1 class="h1 u-spacer--top--small">
-        Bekendmakingen en uittreksels van
-        <ctx.get @prop="bestuursorgaan" as |elements _ bInTimeCtx|>
-          <span {{rdfa elements}}>
-            <bInTimeCtx.get @prop="isTijdsspecialisatieVan" as |elements _ bCtx|>
-              <span {{rdfa elements}}>
-                <bCtx.get @prop="naam" />
-              </span>
-            </bInTimeCtx.get>
-          </span>
-        </ctx.get>
-        , zitting van
-        <ctx.get @prop="geplandeStart" as |elements value|>
-          <span {{rdfa elements}} class="u-spacer--tiny">{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
-        </ctx.get>
-      </h1>
+<div class="au-o-layout">
+  <WithRdfaContext @model={{model}} @class="au-o-region-large" as |ctx|>
+    <h1 class="h1 u-spacer--top--small">
+      Bekendmakingen en uittreksels van
+      <ctx.get @prop="bestuursorgaan" as |elements _ bInTimeCtx|>
+        <span {{rdfa elements}}>
+          <bInTimeCtx.get @prop="isTijdsspecialisatieVan" as |elements _ bCtx|>
+            <span {{rdfa elements}}>
+              <bCtx.get @prop="naam" />
+            </span>
+          </bInTimeCtx.get>
+        </span>
+      </ctx.get>
+      , zitting van
+      <ctx.get @prop="geplandeStart" as |elements value|>
+        <span {{rdfa elements}} class="u-spacer--tiny">{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
+      </ctx.get>
+    </h1>
 
-      <div class="grid grid--is-stacked">
-        {{#each this.uittreksels as |uittreksel|}}
-          <div class="col--12-12">
-            <UittrekselOverviewItem
-              @uittreksel={{uittreksel}}
-              @besluit={{uittreksel.behandelingVanAgendapunt.besluiten.firstObject}}
-            />
-          </div>
-        {{else}}
-          <div class="col--12-12">
-            <p>Geen bekendmakingen of uittreksels beschikbaar.</p>
-          </div>
-        {{/each}}
-      </div>
-    </WithRdfaContext>
-  </div>
+    <div class="grid grid--is-stacked">
+      {{#each this.uittreksels as |uittreksel|}}
+        <div class="col--12-12">
+          <UittrekselOverviewItem
+            @uittreksel={{uittreksel}}
+            @besluit={{uittreksel.behandelingVanAgendapunt.besluiten.firstObject}}
+          />
+        </div>
+      {{else}}
+        <div class="col--12-12">
+          <p>Geen bekendmakingen of uittreksels beschikbaar.</p>
+        </div>
+      {{/each}}
+    </div>
+  </WithRdfaContext>
 </div>
 
 {{outlet}}
