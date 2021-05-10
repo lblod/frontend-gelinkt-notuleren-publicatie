@@ -5,7 +5,7 @@
       <ul class="au-c-list">
       {{#each model as |zitting|}}
         <li class="au-c-list__item">
-          <WithRdfaContext @model={{zitting}} class="au-o-box au-o-box--small au-c-card au-c-card--divided" as |ctx|>
+          <WithRdfaContext @model={{zitting}} class="au-o-box au-c-card au-c-card--divided" as |ctx|>
             <div class="au-c-card__header">
               <ctx.get @prop="bestuursorgaan" as |elements _ bInTimeCtx|>
                 <h2 class="au-c-heading au-c-heading--4" {{rdfa elements}}>
