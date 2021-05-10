@@ -10,7 +10,33 @@
   }
 }
 
+// Steps
+.au-c-steps {
+  list-style: none;
+}
 
+.au-c-steps__item {
+  position: relative;
+
+  & + & {
+    margin-top: $au-unit;
+  }
+
+  & + &:before {
+    content: "";
+    position: absolute;
+    display: block;
+    left: $au-unit * 2;
+    bottom: 100%;
+    width: .2rem;
+    height: $au-unit;
+    background-color: $au-gray-300;
+  }
+}
+
+
+
+//old
 .u-word-break--word-break {
 	word-break: word-break;
 }

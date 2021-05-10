@@ -1,15 +1,13 @@
-<div class="u-spacer--small">
-  <PowerSelect
-    @ariaLabel="Zoekbalk"
-    @placeholder="Oost-Vlaanderen, Berchem, Hasselt, ..."
-    @selected={{@selected}}
-    @searchEnabled={{true}}
-    @options={{this.bestuurseenheidNamen}}
-    @search={{perform this.findBestuurseenheidNamen}}
-    @onChange={{@onSelect}}
-    @allowClear={{true}}
-    as |bestuurseenheidNaam|
-  >
-    {{bestuurseenheidNaam}}
-  </PowerSelect>
-</div>
+<PowerSelect
+  @ariaLabel="Zoekbalk"
+  @placeholder="Oost-Vlaanderen, Berchem, Hasselt, ..."
+  @selected={{@selected}}
+  @searchEnabled={{true}}
+  @options={{this.bestuurseenheidNamen}}
+  @search={{perform this.findBestuurseenheidNamen}}
+  @onChange={{@onSelect}}
+  @allowClear={{true}}
+  as |bestuurseenheidNaam|
+>
+  {{bestuurseenheidNaam}}
+</PowerSelect>
