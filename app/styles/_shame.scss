@@ -1,3 +1,15 @@
+// Add main app container
+.au-c-app-container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+
+
+  @include mq(medium) {
+    overflow: hidden;
+  }
+}
+
 
 .u-word-break--word-break {
 	word-break: word-break;
