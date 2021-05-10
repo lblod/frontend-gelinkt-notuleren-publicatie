@@ -34,6 +34,12 @@
   }
 }
 
+// Make breadcrumb toolbar a smaller default font-size
+// @TODO: create a utility or toolbar modifier?
+.au-c-toolbar__breadcrumbs {
+  font-size: $au-base;
+}
+
 
 
 //old
