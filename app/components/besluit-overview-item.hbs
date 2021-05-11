@@ -1,32 +1,35 @@
-<div typeof="besluit:Besluit" resource={{@besluit.uri}} class="info-tile">
-  <div class="info-tile__header__wrapper">
-    <div class="grid">
-      <div class="col--8-12">
-        <link property="prov:wasGeneratedBy" resource={{@besluit.volgendUitBehandelingVanAgendapunt.uri}}>
-        <h3 class="info-tile__header__title u-spacer--tinier" property="eli:title">
-          {{clean-spaces @besluit.titel}}
-        </h3>
+<div typeof="besluit:Besluit" resource={{@besluit.uri}} class="au-o-box au-c-card au-c-card--divided">
+  <div class="au-c-card__header">
+    <link property="prov:wasGeneratedBy" resource={{@besluit.volgendUitBehandelingVanAgendapunt.uri}}>
+    <h3 class="au-c-heading au-c-heading--4" property="eli:title">
+      {{clean-spaces @besluit.titel}}
+    </h3>
+  </div>
+  <div class="au-c-card__content">
+    <div class="au-o-grid au-o-grid--small">
+      <div class="au-o-grid__item au-u-3-4@medium">
         {{#if @besluit.beschrijving}}
-          <p class="info-tile__header__subtitle" property="eli:description">
+          <p class="au-c-help-text" property="eli:description">
             {{@besluit.beschrijving}}
           </p>
         {{else}}
-          <p class="text-fade">Korte beschrijving niet gevonden</p>
+          <p class="au-c-help-text au-c-help-text--secondary">Korte beschrijving niet gevonden</p>
         {{/if}}
         {{#unless this.uittreksel}}
-          <p class="smallest text-fade uppercase u-spacer--top--tiny">Volledige inhoud niet publiek</p>
+          <p class="sau-c-help-text au-c-help-text--tertiary">Volledige inhoud niet publiek</p>
         {{/unless}}
-        <h3 class="h4">Stemmingen</h3>
+        <h3 class="au-c-heading au-c-heading--5 au-u-margin-top-small">Stemmingen</h3>
         {{#each this.stemmingen as |stemming|}}
           <div typeof="http://data.vlaanderen.be/ns/besluit#Stemming" resource="{{stemming.uri}}" property="http://data.vlaanderen.be/ns/besluit#heeftStemming">
             <p> <strong>Onderwerp:</strong> <span property="http://data.vlaanderen.be/ns/besluit#onderwerp">{{stemming.onderwerp}}</span>, <strong>Gevolg:</strong> <span property="http://data.vlaanderen.be/ns/besluit#gevolg">{{stemming.gevolg}}</span></p>
           </div>
         {{/each}}
       </div>
-      <div class="col--4-12 u-align-right">
+      <div class="au-o-grid__item au-u-1-4@medium">
         {{#if this.uittreksel}}
-          <LinkTo @route="bestuurseenheid.zitting.uittreksels.detail" @model={{this.uittreksel.id}} property="lblodBesluit:linkToPublication" class="button button--alt button--alt--blue button--narrow button--small">
-            Bekijk volledige inhoud <i class="vi vi-arrow vi-u-s button__icon"></i>
+          <LinkTo @route="bestuurseenheid.zitting.uittreksels.detail" @model={{this.uittreksel.id}} property="lblodBesluit:linkToPublication" class="au-c-button au-c-button--block">
+            Bekijk volledige inhoud
+            <AuIcon @icon="nav-right" @alignment="right" />
           </LinkTo>
         {{/if}}
       </div>

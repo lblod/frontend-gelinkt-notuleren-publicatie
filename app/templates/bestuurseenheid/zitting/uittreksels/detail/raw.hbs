@@ -1,11 +1,11 @@
-<div class="container-flex--scroll u-padding--round">
-  <div class="grid">
-    <div {{rdfa elements}} class="col--8-12">
-      <h1 class="h1 u-spacer--top--small">
+<div class="au-o-layout">
+  <div class="au-o-region-large">
+    <div {{rdfa elements}}>
+      <AuHeading @skin="2">
         Type document
         <br>
         <a href="http://data.lblod.info/id/document-types/uittreksel" property="dct:type">Uittreksel document</a>
-      </h1>
+      </AuHeading>
       <div property="prov:value" class="document-publish">
         {{{ model.inhoud }}}
       </div>
