@@ -1,0 +1,12 @@
+/* ==========================================================================
+  Print
+  Style what printing looks like here.
+ ========================================================================== */
+
+@media print {
+  .au-c-main-header,
+  .au-c-toolbar,
+  .au-c-main-footer {
+    display: none !important;
+  }
+}

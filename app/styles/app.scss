@@ -43,13 +43,10 @@
 @import "appuniversum/o-layout";
 @import "appuniversum/o-region";
 
-// WU COMPONENTS (DEPRECATED)
-@import 'ember-vo-webuniversum';
 
 // PROJECT (DEPRECATED)
-@import 'deprecated/colors';
-@import 'deprecated/print';
-@import 'deprecated/publicatie';
+@import 'deprecated/webuniversum';
+
 
 // COMPONENTS
 @import "ember-appuniversum/c-alert";
@@ -87,6 +84,11 @@
 @import "ember-appuniversum/c-toolbar";
 @import "ember-appuniversum/c-toggle-switch";
 
+
+// PROJECT
+@import 'project/publicatie';
+
+
 // PLUGINS
 @import "ember-appuniversum/p-ember-power-select";
 @import "ember-appuniversum/p-duet-datepicker";
@@ -106,6 +108,8 @@
 @import "appuniversum/u-visible";
 @import "appuniversum/u-widths";
 
+// PROJECT UTILITIES
+@import 'project/print';
 
 // TEMPORARY HACKS AND QUICKFIXES
 @import 'shame';
