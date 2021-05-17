@@ -2,18 +2,22 @@
   <div class="au-c-card__header">
     <div class="au-o-grid au-o-grid--small">
       <div class="au-o-grid__item au-u-3-4@medium">
-        <h2 property="dct:title" class="au-c-heading au-c-heading--4">{{clean-spaces @agendapunt.titel}}</h2>
+        <AuHeading @level="2" @skin="4" property="dct:title">{{clean-spaces @agendapunt.titel}}</</AuHeading>
         {{#if @agendapunt.beschrijving}}
-          <p property="dct:description"  class="au-c-help-text au-c-help-text--secondary">{{clean-spaces @agendapunt.beschrijving}}</p>
+          <p property="dct:description">
+            <AuHelpText @skin="secondary">{{clean-spaces @agendapunt.beschrijving}}</AuHelpText>
+          </p>
         {{/if}}
         <span property="besluit:geplandOpenbaar" content={{@agendapunt.geplandOpenbaar}} class="au-u-hidden"></span>
         {{#unless this.uittreksel.inhoud}}
-          <p class="au-c-help-text au-c-help-text--secondary">Inhoud niet publiek</p>
+          <p>
+            <AuHelpText @skin="secondary">Inhoud niet publiek</AuHelpText>
+          </p>
         {{/unless}}
       </div>
       <div class="au-o-grid__item au-u-1-4@medium">
         {{#if this.uittreksel.inhoud}}
-          <LinkTo @route="bestuurseenheid.zitting.uittreksels.detail" @model={{this.uittreksel.id}} @tagName="button" property="lblodBesluit:linkToPublication" class="au-c-button au-c-button--block">
+          <LinkTo @route="bestuurseenheid.zitting.uittreksels.detail" @model={{this.uittreksel.id}} property="lblodBesluit:linkToPublication" class="au-c-button au-c-button--block">
             Bekijk volledige inhoud
             <AuIcon @icon="nav-right" @alignment="right" />
           </LinkTo>
