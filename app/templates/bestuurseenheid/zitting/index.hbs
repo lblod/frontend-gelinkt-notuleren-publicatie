@@ -1,38 +1,38 @@
 <div class="au-o-region-large">
   <div class="au-o-layout">
-    <div typeof="besluit:Zitting" resource={{model.uri}}>
+    <div typeof="besluit:Zitting" resource={{this.zitting.uri}}>
       <AuHeading @skin="2" class="au-u-margin-bottom">
         Publicaties voor de zitting van
-        <span resource={{model.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
-          <span resource={{model.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
-            <span property="skos:prefLabel">{{model.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
+        <span resource={{this.zitting.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
+          <span resource={{this.zitting.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
+            <span property="skos:prefLabel">{{this.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
           </span>
         </span>
         <br>
         op
-        <span property="besluit:geplandeStart" content={{iso-date model.geplandeStart}} datatype="xsd:dateTime">{{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}</span>
+        <span property="besluit:geplandeStart" content={{iso-date this.zitting.geplandeStart}} datatype="xsd:dateTime">{{moment-format this.zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}</span>
       </AuHeading>
       <ul class="au-c-steps">
         <li class="au-c-steps__item">
-          {{#if model.notulen}}
+          {{#if this.zitting.notulen}}
           <div class="au-o-box au-c-card au-c-card--flex au-c-card--link">
             <div class="au-c-card__header">
               <AuBadge @icon="draft" @skin="brand" />
               <div>
                 <AuHeading @level="2" @skin="4">Notulen</AuHeading>
-                {{#if notulenPublicationDate}}
+                {{#if this.notulenPublicationDate}}
                   Gepubliceerd op:
                   <strong>
-                  {{moment-format notulenPublicationDate 'D'}}
-                  {{moment-format notulenPublicationDate 'MMM'}}</strong>
+                  {{moment-format this.notulenPublicationDate 'D'}}
+                  {{moment-format this.notulenPublicationDate 'MMM'}}</strong>
                 {{/if}}
               </div>
               <span class="au-u-hidden-visually">
-                <a href={{href-to "bestuurseenheid.zitting.notulen" model.id}} property="lblodBesluit:linkToPublication" tabindex="-1">
-                  <span resource={{model.notulen.uri}} typeof="foaf:Document" property="besluit:heeftNotulen"/>
+                <a href={{href-to "bestuurseenheid.zitting.notulen" this.zitting.id}} property="lblodBesluit:linkToPublication" tabindex="-1">
+                  <span resource={{this.zitting.notulen.uri}} typeof="foaf:Document" property="besluit:heeftNotulen"/>
                 </a>
               </span>
-              <LinkTo @route="bestuurseenheid.zitting.notulen" @model={{model.id}} class="au-c-card__link">
+              <LinkTo @route="bestuurseenheid.zitting.notulen" @model={{this.zitting.id}} class="au-c-card__link">
                 <span class="au-u-hidden-visually">Bekijk notulen</span>
                 <AuIcon @icon="nav-right" @size="large" />
               </LinkTo>
@@ -53,27 +53,27 @@
                 Backend needs update I guess to deal with the correct condition --}}
 
         <li class="au-c-steps__item">
-          {{#if model.uittreksels.length}}
+          {{#if this.zitting.uittreksels.length}}
           <div class="au-o-box au-c-card au-c-card--flex au-c-card--link">
             <div class="au-c-card__header">
               <AuBadge @icon="draft" @skin="brand" />
               <div>
                 <AuHeading @level="2" @skin="4">Bekendmakingen en uittreksels</AuHeading>
-                {{#if besluitenlijstPublicationDate}}
+                {{#if this.besluitenlijstPublicationDate}}
                   Gepubliceerd op:
                   <strong>
-                  {{moment-format besluitenlijstPublicationDate 'D'}}
-                  {{moment-format besluitenlijstPublicationDate 'MMM'}}</strong>
+                  {{moment-format this.besluitenlijstPublicationDate 'D'}}
+                  {{moment-format this.besluitenlijstPublicationDate 'MMM'}}</strong>
                 {{/if}}
               </div>
               <span class="au-u-hidden-visually">
-                {{#each model.uittreksels as |uittreksel index|}}
-                  <a href={{href-to "bestuurseenheid.zitting.uittreksels.detail.raw" model.id}} property="lblodBesluit:linkToPublication" tabindex="-1">
+                {{#each this.zitting.uittreksels as |uittreksel|}}
+                  <a href={{href-to "bestuurseenheid.zitting.uittreksels.detail.raw" this.zitting.id}} property="lblodBesluit:linkToPublication" tabindex="-1">
                     <span resource={{uittreksel.uri}} typeof="foaf:Document" property="besluit:heeftUittreksel"/>
                   </a>
                 {{/each}}
               </span>
-              <LinkTo @route="bestuurseenheid.zitting.uittreksels" @model={{model.id}} class="au-c-card__link">
+              <LinkTo @route="bestuurseenheid.zitting.uittreksels" @model={{this.zitting.id}} class="au-c-card__link">
                 <span class="au-u-hidden-visually">Bekijk bekendmakingen en uittreksels</span>
                 <AuIcon @icon="nav-right" @size="large" />
               </LinkTo>
@@ -90,25 +90,25 @@
         </li>
 
         <li class="au-c-steps__item">
-          {{#if model.besluitenlijst.id}}
+          {{#if this.zitting.besluitenlijst.id}}
           <div class="au-o-box au-c-card au-c-card--flex au-c-card--link">
             <div class="au-c-card__header">
               <AuBadge @icon="draft" @skin="brand" />
               <div>
                 <AuHeading @level="2" @skin="4">Besluitenlijst</AuHeading>
-                {{#if besluitenlijstPublicationDate}}
+                {{#if this.besluitenlijstPublicationDate}}
                   Gepubliceerd op:
                   <strong>
-                  {{moment-format besluitenlijstPublicationDate 'D'}}
-                  {{moment-format besluitenlijstPublicationDate 'MMM'}}</strong>
+                  {{moment-format this.besluitenlijstPublicationDate 'D'}}
+                  {{moment-format this.besluitenlijstPublicationDate 'MMM'}}</strong>
                 {{/if}}
               </div>
               <span class="au-u-hidden-visually">
-                <a href={{href-to "bestuurseenheid.zitting.besluitenlijst" model.id}} property="lblodBesluit:linkToPublication" tabindex="-1">
-                  <span resource={{model.besluitenlijst.uri}} typeof="foaf:Document" property="besluit:heeftBesluitenlijst"/>
+                <a href={{href-to "bestuurseenheid.zitting.besluitenlijst" this.zitting.id}} property="lblodBesluit:linkToPublication" tabindex="-1">
+                  <span resource={{this.zitting.besluitenlijst.uri}} typeof="foaf:Document" property="besluit:heeftBesluitenlijst"/>
                 </a>
               </span>
-              <LinkTo @route="bestuurseenheid.zitting.besluitenlijst" @model={{model.id}} class="au-c-card__link">
+              <LinkTo @route="bestuurseenheid.zitting.besluitenlijst" @model={{this.zitting.id}} class="au-c-card__link">
                 <span class="au-u-hidden-visually">Bekijk besluitenlijst</span>
                 <AuIcon @icon="nav-right" @size="large" />
               </LinkTo>
@@ -125,27 +125,27 @@
         </li>
 
         <li class="au-c-steps__item">
-          {{#if model.agenda.id}}
+          {{#if this.zitting.agenda.id}}
           <div class="au-o-box au-c-card au-c-card--flex au-c-card--link">
             <div class="au-c-card__header">
               <AuBadge @icon="draft" @skin="brand" />
               <div>
                 <AuHeading @level="2" @skin="4">Agenda</AuHeading>
-                {{#if agendaPublicationDate}}
+                {{#if this.agendaPublicationDate}}
                   Gepubliceerd op:
                   <strong>
-                  {{moment-format agendaPublicationDate 'D'}}
-                  {{moment-format agendaPublicationDate 'MMM'}}</strong>
+                  {{moment-format this.agendaPublicationDate 'D'}}
+                  {{moment-format this.agendaPublicationDate 'MMM'}}</strong>
                 {{/if}}
               </div>
               <span class="au-u-hidden-visually">
-                {{#each model.agendas as |agenda index|}}
-                <a href={{href-to "bestuurseenheid.zitting.agenda.raw" model.id}} property="lblodBesluit:linkToPublication" tabindex="-1">
+                {{#each this.zitting.agendas as |agenda|}}
+                <a href={{href-to "bestuurseenheid.zitting.agenda.raw" this.zitting.id}} property="lblodBesluit:linkToPublication" tabindex="-1">
                   <span resource={{agenda.uri}} typeof="foaf:Document" property="besluit:heeftAgenda"/>
                 </a>
                 {{/each}}
               </span>
-              <LinkTo @route="bestuurseenheid.zitting.agenda" @model={{model.id}} class="au-c-card__link">
+              <LinkTo @route="bestuurseenheid.zitting.agenda" @model={{this.zitting.id}} class="au-c-card__link">
                 <span class="au-u-hidden-visually">Bekijk agenda</span>
                 <AuIcon @icon="nav-right" @size="large" />
               </LinkTo>

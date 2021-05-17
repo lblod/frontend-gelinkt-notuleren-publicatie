@@ -1,22 +1,22 @@
 <div class="au-o-layout">
   <a href="http://data.lblod.info/id/document-types/agenda" property="dct:type" class="au-u-hidden"></a>
 
-  <div class="au-o-region-large" typeof="besluit:Zitting" resource={{model.uri}}>
+  <div class="au-o-region-large" typeof="besluit:Zitting" resource={{this.model.uri}}>
     <AuHeading @skin="2" class="au-u-margin-bottom">
-      <span resource={{model.agendas.firstObject.uri}} typeof="foaf:Document" property="besluit:heeftAgenda">Agenda</span>
+      <span resource={{this.model.agendas.firstObject.uri}} typeof="foaf:Document" property="besluit:heeftAgenda">Agenda</span>
       voor
-      <span resource={{model.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
-        <span resource={{model.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
-          <span property="skos:prefLabel">{{model.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
+      <span resource={{this.model.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
+        <span resource={{this.model.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
+          <span property="skos:prefLabel">{{this.model.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
         </span>
       </span>
       , zitting van
-      <span property="besluit:geplandeStart" content={{iso-date model.geplandeStart}} datatype="xsd:dateTime">{{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}</span>
+      <span property="besluit:geplandeStart" content={{iso-date this.model.geplandeStart}} datatype="xsd:dateTime">{{moment-format this.model.geplandeStart 'D MMMM YYYY, HH:mm'}}</span>
     </AuHeading>
 
     <ul class="au-c-list">
-      {{#if model.agendapunten.length}}
-        {{#each model.sortedAgendapunten as |agendapunt index|}}
+      {{#if this.model.agendapunten.length}}
+        {{#each this.model.sortedAgendapunten as |agendapunt index|}}
           <li resource={{agendapunt.uri}} typeof="besluit:Agendapunt" property="besluit:behandelt" class="au-c-list__item">
             <AgendapuntOverviewItem @agendapunt={{agendapunt}} @index={{index}} />
           </li>

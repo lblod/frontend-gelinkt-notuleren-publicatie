@@ -1,13 +1,13 @@
 <div class="au-o-layout">
   <div class="au-o-region-large">
-    <div typeof="besluit:Zitting" resource={{model.uri}}>
+    <div typeof="besluit:Zitting" resource={{this.model.uri}}>
       <AuHeading @skin="2" class="au-u-margin-bottom">
         Type document
         <br>
         <a href="http://data.lblod.info/id/document-types/agenda" property="dct:type" class="au-c-link">Agenda document</a>
       </AuHeading>
       <div class="au-c-document-publish">
-        {{{model.inhoud}}}
+        {{html-safe this.model.inhoud}}
       </div>
     </div>
   </div>

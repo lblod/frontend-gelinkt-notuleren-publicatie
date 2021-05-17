@@ -1,4 +1,3 @@
-/* eslint-env node */
 'use strict';
 
 module.exports = function(deployTarget) {
@@ -29,6 +28,7 @@ module.exports = function(deployTarget) {
   };
 
   if (deployTarget === 'production') {
+    // Add production only config here
   }
 
   return ENV;

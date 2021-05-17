@@ -17,24 +17,24 @@
             </AuHeading>
           </c.header>
           <c.content>
-            <SelectBestuurseenheidClassificatieLabel @model={{model}} @selected={{bestuurseenheidClassificatie}} @onSelect={{action "setBestuurseenheidClassificatie"}} />
+            <SelectBestuurseenheidClassificatieLabel @model={{this.model}} @selected={{this.bestuurseenheidClassificatie}} @onSelect={{this.setBestuurseenheidClassificatie}} />
           </c.content>
         </AuCard>
       </li>
       <li class="au-c-steps__item">
-        <AuCard @flex={{true}} @divided={{if bestuurseenheidClassificatie true false}} as |c|>
-          <c.header @badgeNumber="2" @badgeSkin={{if bestuurseenheidClassificatie "action" ""}}>
+        <AuCard @flex={{true}} @divided={{if this.bestuurseenheidClassificatie true false}} as |c|>
+          <c.header @badgeNumber="2" @badgeSkin={{if this.bestuurseenheidClassificatie "action" ""}}>
             <AuHeading @level="2" @skin="4">
               Stap 2: Kies de bestuurseenheid
             </AuHeading>
           </c.header>
           <c.content>
-            {{#if bestuurseenheidClassificatie}}
-              <SelectBestuurseenheidNaam @bestuurseenheidClassificatie={{bestuurseenheidClassificatie}} @selected={{bestuurseenheidNaam}} @onSelect={{action (mut bestuurseenheidNaam)}} />
+            {{#if this.bestuurseenheidClassificatie}}
+              <SelectBestuurseenheidNaam @bestuurseenheidClassificatie={{this.bestuurseenheidClassificatie}} @selected={{this.bestuurseenheidNaam}} @onSelect={{fn (mut this.bestuurseenheidNaam)}} />
             {{/if}}
-            {{#if bestuurseenheidNaam}}
+            {{#if this.bestuurseenheidNaam}}
               <div class="button-group">
-                <LinkTo @route="bestuurseenheid" @models={{array bestuurseenheidNaam bestuurseenheidClassificatie.label}} class="au-c-button">
+                <LinkTo @route="bestuurseenheid" @models={{array this.bestuurseenheidNaam this.bestuurseenheidClassificatie.label}} class="au-c-button">
                   Zoek publicaties
                 </LinkTo>
               </div>

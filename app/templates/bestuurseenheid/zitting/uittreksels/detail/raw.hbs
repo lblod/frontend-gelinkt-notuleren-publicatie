@@ -1,14 +1,12 @@
 <div class="au-o-layout">
   <div class="au-o-region-large">
-    <div {{rdfa elements}}>
-      <AuHeading @skin="2">
-        Type document
-        <br>
-        <a href="http://data.lblod.info/id/document-types/uittreksel" property="dct:type">Uittreksel document</a>
-      </AuHeading>
-      <div property="prov:value" class="au-c-document-publish">
-        {{{ model.inhoud }}}
-      </div>
+    <AuHeading @skin="2">
+      Type document
+      <br>
+      <a href="http://data.lblod.info/id/document-types/uittreksel" property="dct:type">Uittreksel document</a>
+    </AuHeading>
+    <div property="prov:value" class="au-c-document-publish">
+      {{html-safe this.model.inhoud}}
     </div>
   </div>
 </div>

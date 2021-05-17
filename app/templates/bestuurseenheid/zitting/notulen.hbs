@@ -2,10 +2,10 @@
   <a class="au-u-hidden" href="http://data.lblod.info/id/document-types/notulen" property="dct:type"></a>
 
   <div class="au-o-region-large" property="prov:value">
-    <div resource="{{model.zitting.uri}}" typeof="besluit:Zitting">
-      <div property="besluit:heeftNotulen" resource={{model.notulen.uri}}>
+    <div resource={{this.modelzitting.uri}} typeof="besluit:Zitting">
+      <div property="besluit:heeftNotulen" resource={{this.modelnotulen.uri}}>
         <div property="prov:value">
-          {{{ model.notulen.inhoud }}}
+          {{html-safe this.modelnotulen.inhoud}}
         </div>
       </div>
     </div>

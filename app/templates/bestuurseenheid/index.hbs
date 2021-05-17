@@ -1,9 +1,9 @@
 <div class="au-o-region-large">
   <div class="au-o-layout">
-    {{#if model.length}}
-      <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Publicaties van {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}}</AuHeading>
+    {{#if this.model.length}}
+      <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Publicaties van {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}}</AuHeading>
       <ul class="au-c-list">
-      {{#each model as |zitting|}}
+      {{#each this.model as |zitting|}}
         <li class="au-c-list__item">
           <WithRdfaContext @model={{zitting}} class="au-o-box au-c-card au-c-card--divided" as |ctx|>
             <div class="au-c-card__header">
@@ -75,7 +75,7 @@
       {{outlet}}
     {{else}}
     <AuContent>
-      <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Er werden nog geen publicaties voor {{bestuurseenheid.classificatie.label}} {{bestuurseenheid.naam}} gevonden</AuHeading>
+      <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Er werden nog geen publicaties voor {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}} gevonden</AuHeading>
       <p>Kom later nog eens terug, of
         <LinkTo @route="index" class="au-c-link">
           zoek naar publicaties van een ander bestuur.
