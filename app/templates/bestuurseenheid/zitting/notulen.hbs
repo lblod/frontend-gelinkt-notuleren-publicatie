@@ -3,10 +3,10 @@
 
   <div class="col--7-12 col--1-1--s">
     <div class="u-spacer--top--small u-spacer--bottom--large" property="prov:value">
-      <div resource="{{model.zitting.uri}}" typeof="besluit:Zitting">
-        <div property="besluit:heeftNotulen" resource={{model.notulen.uri}}>
+      <div resource="{{this.model.zitting.uri}}" typeof="besluit:Zitting">
+        <div property="besluit:heeftNotulen" resource={{this.model.notulen.uri}}>
           <div property="prov:value">
-            {{{ model.notulen.inhoud }}}
+            {{html-safe this.model.notulen.inhoud}}
           </div>
         </div>
       </div>

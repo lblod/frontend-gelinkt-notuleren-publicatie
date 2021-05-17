@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-computed-properties-in-native-classes */
 import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 import { alias, sort } from '@ember/object/computed';
 

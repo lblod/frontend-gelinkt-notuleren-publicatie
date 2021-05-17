@@ -16,12 +16,12 @@
         </div>
         <div class="step__content-wrapper">
           <div class="step__content">
-            <SelectBestuurseenheidClassificatieLabel @model={{model}} @selected={{bestuurseenheidClassificatie}} @onSelect={{action "setBestuurseenheidClassificatie"}} />
+            <SelectBestuurseenheidClassificatieLabel @model={{this.model}} @selected={{this.bestuurseenheidClassificatie}} @onSelect={{this.setBestuurseenheidClassificatie}} />
           </div>
         </div>
       </div>
     </li>
-    <li class="step {{unless bestuurseenheidClassificatie "step--disabled"}} step--no-box">
+    <li class="step {{unless this.bestuurseenheidClassificatie "step--disabled"}} step--no-box">
       <div class="step__icon">2</div>
       <div class="step__wrapper">
         <div class="step__header">
@@ -29,13 +29,13 @@
         </div>
         <div class="step__content-wrapper">
           <div class="step__content">
-            {{#if bestuurseenheidClassificatie}}
-              <SelectBestuurseenheidNaam @bestuurseenheidClassificatie={{bestuurseenheidClassificatie}} @selected={{bestuurseenheidNaam}} @onSelect={{action (mut bestuurseenheidNaam)}} />
+            {{#if this.bestuurseenheidClassificatie}}
+              <SelectBestuurseenheidNaam @bestuurseenheidClassificatie={{this.bestuurseenheidClassificatie}} @selected={{this.bestuurseenheidNaam}} @onSelect={{fn (mut this.bestuurseenheidNaam)}} />
             {{/if}}
-            {{#if bestuurseenheidNaam}}
+            {{#if this.bestuurseenheidNaam}}
               <div class="button-group">
-                <LinkTo @route="bestuurseenheid" @models={{array bestuurseenheidNaam bestuurseenheidClassificatie.label}}>
-                  <button class="button button--large">Zoek publicaties</button>
+                <LinkTo @route="bestuurseenheid" @models={{array this.bestuurseenheidNaam this.bestuurseenheidClassificatie.label}}>
+                  <button class="button button--large" type="button">Zoek publicaties</button>
                 </LinkTo>
               </div>
             {{/if}}
