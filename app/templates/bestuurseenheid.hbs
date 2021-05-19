@@ -1,3 +1,6 @@
+{{breadcrumb "Zoekpagina" route="index"}}
+{{breadcrumb this.model.classificatie.label " " this.model.naam route="bestuurseenheid"}}
+
 <AuToolbar @size="medium" @skin="tint" @border="bottom" class="au-c-toolbar__breadcrumbs">
   <AuToolbarGroup>
     <BreadCrumbs @tagName="ul" @linkable={{true}} @crumbClass="au-c-list-horizontal__item" @class="au-c-list-horizontal" as |component route|>
@@ -5,6 +8,28 @@
         {{route.title}}
       </BreadCrumb>
     </BreadCrumbs>
+  </AuToolbarGroup>
+</AuToolbar>
+
+<AuToolbar @size="medium" @skin="tint" @border="bottom" class="au-c-toolbar__breadcrumbs">
+  <AuToolbarGroup>
+    <nav aria-label="Breadcrumb">
+      <ol class="au-c-list-horizontal">
+        {{#each (breadcrumbs) as |breadcrumb|}}
+          <li class="au-c-list-horizontal__item">
+            {{#let (has-next breadcrumb (breadcrumbs)) as |isNotLastBreadcrumb|}}
+              {{#if isNotLastBreadcrumb}}
+                <AuLink @linkRoute={{breadcrumb.data.route}} @model={{breadcrumb.data.model}}>
+                  {{breadcrumb.title}}
+                </AuLink>
+              {{else}}
+                {{breadcrumb.title}}
+              {{/if}}
+            {{/let}}
+          </li>
+        {{/each}}
+      </ol>
+    </nav>
   </AuToolbarGroup>
 </AuToolbar>
 
