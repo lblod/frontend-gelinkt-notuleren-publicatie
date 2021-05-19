@@ -2,7 +2,7 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     // Add options here
     'ember-cli-babel': {
@@ -13,6 +13,9 @@ module.exports = function(defaults) {
         'node_modules/@appuniversum/appuniversum',
         'node_modules/@appuniversum/ember-appuniversum/app/styles',
       ]
+    },
+    '@lblod/ember-vo-webuniversum': {
+      'shouldImportComponentCss': false,
     }
   });
 

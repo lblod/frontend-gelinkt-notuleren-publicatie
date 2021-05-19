@@ -1,6 +1,6 @@
 <div class="container-flex--scroll u-padding--round">
   <div class="grid">
-    <WithRdfaContext @model={{model}} @class="col--7-12 col--9-12--m col--1-1--s" as |ctx|>
+    <WithRdfaContext @model={{this.zitting}} @class="col--7-12 col--9-12--m col--1-1--s" as |ctx|>
       <h1 class="h1 u-spacer--top--small">
         Bekendmakingen en uittreksels van
         <ctx.get @prop="bestuursorgaan" as |elements _ bInTimeCtx|>
@@ -19,9 +19,12 @@
       </h1>
 
       <div class="grid grid--is-stacked">
-        {{#each uittreksels as |uittreksel|}}
+        {{#each this.uittreksels as |uittreksel|}}
           <div class="col--12-12">
-            <UittrekselOverviewItem @uittreksel={{uittreksel}} />
+            <UittrekselOverviewItem
+              @uittreksel={{uittreksel}}
+              @besluit={{uittreksel.behandelingVanAgendapunt.besluiten.firstObject}}
+            />
           </div>
         {{else}}
           <div class="col--12-12">

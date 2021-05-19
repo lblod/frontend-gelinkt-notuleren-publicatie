@@ -1,25 +1,25 @@
 <div class="container-flex--scroll u-padding--round--small">
   <div class="grid grid--align-center">
-    <div typeof="besluit:Zitting" resource={{model.uri}} class="col--8-12 col--1-1--s">
+    <div typeof="besluit:Zitting" resource={{this.zitting.uri}} class="col--8-12 col--1-1--s">
       <h1 class="h1 u-spacer--top--small">
         Publicaties voor de zitting van
-        <span resource={{model.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
-          <span resource={{model.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
-            <span property="skos:prefLabel">{{model.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
+        <span resource={{this.zitting.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
+          <span resource={{this.zitting.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
+            <span property="skos:prefLabel">{{this.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
           </span>
         </span>
         <br>
         op
-        <span property="besluit:geplandeStart" content={{iso-date model.geplandeStart}} datatype="xsd:dateTime">{{moment-format model.geplandeStart 'D MMMM YYYY, HH:mm'}}</span>
+        <span property="besluit:geplandeStart" content={{iso-date this.zitting.geplandeStart}} datatype="xsd:dateTime">{{moment-format this.zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}</span>
       </h1>
 
       <ul class="steps steps--timeline">
-        {{#if model.notulen}}
-          <LinkTo @route="bestuurseenheid.zitting.notulen" @model={{model.id}} @tagName="li" class="step">
+        {{#if this.zitting.notulen}}
+          <LinkTo @route="bestuurseenheid.zitting.notulen" @model={{this.zitting.id}} @tagName="li" class="step">
             <div class="step__icon">
-              {{#if notulenPublicationDate}}
-                {{moment-format notulenPublicationDate 'D'}}
-                <span class="step__icon__sub">{{moment-format notulenPublicationDate 'MMM'}}</span>
+              {{#if this.notulenPublicationDate}}
+                {{moment-format this.notulenPublicationDate 'D'}}
+                <span class="step__icon__sub">{{moment-format this.notulenPublicationDate 'MMM'}}</span>
               {{else}}
                 <i class="vi vi-news"></i>
               {{/if}}
@@ -29,8 +29,8 @@
                 <div class="step__header__titles">
                   <h2 class="step__title">Notulen</h2>
                   <span class="u-hidden">
-                    <a href={{href-to "bestuurseenheid.zitting.notulen" model.id}} property="lblodBesluit:linkToPublication">
-                      <span resource={{model.notulen.uri}} typeof="foaf:Document" property="besluit:heeftNotulen"/>
+                    <a href={{href-to "bestuurseenheid.zitting.notulen" this.zitting.id}} property="lblodBesluit:linkToPublication">
+                      <span resource={{this.model.notulen.uri}} typeof="foaf:Document" property="besluit:heeftNotulen"/>
                     </a>
                   </span>
                 </div>
@@ -58,13 +58,13 @@
         {{!-- @Miet -> Currently a soon as besluitenlijst or bekendmaking is published, this option will pop up.
                Backend needs update I guess to deal with the correct condition --}}
 
-        {{#if model.uittreksels.length}}
-          <LinkTo @route="bestuurseenheid.zitting.uittreksels" @model={{model.id}} @tagName="li" class="step">
+        {{#if this.zitting.uittreksels.length}}
+          <LinkTo @route="bestuurseenheid.zitting.uittreksels" @model={{this.zitting.id}} @tagName="li" class="step">
             <div class="step__icon">
               {{!-- TODO: provide correct field --}}
-              {{#if besluitenlijstPublicationDate}}
-                {{moment-format besluitenlijstPublicationDate 'D'}}
-                <span class="step__icon__sub">{{moment-format besluitenlijstPublicationDate 'MMM'}}</span>
+              {{#if this.besluitenlijstPublicationDate}}
+                {{moment-format this.besluitenlijstPublicationDate 'D'}}
+                <span class="step__icon__sub">{{moment-format this.besluitenlijstPublicationDate 'MMM'}}</span>
               {{else}}
                 <i class="vi vi-news"></i>
               {{/if}}
@@ -74,8 +74,8 @@
                 <div class="step__header__titles">
                   <h3 class="step__title">Bekendmakingen en uittreksels</h3>
                   <span  class="u-hidden">
-                    {{#each model.uittreksels as |uittreksel index|}}
-                      <a href={{href-to "bestuurseenheid.zitting.uittreksels.detail.raw" model.id}} property="lblodBesluit:linkToPublication">
+                    {{#each this.zitting.uittreksels as |uittreksel|}}
+                      <a href={{href-to "bestuurseenheid.zitting.uittreksels.detail.raw" this.zitting.id}} property="lblodBesluit:linkToPublication">
                         <span resource={{uittreksel.uri}} typeof="foaf:Document" property="besluit:heeftUittreksel"/>
                       </a>
                     {{/each}}
@@ -102,12 +102,12 @@
           </li>
         {{/if}}
 
-        {{#if model.besluitenlijst.id}}
-          <LinkTo @route="bestuurseenheid.zitting.besluitenlijst" @model={{model.id}} @tagName="li" class="step">
+        {{#if this.zitting.besluitenlijst.id}}
+          <LinkTo @route="bestuurseenheid.zitting.besluitenlijst" @model={{this.zitting.id}} @tagName="li" class="step">
             <div class="step__icon">
-              {{#if besluitenlijstPublicationDate}}
-                {{moment-format besluitenlijstPublicationDate 'D'}}
-                <span class="step__icon__sub">{{moment-format besluitenlijstPublicationDate 'MMM'}}</span>
+              {{#if this.besluitenlijstPublicationDate}}
+                {{moment-format this.besluitenlijstPublicationDate 'D'}}
+                <span class="step__icon__sub">{{moment-format this.besluitenlijstPublicationDate 'MMM'}}</span>
               {{else}}
                 <i class="vi vi-news"></i>
               {{/if}}
@@ -117,8 +117,8 @@
                 <div class="step__header__titles">
                   <h2 class="step__title">Besluitenlijst</h2>
                   <span  class="u-hidden">
-                    <a href={{href-to "bestuurseenheid.zitting.besluitenlijst" model.id}} property="lblodBesluit:linkToPublication">
-                      <span resource={{model.besluitenlijst.uri}} typeof="foaf:Document" property="besluit:heeftBesluitenlijst"/>
+                    <a href={{href-to "bestuurseenheid.zitting.besluitenlijst" this.zitting.id}} property="lblodBesluit:linkToPublication">
+                      <span resource={{this.zitting.besluitenlijst.uri}} typeof="foaf:Document" property="besluit:heeftBesluitenlijst"/>
                     </a>
                   </span>
                 </div>
@@ -144,12 +144,12 @@
         {{/if}}
 
 
-        {{#if model.agenda.id}}
-          <LinkTo @route="bestuurseenheid.zitting.agenda" @model={{model.id}} @tagName="li" class="step">
+        {{#if this.zitting.agenda.id}}
+          <LinkTo @route="bestuurseenheid.zitting.agenda" @model={{this.zitting.id}} @tagName="li" class="step">
             <div class="step__icon">
-              {{#if agendaPublicationDate}}
-                {{moment-format agendaPublicationDate 'D'}}
-                <span class="step__icon__sub">{{moment-format agendaPublicationDate 'MMM'}}</span>
+              {{#if this.agendaPublicationDate}}
+                {{moment-format this.agendaPublicationDate 'D'}}
+                <span class="step__icon__sub">{{moment-format this.agendaPublicationDate 'MMM'}}</span>
               {{else}}
                 <i class="vi vi-news"></i>
               {{/if}}
@@ -159,8 +159,8 @@
                 <div class="step__header__titles">
                   <h2 class="step__title">Agenda</h2>
                   <span  class="u-hidden">
-                    {{#each model.agendas as |agenda index|}}
-r                      <a href={{href-to "bestuurseenheid.zitting.agenda.raw" model.id}} property="lblodBesluit:linkToPublication">
+                    {{#each this.zitting.agendas as |agenda|}}
+r                      <a href={{href-to "bestuurseenheid.zitting.agenda.raw" this.zitting.id}} property="lblodBesluit:linkToPublication">
                         <span resource={{agenda.uri}} typeof="foaf:Document" property="besluit:heeftAgenda"/>
                       </a>
                     {{/each}}

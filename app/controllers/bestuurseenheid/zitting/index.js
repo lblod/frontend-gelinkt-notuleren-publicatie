@@ -1,8 +1,18 @@
+/* eslint-disable ember/no-computed-properties-in-native-classes */
 import Controller from '@ember/controller';
 import { alias } from '@ember/object/computed';
 
-export default Controller.extend({
-  agendaPublicationDate: alias('model.agendapunten.firstObject.publications.firstObject.createdOn'),
-  besluitenlijstPublicationDate: alias('model.besluiten.firstObject.publications.firstObject.createdOn'),
-  notulenPublicationDate: alias('model.notulen.publications.firstObject.createdOn')
-});
+export default class BestuurseenheidZittingIndexController extends Controller {
+  get zitting() {
+    return this.model;
+  }
+
+  @alias('model.agendapunten.firstObject.publications.firstObject.createdOn')
+  agendaPublicationDate;
+
+  @alias('model.besluiten.firstObject.publications.firstObject.createdOn')
+  besluitenlijstPublicationDate;
+
+  @alias('model.notulen.publications.firstObject.createdOn')
+  notulenPublicationDate;
+}

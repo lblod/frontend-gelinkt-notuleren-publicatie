@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 
-export default Route.extend({
+export default class BestuurseenheidZittingAgendaRawRoute extends Route {
   async model() {
     const id = this.modelFor('bestuurseenheid.zitting').get('id');
     const agendas = await this.store.query('agenda', {
@@ -11,4 +11,4 @@ export default Route.extend({
     });
     return agendas.firstObject;
   }
-});
+}

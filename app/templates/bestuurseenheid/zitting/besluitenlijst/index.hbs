@@ -1,38 +1,38 @@
 <div class="container-flex--scroll u-padding--round">
   <div class="grid">
-    <div typeof="besluit:Zitting" resource={{model.zitting.uri}} class="col--7-12 col--9-12--m col--1-1--s">
+    <div typeof="besluit:Zitting" resource={{this.model.zitting.uri}} class="col--7-12 col--9-12--m col--1-1--s">
       <h1 class="h1 u-spacer--tb--small">Besluitenlijst van
-        <span resource={{model.zitting.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
-          <span resource={{model.zitting.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
-            <span property="skos:prefLabel">{{model.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
+        <span resource={{this.model.zitting.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
+          <span resource={{this.model.zitting.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
+            <span property="skos:prefLabel">{{this.model.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
           </span>
         </span>, zitting van
-        {{#if model.zitting.gestartOpTijdstip}}
-          <span class="u-spacer--tiny" property="prov:startedAtTime" content={{iso-date model.zitting.gestartOpTijdstip}} datatype="xsd:dateTime">
-            {{moment-format model.zitting.gestartOpTijdstip 'D MMMM YYYY, HH:mm'}}
+        {{#if this.model.zitting.gestartOpTijdstip}}
+          <span class="u-spacer--tiny" property="prov:startedAtTime" content={{iso-date this.model.zitting.gestartOpTijdstip}} datatype="xsd:dateTime">
+            {{moment-format this.model.zitting.gestartOpTijdstip 'D MMMM YYYY, HH:mm'}}
           </span>
         {{else}}
           {{!-- fallback for old data --}}
-          <span class="u-spacer--tiny" property="prov:startedAtTime" content={{iso-date model.zitting.geplandeStart}} datatype="xsd:dateTime">
-            {{moment-format model.zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}
+          <span class="u-spacer--tiny" property="prov:startedAtTime" content={{iso-date this.model.zitting.geplandeStart}} datatype="xsd:dateTime">
+            {{moment-format this.model.zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}
           </span>
         {{/if}}
       </h1>
-      <div property="besluit:heeftBesluitenlijst" resource={{model.besluitenlijst.uri}} typeof="https://data.vlaanderen.be/id/concept/BesluitDocumentType/3fa67785-ffdc-4b30-8880-2b99d97b4dee foaf:Document">
+      <div property="besluit:heeftBesluitenlijst" resource={{this.model.besluitenlijst.uri}} typeof="https://data.vlaanderen.be/id/concept/BesluitDocumentType/3fa67785-ffdc-4b30-8880-2b99d97b4dee foaf:Document">
         <div class="u-spacer">
           <p class="h5 u-spacer--tiny">
             Besluitenlijst goedgekeurd door
-            <span property="eli:passed_by" resource={{model.zitting.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan">
-              <span resource={{model.zitting.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
-                <span property="skos:prefLabel">{{model.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
+            <span property="eli:passed_by" resource={{this.model.zitting.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan">
+              <span resource={{this.model.zitting.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
+                <span property="skos:prefLabel">{{this.model.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
               </span>
             </span>
           </p>
           <p class="h5">
             Datum publicatie:
-            {{#if model.besluitenlijst.publicatiedatum}}
-              <span property="eli:date_publication" content={{moment-format model.besluitenlijst.publicatiedatum 'YYYY-MM-DD'}} datatype="xsd:date">
-                {{moment-format model.besluitenlijst.publicatiedatum 'D MMMM YYYY'}}
+            {{#if this.model.besluitenlijst.publicatiedatum}}
+              <span property="eli:date_publication" content={{moment-format this.model.besluitenlijst.publicatiedatum 'YYYY-MM-DD'}} datatype="xsd:date">
+                {{moment-format this.model.besluitenlijst.publicatiedatum 'D MMMM YYYY'}}
               </span>
             {{else}}
               {{!-- old data does not have this field --}}
@@ -40,9 +40,9 @@
             {{/if}}
           </p>
         </div>
-        <div typeof="besluit:Zitting" resource={{model.zitting.uri}}>
+        <div typeof="besluit:Zitting" resource={{this.model.zitting.uri}}>
           <div class="grid grid--is-stacked">
-            <Besluitenlijst @besluitenlijst={{model.besluitenlijst}} @besluiten={{model.besluiten}} />
+            <Besluitenlijst @besluitenlijst={{this.model.besluitenlijst}} @besluiten={{this.model.besluiten}} />
           </div>
         </div>
       </div>

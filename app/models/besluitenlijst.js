@@ -1,20 +1,18 @@
-import Model from 'ember-data/model';
-import { hasMany } from 'ember-data/relationships';
-import attr from 'ember-data/attr';
+import Model, { attr, hasMany } from '@ember-data/model';
 
-export default Model.extend({
-  uri: attr(),
-  inhoud: attr(),
-  besluiten: hasMany('besluit'),
-  publicatiedatum: attr('date'),
+export default class BesluitenlijstModel extends Model {
+  @attr uri;
+  @attr inhoud;
+  @attr('date') publicatiedatum;
+  @hasMany('besluit') besluiten;
 
-  type: 'http://data.lblod.info/id/document-types/besluitenlijst',
+  type = 'http://data.lblod.info/id/document-types/besluitenlijst';
 
-  rdfaBindings: Object.freeze({
+  rdfaBindings = {
     class: 'foaf:Document',
     type: 'dct:type',
     inhoud: 'prov:value',
     publication: 'prov:wasDerivedFrom',
     publicatieDatum: 'eli:date_publication'
-  })
-});
+  }
+}

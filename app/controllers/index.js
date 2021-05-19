@@ -1,14 +1,19 @@
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
-export default Controller.extend({
-  actions: {
-    setBestuurseenheidClassificatie(bestuurseenheidClassificatie) {
-      this.set('bestuurseenheidNaam', null);
-      this.set('bestuurseenheidClassificatie', bestuurseenheidClassificatie);
-    },
+export default class IndexController extends Controller {
+  @tracked bestuurseenheidNaam;
+  @tracked bestuurseenheidClassificatie;
 
-    setBestuurseenheidNaam(bestuurseenheidNaam) {
-      this.set('bestuurseenheidNaam', bestuurseenheidNaam);
-    }
+  @action
+  setBestuurseenheidClassificatie(bestuurseenheidClassificatie) {
+    this.bestuurseenheidNaam = null;
+    this.bestuurseenheidClassificatie = bestuurseenheidClassificatie;
   }
-});
+
+  @action
+  setBestuurseenheidNaam(bestuurseenheidNaam) {
+    this.bestuurseenheidNaam = bestuurseenheidNaam;
+  }
+}
