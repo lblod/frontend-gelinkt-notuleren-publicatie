@@ -3,16 +3,6 @@
 
 <AuToolbar @size="medium" @skin="tint" @border="bottom" class="au-c-toolbar__breadcrumbs">
   <AuToolbarGroup>
-    <BreadCrumbs @tagName="ul" @linkable={{true}} @crumbClass="au-c-list-horizontal__item" @class="au-c-list-horizontal" as |component route|>
-      <BreadCrumb @route={{route}} @breadCrumbs={{component}} @linkClass="au-c-link">
-        {{route.title}}
-      </BreadCrumb>
-    </BreadCrumbs>
-  </AuToolbarGroup>
-</AuToolbar>
-
-<AuToolbar @size="medium" @skin="tint" @border="bottom" class="au-c-toolbar__breadcrumbs">
-  <AuToolbarGroup>
     <nav aria-label="Breadcrumb">
       <ol class="au-c-list-horizontal">
         {{#each (breadcrumbs) as |breadcrumb|}}

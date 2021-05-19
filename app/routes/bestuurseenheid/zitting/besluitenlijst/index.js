@@ -1,8 +1,6 @@
 import Route from '@ember/routing/route';
 
 export default class BestuurseenheidZittingBesluitenlijstIndexRoute extends Route {
-  breadCrumb = { title: 'Besluitenlijst' };
-
   async model() {
     let zitting = this.modelFor('bestuurseenheid.zitting');
     let besluitenlijst = await zitting.besluitenlijst;
