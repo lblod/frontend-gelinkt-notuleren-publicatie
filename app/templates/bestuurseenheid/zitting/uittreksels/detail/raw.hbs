@@ -1,14 +1,12 @@
-<div class="container-flex--scroll u-padding--round">
-  <div class="grid">
-    <div class="col--8-12">
-      <h1 class="h1 u-spacer--top--small">
-        Type document
-        <br>
-        <a href="http://data.lblod.info/id/document-types/uittreksel" property="dct:type">Uittreksel document</a>
-      </h1>
-      <div property="prov:value" class="document-publish">
-        {{html-safe this.model.inhoud}}
-      </div>
+<div class="au-o-layout">
+  <div class="au-o-region-large">
+    <AuHeading @skin="2">
+      Type document
+      <br>
+      <a href="http://data.lblod.info/id/document-types/uittreksel" property="dct:type">Uittreksel document</a>
+    </AuHeading>
+    <div property="prov:value" class="au-c-document-publish">
+      {{html-safe this.model.inhoud}}
     </div>
   </div>
 </div>

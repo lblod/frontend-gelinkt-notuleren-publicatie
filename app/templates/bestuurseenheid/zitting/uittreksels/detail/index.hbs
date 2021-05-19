@@ -1,6 +1,6 @@
-<div class="container-flex--scroll u-padding--round">
-    <div typeof="besluit:Zitting" resource={{this.model.zitting.uri}}>
-      <h1 class="h1 u-spacer--top--small">
+<div class="au-o-layout">
+    <div typeof="besluit:Zitting" resource={{this.model.zitting.uri}} class="au-o-region-large">
+      <AuHeading @skin="2" class="au-u-margin-bottom">
         Uittreksel van
         <span resource={{this.model.zitting.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
           <span resource={{this.model.zitting.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
@@ -10,21 +10,19 @@
           </span>
         </span>
         , zitting van
-        <span class="u-spacer--tiny" property="besluit:geplandeStart" content={{iso-date this.model.zitting.geplandeStart}} datatype="xsd:dateTime">{{moment-format this.model.zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}</span>
-      </h1>
+        <span property="besluit:geplandeStart" content={{iso-date this.model.zitting.geplandeStart}} datatype="xsd:dateTime">{{moment-format this.model.zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}</span>
+      </AuHeading>
 
-      <div class="col--7-12 col--9-12--m col--1-1--s u-padding--bottom--large">
-        <div class="grid grid--is-stacked">
-          {{#if this.model.uittreksel.inhoud}}
-            <div property="besluit:heeftUittreksel" resource={{this.model.uittreksel.uri}} typeof="foaf:Document https://data.vlaanderen.be/id/concept/BesluitDocumentType/9d5bfaca-bbf2-49dd-a830-769f91a6377b">
-              <div property="prov:value">
-                {{html-safe this.model.uittreksel.inhoud}}
-              </div>
+      <div class="au-u-margin-top">
+        {{#if this.model.uittreksel.inhoud}}
+          <div property="besluit:heeftUittreksel" resource={{this.model.uittreksel.uri}} typeof="foaf:Document https://data.vlaanderen.be/id/concept/BesluitDocumentType/9d5bfaca-bbf2-49dd-a830-769f91a6377b">
+            <div property="prov:value">
+              {{html-safe this.model.uittreksel.inhoud}}
             </div>
-          {{else}}
-            Inhoud niet beschikbaar.
-          {{/if}}
-        </div>
+          </div>
+        {{else}}
+          <p>Inhoud niet beschikbaar.</p>
+        {{/if}}
       </div>
     </div>
 </div>
