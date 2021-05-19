@@ -1,4 +1,104 @@
+// Add main app container
+.au-c-app-container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  flex-wrap: nowrap;
 
+
+  @include mq(medium) {
+    overflow: hidden;
+  }
+}
+
+// List
+.au-c-list {
+  list-style: none;
+  margin-bottom: 0;
+}
+
+.au-c-list__item {
+  & + & {
+    margin-top: $au-unit-small;
+  }
+}
+
+// Steps
+.au-c-steps {
+  list-style: none;
+}
+
+.au-c-steps__item {
+  position: relative;
+
+  & + & {
+    margin-top: $au-unit;
+  }
+
+  & + &:before {
+    content: "";
+    position: absolute;
+    display: block;
+    left: $au-unit * 2;
+    bottom: 100%;
+    width: .2rem;
+    height: $au-unit;
+    background-color: $au-gray-300;
+  }
+}
+
+// Make breadcrumb toolbar a smaller default font-size
+// @TODO: create a utility or toolbar modifier?
+.au-c-toolbar__breadcrumbs {
+  font-size: $au-base;
+}
+
+// Link card
+.au-c-card--link {
+  position: relative;
+
+  &:hover,
+  &:focus {
+    outline: .4rem solid $au-gray-200;
+  }
+
+  .au-c-heading--4 {
+    text-decoration: underline;
+  }
+
+  &:hover .au-c-heading--4,
+  &:focus-within .au-c-heading--4 {
+    text-decoration: none;
+  }
+
+  &:focus-within {
+    outline: $au-outline;
+    outline-offset: .2rem;
+  }
+}
+
+.au-c-card__link {
+  @include au-font-size($au-h2);
+
+  &,
+  &:hover,
+  &:focus {
+    color: $au-gray-600;
+  }
+
+  &:after {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+
+
+//old
 .u-word-break--word-break {
 	word-break: word-break;
 }
@@ -43,7 +143,8 @@
   }
 }
 
-.h1 [property="skos:prefLabel"] {
+.h1 [property="skos:prefLabel"],
+.au-c-heading [property="skos:prefLabel"] {
   margin-right: -.4ex;
 }
 

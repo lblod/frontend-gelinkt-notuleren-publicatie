@@ -1,9 +1,11 @@
-<BreadCrumbs @tagName="ul" @linkable={{true}} @crumbClass="breadcrumb-item" @class="functional-header__sub__actions" as |component route|>
-  <BreadCrumb @route={{route}} @breadCrumbs={{component}} @linkClass="au-c-link" @class="functional-header__sub__action">
-    <p class="functional-header__sub__title">
+<AuToolbar @size="medium" @skin="tint" @border="bottom" class="au-c-toolbar__breadcrumbs">
+  <AuToolbarGroup>
+    <BreadCrumbs @tagName="ul" @linkable={{true}} @crumbClass="au-c-list-horizontal__item" @class="au-c-list-horizontal" as |component route|>
+      <BreadCrumb @route={{route}} @breadCrumbs={{component}} @linkClass="au-c-link">
         {{route.title}}
-    </p>
-  </BreadCrumb>
-</BreadCrumbs>
+      </BreadCrumb>
+    </BreadCrumbs>
+  </AuToolbarGroup>
+</AuToolbar>
 
 {{outlet}}

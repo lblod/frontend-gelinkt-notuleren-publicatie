@@ -1,21 +1,28 @@
-<div class="info-tile {{unless this.uittreksel "u-background--gray-lightest"}}">
-  <div class="grid">
-    <div class="col--8-12">
-      <h2 property="dct:title" class="list-content">{{clean-spaces @agendapunt.titel}}</h2>
-      {{#if @agendapunt.beschrijving}}
-        <p property="dct:description">{{clean-spaces @agendapunt.beschrijving}}</p>
-      {{/if}}
-      <span property="besluit:geplandOpenbaar" content={{@agendapunt.geplandOpenbaar}} class="u-hidden"></span>
-      {{#unless this.uittreksel.inhoud}}
-        <p class="smallest text-fade uppercase u-spacer--top--tiny">Inhoud niet publiek</p>
-      {{/unless}}
-    </div>
-    <div class="col--4-12 u-align-right">
-      {{#if this.uittreksel.inhoud}}
-        <LinkTo @route="bestuurseenheid.zitting.uittreksels.detail" @model={{this.uittreksel.id}} @tagName="button" property="lblodBesluit:linkToPublication" class="button button--alt button--alt--blue button--narrow button--small">
-          Bekijk volledige inhoud <i class="vi vi-arrow vi-u-s button__icon"></i>
-        </LinkTo>
-      {{/if}}
+<div class="au-o-box au-c-card {{unless this.uittreksel "au-c-card--standout"}}">
+  <div class="au-c-card__header">
+    <div class="au-o-grid au-o-grid--small">
+      <div class="au-o-grid__item au-u-3-4@medium">
+        <AuHeading @level="2" @skin="4" property="dct:title">{{clean-spaces @agendapunt.titel}}</</AuHeading>
+        {{#if @agendapunt.beschrijving}}
+          <p property="dct:description">
+            <AuHelpText @skin="secondary">{{clean-spaces @agendapunt.beschrijving}}</AuHelpText>
+          </p>
+        {{/if}}
+        <span property="besluit:geplandOpenbaar" content={{@agendapunt.geplandOpenbaar}} class="au-u-hidden"></span>
+        {{#unless this.uittreksel.inhoud}}
+          <p>
+            <AuHelpText @skin="secondary">Inhoud niet publiek</AuHelpText>
+          </p>
+        {{/unless}}
+      </div>
+      <div class="au-o-grid__item au-u-1-4@medium">
+        {{#if this.uittreksel.inhoud}}
+          <LinkTo @route="bestuurseenheid.zitting.uittreksels.detail" @model={{this.uittreksel.id}} property="lblodBesluit:linkToPublication" class="au-c-button au-c-button--block">
+            Bekijk volledige inhoud
+            <AuIcon @icon="nav-right" @alignment="right" />
+          </LinkTo>
+        {{/if}}
+      </div>
     </div>
   </div>
 </div>
