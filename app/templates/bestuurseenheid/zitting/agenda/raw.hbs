@@ -1,12 +1,12 @@
-<div class="container-flex--scroll u-padding--round">
-  <div class="grid">
-    <div typeof="besluit:Zitting" resource={{this.model.uri}} class="col--8-12">
-      <h1 class="h1 u-spacer--top--small">
+<div class="au-o-layout">
+  <div class="au-o-region-large">
+    <div typeof="besluit:Zitting" resource={{this.model.uri}}>
+      <AuHeading @skin="2" class="au-u-margin-bottom">
         Type document
         <br>
-        <a  href="http://data.lblod.info/id/document-types/agenda" property="dct:type">Agenda document</a>
-      </h1>
-      <div class="document-publish">
+        <a href="http://data.lblod.info/id/document-types/agenda" property="dct:type" class="au-c-link">Agenda document</a>
+      </AuHeading>
+      <div class="au-c-document-publish">
         {{html-safe this.model.inhoud}}
       </div>
     </div>

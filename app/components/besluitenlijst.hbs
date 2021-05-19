@@ -1,23 +1,15 @@
 {{#each @besluiten as |besluit|}}
-  <div class="col--12-12">
-    <BesluitOverviewItem @besluit={{besluit}} />
-  </div>
+  <BesluitOverviewItem @besluit={{besluit}} />
 {{/each}}
 {{#each this.extraBesluiten as |besluit|}}
   {{!-- using an extra array so the first one above renders properly with fastboot --}}
-  <div class="col--12-12">
-    <BesluitOverviewItem @besluit={{besluit}} />
-  </div>
+  <BesluitOverviewItem @besluit={{besluit}} />
 {{/each}}
 {{#if this.fetchBesluiten.isRunning}}
-  <div class="col--12-12">
-    <AuLoader />
-  </div>
+  <AuLoader />
 {{/if}}
 {{#if this.nextPage}}
-  <div class="col--12-12">
-    <AuButton @size="large" {{on "click" (perform this.fetchBesluiten this.nextPage)}}>
-      meer laden
-    </AuButton>
-  </div>
+  <AuButton {{on "click" (perform this.fetchBesluiten this.nextPage)}}>
+    Meer laden
+  </AuButton>
 {{/if}}
