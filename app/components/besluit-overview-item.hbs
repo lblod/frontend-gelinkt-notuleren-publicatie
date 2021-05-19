@@ -20,10 +20,11 @@
         {{/unless}}
         {{#if this.stemmingen.length}}
           <h3 class="au-c-heading au-c-heading--5 au-u-margin-top-small">Stemmingen</h3>
-        {{#each this.stemmingen as |stemming|}}
-          <div typeof="http://data.vlaanderen.be/ns/besluit#Stemming" resource="{{stemming.uri}}" property="http://data.vlaanderen.be/ns/besluit#heeftStemming">
-            <p> <strong>Onderwerp:</strong> <span property="http://data.vlaanderen.be/ns/besluit#onderwerp">{{stemming.onderwerp}}</span>, <strong>Gevolg:</strong> <span property="http://data.vlaanderen.be/ns/besluit#gevolg">{{stemming.gevolg}}</span></p>
-          </div>
+          {{#each this.stemmingen as |stemming|}}
+            <div typeof="http://data.vlaanderen.be/ns/besluit#Stemming" resource="{{stemming.uri}}" property="http://data.vlaanderen.be/ns/besluit#heeftStemming">
+              <p> <strong>Onderwerp:</strong> <span property="http://data.vlaanderen.be/ns/besluit#onderwerp">{{stemming.onderwerp}}</span>, <strong>Gevolg:</strong> <span property="http://data.vlaanderen.be/ns/besluit#gevolg">{{stemming.gevolg}}</span></p>
+            </div>
+          {{/each}}
         {{/if}}
       </div>
       <div class="au-o-grid__item au-u-1-4@medium">
