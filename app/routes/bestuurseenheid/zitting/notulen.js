@@ -1,8 +1,6 @@
 import Route from '@ember/routing/route';
 
 export default class BestuurseenheidZittingNotulenRoute extends Route {
-  breadCrumb = { title: 'Notulen' };
-
   async model() {
     const id = this.modelFor('bestuurseenheid.zitting').get('id');
     const notulen = (await this.store.query('notulen', {
