@@ -2,12 +2,10 @@
   <div class="au-c-card__header">
     <div class="au-o-grid au-o-grid--small">
       <div class="au-o-grid__item au-u-3-4@medium">
-        <AuHeading @level="2" @skin="4" property="dct:title">
-            {{clean-spaces @agendapunt.titel}}
-            {{#if @agendapunt.type}}
-                <span property="besluit:Agendapunt.type" style='display: none;' resource="{{@agendapunt.type.uri}}" typeof="skos:Concept">{{@agendapunt.type.label}}</span>
-            {{/if}}
-        </AuHeading>
+        <AuHeading @level="2" @skin="4" property="dct:title">{{clean-spaces @agendapunt.titel}}</AuHeading>
+        {{#if @agendapunt.type}}
+          <span property="besluit:Agendapunt.type" style='display: none;' resource="{{@agendapunt.type.uri}}" typeof="skos:Concept">{{@agendapunt.type.label}}</span>
+        {{/if}}
         {{#if @agendapunt.beschrijving}}
           <p property="dct:description">
             <AuHelpText @skin="secondary">{{clean-spaces @agendapunt.beschrijving}}</AuHelpText>
