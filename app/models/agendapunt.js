@@ -6,13 +6,13 @@ export default class AgendapuntModel extends Model {
   @attr geplandOpenbaar;
   @attr heeftOntwerpbesluit;
   @attr titel;
-  @attr('string-set') type;
   @attr('number') position;
   @belongsTo('agendapunt', { inverse: null }) vorigeAgendapunt;
   @hasMany('agendapunt', { inverse: null }) referenties;
   @belongsTo('zitting') zitting;
   @belongsTo('behandeling-van-agendapunt') behandeling;
   @hasMany('published-resource', { inverse: null }) publications;
+  @belongsTo('concept') type;
 
   rdfaBindings = {
     class: 'besluit:Agendapunt',
