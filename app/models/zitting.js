@@ -14,11 +14,7 @@ export default class ZittingModel extends Model {
   @hasMany('uittreksel') uittreksels;
   @belongsTo('besluitenlijst') besluitenlijst;
   @belongsTo('notulen') notulen;
-
   @alias('agendas.firstObject') agenda; // TODO doesn's seem to work on the template
-  agendapuntenSort = ['position'];
-  @sort('agendapunten', 'agendapuntenSort') sortedAgendapunten;
-
   rdfaBindings = {
     class: "besluit:Zitting",
     geplandeStart: {
