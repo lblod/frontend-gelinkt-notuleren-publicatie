@@ -1,10 +1,13 @@
 import Route from '@ember/routing/route';
 
 export default class BestuurseenheidZittingUittrekselsDetailIndexRoute extends Route {
-  model() {
+  async model() {
+    const uittreksel = this.modelFor('bestuurseenheid.zitting.uittreksels.detail');
+    const publication = uittreksel.get('publication');
     return {
-      uittreksel: this.modelFor('bestuurseenheid.zitting.uittreksels.detail'),
+      uittreksel,
+      publication,
       zitting: this.modelFor('bestuurseenheid.zitting'),
-    }
+    };
   }
 }
