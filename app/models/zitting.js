@@ -1,6 +1,6 @@
 /* eslint-disable ember/no-computed-properties-in-native-classes */
 import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
-import { alias, sort } from '@ember/object/computed';
+import { alias } from '@ember/object/computed';
 
 export default class ZittingModel extends Model {
   @attr uri;
