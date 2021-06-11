@@ -9,7 +9,6 @@ steps:
   - npm install
 - name: lint:js
   image: danlynn/ember-cli:3.20.0
-  failure: ignore
   commands:
   - npm run lint:js
 - name: lint:hbs
@@ -18,6 +17,7 @@ steps:
   - npm run lint:hbs
 - name: lint:dependencies
   image: danlynn/ember-cli:3.20.0
+  failure: ignore
   commands:
   - ember dependency-lint
 - name: test
