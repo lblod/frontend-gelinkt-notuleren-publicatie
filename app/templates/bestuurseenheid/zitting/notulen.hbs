@@ -2,8 +2,8 @@
   <a class="au-u-hidden" href="http://data.lblod.info/id/document-types/notulen" property="dct:type"></a>
 
   <div class="au-o-region-large" property="prov:value">
-    <div resource={{this.modelzitting.uri}} typeof="besluit:Zitting">
-      <div property="besluit:heeftNotulen" resource={{this.modelnotulen.uri}}>
+    <div resource={{this.model.zitting.uri}} typeof="besluit:Zitting">
+      <div property="besluit:heeftNotulen" resource={{this.model.notulen.uri}}>
         <div property="prov:value">
           {{html-safe this.model.notulen.inhoud}}
         </div>
