@@ -1,0 +1,20 @@
+{{page-title "Error"}}
+<AuToolbar @size="medium" @skin="tint" @border="bottom" class="au-c-toolbar__breadcrumbs">
+  <AuToolbarGroup>
+    <BreadCrumbs @tagName="ul" @linkable={{true}} @crumbClass="au-c-list-horizontal__item" @class="au-c-list-horizontal" as |component route|>
+      <BreadCrumb @route={{route}} @breadCrumbs={{component}} @linkClass="au-c-link">
+        {{route.title}}
+      </BreadCrumb>
+    </BreadCrumbs>
+  </AuToolbarGroup>
+</AuToolbar>
+
+<div class="au-o-region-large">
+  <div class="au-o-layout">
+    <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Er is iets fout gelopen</AuHeading>
+    <p>Er heeft zich een fout voorgedaan bij het verwerken van uw request.</p>
+    <p>Moest dit probleem aanhouden, neem contact op met <a href="mailto:Gelinkt-Notuleren@vlaanderen.be" class="au-c-link">Gelinkt-Notuleren@vlaanderen.be</a>.</p>
+    <p><code>{{this.errorMessage}}</code></p>
+  </div>
+</div>
+{{outlet}}
