@@ -13,6 +13,6 @@ export default class BestuurseenheidZittingIndexController extends Controller {
   @alias('model.besluiten.firstObject.publications.firstObject.createdOn')
   besluitenlijstPublicationDate;
 
-  @alias('model.notulen.publications.firstObject.createdOn')
+  @alias('model.notulen.publication.createdOn')
   notulenPublicationDate;
 }

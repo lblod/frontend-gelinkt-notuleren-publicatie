@@ -4,14 +4,15 @@ export default class BestuurseenheidZittingNotulenRoute extends Route {
   breadCrumb = { title: 'Notulen' };
 
   async model() {
-    const id = this.modelFor('bestuurseenheid.zitting').get('id');
-    const notulen = (await this.store.query('notulen', {
-      'filter[zitting][id]': id,
-      page: {
-        size: 1
-      }
-    })).firstObject;
+    const meeting = this.modelFor('bestuurseenheid.zitting');
+    const meetingNotes = await this.store.query('notulen', {
+      "filter[zitting][:id:]": meeting.id,
+      sort: "-publication.created-on",
+      include: "publication"
+    });
 
-    return { notulen, zitting: this.modelFor('bestuurseenheid.zitting') };
+    const notulen = meetingNotes.firstObject;
+    return { notulen, zitting: meeting };
   }
 }
+bz

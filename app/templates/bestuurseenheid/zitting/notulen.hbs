@@ -4,6 +4,18 @@
   <div class="au-o-region-large" property="prov:value">
     <div resource={{this.model.zitting.uri}} typeof="besluit:Zitting">
       <div property="besluit:heeftNotulen" resource={{this.model.notulen.uri}}>
+        <p class="au-c-heading au-c-heading--5">
+          Datum publicatie:
+          {{log this.model.notulen.publication}}
+          {{#if this.model.notulen.publication.createdOn}}
+            <span property="eli:date_publication" content={{moment-format this.model.notulen.publication.createdOn 'YYYY-MM-DD'}} datatype="xsd:date">
+              {{moment-format this.model.notulen.publication.createdOn 'D MMMM YYYY'}}
+            </span>
+          {{else}}
+            {{!-- old data does not have this field --}}
+            ongekend
+          {{/if}}
+        </p>
         <div property="prov:value">
           {{html-safe this.model.notulen.inhoud}}
         </div>
