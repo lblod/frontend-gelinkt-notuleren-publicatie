@@ -6,7 +6,6 @@
       <div property="besluit:heeftNotulen" resource={{this.model.notulen.uri}}>
         <p class="au-c-heading au-c-heading--5">
           Datum publicatie:
-          {{log this.model.notulen.publication}}
           {{#if this.model.notulen.publication.createdOn}}
             <span property="eli:date_publication" content={{moment-format this.model.notulen.publication.createdOn 'YYYY-MM-DD'}} datatype="xsd:date">
               {{moment-format this.model.notulen.publication.createdOn 'D MMMM YYYY'}}

@@ -15,4 +15,4 @@ export default class BestuurseenheidZittingNotulenRoute extends Route {
     return { notulen, zitting: meeting };
   }
 }
-bz
+
