@@ -10,6 +10,6 @@ COPY . .
 RUN ember build -prod
 
 
-FROM redpencil/fastboot-app-server
+FROM cecemel/ember-fastboot-proxy-service:0.9.1
 ENV STATIC_FOLDERS_REGEX "^/(assets|@appuniversum)/"
 COPY --from=builder /app/dist /app
