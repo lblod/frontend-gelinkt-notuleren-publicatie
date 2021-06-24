@@ -236,16 +236,24 @@
 }
 
 .au-c-template-list-inline__item {
-  display: inline;
+  display: inline !important;
   margin-right: $au-unit-tiny;
 
   &:after {
     content: ",";
-    margin-left: -.2em;
+    // margin-left: -.1em;
   }
 
   &:last-child:after {
     content: ""
+  }
+
+  [property="mandaat:isBestuurlijkeAliasVan"]:before {
+    display: none !important;
+  }
+
+  &[property="besluit:heeftAanwezige"] {
+    margin-right: $au-unit-tiny !important;
   }
 }
 
@@ -274,6 +282,15 @@
     vertical-align: middle;
     position: relative;
     bottom: .2ex;
+  }
+}
+
+[property="besluit:geplandOpenbaar"] .au-c-template-public,
+[property="besluit:geplandOpenbaar"] .au-c-template-private,
+[property="besluit:openbaar"] .au-c-template-public,
+[property="besluit:openbaar"] .au-c-template-private {
+  &:before {
+    display: none !important;
   }
 }
 

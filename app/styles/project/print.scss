@@ -9,4 +9,28 @@
   .au-c-main-footer {
     display: none !important;
   }
+
+  .au-c-template,
+  .au-c-document-publish {
+    h1 {
+      @include au-font-size($au-heading-2);
+    }
+
+    h2 {
+      @include au-font-size($au-heading-4, $important: true);
+    }
+
+    h3 {
+      @include au-font-size($au-heading-5);
+    }
+
+    h4 {
+      @include au-font-size($au-heading-6);
+    }
+
+    h5,
+    h6 {
+      @include au-font-size($au-heading-6);
+    }
+  }
 }
