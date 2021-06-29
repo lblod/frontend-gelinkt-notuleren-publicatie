@@ -26,8 +26,8 @@ Style the text from documents here.
     list-style: bullet;
   }
 
-  ol:not(.bullet-list):not(.numbered-list),
-  ul:not(.bullet-list):not(.numbered-list) {
+  ol:not(.bullet-list):not(.numbered-list):not(.au-c-template-list-inline):not(.au-c-template-list),
+  ul:not(.bullet-list):not(.numbered-list):not(.au-c-template-list-inline):not(.au-c-template-list) {
     padding-left: 1.75em;
 
     > li {
