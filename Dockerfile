@@ -4,11 +4,12 @@ LABEL maintainer="info@redpencil.io"
 
 WORKDIR /app
 COPY package.json .
+COPY package-lock.json .
 RUN npm install
 COPY . .
 RUN ember build -prod
 
 
-FROM cecemel/ember-fastboot-proxy-service:0.9.1
+FROM redpencil/fastboot-app-server
 ENV STATIC_FOLDERS_REGEX "^/(assets|@appuniversum)/"
 COPY --from=builder /app/dist /app

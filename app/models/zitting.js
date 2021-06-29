@@ -1,6 +1,6 @@
 /* eslint-disable ember/no-computed-properties-in-native-classes */
 import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
-import { alias, sort } from '@ember/object/computed';
+import { alias } from '@ember/object/computed';
 
 export default class ZittingModel extends Model {
   @attr uri;
@@ -14,11 +14,7 @@ export default class ZittingModel extends Model {
   @hasMany('uittreksel') uittreksels;
   @belongsTo('besluitenlijst') besluitenlijst;
   @belongsTo('notulen') notulen;
-
   @alias('agendas.firstObject') agenda; // TODO doesn's seem to work on the template
-  agendapuntenSort = ['position'];
-  @sort('agendapunten', 'agendapuntenSort') sortedAgendapunten;
-
   rdfaBindings = {
     class: "besluit:Zitting",
     geplandeStart: {

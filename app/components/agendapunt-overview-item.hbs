@@ -2,13 +2,14 @@
   <div class="au-c-card__header">
     <div class="au-o-grid au-o-grid--small">
       <div class="au-o-grid__item au-u-3-4@medium">
-        <AuHeading @level="2" @skin="4" property="dct:title">{{clean-spaces @agendapunt.titel}}</</AuHeading>
-        {{#if @agendapunt.beschrijving}}
-          <p property="dct:description">
-            <AuHelpText @skin="secondary">{{clean-spaces @agendapunt.beschrijving}}</AuHelpText>
-          </p>
+        <h2 class="au-c-heading--4" property="dct:title">{{clean-spaces @agendapunt.titel}}</</h2>
+        {{#if @agendapunt.type}}
+          <span property="besluit:Agendapunt.type" class="au-u-hidden-visually" resource="{{@agendapunt.type.uri}}" typeof="skos:Concept">{{@agendapunt.type.label}}</span>
         {{/if}}
-        <span property="besluit:geplandOpenbaar" content={{@agendapunt.geplandOpenbaar}} class="au-u-hidden"></span>
+        {{#if @agendapunt.beschrijving}}
+          <p property="dct:description"><span class="au-c-help-text--secondary">{{clean-spaces @agendapunt.beschrijving}}</span></p>
+        {{/if}}
+        <span property="besluit:geplandOpenbaar" content={{if @agendapunt.geplandOpenbaar "true" "false"}} class="au-u-hidden"></span>
         {{#unless this.uittreksel.inhoud}}
           <p>
             <AuHelpText @skin="secondary">Inhoud niet publiek</AuHelpText>
