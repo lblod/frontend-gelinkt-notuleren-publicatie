@@ -138,14 +138,7 @@
                   {{moment-format this.agendaPublicationDate 'MMM'}}</strong>
                 {{/if}}
               </div>
-              <span class="au-u-hidden-visually">
-                {{#each this.zitting.agendas as |agenda|}}
-                <a href={{href-to "bestuurseenheid.zitting.agenda.raw" this.zitting.id}} property="lblodBesluit:linkToPublication" tabindex="-1">
-                  <span resource={{agenda.uri}} typeof="foaf:Document" property="besluit:heeftAgenda"/>
-                </a>
-                {{/each}}
-              </span>
-              <LinkTo @route="bestuurseenheid.zitting.agenda" @model={{this.zitting.id}} class="au-c-card__link">
+              <LinkTo @route="bestuurseenheid.zitting.agenda" @model={{this.zitting.id}} class="au-c-card__link" property="lblodBesluit:linkToPublication">
                 <span class="au-u-hidden-visually">Bekijk agenda</span>
                 <AuIcon @icon="nav-right" @size="large" />
               </LinkTo>

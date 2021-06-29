@@ -12,7 +12,17 @@
         , zitting van
         <span property="besluit:geplandeStart" content={{iso-date this.model.zitting.geplandeStart}} datatype="xsd:dateTime">{{moment-format this.model.zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}</span>
       </AuHeading>
-
+      <p class="au-c-heading au-c-heading--5">
+        Datum publicatie:
+        {{#if this.model.publication.createdOn}}
+          <span about={{this.model.uittreksel.uri}} property="eli:date_publication" content={{moment-format this.model.publication.createdOn 'YYYY-MM-DD'}} datatype="xsd:date">
+            {{moment-format this.model.publication.createdOn 'D MMMM YYYY'}}
+          </span>
+        {{else}}
+          {{!-- old data does not have this field --}}
+          ongekend
+        {{/if}}
+      </p>
       <div class="au-u-margin-top">
         {{#if this.model.uittreksel.inhoud}}
           <div property="besluit:heeftUittreksel" resource={{this.model.uittreksel.uri}} typeof="foaf:Document https://data.vlaanderen.be/id/concept/BesluitDocumentType/9d5bfaca-bbf2-49dd-a830-769f91a6377b">
