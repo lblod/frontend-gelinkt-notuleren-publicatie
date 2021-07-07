@@ -25,6 +25,9 @@
     "test": "npm-run-all lint test:*",
     "test:ember": "ember test"
   },
+  "fastbootDependencies": [
+    "moment"
+  ],
   "devDependencies": {
     "@appuniversum/ember-appuniversum": "0.4.2",
     "@ember/optional-features": "^2.0.0",
