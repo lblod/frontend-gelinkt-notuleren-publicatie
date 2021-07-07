@@ -26,7 +26,8 @@
     "test:ember": "ember test"
   },
   "fastbootDependencies": [
-    "moment"
+    "moment",
+    "moment-timezone"
   ],
   "devDependencies": {
     "@appuniversum/ember-appuniversum": "0.4.2",
