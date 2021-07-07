@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
-import moment from 'moment';
+import { format } from 'date-fns';
+import { nl } from 'date-fns/locale';
 
 export default class BestuurseenheidZittingRoute extends Route {
   breadCrumb = {};
@@ -14,7 +15,7 @@ export default class BestuurseenheidZittingRoute extends Route {
     const date = zitting.geplandeStart;
 
     this.breadCrumb = {
-      title: `Zitting van ${bestuursorgaanInTijd.naam}, op ${moment(date).format('D MMMM YYYY, HH:mm')}`
+      title: `Zitting van ${bestuursorgaanInTijd.naam}, op ${format(date,'d MMMM yyyy, HH:mm', { locale: nl})}`
     };
   }
 }

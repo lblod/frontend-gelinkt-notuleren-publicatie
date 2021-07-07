@@ -10,13 +10,13 @@
         </span>
       </span>
       , zitting van
-      <span property="besluit:geplandeStart" content={{iso-date this.meeting.geplandeStart}} datatype="xsd:dateTime">{{moment-format this.meeting.geplandeStart 'D MMMM YYYY, HH:mm'}}</span>
+      <span property="besluit:geplandeStart" content={{iso-date this.meeting.geplandeStart}} datatype="xsd:dateTime">{{format-date this.meeting.geplandeStart 'd MMMM yyyy, HH:mm'}}</span>
     </AuHeading>
     <p class="au-c-heading au-c-heading--5">
       Datum publicatie:
       {{#if this.publication.createdOn}}
-        <span property="eli:date_publication" content={{moment-format this.publication.createdOn 'YYYY-MM-DD'}} datatype="xsd:date">
-          {{moment-format this.publication.createdOn 'D MMMM YYYY'}}
+        <span property="eli:date_publication" content={{format-date this.publication.createdOn 'YYYY-MM-DD'}} datatype="xsd:date">
+          {{format-date this.publication.createdOn 'd MMMM yyyy'}}
         </span>
       {{else}}
         {{!-- old data does not have this field --}}
