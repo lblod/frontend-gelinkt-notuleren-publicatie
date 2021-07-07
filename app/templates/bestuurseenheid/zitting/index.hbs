@@ -10,7 +10,7 @@
         </span>
         <br>
         op
-        <span property="besluit:geplandeStart" content={{iso-date this.zitting.geplandeStart}} datatype="xsd:dateTime">{{moment-format this.zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}</span>
+        <span property="besluit:geplandeStart" content={{iso-date this.zitting.geplandeStart}} datatype="xsd:dateTime">{{format-date this.zitting.geplandeStart 'd MMMM yyyy, HH:mm'}}</span>
       </AuHeading>
       <ul class="au-c-steps">
         <li class="au-c-steps__item">
@@ -23,8 +23,8 @@
                 {{#if this.notulenPublicationDate}}
                   Gepubliceerd op:
                   <strong>
-                  {{moment-format this.notulenPublicationDate 'D'}}
-                  {{moment-format this.notulenPublicationDate 'MMM'}}</strong>
+                  {{format-date this.notulenPublicationDate 'D'}}
+                  {{format-date this.notulenPublicationDate 'MMM'}}</strong>
                 {{/if}}
               </div>
               <span class="au-u-hidden-visually">
@@ -62,8 +62,8 @@
                 {{#if this.besluitenlijstPublicationDate}}
                   Gepubliceerd op:
                   <strong>
-                  {{moment-format this.besluitenlijstPublicationDate 'D'}}
-                  {{moment-format this.besluitenlijstPublicationDate 'MMM'}}</strong>
+                  {{format-date this.besluitenlijstPublicationDate 'D'}}
+                  {{format-date this.besluitenlijstPublicationDate 'MMM'}}</strong>
                 {{/if}}
               </div>
               <span class="au-u-hidden-visually">
@@ -99,8 +99,8 @@
                 {{#if this.besluitenlijstPublicationDate}}
                   Gepubliceerd op:
                   <strong>
-                  {{moment-format this.besluitenlijstPublicationDate 'D'}}
-                  {{moment-format this.besluitenlijstPublicationDate 'MMM'}}</strong>
+                  {{format-date this.besluitenlijstPublicationDate 'D'}}
+                  {{format-date this.besluitenlijstPublicationDate 'MMM'}}</strong>
                 {{/if}}
               </div>
               <span class="au-u-hidden-visually">
@@ -134,8 +134,8 @@
                 {{#if this.agendaPublicationDate}}
                   Gepubliceerd op:
                   <strong>
-                  {{moment-format this.agendaPublicationDate 'D'}}
-                  {{moment-format this.agendaPublicationDate 'MMM'}}</strong>
+                  {{format-date this.agendaPublicationDate 'D'}}
+                  {{format-date this.agendaPublicationDate 'MMM'}}</strong>
                 {{/if}}
               </div>
               <LinkTo @route="bestuurseenheid.zitting.agenda" @model={{this.zitting.id}} class="au-c-card__link" property="lblodBesluit:linkToPublication">

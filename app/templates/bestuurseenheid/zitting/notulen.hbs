@@ -7,8 +7,8 @@
         <p class="au-c-heading au-c-heading--5">
           Datum publicatie:
           {{#if this.model.notulen.publication.createdOn}}
-            <span property="eli:date_publication" content={{moment-format this.model.notulen.publication.createdOn 'YYYY-MM-DD'}} datatype="xsd:date">
-              {{moment-format this.model.notulen.publication.createdOn 'D MMMM YYYY'}}
+            <span property="eli:date_publication" content={{format-date this.model.notulen.publication.createdOn 'YYYY-MM-DD'}} datatype="xsd:date">
+              {{format-date this.model.notulen.publication.createdOn 'd MMMM yyyy'}}
             </span>
           {{else}}
             {{!-- old data does not have this field --}}
