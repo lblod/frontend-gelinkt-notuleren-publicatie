@@ -30,7 +30,7 @@
         <p class="au-c-heading au-c-heading--5">
           Datum publicatie:
           {{#if this.model.besluitenlijst.publicatiedatum}}
-            <span property="eli:date_publication" content={{format-date this.model.besluitenlijst.publicatiedatum 'yyyy-MM-DD'}} datatype="xsd:date">
+            <span property="eli:date_publication" content={{format-date this.model.besluitenlijst.publicatiedatum 'yyyy-MM-dd'}} datatype="xsd:date">
               {{format-date this.model.besluitenlijst.publicatiedatum 'd MMMM yyyy'}}
             </span>
           {{else}}
