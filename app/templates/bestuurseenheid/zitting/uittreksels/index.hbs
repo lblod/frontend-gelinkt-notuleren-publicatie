@@ -13,7 +13,7 @@
       </ctx.get>
       , zitting van
       <ctx.get @prop="geplandeStart" as |elements value|>
-        <span {{rdfa elements}}>{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
+        <span {{rdfa elements}}>{{format-date value 'd MMMM yyyy, HH:mm'}}</span>
       </ctx.get>
     </AuHeading>
 
@@ -35,3 +35,4 @@
 </div>
 
 {{outlet}}
+`

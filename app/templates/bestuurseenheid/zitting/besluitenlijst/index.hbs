@@ -8,12 +8,12 @@
       </span>, zitting van
       {{#if this.model.zitting.gestartOpTijdstip}}
         <span class="au-u-margin-bottom-tiny" property="prov:startedAtTime" content={{iso-date this.model.zitting.gestartOpTijdstip}} datatype="xsd:dateTime">
-          {{moment-format this.model.zitting.gestartOpTijdstip 'D MMMM YYYY, HH:mm'}}
+          {{format-date this.model.zitting.gestartOpTijdstip 'd MMMM yyyy, HH:mm'}}
         </span>
       {{else}}
         {{!-- fallback for old data --}}
         <span class="au-u-margin-bottom-tiny" property="prov:startedAtTime" content={{iso-date this.model.zitting.geplandeStart}} datatype="xsd:dateTime">
-          {{moment-format this.model.zitting.geplandeStart 'D MMMM YYYY, HH:mm'}}
+          {{format-date this.model.zitting.geplandeStart 'd MMMM yyyy, HH:mm'}}
         </span>
       {{/if}}
     </AuHeading>
@@ -30,8 +30,8 @@
         <p class="au-c-heading au-c-heading--5">
           Datum publicatie:
           {{#if this.model.besluitenlijst.publicatiedatum}}
-            <span property="eli:date_publication" content={{moment-format this.model.besluitenlijst.publicatiedatum 'YYYY-MM-DD'}} datatype="xsd:date">
-              {{moment-format this.model.besluitenlijst.publicatiedatum 'D MMMM YYYY'}}
+            <span property="eli:date_publication" content={{format-date this.model.besluitenlijst.publicatiedatum 'yyyy-MM-dd'}} datatype="xsd:date">
+              {{format-date this.model.besluitenlijst.publicatiedatum 'd MMMM yyyy'}}
             </span>
           {{else}}
             {{!-- old data does not have this field --}}

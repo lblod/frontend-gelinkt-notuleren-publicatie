@@ -23,7 +23,7 @@
                 <div class="au-c-content au-c-content--large au-o-grid__item au-u-3-4@medium">
                   <p>
                     <ctx.get @prop="geplandeStart" as |elements value|>
-                      <span {{rdfa elements}}>{{moment-format value 'D MMMM YYYY, HH:mm'}}</span>
+                      <span {{rdfa elements}}>{{format-date value 'd MMMM yyyy, HH:mm'}}</span>
                     </ctx.get>
                   </p>
                   <ul class="au-c-list-horizontal au-u-margin-top-small">

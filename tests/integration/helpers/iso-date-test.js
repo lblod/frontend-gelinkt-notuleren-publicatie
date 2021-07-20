@@ -8,10 +8,10 @@ module('Integration | Helper | iso-date', function(hooks) {
 
   // Replace this with your real tests.
   test('it renders', async function(assert) {
-    this.set('inputValue', '1234');
+    this.set('inputValue', new Date("2021-07-01"));
 
     await render(hbs`{{iso-date inputValue}}`);
 
-    assert.equal(this.element.textContent.trim(), '1234');
+    assert.equal(this.element.textContent.trim(), '2021-07-01T00:00:00.000Z');
   });
 });

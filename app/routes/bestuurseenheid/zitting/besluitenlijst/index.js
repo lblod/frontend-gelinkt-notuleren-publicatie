@@ -12,7 +12,7 @@ export default class BestuurseenheidZittingBesluitenlijstIndexRoute extends Rout
         size: 100
       },
       "filter[besluitenlijst][:id:]": besluitenlijst.id,
-      sort: "volgend-uit-behandeling-van-agendapunt.onderwerp.position"
+      sort: "volgend-uit-behandeling-van-agendapunt.position",
     });
 
     return {
