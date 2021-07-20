@@ -12,155 +12,12 @@
     margin-bottom: 2rem;
     display: block;
   }
-
-  [typeof="besluit:BehandelingVanAgendapunt"]:not([property="ext:behandelt"]) {
-    [property="besluit:openbaar"][content="true"] {
-      &:before {
-        content: "Agendapunt - "
-      }
-      &:after {
-        content: "Openbare Behandeling";
-        margin-left: 1rem;
-        display: inline-block;
-      }
-    }
-
-    [property="besluit:openbaar"][content="false"] {
-      &:before {
-        content: "Agendapunt - "
-      }
-      &:after {
-        content: "Besloten Behandeling";
-        margin-left: 1rem;
-        display: inline-block;
-      }
-    }
-
-  }
 }
 
 /* ==========================================================================
 Document text
 Style the text from documents here.
 ========================================================================== */
-
-.au-c-document-publish {
-  p, li {
-    font-size: 1.6rem;
-    position: relative;
-
-    &.small {
-      font-size: 0.9em;
-    }
-
-    &.smaller {
-      font-size: 0.8em;
-    }
-
-    &.smallest {
-      font-size: 0.7em;
-    }
-  }
-
-  p {
-    display: block;
-  }
-
-  em {
-    font-style: italic;
-  }
-
-  strong,
-  b {
-    font-weight: 500;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: flanders-serif,serif;
-    line-height: 1.1;
-    position: relative;
-
-    * + & {
-      margin-top: $au-unit;
-    }
-  }
-
-  .h1 {
-    font-style: 4rem;
-  }
-
-  h1:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-    line-height: 1;
-    font-weight: 300;
-    font-size: 4.8rem;
-  }
-
-    @media screen and (max-width: 767px) {
-      h1:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-        font-size: 3.6rem;
-      }
-    }
-
-  h2:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-    font-size: 3.6rem;
-    font-weight: 500;
-  }
-
-    @media screen and (max-width: 767px) {
-       h2:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-        font-size: 3rem;
-      }
-    }
-
-  h3:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-    font-size: 3rem;
-    font-weight: 700;
-  }
-
-    @media screen and (max-width: 767px) {
-       h3:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-        font-size: 2.8rem;
-      }
-    }
-
-  h4:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-    font-size: 2.4rem;
-    font-weight: 500;
-  }
-
-    @media screen and (max-width: 767px) {
-      h4:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-        font-size: 2.4rem;
-      }
-    }
-
-  h5:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-    font-weight: 400;
-    font-size: 2.1rem;
-  }
-
-    @media screen and (max-width: 767px) {
-      h5:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-        font-size: 2.1rem;
-      }
-    }
-
-  h6:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-    font-weight: 500;
-    font-size: 1.8rem;
-  }
-
-  @media screen and (max-width: 767px) {
-    h6:not(.h1):not(.h2):not(.h3):not(.h4):not(.h5):not(.h6) {
-      font-size: 1.8rem;
-    }
-  }
-}
 
   /* -------------------- list styles ------------------------- */
 
@@ -169,8 +26,8 @@ Style the text from documents here.
     list-style: bullet;
   }
 
-  ol:not(.bullet-list):not(.numbered-list),
-  ul:not(.bullet-list):not(.numbered-list) {
+  ol:not(.bullet-list):not(.numbered-list):not(.au-c-template-list-inline):not(.au-c-template-list),
+  ul:not(.bullet-list):not(.numbered-list):not(.au-c-template-list-inline):not(.au-c-template-list) {
     padding-left: 1.75em;
 
     > li {
@@ -260,24 +117,4 @@ Style the text from documents here.
   .data-table td {
     font-size: 1.4rem;
   }
-}
-
-/* Styles for openbaarheid and agendapunt */
-[typeof="besluit:Agendapunt"] > [property="dc:subject"],
-[property="ext:behandelt"] > span:first-child,
-[property="besluit:gebeurtNa"] + span {
-  text-transform: uppercase;
-  color: $au-gray-600;
-  letter-spacing: 1px;
-  font-size: 1.4rem;
-  line-height: 1.8;
-}
-
-[property="besluit:geplandOpenbaar"],
-[property="besluit:openbaar"] {
-  text-transform: uppercase;
-  color: $au-gray-600;
-  letter-spacing: 1px;
-  font-size: 1.4rem;
-  line-height: 1.8;
 }

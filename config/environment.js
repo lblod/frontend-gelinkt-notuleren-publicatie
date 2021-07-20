@@ -16,6 +16,7 @@ module.exports = function (environment) {
         Date: false,
       },
     },
+    environmentName: "{{ENVIRONMENT_NAME}}",
     fastboot: {
       hostWhitelist: [/^localhost:\d+$/,
                       "localhost",
