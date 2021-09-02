@@ -69,10 +69,16 @@
         </li>
       {{/each}}
       </ul>
-      {{!-- <div class="sidebar__footer">
-        {{number-pagination page=page size=size nbOfItems=model.length
+      <div class="sidebar__footer">
+        {{#if model.meta.page}}
+          <LinkTo @query={{hash page=model.meta.previousPage}}>Previous Page</LinkTo>
+        {{/if}}
+        {{number-pagination page=model.meta.page size=2 nbOfItems=model.length
             total=model.meta.count links=model.meta.pagination}}
-      </div> --}}
+        {{#if model.meta.nextPage}}
+          <LinkTo @query={{hash page=model.meta.nextPage}}>Next Page</LinkTo>
+        {{/if}}
+      </div> 
       {{outlet}}
     {{else}}
     <AuContent>
