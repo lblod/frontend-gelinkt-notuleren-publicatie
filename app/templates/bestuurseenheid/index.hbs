@@ -73,8 +73,13 @@
         {{#if model.meta.page}}
           <LinkTo @query={{hash page=model.meta.previousPage}}>Previous Page</LinkTo>
         {{/if}}
-        {{number-pagination page=model.meta.page size=2 nbOfItems=model.length
-            total=model.meta.count links=model.meta.pagination}}
+        <NumberPagination 
+          @page={{this.model.meta.page}} 
+          @size={{2}} 
+          @nbOfItems={{this.model.length}}
+          @total={{this.model.meta.count}} 
+          @links={{this.model.meta.pagination}} 
+        />
         {{#if model.meta.nextPage}}
           <LinkTo @query={{hash page=model.meta.nextPage}}>Next Page</LinkTo>
         {{/if}}
