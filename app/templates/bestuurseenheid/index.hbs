@@ -81,12 +81,12 @@
         <ul class="au-c-pagination__list">
           {{#if this.model.meta.page}}
           <li class="au-c-pagination__list-item">
-            <LinkTo @query={{hash page=this.model.meta.previousPage}} class="au-c-link"><AuIcon @icon="nav-left" @alignment="left" /> Vorige pagina</LinkTo>
+            <LinkTo property="lblodBesluit:linkToPublication" @query={{hash page=this.model.meta.previousPage}} class="au-c-link"><AuIcon @icon="nav-left" @alignment="left" /> Vorige pagina</LinkTo>
           </li>
           {{/if}}
           {{#if this.model.meta.nextPage}}
           <li class="au-c-pagination__list-item">
-            <LinkTo @query={{hash page=this.model.meta.nextPage}} class="au-c-link">Volgende pagina <AuIcon @icon="nav-right" @alignment="right" /></LinkTo>
+            <LinkTo property="lblodBesluit:linkToPublication" @query={{hash page=this.model.meta.nextPage}} class="au-c-link">Volgende pagina <AuIcon @icon="nav-right" @alignment="right" /></LinkTo>
           </li>
           {{/if}}
         </ul>

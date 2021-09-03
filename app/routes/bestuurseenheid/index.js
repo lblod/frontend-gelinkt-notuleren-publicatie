@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 
-const PAGE_SIZE = 2;
+const PAGE_SIZE = 20;
 
 export default class BestuurseenheidIndexRoute extends Route {
   queryParams = {
@@ -30,13 +30,15 @@ export default class BestuurseenheidIndexRoute extends Route {
     model.meta.page = pageNumber;
     model.meta.pageStart = pageNumber * PAGE_SIZE + 1;
     model.meta.pageEnd = (pageNumber + 1) * PAGE_SIZE;
+    if(model.meta.pageEnd > model.meta.count) {
+      model.meta.pageEnd = model.meta.count;
+    }
     if(pageNumber !== 0) {
       model.meta.previousPage = pageNumber - 1;
     }
     if((pageNumber + 1) * PAGE_SIZE < model.meta.count ) {
       model.meta.nextPage = pageNumber + 1;
     }
-    console.log(model.meta)
     return model;
   }
 
