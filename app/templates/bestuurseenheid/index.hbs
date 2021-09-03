@@ -70,15 +70,14 @@
       {{/each}}
       </ul>
       <div class="au-c-pagination au-u-margin-top">
-        <div>
-          <span>
-          {{this.model.meta.pageStart}}
-          -
-          {{this.model.meta.pageEnd}}
-          </span>
+        <p>
+          <span class="au-u-hidden-visually">Publicaties</span>
+          <strong>
+            {{this.model.meta.pageStart}} - {{this.model.meta.pageEnd}}
+          </strong>
           van
           {{this.model.meta.count}}
-        </div>
+        </p>
         <ul class="au-c-pagination__list">
           {{#if this.model.meta.page}}
           <li class="au-c-pagination__list-item">
