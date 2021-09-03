@@ -70,8 +70,8 @@
       {{/each}}
       </ul>
       <div class="sidebar__footer">
-        {{#if model.meta.page}}
-          <LinkTo @query={{hash page=model.meta.previousPage}}>Previous Page</LinkTo>
+        {{#if this.model.meta.page}}
+          <LinkTo @query={{hash page=this.model.meta.previousPage}}>Previous Page</LinkTo>
         {{/if}}
         <NumberPagination 
           @page={{this.model.meta.page}} 
@@ -80,8 +80,8 @@
           @total={{this.model.meta.count}} 
           @links={{this.model.meta.pagination}} 
         />
-        {{#if model.meta.nextPage}}
-          <LinkTo @query={{hash page=model.meta.nextPage}}>Next Page</LinkTo>
+        {{#if this.model.meta.nextPage}}
+          <LinkTo @query={{hash page=this.model.meta.nextPage}}>Next Page</LinkTo>
         {{/if}}
       </div> 
       {{outlet}}
