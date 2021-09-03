@@ -69,21 +69,27 @@
         </li>
       {{/each}}
       </ul>
-      <div class="sidebar__footer">
-        {{#if this.model.meta.page}}
-          <LinkTo @query={{hash page=this.model.meta.previousPage}}>Previous Page</LinkTo>
-        {{/if}}
-        <NumberPagination 
-          @page={{this.model.meta.page}} 
-          @size={{2}} 
+      <div class="au-c-pagination au-u-margin-top">
+        <NumberPagination
+          @page={{this.model.meta.page}}
+          @size={{2}}
           @nbOfItems={{this.model.length}}
-          @total={{this.model.meta.count}} 
-          @links={{this.model.meta.pagination}} 
+          @total={{this.model.meta.count}}
+          @links={{this.model.meta.pagination}}
         />
-        {{#if this.model.meta.nextPage}}
-          <LinkTo @query={{hash page=this.model.meta.nextPage}}>Next Page</LinkTo>
-        {{/if}}
-      </div> 
+        <ul class="au-c-pagination__list">
+          {{#if this.model.meta.page}}
+          <li class="au-c-pagination__list-item">
+            <LinkTo @query={{hash page=this.model.meta.previousPage}} class="au-c-link"><AuIcon @icon="nav-left" @alignment="left" /> Vorige pagina</LinkTo>
+          </li>
+          {{/if}}
+          {{#if this.model.meta.nextPage}}
+          <li class="au-c-pagination__list-item">
+            <LinkTo @query={{hash page=this.model.meta.nextPage}} class="au-c-link">Volgende pagina <AuIcon @icon="nav-right" @alignment="right" /></LinkTo>
+          </li>
+          {{/if}}
+        </ul>
+      </div>
       {{outlet}}
     {{else}}
     <AuContent>
