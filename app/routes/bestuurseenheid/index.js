@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 10;
 
 export default class BestuurseenheidIndexRoute extends Route {
   queryParams = {
