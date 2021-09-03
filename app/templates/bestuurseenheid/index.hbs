@@ -70,13 +70,15 @@
       {{/each}}
       </ul>
       <div class="au-c-pagination au-u-margin-top">
-        <NumberPagination
-          @page={{this.model.meta.page}}
-          @size={{2}}
-          @nbOfItems={{this.model.length}}
-          @total={{this.model.meta.count}}
-          @links={{this.model.meta.pagination}}
-        />
+        <div>
+          <span>
+          {{this.model.meta.pageStart}}
+          -
+          {{this.model.meta.pageEnd}}
+          </span>
+          van
+          {{this.model.meta.count}}
+        </div>
         <ul class="au-c-pagination__list">
           {{#if this.model.meta.page}}
           <li class="au-c-pagination__list-item">

@@ -28,12 +28,15 @@ export default class BestuurseenheidIndexRoute extends Route {
     });
     const pageNumber = Number(params.page) || 0;
     model.meta.page = pageNumber;
+    model.meta.pageStart = pageNumber * PAGE_SIZE + 1;
+    model.meta.pageEnd = (pageNumber + 1) * PAGE_SIZE;
     if(pageNumber !== 0) {
       model.meta.previousPage = pageNumber - 1;
     }
     if((pageNumber + 1) * PAGE_SIZE < model.meta.count ) {
       model.meta.nextPage = pageNumber + 1;
     }
+    console.log(model.meta)
     return model;
   }
 
