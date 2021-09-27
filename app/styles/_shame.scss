@@ -1,3 +1,8 @@
+// Fix overflow issue on chrome & safari
+body {
+  overflow: hidden;
+}
+
 // Add main app container
 .au-c-app-container {
   display: flex;
