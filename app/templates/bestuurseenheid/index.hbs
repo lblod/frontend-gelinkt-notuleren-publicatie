@@ -69,10 +69,28 @@
         </li>
       {{/each}}
       </ul>
-      {{!-- <div class="sidebar__footer">
-        {{number-pagination page=page size=size nbOfItems=model.length
-            total=model.meta.count links=model.meta.pagination}}
-      </div> --}}
+      <div class="au-c-pagination au-u-margin-top">
+        <p>
+          <span class="au-u-hidden-visually">Publicaties</span>
+          <strong>
+            {{this.model.meta.pageStart}} - {{this.model.meta.pageEnd}}
+          </strong>
+          van
+          {{this.model.meta.count}}
+        </p>
+        <ul class="au-c-pagination__list">
+          {{#if this.model.meta.page}}
+          <li class="au-c-pagination__list-item">
+            <LinkTo property="lblodBesluit:linkToPublication" @query={{hash page=this.model.meta.previousPage}} class="au-c-link"><AuIcon @icon="nav-left" @alignment="left" /> Vorige pagina</LinkTo>
+          </li>
+          {{/if}}
+          {{#if this.model.meta.nextPage}}
+          <li class="au-c-pagination__list-item">
+            <LinkTo property="lblodBesluit:linkToPublication" @query={{hash page=this.model.meta.nextPage}} class="au-c-link">Volgende pagina <AuIcon @icon="nav-right" @alignment="right" /></LinkTo>
+          </li>
+          {{/if}}
+        </ul>
+      </div>
       {{outlet}}
     {{else}}
     <AuContent>
