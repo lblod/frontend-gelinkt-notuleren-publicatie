@@ -10,5 +10,5 @@ COPY . .
 RUN ember build -prod
 
 
-FROM redpencil/fastboot-app-server:1.0.0-beta.3
+FROM redpencil/fastboot-app-server:1.0.0
 COPY --from=builder /app/dist /app
