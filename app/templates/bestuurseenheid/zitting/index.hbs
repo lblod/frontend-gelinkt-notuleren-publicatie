@@ -20,12 +20,6 @@
               <AuBadge @icon="draft" @skin="brand" />
               <div>
                 <AuHeading @level="2" @skin="4">Notulen</AuHeading>
-                {{#if this.notulenPublicationDate}}
-                  Gepubliceerd op:
-                  <strong>
-                  {{format-date this.notulenPublicationDate 'D'}}
-                  {{format-date this.notulenPublicationDate 'MMM'}}</strong>
-                {{/if}}
               </div>
               <span class="au-u-hidden-visually">
                 <a href={{href-to "bestuurseenheid.zitting.notulen" this.zitting.id}} property="lblodBesluit:linkToPublication" tabindex="-1">
@@ -59,12 +53,6 @@
               <AuBadge @icon="draft" @skin="brand" />
               <div>
                 <AuHeading @level="2" @skin="4">Bekendmakingen en uittreksels</AuHeading>
-                {{#if this.besluitenlijstPublicationDate}}
-                  Gepubliceerd op:
-                  <strong>
-                  {{format-date this.besluitenlijstPublicationDate 'D'}}
-                  {{format-date this.besluitenlijstPublicationDate 'MMM'}}</strong>
-                {{/if}}
               </div>
               <span class="au-u-hidden-visually">
                 {{#each this.zitting.uittreksels as |uittreksel|}}
@@ -96,12 +84,6 @@
               <AuBadge @icon="draft" @skin="brand" />
               <div>
                 <AuHeading @level="2" @skin="4">Besluitenlijst</AuHeading>
-                {{#if this.besluitenlijstPublicationDate}}
-                  Gepubliceerd op:
-                  <strong>
-                  {{format-date this.besluitenlijstPublicationDate 'D'}}
-                  {{format-date this.besluitenlijstPublicationDate 'MMM'}}</strong>
-                {{/if}}
               </div>
               <span class="au-u-hidden-visually">
                 <a href={{href-to "bestuurseenheid.zitting.besluitenlijst" this.zitting.id}} property="lblodBesluit:linkToPublication" tabindex="-1">
@@ -131,12 +113,6 @@
               <AuBadge @icon="draft" @skin="brand" />
               <div>
                 <AuHeading @level="2" @skin="4">Agenda</AuHeading>
-                {{#if this.agendaPublicationDate}}
-                  Gepubliceerd op:
-                  <strong>
-                  {{format-date this.agendaPublicationDate 'D'}}
-                  {{format-date this.agendaPublicationDate 'MMM'}}</strong>
-                {{/if}}
               </div>
               <LinkTo @route="bestuurseenheid.zitting.agenda" @model={{this.zitting.id}} class="au-c-card__link" property="lblodBesluit:linkToPublication">
                 <span class="au-u-hidden-visually">Bekijk agenda</span>
