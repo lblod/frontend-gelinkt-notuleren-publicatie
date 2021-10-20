@@ -1,6 +1,7 @@
 import ENV from 'frontend-gelinkt-notuleren-publicatie/config/environment';
 export function initialize(/* application */) {
-  if (ENV.APP.analytics.appDomain !== "{{ANALYTICS_APP_DOMAIN}}" &&
+  if (typeof FastBoot === 'undefined' &&
+      ENV.APP.analytics.appDomain !== "{{ANALYTICS_APP_DOMAIN}}" &&
       ENV.APP.analytics.plausibleScript !== "{{ANALYTICS_PLAUSIBLE_SCRIPT}}"
      )
   {
