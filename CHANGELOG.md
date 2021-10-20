@@ -1,3 +1,8 @@
+## 0.21.3 (2021-10-20)
+
+quick fix for analytics
+
+
 ## 0.21.2 (2021-10-20)
 
 #### :bug: Bug Fix
