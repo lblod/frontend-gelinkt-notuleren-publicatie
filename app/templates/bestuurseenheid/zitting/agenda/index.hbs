@@ -20,7 +20,7 @@
       , zitting van
       <span property="besluit:geplandeStart" content={{iso-date this.meeting.geplandeStart}} datatype="xsd:dateTime">{{format-date this.meeting.geplandeStart 'd MMMM yyyy, HH:mm'}}</span>
     </AuHeading>
-    <p class="au-c-heading au-c-heading--5">
+    <p class="au-c-heading au-c-heading--5 au-u-margin-bottom">
       Datum publicatie:
       {{#if this.publication.createdOn}}
         <span property="eli:date_publication" content={{format-date this.publication.createdOn 'YYYY-MM-dd'}} datatype="xsd:date">

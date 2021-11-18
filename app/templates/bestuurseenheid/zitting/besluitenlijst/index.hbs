@@ -48,11 +48,7 @@
         </p>
       </div>
       <div typeof="besluit:Zitting" resource={{this.model.zitting.uri}}>
-        <ul class="au-c-list au-u-margin-top">
-          <li class="au-c-list__item">
-            <Besluitenlijst @besluitenlijst={{this.model.besluitenlijst}} @besluiten={{this.model.besluiten}} />
-          </li>
-        </ul>
+        <Besluitenlijst @besluitenlijst={{this.model.besluitenlijst}} @besluiten={{this.model.besluiten}} />
       </div>
     </div>
   </div>

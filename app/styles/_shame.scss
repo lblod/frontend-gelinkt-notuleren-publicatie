@@ -9,11 +9,15 @@ body {
   height: 100vh;
   flex-direction: column;
   flex-wrap: nowrap;
-
+  overflow: auto;
 
   @include mq(medium) {
     overflow: hidden;
   }
+}
+
+.au-c-container {
+  height: 100%;
 }
 
 // List
@@ -137,9 +141,7 @@ body {
 }
 
 
-.au-c-container {
-  height: 100%;
-}
+
 
 // Fix title and comma spacing
 [property="dc:title"] {

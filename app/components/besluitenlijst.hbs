@@ -1,15 +1,21 @@
+<ul class="au-c-list au-u-margin-top">
 {{#each @besluiten as |besluit|}}
-  <BesluitOverviewItem @besluit={{besluit}} />
+  <li class="au-c-list__item">
+    <BesluitOverviewItem @besluit={{besluit}} />
+  </li>
 {{/each}}
 {{#each this.extraBesluiten as |besluit|}}
   {{!-- using an extra array so the first one above renders properly with fastboot --}}
-  <BesluitOverviewItem @besluit={{besluit}} />
+  <li class="au-c-list__item">
+    <BesluitOverviewItem @besluit={{besluit}} />
+  </li>
 {{/each}}
+</ul>
 {{#if this.fetchBesluiten.isRunning}}
   <AuLoader />
 {{/if}}
 {{#if this.nextPage}}
-  <AuButton {{on "click" (perform this.fetchBesluiten this.nextPage)}}>
+  <AuButton class="au-u-margin-top" {{on "click" (perform this.fetchBesluiten this.nextPage)}}>
     Meer laden
   </AuButton>
 {{/if}}

@@ -29,7 +29,7 @@
     "date-fns"
   ],
   "devDependencies": {
-    "@appuniversum/ember-appuniversum": "0.4.2",
+    "@appuniversum/ember-appuniversum": "0.6.6",
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.1.4",
     "@glimmer/component": "^1.0.3",
