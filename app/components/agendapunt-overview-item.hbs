@@ -2,7 +2,12 @@
   <div class="au-c-card__header">
     <div class="au-o-grid au-o-grid--small">
       <div class="au-o-grid__item au-u-3-4@medium">
-        <h2 class="au-c-heading--4" property="dct:title">{{clean-spaces @agendapunt.titel}}</</h2>
+        <h2 class="au-c-heading--4" >
+          {{inc @index}}.
+          <span property="dct:title">
+            {{clean-spaces @agendapunt.titel}}
+          </span>
+        </h2>
         {{#if @agendapunt.type}}
           <span property="besluit:Agendapunt.type" class="au-u-hidden-visually" resource="{{@agendapunt.type.uri}}" typeof="skos:Concept">{{@agendapunt.type.label}}</span>
         {{/if}}
