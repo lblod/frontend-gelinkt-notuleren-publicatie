@@ -1,3 +1,11 @@
+## 0.21.4 (2021-11-30)
+
+#### :rocket: Enhancement
+* [#37](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/37) add index to the agendapoints ([@lagartoverde](https://github.com/lagartoverde))
+
+#### Committers: 1
+- Oscar Rodriguez Villalobos ([@lagartoverde](https://github.com/lagartoverde))
+
 ## 0.21.3 (2021-10-20)
 
 quick fix for analytics
