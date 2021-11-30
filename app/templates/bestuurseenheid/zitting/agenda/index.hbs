@@ -1,3 +1,11 @@
+{{#let (format-date this.meeting.geplandeStart 'd MMMM yyyy, HH:mm') as |startDate|}}
+  {{page-title (concat
+    "Agenda voor "
+    this.meeting.bestuursorgaan.isTijdsspecialisatieVan.naam
+    ", zitting van "
+    startDate
+    )}}
+{{/let}}
 <div class="au-o-layout">
   <a href="http://data.lblod.info/id/document-types/agenda" property="dct:type" class="au-u-hidden"></a>
   <div class="au-o-region-large" typeof="besluit:Zitting" resource={{this.meeting.uri}}>

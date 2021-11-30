@@ -1,3 +1,10 @@
+{{#let (format-date this.zitting.gestartOpTijdstip 'd MMMM yyyy, HH:mm') as |startDate|}}
+  {{page-title (concat
+    this.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam
+    ", zitting van "
+    startDate
+    )}}
+{{/let}}
 <div class="au-o-region-large">
   <div class="au-o-layout">
     <div typeof="besluit:Zitting" resource={{this.zitting.uri}}>

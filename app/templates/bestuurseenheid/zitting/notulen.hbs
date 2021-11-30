@@ -1,3 +1,11 @@
+{{#let (format-date this.model.zitting.gestartOpTijdstip 'd MMMM yyyy, HH:mm') as |startDate|}}
+  {{page-title (concat
+    "Notulen van "
+    this.model.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam
+    ", zitting van "
+    startDate
+    )}}
+{{/let}}
 <div class="au-o-layout au-c-document-publish">
   <a class="au-u-hidden" href="http://data.lblod.info/id/document-types/notulen" property="dct:type"></a>
 
