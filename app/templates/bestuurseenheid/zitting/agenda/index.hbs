@@ -23,7 +23,7 @@
     <p class="au-c-heading au-c-heading--5">
       Datum publicatie:
       {{#if this.publication.createdOn}}
-        <span property="eli:date_publication" content={{format-date this.publication.createdOn 'YYYY-MM-DD'}} datatype="xsd:date">
+        <span property="eli:date_publication" content={{format-date this.publication.createdOn 'YYYY-MM-dd'}} datatype="xsd:date">
           {{format-date this.publication.createdOn 'd MMMM yyyy'}}
         </span>
       {{else}}

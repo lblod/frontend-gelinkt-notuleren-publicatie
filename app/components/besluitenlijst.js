@@ -35,13 +35,13 @@ export default class BesluitenlijstComponent extends Component {
     this.extraBesluiten = [
       ...this.extraBesluiten,
       ...besluiten.toArray(),
-    ]
+    ];
 
     const meta = besluiten.meta;
     this.lastPage = meta.pagination.last.number;
     this.currentPage = page;
     if (this.lastPage > this.currentPage) {
-      this.nextPage, this.currentPage + 1;
+      this.nextPage = this.currentPage + 1;
     }
   }
 }
