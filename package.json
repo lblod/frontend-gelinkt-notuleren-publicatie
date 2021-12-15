@@ -87,5 +87,8 @@
   },
   "dependencies": {
     "date-fns": "^2.22.1"
+  },
+  "volta": {
+    "node": "12.22.7"
   }
 }

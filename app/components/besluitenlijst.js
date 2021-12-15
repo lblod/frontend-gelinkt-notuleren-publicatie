@@ -8,17 +8,18 @@ export default class BesluitenlijstComponent extends Component {
 
   @tracked extraBesluiten = [];
   @tracked currentPage = 0;
-  @tracked nextPage;
   @tracked lastPage;
 
   constructor() {
     super(...arguments);
-
     const meta = this.args.besluiten.meta;
-    const lastPage = meta.pagination.last.number;
-    if (lastPage > 0) {
-      this.nextPage = 1;
-    }
+    this.lastPage = meta.pagination.last.number;
+  }
+  get hasNext() {
+    return this.nextPage <= this.lastPage;
+  }
+  get nextPage() {
+    return this.currentPage + 1;
   }
 
   @task
@@ -40,9 +41,6 @@ export default class BesluitenlijstComponent extends Component {
     const meta = besluiten.meta;
     this.lastPage = meta.pagination.last.number;
     this.currentPage = page;
-    if (this.lastPage > this.currentPage) {
-      this.nextPage = this.currentPage + 1;
-    }
   }
 }
 
