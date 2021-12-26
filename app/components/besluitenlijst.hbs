@@ -14,7 +14,7 @@
 {{#if this.fetchBesluiten.isRunning}}
   <AuLoader />
 {{/if}}
-{{#if this.nextPage}}
+{{#if this.hasNext}}
   <AuButton class="au-u-margin-top" {{on "click" (perform this.fetchBesluiten this.nextPage)}}>
     Meer laden
   </AuButton>
