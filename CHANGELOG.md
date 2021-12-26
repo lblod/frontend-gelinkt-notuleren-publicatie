@@ -1,3 +1,14 @@
+## 0.21.5 (2021-12-26)
+
+#### :bug: Bug Fix
+* [#38](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/38) Fix besluitenlijst pagination ([@abeforgit](https://github.com/abeforgit))
+* [#39](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/39) Sort on proper position ([@abeforgit](https://github.com/abeforgit))
+* [#36](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/36) Fix scrolling issue and other minor styling issues ([@Dietr](https://github.com/Dietr))
+
+#### Committers: 2
+- Arne Bertrand ([@abeforgit](https://github.com/abeforgit))
+- Dieter Peirs ([@Dietr](https://github.com/Dietr))
+
 ## 0.21.4 (2021-11-30)
 
 #### :rocket: Enhancement
