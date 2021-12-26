@@ -30,7 +30,7 @@ export default class BesluitenlijstComponent extends Component {
         size: 100
       },
       "filter[besluitenlijst][:id:]": this.args.besluitenlijst.id,
-      sort: "volgend-uit-behandeling-van-agendapunt.onderwerp.position"
+      sort: "volgend-uit-behandeling-van-agendapunt.position"
     });
 
     this.extraBesluiten = [
