@@ -1,3 +1,11 @@
+## 0.22.0 (2022-01-24)
+
+#### :rocket: Enhancement
+* [#44](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/44) Gn 3194 use the agenda title instead of decision title ([@benjay10](https://github.com/benjay10))
+
+#### Committers: 1
+- Ben ([@benjay10](https://github.com/benjay10))
+
 ## 0.21.5 (2021-12-26)
 
 #### :bug: Bug Fix
