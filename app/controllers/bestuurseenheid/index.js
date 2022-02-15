@@ -81,6 +81,7 @@ export default class BestuurseenheidIndexController extends Controller {
     else
       this.to = date;
     this.page = 0;
+    this.fetchMeetings.perform();
   }
 
   @restartableTask
