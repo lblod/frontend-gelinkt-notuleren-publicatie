@@ -1,8 +1,44 @@
 {{page-title (concat this.bestuurseenheid.classificatie.label " " this.bestuurseenheid.naam)}}
 <div class="au-o-region-large">
   <div class="au-o-layout">
-    {{#if this.model.length}}
-      <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Publicaties van {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}}</AuHeading>
+    <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Publicaties van {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}}</AuHeading>
+    <AuToolbar @border="bottom" class="au-u-margin-bottom">
+        <AuToolbarGroup>
+
+          <AuDatePicker
+            @label="van"
+            @value={{this.from}}
+                    @min="2019-01-01"
+            @max={{this.today}}
+                    @onChange={{fn this.updateTimeRange 'from'}}
+          />
+          <AuDatePicker
+            @label="tot"
+            @value={{this.to}}
+                    @min="2019-01-01"
+            @max={{this.today}}
+                    @onChange={{fn this.updateTimeRange 'to'}}
+          />
+        </AuToolbarGroup>
+        <AuToolbarGroup>
+          <PowerSelect
+            @ariaLabel="Zoekbalk"
+            @placeholder="Type bestuursorgaan"
+            @selected={{this.administrativeBodyClass}}
+                        @options={{this.administrativeBodyClassOptions}}
+            @onChange={{this.selectAdministrativeBodyClass}}
+                        @allowClear={{true}}
+            as |adminBodyClassificationLabel|
+          >
+            {{adminBodyClassificationLabel.label}}
+          </PowerSelect>
+        </AuToolbarGroup>
+      </AuToolbar>
+
+    {{#if this.fetchMeetings.isRunning}}
+      <AuLoader />
+    {{else}}
+      {{#if this.model.length}}
       <ul class="au-c-list">
       {{#each this.model as |zitting|}}
         <li class="au-c-list__item">
@@ -94,13 +130,14 @@
       {{outlet}}
     {{else}}
     <AuContent>
-      <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Er werden nog geen publicaties voor {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}} gevonden</AuHeading>
+      <p>Er werden nog geen publicaties voor {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}} gevonden</p>
       <p>Kom later nog eens terug, of
         <LinkTo @route="index" class="au-c-link">
           zoek naar publicaties van een ander bestuur.
         </LinkTo>
       </p>
     </AuContent>
+      {{/if}}
     {{/if}}
   </div>
 </div>

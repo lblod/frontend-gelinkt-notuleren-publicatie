@@ -1,49 +1,32 @@
 import Route from '@ember/routing/route';
+import {inject as service} from '@ember/service';
 
-const PAGE_SIZE = 10;
 
 export default class BestuurseenheidIndexRoute extends Route {
+  @service fastboot;
   queryParams = {
     page: {
+      refreshModel: true
+    },
+    to: {
+      refreshModel: true
+    },
+    from: {
+      refreshModel: true
+    },
+    administrativeBodyClassURI: {
       refreshModel: true
     }
   }
 
-  async model(params) {
-    const id = this.modelFor('bestuurseenheid').get('id');
-    const model = await this.store.query('zitting', {
-      include: [
-        'bestuursorgaan.is-tijdsspecialisatie-van',
-        'notulen',
-        'besluitenlijst',
-        'uittreksels',
-        'agendas',
-      ].join(),
-      'filter[bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][:id:]': id,
-      sort: '-geplande-start',
-      page: {
-        number: params.page || 0,
-        size: PAGE_SIZE
-      }
-    });
-    const pageNumber = Number(params.page) || 0;
-    model.meta.page = pageNumber;
-    model.meta.pageStart = pageNumber * PAGE_SIZE + 1;
-    model.meta.pageEnd = (pageNumber + 1) * PAGE_SIZE;
-    if(model.meta.pageEnd > model.meta.count) {
-      model.meta.pageEnd = model.meta.count;
-    }
-    if(pageNumber !== 0) {
-      model.meta.previousPage = pageNumber - 1;
-    }
-    if((pageNumber + 1) * PAGE_SIZE < model.meta.count ) {
-      model.meta.nextPage = pageNumber + 1;
-    }
-    return model;
-  }
-
   setupController(controller, model) {
     super.setupController(controller, model);
-    controller.set('bestuurseenheid', this.modelFor('bestuurseenheid'));
+    controller.bestuurseenheid =this.modelFor('bestuurseenheid');
+    if (this.fastboot.isFastBoot) {
+      this.fastboot.deferRendering(controller.fetchMeetings.perform());
+    }
+    else {
+      controller.fetchMeetings.perform();
+    }
   }
 }
