@@ -6,7 +6,7 @@ export default class BestuurseenheidZittingIndexRoute extends Route {
     return (await this.store.query('zitting', {
       // TODO add pagination in template instead of retrieving agendapunten through include
       // notulen, agendas, uittreksels and besluitenlijst are included because of FastBoot
-      'filter[id]': id,
+      'filter[:id:]': id,
       include: 'notulen,agendas,uittreksels,besluitenlijst,agendapunten'
     })).firstObject;
   }
