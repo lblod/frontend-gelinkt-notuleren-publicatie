@@ -9,14 +9,18 @@ export default class BestuurseenheidIndexRoute extends Route {
       refreshModel: true
     },
     to: {
-      refreshModel: true
+      refreshModel: false
     },
     from: {
-      refreshModel: true
+      refreshModel: false
     },
     administrativeBodyClassURI: {
-      refreshModel: true
+      refreshModel: false
     }
+  }
+
+  model(params) {
+    return params;
   }
 
   setupController(controller, model) {
