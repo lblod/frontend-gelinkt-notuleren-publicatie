@@ -1,3 +1,11 @@
+## 0.22.1 (2022-02-15)
+
+#### :bug: Bug Fix
+* [#49](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/49) display the decision list in its raw format when no js is available ([@nvdk](https://github.com/nvdk))
+
+#### Committers: 1
+- Niels V ([@nvdk](https://github.com/nvdk))
+
 ## 0.22.0 (2022-01-24)
 
 #### :rocket: Enhancement
