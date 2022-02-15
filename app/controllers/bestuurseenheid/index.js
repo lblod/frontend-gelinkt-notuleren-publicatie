@@ -71,6 +71,7 @@ export default class BestuurseenheidIndexController extends Controller {
   @action
   selectAdministrativeBodyClass(classification) {
     this.administrativeBodyClassURI = classification ? classification.uri : undefined;
+    this.page = 0;
     this.fetchMeetings.perform();
   }
 
