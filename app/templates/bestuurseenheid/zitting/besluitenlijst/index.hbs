@@ -1,31 +1,15 @@
 {{#let (format-date this.model.zitting.gestartOpTijdstip 'd MMMM yyyy, HH:mm') as |startDate|}}
-{{page-title (concat
-  "Besluitenlijst van "
-  this.model.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam
-  ", zitting van "
-  startDate
-  )}}
+  {{page-title (concat
+    "Besluitenlijst van "
+    this.model.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam
+    ", zitting van "
+    startDate
+    )}}
 {{/let}}
 <div class="au-o-layout">
   <div typeof="besluit:Zitting" resource={{this.model.zitting.uri}} class="au-o-region-large">
-    <AuHeading @skin="2" class="au-u-margin-bottom">Besluitenlijst van
-      <span resource={{this.model.zitting.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
-        <span resource={{this.model.zitting.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
-          <span property="skos:prefLabel">{{this.model.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
-        </span>
-      </span>, zitting van
-      {{#if this.model.zitting.gestartOpTijdstip}}
-        <span class="au-u-margin-bottom-tiny" property="prov:startedAtTime" content={{iso-date this.model.zitting.gestartOpTijdstip}} datatype="xsd:dateTime">
-          {{format-date this.model.zitting.gestartOpTijdstip 'd MMMM yyyy, HH:mm'}}
-        </span>
-      {{else}}
-        {{!-- fallback for old data --}}
-        <span class="au-u-margin-bottom-tiny" property="prov:startedAtTime" content={{iso-date this.model.zitting.geplandeStart}} datatype="xsd:dateTime">
-          {{format-date this.model.zitting.geplandeStart 'd MMMM yyyy, HH:mm'}}
-        </span>
-      {{/if}}
-    </AuHeading>
     <div property="besluit:heeftBesluitenlijst" resource={{this.model.besluitenlijst.uri}} typeof="https://data.vlaanderen.be/id/concept/BesluitDocumentType/3fa67785-ffdc-4b30-8880-2b99d97b4dee foaf:Document">
+      <Besluitenlijst @besluitenlijst={{this.model.besluitenlijst}} @besluiten={{this.model.besluiten}} @zitting={{this.model.zitting}} />
       <div class="au-u-margin-top">
         <p class="au-c-heading au-c-heading--5 au-u-margin-bottom-tiny">
           Besluitenlijst goedgekeurd door
@@ -47,10 +31,6 @@
           {{/if}}
         </p>
       </div>
-      <div typeof="besluit:Zitting" resource={{this.model.zitting.uri}}>
-        <Besluitenlijst @besluitenlijst={{this.model.besluitenlijst}} @besluiten={{this.model.besluiten}} />
-      </div>
     </div>
   </div>
 </div>
-{{outlet}}

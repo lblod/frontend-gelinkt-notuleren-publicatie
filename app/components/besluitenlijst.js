@@ -5,6 +5,7 @@ import { inject as service } from '@ember/service';
 
 export default class BesluitenlijstComponent extends Component {
   @service store;
+  @service fastboot;
 
   @tracked extraBesluiten = [];
   @tracked currentPage = 0;
