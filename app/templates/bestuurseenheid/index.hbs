@@ -1,8 +1,50 @@
 {{page-title (concat this.bestuurseenheid.classificatie.label " " this.bestuurseenheid.naam)}}
 <div class="au-o-region-large">
   <div class="au-o-layout">
-    {{#if this.model.length}}
-      <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Publicaties van {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}}</AuHeading>
+    <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Publicaties van {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}}</AuHeading>
+    <AuToolbar @border="bottom" class="au-u-margin-bottom">
+        <AuToolbarGroup>
+          <div class="au-u-margin-bottom-tiny">
+            <AuDatePicker
+              @label="Van"
+              @value={{this.from}}
+                      @min="2019-01-01"
+              @max={{this.today}}
+                      @onChange={{fn this.updateTimeRange 'from'}}
+              class="au-u-margin-bottom-small"
+            />
+          </div>
+          <div class="au-u-margin-bottom-small">
+            <AuDatePicker
+              @label="Tot"
+              @value={{this.to}}
+                      @min="2019-01-01"
+              @max={{this.today}}
+                      @onChange={{fn this.updateTimeRange 'to'}}
+            />
+          </div>
+        </AuToolbarGroup>
+        <AuToolbarGroup class="au-u-1-1 au-u-1-3@medium">
+          <div class="au-u-1-1 au-u-margin-bottom-small">
+            <AuLabel>Type bestuursorgaan</AuLabel>
+            <PowerSelect
+              @ariaLabel="Zoekbalk"
+              @selected={{this.administrativeBodyClass}}
+                          @options={{this.administrativeBodyClassOptions}}
+              @onChange={{this.selectAdministrativeBodyClass}}
+                          @allowClear={{true}}
+              as |adminBodyClassificationLabel|
+            >
+              {{adminBodyClassificationLabel.label}}
+            </PowerSelect>
+          </div>
+        </AuToolbarGroup>
+      </AuToolbar>
+
+    {{#if this.fetchMeetings.isRunning}}
+      <AuLoader />
+    {{else}}
+      {{#if this.model.length}}
       <ul class="au-c-list">
       {{#each this.model as |zitting|}}
         <li class="au-c-list__item">
@@ -94,13 +136,14 @@
       {{outlet}}
     {{else}}
     <AuContent>
-      <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Er werden nog geen publicaties voor {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}} gevonden</AuHeading>
+      <p>Er werden nog geen publicaties voor {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}} gevonden</p>
       <p>Kom later nog eens terug, of
         <LinkTo @route="index" class="au-c-link">
           zoek naar publicaties van een ander bestuur.
         </LinkTo>
       </p>
     </AuContent>
+      {{/if}}
     {{/if}}
   </div>
 </div>
