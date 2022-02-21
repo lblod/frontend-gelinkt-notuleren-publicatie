@@ -29,14 +29,14 @@
     "date-fns"
   ],
   "devDependencies": {
-    "@appuniversum/ember-appuniversum": "^0.10.0",
+    "@appuniversum/ember-appuniversum": "^1.0.0",
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.1.4",
     "@glimmer/component": "^1.0.3",
     "@glimmer/tracking": "^1.0.3",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
-    "ember-auto-import": "^2.2.4",
+    "ember-auto-import": "^2.4.0",
     "ember-cli": "~3.24.0",
     "ember-cli-app-version": "^4.0.0",
     "ember-cli-babel": "^7.23.0",
@@ -54,12 +54,12 @@
     "ember-crumbly": "https://github.com/knownasilya/ember-crumbly.git#fix/index",
     "ember-data": "~3.24.0",
     "ember-export-application-global": "^2.0.1",
-    "ember-fetch": "^8.0.2",
+    "ember-fetch": "^8.1.1",
     "ember-load-initializers": "^2.1.2",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-mu-transform-helpers": "~2.0.0",
     "ember-page-title": "^6.2.2",
-    "ember-power-select": "^4.0.4",
+    "ember-power-select": "^5.0.4",
     "ember-qunit": "^5.1.1",
     "ember-rdfa-helpers": "0.5.0",
     "ember-resolver": "^8.0.2",
@@ -86,7 +86,7 @@
     "edition": "octane"
   },
   "dependencies": {
-    "date-fns": "^2.22.1"
+    "date-fns": "^2.28.0"
   },
   "volta": {
     "node": "12.22.7"
