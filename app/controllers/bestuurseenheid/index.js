@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import {action} from '@ember/object';
 import {tracked} from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
 import {restartableTask} from 'ember-concurrency';
 const PAGE_SIZE = 10;
 
@@ -44,6 +45,7 @@ const UNIT_CLASS_TO_BODY_CLASS_MAP = {
 };
 
 export default class BestuurseenheidIndexController extends Controller {
+  @service store;
   @tracked from;
   @tracked to;
   @tracked administrativeBodyClassURI;

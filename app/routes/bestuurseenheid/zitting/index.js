@@ -1,6 +1,9 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default class BestuurseenheidZittingIndexRoute extends Route {
+  @service store;
+
   async model() {
     const id = this.modelFor('bestuurseenheid.zitting').get('id');
     return (await this.store.query('zitting', {

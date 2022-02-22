@@ -3,6 +3,8 @@ import { inject as service } from '@ember/service';
 
 export default class BestuurseenheidRoute extends Route {
   @service router;
+  @service store;
+
   breadCrumb = {};
 
   async model(params, transition) {
