@@ -9,7 +9,7 @@
           <li class="au-c-list-horizontal__item">
             {{#let (has-next breadcrumb (breadcrumbs)) as |isNotLastBreadcrumb|}}
               {{#if isNotLastBreadcrumb}}
-                <AuLink @linkRoute={{breadcrumb.data.route}} @model={{breadcrumb.data.model}}>
+                <AuLink @route={{breadcrumb.data.route}} @model={{breadcrumb.data.model}}>
                   {{breadcrumb.title}}
                 </AuLink>
               {{else}}
