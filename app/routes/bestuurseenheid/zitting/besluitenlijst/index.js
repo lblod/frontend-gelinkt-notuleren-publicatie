@@ -3,7 +3,6 @@ import { inject as service } from '@ember/service';
 
 export default class BestuurseenheidZittingBesluitenlijstIndexRoute extends Route {
   @service store;
-  breadCrumb = { title: 'Besluitenlijst' };
 
   async model() {
     let zitting = this.modelFor('bestuurseenheid.zitting');

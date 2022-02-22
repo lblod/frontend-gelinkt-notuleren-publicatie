@@ -5,8 +5,6 @@ export default class BestuurseenheidRoute extends Route {
   @service router;
   @service store;
 
-  breadCrumb = {};
-
   async model(params, transition) {
     const bestuurseenheden = await this.store.query('bestuurseenheid', {
       'include': 'classificatie',
@@ -20,25 +18,6 @@ export default class BestuurseenheidRoute extends Route {
       transition.data.bestuurseenheidNaam = params.bestuurseenheid_naam;
       transition.data.bestuurseenheidClassificatieLabel = params.bestuurseenheid_classificatie_code_label;
       return bestuurseenheden.get('firstObject');
-    }
-  }
-
-  async afterModel(bestuurseenheid, transition) {
-    if (bestuurseenheid) {
-      let rootCrumb = {
-        title: 'Zoekpagina',
-        linkable: true,
-        path: 'index',
-        isHead: true
-      };
-
-      let breadCrumb = {
-        title: `${transition.data.bestuurseenheidClassificatieLabel} ${transition.data.bestuurseenheidNaam}`,
-        linkable: true,
-        path: 'bestuurseenheid'
-      };
-
-      this.breadCrumbs = [rootCrumb, breadCrumb];
     }
   }
 }

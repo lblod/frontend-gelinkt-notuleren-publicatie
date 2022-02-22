@@ -4,8 +4,6 @@ import { inject as service } from '@ember/service';
 export default class BestuurseenheidZittingNotulenRoute extends Route {
   @service store;
 
-  breadCrumb = { title: 'Notulen' };
-
   async model() {
     const meeting = this.modelFor('bestuurseenheid.zitting');
     const meetingNotes = await this.store.query('notulen', {
@@ -18,4 +16,3 @@ export default class BestuurseenheidZittingNotulenRoute extends Route {
     return { notulen, zitting: meeting };
   }
 }
-

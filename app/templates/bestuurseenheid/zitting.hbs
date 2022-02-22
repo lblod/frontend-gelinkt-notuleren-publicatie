@@ -1,1 +1,10 @@
+{{breadcrumb
+  "Zitting van "
+  this.model.bestuursorgaan.isTijdsspecialisatieVan.naam
+  ", op "
+  (moment-format this.model.geplandeStart 'D MMMM YYYY, HH:mm')
+  route="bestuurseenheid.zitting"
+  model=this.model
+}}
+
 {{outlet}}
