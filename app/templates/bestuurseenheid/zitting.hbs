@@ -2,7 +2,7 @@
   "Zitting van "
   this.model.bestuursorgaan.isTijdsspecialisatieVan.naam
   ", op "
-  (moment-format this.model.geplandeStart 'D MMMM YYYY, HH:mm')
+  (format-date this.model.geplandeStart 'd MMMM yyyy, HH:mm')
   route="bestuurseenheid.zitting"
   model=this.model
 }}
