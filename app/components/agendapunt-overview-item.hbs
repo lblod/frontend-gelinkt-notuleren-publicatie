@@ -23,10 +23,9 @@
       </div>
       <div class="au-o-grid__item au-u-1-4@medium">
         {{#if this.uittreksel.inhoud}}
-          <LinkTo @route="bestuurseenheid.zitting.uittreksels.detail" @model={{this.uittreksel.id}} property="lblodBesluit:linkToPublication" class="au-c-button au-c-button--block">
-            Bekijk volledige inhoud
-            <AuIcon @icon="nav-right" @alignment="right" />
-          </LinkTo>
+        <AuLink @route="bestuurseenheid.zitting.uittreksels.detail" @model={{this.uittreksel.id}} property="lblodBesluit:linkToPublication" @skin="button" @icon="nav-right" @iconAlignment="right">
+          Bekijk volledige inhoud
+        </AuLink>
         {{/if}}
       </div>
     </div>
