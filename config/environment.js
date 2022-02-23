@@ -36,12 +36,6 @@ module.exports = function (environment) {
         plausibleScript: '{{ANALYTICS_PLAUSIBLE_SCRIPT}}',
       },
     },
-    moment: {
-      outputFormat: 'DD-MM-YYYY hh:mm:ss',
-      includeTimezone: 'all',
-      includeLocales: ['nl'],
-      allowEmpty: true,
-    },
   };
 
   if (environment === 'development') {
