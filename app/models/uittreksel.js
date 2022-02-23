@@ -11,6 +11,6 @@ export default class UittrekselModel extends Model {
     class: 'foaf:Document',
     type: 'dct:type',
     inhoud: 'prov:value',
-    publication: 'prov:wasDerivedFrom'
-  }
+    publication: 'prov:wasDerivedFrom',
+  };
 }

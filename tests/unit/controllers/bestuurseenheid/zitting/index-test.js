@@ -1,12 +1,14 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-module('Unit | Controller | bestuurseenheid/zitting/index', function(hooks) {
+module('Unit | Controller | bestuurseenheid/zitting/index', function (hooks) {
   setupTest(hooks);
 
   // Replace this with your real tests.
-  test('it exists', function(assert) {
-    let controller = this.owner.lookup('controller:bestuurseenheid/zitting/index');
+  test('it exists', function (assert) {
+    let controller = this.owner.lookup(
+      'controller:bestuurseenheid/zitting/index'
+    );
     assert.ok(controller);
   });
 });

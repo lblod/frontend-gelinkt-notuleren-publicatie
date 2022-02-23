@@ -8,8 +8,8 @@ export default class BestuurseenheidZittingAgendaRawRoute extends Route {
     const agendas = await this.store.query('agenda', {
       'filter[zitting][id]': id,
       page: {
-        size: 1
-      }
+        size: 1,
+      },
     });
     return agendas.firstObject;
   }

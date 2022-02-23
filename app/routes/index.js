@@ -6,7 +6,7 @@ export default class IndexRoute extends Route {
 
   model() {
     return this.store.query('bestuurseenheid-classificatie-code', {
-      sort: 'label'
+      sort: 'label',
     });
   }
 }

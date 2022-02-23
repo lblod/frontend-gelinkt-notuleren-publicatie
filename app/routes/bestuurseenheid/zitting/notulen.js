@@ -7,9 +7,9 @@ export default class BestuurseenheidZittingNotulenRoute extends Route {
   async model() {
     const meeting = this.modelFor('bestuurseenheid.zitting');
     const meetingNotes = await this.store.query('notulen', {
-      "filter[zitting][:id:]": meeting.id,
-      sort: "-publication.created-on",
-      include: "publication"
+      'filter[zitting][:id:]': meeting.id,
+      sort: '-publication.created-on',
+      include: 'publication',
     });
 
     const notulen = meetingNotes.firstObject;

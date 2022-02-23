@@ -7,16 +7,17 @@ export default class BestuurseenheidRoute extends Route {
 
   async model(params, transition) {
     const bestuurseenheden = await this.store.query('bestuurseenheid', {
-      'include': 'classificatie',
+      include: 'classificatie',
       'filter[:exact:naam]': params.bestuurseenheid_naam,
-      'filter[classificatie][:exact:label]': params.bestuurseenheid_classificatie_code_label
+      'filter[classificatie][:exact:label]':
+        params.bestuurseenheid_classificatie_code_label,
     });
     if (bestuurseenheden.length == 0) {
       return null;
-    }
-    else {
+    } else {
       transition.data.bestuurseenheidNaam = params.bestuurseenheid_naam;
-      transition.data.bestuurseenheidClassificatieLabel = params.bestuurseenheid_classificatie_code_label;
+      transition.data.bestuurseenheidClassificatieLabel =
+        params.bestuurseenheid_classificatie_code_label;
       return bestuurseenheden.get('firstObject');
     }
   }

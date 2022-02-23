@@ -5,9 +5,11 @@ export default class BestuurseenheidModel extends Model {
   @attr naam;
 
   @belongsTo('bestuurseenheid-classificatie-code', {
-    inverse: null
-  }) classificatie;
+    inverse: null,
+  })
+  classificatie;
   @hasMany('bestuursorgaan', {
-    inverse: null
-  }) bestuursorganen;
+    inverse: null,
+  })
+  bestuursorganen;
 }

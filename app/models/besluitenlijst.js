@@ -13,6 +13,6 @@ export default class BesluitenlijstModel extends Model {
     type: 'dct:type',
     inhoud: 'prov:value',
     publication: 'prov:wasDerivedFrom',
-    publicatieDatum: 'eli:date_publication'
-  }
+    publicatieDatum: 'eli:date_publication',
+  };
 }

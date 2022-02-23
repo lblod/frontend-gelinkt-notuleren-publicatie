@@ -6,7 +6,7 @@ export default class BestuurseenheidZittingUittrekselsDetailRoute extends Route 
 
   model(params) {
     return this.store.findRecord('uittreksel', params.uittreksel_id, {
-      include: 'publication'
+      include: 'publication',
     });
   }
 }

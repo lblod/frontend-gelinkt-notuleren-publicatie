@@ -6,25 +6,31 @@ export default class Router extends EmberRouter {
   rootURL = config.rootURL;
 }
 
-Router.map(function() {
-  this.route('bestuurseenheid', { path: '/:bestuurseenheid_naam/:bestuurseenheid_classificatie_code_label' }, function() {
-    this.route('zitting', { path: '/:id' }, function() {
-      this.route('agenda', function() {
-        this.route('raw');
-      });
-      this.route('besluitenlijst', function() {});
-      this.route('notulen', function() {});
-      this.route('uittreksels', function(){
-        this.route('index', { path: '/'});
-        this.route('detail', { path: '/:uittreksel_id'}, function() {
+Router.map(function () {
+  this.route(
+    'bestuurseenheid',
+    {
+      path: '/:bestuurseenheid_naam/:bestuurseenheid_classificatie_code_label',
+    },
+    function () {
+      this.route('zitting', { path: '/:id' }, function () {
+        this.route('agenda', function () {
           this.route('raw');
         });
+        this.route('besluitenlijst', function () {});
+        this.route('notulen', function () {});
+        this.route('uittreksels', function () {
+          this.route('index', { path: '/' });
+          this.route('detail', { path: '/:uittreksel_id' }, function () {
+            this.route('raw');
+          });
+        });
       });
-    });
-  });
+    }
+  );
   this.route('contact');
 
-  this.route('legaal', function() {
+  this.route('legaal', function () {
     this.route('disclaimer');
     this.route('cookieverklaring');
     this.route('toegankelijkheidsverklaring');

@@ -16,31 +16,32 @@ module.exports = function (environment) {
         Date: false,
       },
     },
-    environmentName: "{{ENVIRONMENT_NAME}}",
+    environmentName: '{{ENVIRONMENT_NAME}}',
     fastboot: {
-      hostWhitelist: [/^localhost:\d+$/,
-                      "localhost",
-                      "publicatie.gelinkt-notuleren.vlaanderen.be",
-                      "publicatie.dev.gelinkt-notuleren.lblod.info",
-                      "publicatie.gebruikerssessie.gelinkt-notuleren.lblod.info",
-                      "publicatie.gelinkt-notuleren.lblod.info",
-                      "backend" //mu-semtech
-                     ]
+      hostWhitelist: [
+        /^localhost:\d+$/,
+        'localhost',
+        'publicatie.gelinkt-notuleren.vlaanderen.be',
+        'publicatie.dev.gelinkt-notuleren.lblod.info',
+        'publicatie.gebruikerssessie.gelinkt-notuleren.lblod.info',
+        'publicatie.gelinkt-notuleren.lblod.info',
+        'backend', //mu-semtech
+      ],
     },
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
       analytics: {
-        appDomain: "{{ANALYTICS_APP_DOMAIN}}",
-        plausibleScript: "{{ANALYTICS_PLAUSIBLE_SCRIPT}}"
-      }
+        appDomain: '{{ANALYTICS_APP_DOMAIN}}',
+        plausibleScript: '{{ANALYTICS_PLAUSIBLE_SCRIPT}}',
+      },
     },
     moment: {
       outputFormat: 'DD-MM-YYYY hh:mm:ss',
       includeTimezone: 'all',
       includeLocales: ['nl'],
-      allowEmpty: true
-    }
+      allowEmpty: true,
+    },
   };
 
   if (environment === 'development') {

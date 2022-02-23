@@ -10,16 +10,16 @@ export default class BestuurseenheidZittingBesluitenlijstIndexRoute extends Rout
     let besluiten = await this.store.query('besluit', {
       page: {
         number: 0,
-        size: 100
+        size: 100,
       },
-      "filter[besluitenlijst][:id:]": besluitenlijst.id,
-      sort: "volgend-uit-behandeling-van-agendapunt.position",
+      'filter[besluitenlijst][:id:]': besluitenlijst.id,
+      sort: 'volgend-uit-behandeling-van-agendapunt.position',
     });
 
     return {
       zitting,
       besluitenlijst,
-      besluiten
+      besluiten,
     };
   }
 }

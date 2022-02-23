@@ -8,6 +8,6 @@ export default class BestuursorgaanClassificatieCodeModel extends Model {
   rdfaBindings = {
     class: 'skos:Concept',
     label: 'skos:prefLabel',
-    scopeNote: 'skos:scopeNote'
-  }
+    scopeNote: 'skos:scopeNote',
+  };
 }

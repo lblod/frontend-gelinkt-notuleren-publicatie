@@ -7,12 +7,12 @@ export default class ErrorRoute extends Route {
       title: 'Zoekpagina',
       linkable: true,
       path: 'index',
-      isHead: true
+      isHead: true,
     };
     const errorCrumb = {
       title: 'Error',
       linkable: false,
-      path: 'error'
+      path: 'error',
     };
     this.breadCrumbs = [rootCrumb, errorCrumb];
     if (error) {

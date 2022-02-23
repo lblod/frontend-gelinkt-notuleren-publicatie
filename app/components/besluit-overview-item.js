@@ -24,14 +24,15 @@ export default class BesluitOverviewItemComponent extends Component {
   @task
   *findUittreksel() {
     let uittreksels = yield this.store.query('uittreksel', {
-      'filter[behandeling-van-agendapunt][besluiten][id]': this.args.besluit.id
+      'filter[behandeling-van-agendapunt][besluiten][id]': this.args.besluit.id,
     });
     this.uittreksel = uittreksels.firstObject;
   }
 
   @task
   *findStemmingen() {
-    const behandeling = yield this.args.besluit.volgendUitBehandelingVanAgendapunt;
+    const behandeling = yield this.args.besluit
+      .volgendUitBehandelingVanAgendapunt;
     const stemmingen = yield behandeling.stemmingen;
 
     this.stemmingen = stemmingen;
