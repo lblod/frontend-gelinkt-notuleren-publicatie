@@ -123,12 +123,14 @@
         <ul class="au-c-pagination__list">
           {{#if this.model.meta.page}}
           <li class="au-c-pagination__list-item">
-            <LinkTo property="lblodBesluit:linkToPublication" @query={{hash page=this.model.meta.previousPage}} class="au-c-link"><AuIcon @icon="nav-left" @alignment="left" /> Vorige pagina</LinkTo>
+            {{! The route in the following AuLink could be removed, if supported again. }}
+            <AuLink property="lblodBesluit:linkToPublication" @route="bestuurseenheid" @query={{hash page=this.model.meta.previousPage}} @icon="nav-left" @iconAlignment="left">Vorige pagina</AuLink>
           </li>
           {{/if}}
           {{#if this.model.meta.nextPage}}
           <li class="au-c-pagination__list-item">
-            <LinkTo property="lblodBesluit:linkToPublication" @query={{hash page=this.model.meta.nextPage}} class="au-c-link">Volgende pagina <AuIcon @icon="nav-right" @alignment="right" /></LinkTo>
+            {{! The route in the following AuLink could be removed, if supported again. }}
+            <AuLink property="lblodBesluit:linkToPublication" @route="bestuurseenheid" @query={{hash page=this.model.meta.nextPage}} @icon="nav-right" @iconAlignment="right">Volgende pagina</AuLink>
           </li>
           {{/if}}
         </ul>
@@ -138,9 +140,9 @@
     <AuContent>
       <p>Er werden nog geen publicaties voor {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}} gevonden</p>
       <p>Kom later nog eens terug, of
-        <LinkTo @route="index" class="au-c-link">
+        <AuLink @route="index">
           zoek naar publicaties van een ander bestuur.
-        </LinkTo>
+        </AuLink>
       </p>
     </AuContent>
       {{/if}}
