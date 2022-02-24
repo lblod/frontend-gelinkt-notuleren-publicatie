@@ -9,7 +9,7 @@ export default class StemmingModel extends Model {
   @attr gevolg;
   @attr onderwerp;
   @attr uri;
-  
+
   rdfaBindings = {
     class: 'besluit:Stemming',
     onderwerp: 'besluit:onderwerp',

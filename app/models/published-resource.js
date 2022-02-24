@@ -11,6 +11,6 @@ export default class PublishedResourceModel extends Model {
       //For use in RDFa:
       property: 'eli:date_publication',
       datatype: 'xsd:date',
-    }
+    },
   };
 }
