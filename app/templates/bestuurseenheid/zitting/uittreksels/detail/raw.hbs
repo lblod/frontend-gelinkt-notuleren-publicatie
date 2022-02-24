@@ -1,12 +1,16 @@
 <div class="au-o-layout">
   <div class="au-o-region-large">
-    <AuHeading @skin="2">
-      Type document
-      <br>
-      <a href="http://data.lblod.info/id/document-types/uittreksel" property="dct:type">Uittreksel document</a>
-    </AuHeading>
-    <div property="prov:value" class="au-c-document-publish">
-      {{html-safe this.model.inhoud}}
-    </div>
+    <WithRdfaContext @model={{this.model}} as |ctx|>
+      <AuHeading @skin="2">
+        Type document
+        <br>
+        <a href="http://data.lblod.info/id/document-types/uittreksel" property="dct:type">Uittreksel document</a>
+      </AuHeading>
+      <ctx.get @prop="inhoud" as |elements inhoud _|>
+        <div {{rdfa elements}} class="au-c-document-publish">
+          {{html-safe inhoud}}
+        </div>
+      </ctx.get>
+    </WithRdfaContext>
   </div>
 </div>

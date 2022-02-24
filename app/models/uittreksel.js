@@ -8,7 +8,7 @@ export default class UittrekselModel extends Model {
   type = 'http://data.lblod.info/id/document-types/uittreksel';
 
   rdfaBindings = {
-    class: 'foaf:Document',
+    class: 'foaf:Document https://data.vlaanderen.be/id/concept/BesluitDocumentType/9d5bfaca-bbf2-49dd-a830-769f91a6377b',
     type: 'dct:type',
     inhoud: 'prov:value',
     publication: 'prov:wasDerivedFrom',

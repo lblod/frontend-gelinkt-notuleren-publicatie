@@ -11,24 +11,30 @@
   <a class="au-u-hidden" href="http://data.lblod.info/id/document-types/notulen" property="dct:type"></a>
 
   <div class="au-o-region-large" property="prov:value">
-    <div resource={{this.model.zitting.uri}} typeof="besluit:Zitting">
-      <div property="besluit:heeftNotulen" resource={{this.model.notulen.uri}}>
-        <p class="au-c-heading au-c-heading--5">
-          Datum publicatie:
-          {{#if this.model.notulen.publication.createdOn}}
-            <span property="eli:date_publication" content={{format-date this.model.notulen.publication.createdOn 'yyyy-MM-dd'}} datatype="xsd:date">
-              {{format-date this.model.notulen.publication.createdOn 'd MMMM yyyy'}}
-            </span>
-          {{else}}
-            {{!-- old data does not have this field --}}
-            ongekend
-          {{/if}}
-        </p>
-        <div property="prov:value">
-          {{html-safe this.model.notulen.inhoud}}
+    <WithRdfaContext @model={{this.model.zitting}} as |ctx|>
+      <ctx.get @prop="notulen" as |elements value notctx|>
+        <div {{rdfa elements}}>
+          <p class="au-c-heading au-c-heading--5">
+            Datum publicatie:
+            {{#if this.model.notulen.publication.createdOn}}
+              <notctx.get @prop="publication" as |_ _ pubctx|>
+                <pubctx.get @prop="createdOn" as |elements createdOn _|>
+                  <span {{rdfa elements}}>
+                    {{format-date createdOn 'd MMMM yyyy'}}
+                  </span>
+                </pubctx.get>
+              </notctx.get>
+            {{else}}
+              {{!-- old data does not have this field --}}
+              ongekend
+            {{/if}}
+          </p>
+          <div property="prov:value">
+            {{html-safe this.model.notulen.inhoud}}
+          </div>
         </div>
-      </div>
-    </div>
+      </ctx.get>
+    </WithRdfaContext>
   </div>
 </div>
 {{outlet}}

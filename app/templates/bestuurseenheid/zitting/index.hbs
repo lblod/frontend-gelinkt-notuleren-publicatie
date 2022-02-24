@@ -7,137 +7,143 @@
 {{/let}}
 <div class="au-o-region-large">
   <div class="au-o-layout">
-    <div typeof="besluit:Zitting" resource={{this.zitting.uri}}>
+    <WithRdfaContext @model={{this.zitting}} as |ctx|>
       <AuHeading @skin="2" class="au-u-margin-bottom">
         Publicaties voor de zitting van
-        <span resource={{this.zitting.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
-          <span resource={{this.zitting.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
-            <span property="skos:prefLabel">{{this.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
+        <ctx.get @prop="bestuursorgaan" as |elements value boCtx|>
+          <span {{rdfa elements}}>
+            <boCtx.get @prop="isTijdsspecialisatieVan" as |elements value itsvCtx|>
+              <span {{rdfa elements}}>
+                <itsvCtx.get @prop="naam" />
+              </span>
+            </boCtx.get>
           </span>
-        </span>
+        </ctx.get>
         <br>
         op
-        <span property="besluit:geplandeStart" content={{iso-date this.zitting.geplandeStart}} datatype="xsd:dateTime">{{format-date this.zitting.geplandeStart 'd MMMM yyyy, HH:mm'}}</span>
+        <ctx.get @prop="geplandeStart" as |elements value gsCtx|>
+          <span {{rdfa elements}}>{{format-date value 'd MMMM yyyy, HH:mm'}}</span>
+        </ctx.get>
       </AuHeading>
-      <ul class="au-c-steps">
-        <li class="au-c-steps__item">
-          {{#if this.zitting.notulen}}
-          <div class="au-o-box au-c-card au-c-card--flex au-c-card--link">
-            <div class="au-c-card__header">
-              <AuBadge @icon="draft" @skin="brand" />
-              <div>
-                <AuHeading @level="2" @skin="4">Notulen</AuHeading>
-              </div>
-              <span class="au-u-hidden-visually">
-                <a href={{href-to "bestuurseenheid.zitting.notulen" this.zitting.id}} property="lblodBesluit:linkToPublication" tabindex="-1">
-                  <span resource={{this.zitting.notulen.uri}} typeof="foaf:Document" property="besluit:heeftNotulen"/>
-                </a>
-              </span>
-              <LinkTo @route="bestuurseenheid.zitting.notulen" @model={{this.zitting.id}} class="au-c-card__link">
-                <span class="au-u-hidden-visually">Bekijk notulen</span>
-                <AuIcon @icon="nav-right" @size="large" />
-              </LinkTo>
-            </div>
-          </div>
-          {{else}}
-          <div class="au-o-box au-c-card au-c-card--flex">
-            <div class="au-c-card__header">
-              <AuBadge @icon="info-circle" />
-              <AuHeading @level="2" @skin="4">Notulen niet publiek</AuHeading>
-            </div>
-          </div>
-          {{/if}}
-        </li>
-
-
-        {{!-- @Miet -> Currently a soon as besluitenlijst or bekendmaking is published, this option will pop up.
-                Backend needs update I guess to deal with the correct condition --}}
-
-        <li class="au-c-steps__item">
-          {{#if this.zitting.uittreksels.length}}
-          <div class="au-o-box au-c-card au-c-card--flex au-c-card--link">
-            <div class="au-c-card__header">
-              <AuBadge @icon="draft" @skin="brand" />
-              <div>
-                <AuHeading @level="2" @skin="4">Bekendmakingen en uittreksels</AuHeading>
-              </div>
-              <span class="au-u-hidden-visually">
-                {{#each this.zitting.uittreksels as |uittreksel|}}
-                  <a href={{href-to "bestuurseenheid.zitting.uittreksels.detail.raw" this.zitting.id}} property="lblodBesluit:linkToPublication" tabindex="-1">
-                    <span resource={{uittreksel.uri}} typeof="foaf:Document" property="besluit:heeftUittreksel"/>
+        <ul class="au-c-steps">
+          <li class="au-c-steps__item">
+            {{#if this.zitting.notulen}}
+            <div class="au-o-box au-c-card au-c-card--flex au-c-card--link">
+              <div class="au-c-card__header">
+                <AuBadge @icon="draft" @skin="brand" />
+                <div>
+                  <AuHeading @level="2" @skin="4">Notulen</AuHeading>
+                </div>
+                <span class="au-u-hidden-visually">
+                  <a href={{href-to "bestuurseenheid.zitting.notulen" this.zitting.id}} property="lblodBesluit:linkToPublication" tabindex="-1">
+                    <ctx.get @prop="notulen" />
                   </a>
-                {{/each}}
-              </span>
-              <LinkTo @route="bestuurseenheid.zitting.uittreksels" @model={{this.zitting.id}} class="au-c-card__link">
-                <span class="au-u-hidden-visually">Bekijk bekendmakingen en uittreksels</span>
-                <AuIcon @icon="nav-right" @size="large" />
-              </LinkTo>
-            </div>
-          </div>
-          {{else}}
-          <div class="au-o-box au-c-card au-c-card--flex">
-            <div class="au-c-card__header">
-              <AuBadge @icon="info-circle" />
-              <AuHeading @level="2" @skin="4">Bekendmakingen en uittreksels niet publiek</AuHeading>
-            </div>
-          </div>
-          {{/if}}
-        </li>
-
-        <li class="au-c-steps__item">
-          {{#if this.zitting.besluitenlijst.id}}
-          <div class="au-o-box au-c-card au-c-card--flex au-c-card--link">
-            <div class="au-c-card__header">
-              <AuBadge @icon="draft" @skin="brand" />
-              <div>
-                <AuHeading @level="2" @skin="4">Besluitenlijst</AuHeading>
+                </span>
+                <LinkTo @route="bestuurseenheid.zitting.notulen" @model={{this.zitting.id}} class="au-c-card__link">
+                  <span class="au-u-hidden-visually">Bekijk notulen</span>
+                  <AuIcon @icon="nav-right" @size="large" />
+                </LinkTo>
               </div>
-              <span class="au-u-hidden-visually">
-                <a href={{href-to "bestuurseenheid.zitting.besluitenlijst" this.zitting.id}} property="lblodBesluit:linkToPublication" tabindex="-1">
-                  <span resource={{this.zitting.besluitenlijst.uri}} typeof="foaf:Document" property="besluit:heeftBesluitenlijst"/>
-                </a>
-              </span>
-              <LinkTo @route="bestuurseenheid.zitting.besluitenlijst" @model={{this.zitting.id}} class="au-c-card__link">
-                <span class="au-u-hidden-visually">Bekijk besluitenlijst</span>
-                <AuIcon @icon="nav-right" @size="large" />
-              </LinkTo>
             </div>
-          </div>
-          {{else}}
-          <div class="au-o-box au-c-card au-c-card--flex">
-            <div class="au-c-card__header">
-              <AuBadge @icon="info-circle" />
-              <AuHeading @level="2" @skin="4">Besluitenlijst niet publiek</AuHeading>
-            </div>
-          </div>
-          {{/if}}
-        </li>
-
-        <li class="au-c-steps__item">
-          {{#if this.zitting.agenda.id}}
-          <div class="au-o-box au-c-card au-c-card--flex au-c-card--link">
-            <div class="au-c-card__header">
-              <AuBadge @icon="draft" @skin="brand" />
-              <div>
-                <AuHeading @level="2" @skin="4">Agenda</AuHeading>
+            {{else}}
+            <div class="au-o-box au-c-card au-c-card--flex">
+              <div class="au-c-card__header">
+                <AuBadge @icon="info-circle" />
+                <AuHeading @level="2" @skin="4">Notulen niet publiek</AuHeading>
               </div>
-              <LinkTo @route="bestuurseenheid.zitting.agenda" @model={{this.zitting.id}} class="au-c-card__link" property="lblodBesluit:linkToPublication">
-                <span class="au-u-hidden-visually">Bekijk agenda</span>
-                <AuIcon @icon="nav-right" @size="large" />
-              </LinkTo>
             </div>
-          </div>
-          {{else}}
-          <div class="au-o-box au-c-card au-c-card--flex">
-            <div class="au-c-card__header">
-              <AuBadge @icon="info-circle" />
-              <AuHeading @level="2" @skin="4">Agenda niet publiek</AuHeading>
+            {{/if}}
+          </li>
+
+
+          {{!-- @Miet -> Currently a soon as besluitenlijst or bekendmaking is published, this option will pop up.
+                  Backend needs update I guess to deal with the correct condition --}}
+
+          <li class="au-c-steps__item">
+            {{#if this.zitting.uittreksels.length}}
+            <div class="au-o-box au-c-card au-c-card--flex au-c-card--link">
+              <div class="au-c-card__header">
+                <AuBadge @icon="draft" @skin="brand" />
+                <div>
+                  <AuHeading @level="2" @skin="4">Bekendmakingen en uittreksels</AuHeading>
+                </div>
+                <span class="au-u-hidden-visually">
+                  <ctx.each @prop="uittreksels" as |elements uittreksel utCtx|>
+                    <a href={{href-to "bestuurseenheid.zitting.uittreksels.detail.raw" uittreksel.id}} property="lblodBesluit:linkToPublication" tabindex="-1">
+                      <span {{rdfa elements}} />
+                    </a>
+                  </ctx.each>
+                </span>
+                <LinkTo @route="bestuurseenheid.zitting.uittreksels" @model={{this.zitting.id}} class="au-c-card__link">
+                  <span class="au-u-hidden-visually">Bekijk bekendmakingen en uittreksels</span>
+                  <AuIcon @icon="nav-right" @size="large" />
+                </LinkTo>
+              </div>
             </div>
-          </div>
-          {{/if}}
-        </li>
-      </ul>
-    </div>
+            {{else}}
+            <div class="au-o-box au-c-card au-c-card--flex">
+              <div class="au-c-card__header">
+                <AuBadge @icon="info-circle" />
+                <AuHeading @level="2" @skin="4">Bekendmakingen en uittreksels niet publiek</AuHeading>
+              </div>
+            </div>
+            {{/if}}
+          </li>
+
+          <li class="au-c-steps__item">
+            {{#if this.zitting.besluitenlijst.id}}
+            <div class="au-o-box au-c-card au-c-card--flex au-c-card--link">
+              <div class="au-c-card__header">
+                <AuBadge @icon="draft" @skin="brand" />
+                <div>
+                  <AuHeading @level="2" @skin="4">Besluitenlijst</AuHeading>
+                </div>
+                <span class="au-u-hidden-visually">
+                  <a href={{href-to "bestuurseenheid.zitting.besluitenlijst" this.zitting.id}} property="lblodBesluit:linkToPublication" tabindex="-1">
+                    <ctx.get @prop="besluitenlijst" />
+                  </a>
+                </span>
+                <LinkTo @route="bestuurseenheid.zitting.besluitenlijst" @model={{this.zitting.id}} class="au-c-card__link">
+                  <span class="au-u-hidden-visually">Bekijk besluitenlijst</span>
+                  <AuIcon @icon="nav-right" @size="large" />
+                </LinkTo>
+              </div>
+            </div>
+            {{else}}
+            <div class="au-o-box au-c-card au-c-card--flex">
+              <div class="au-c-card__header">
+                <AuBadge @icon="info-circle" />
+                <AuHeading @level="2" @skin="4">Besluitenlijst niet publiek</AuHeading>
+              </div>
+            </div>
+            {{/if}}
+          </li>
+
+          <li class="au-c-steps__item">
+            {{#if this.zitting.agenda.id}}
+            <div class="au-o-box au-c-card au-c-card--flex au-c-card--link">
+              <div class="au-c-card__header">
+                <AuBadge @icon="draft" @skin="brand" />
+                <div>
+                  <AuHeading @level="2" @skin="4">Agenda</AuHeading>
+                </div>
+                <LinkTo @route="bestuurseenheid.zitting.agenda" @model={{this.zitting.id}} class="au-c-card__link" property="lblodBesluit:linkToPublication">
+                  <span class="au-u-hidden-visually">Bekijk agenda</span>
+                  <AuIcon @icon="nav-right" @size="large" />
+                </LinkTo>
+              </div>
+            </div>
+            {{else}}
+            <div class="au-o-box au-c-card au-c-card--flex">
+              <div class="au-c-card__header">
+                <AuBadge @icon="info-circle" />
+                <AuHeading @level="2" @skin="4">Agenda niet publiek</AuHeading>
+              </div>
+            </div>
+            {{/if}}
+          </li>
+        </ul>
+    </WithRdfaContext>
 
     {{outlet}}
   </div>

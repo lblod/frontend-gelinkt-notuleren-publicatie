@@ -100,10 +100,9 @@
                   </ul>
                 </div>
                 <div class="au-o-grid__item au-u-1-4@medium">
-                  <a property="lblodBesluit:linkToPublication" href={{href-to "bestuurseenheid.zitting.index" zitting.id}} class="au-c-button au-c-button--block">
+                  <AuLink property="lblodBesluit:linkToPublication" @route="bestuurseenheid.zitting.index" @model={{zitting}} @skin="button" @width="block" @icon="arrow-right" @iconAlignment="right">
                     Bekijk publicaties
-                    <AuIcon @icon="arrow-right" @alignment="right" />
-                  </a>
+                  </AuLink>
                 </div>
               </div>
             </div>

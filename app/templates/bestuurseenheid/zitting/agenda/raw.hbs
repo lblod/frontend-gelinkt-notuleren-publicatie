@@ -1,14 +1,16 @@
 <div class="au-o-layout">
   <div class="au-o-region-large">
-    <div typeof="besluit:Zitting" resource={{this.model.uri}}>
+    <WithRdfaContext @model={{this.model}} as |ctx|>
       <AuHeading @skin="2" class="au-u-margin-bottom">
         Type document
         <br>
         <a href="http://data.lblod.info/id/document-types/agenda" property="dct:type" class="au-c-link">Agenda document</a>
       </AuHeading>
-      <div class="au-c-document-publish">
-        {{html-safe this.model.inhoud}}
-      </div>
-    </div>
+      <ctx.get @prop="inhoud" as |elements inhoud _|>
+        <div {{rdfa elements}} class="au-c-document-publish">
+          {{html-safe inhoud}}
+        </div>
+      </ctx.get>
+    </WithRdfaContext>
   </div>
 </div>
