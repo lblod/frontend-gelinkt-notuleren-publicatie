@@ -13,7 +13,7 @@ Router.map(function () {
       path: '/:bestuurseenheid_naam/:bestuurseenheid_classificatie_code_label',
     },
     function () {
-      this.route('zitting', { path: '/:id' }, function () {
+      this.route('zitting', { path: '/:zitting_id' }, function () {
         this.route('agenda', function () {
           this.route('raw');
         });

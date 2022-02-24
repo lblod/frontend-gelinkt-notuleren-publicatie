@@ -5,6 +5,6 @@ export default class BestuurseenheidZittingRoute extends Route {
   @service store;
 
   model(params) {
-    return this.store.findRecord('zitting', params.id);
+    return this.store.findRecord('zitting', params.zitting_id);
   }
 }
