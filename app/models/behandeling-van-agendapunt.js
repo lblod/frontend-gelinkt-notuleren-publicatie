@@ -32,5 +32,6 @@ export default class BehandelingVanAgendapuntModel extends Model {
     vorigeBehandelingVanAgendapunt: 'besluit:gebeurtNa',
     onderwerp: 'dct:subject',
     besluiten: 'prov:generated',
+    stemmingen: 'besluit:heeftStemming',
   };
 }

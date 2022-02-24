@@ -2,19 +2,32 @@
   <div class="au-c-card__header">
     <div class="au-o-grid au-o-grid--small">
       <div class="au-o-grid__item au-u-3-4@medium">
-        <h2 class="au-c-heading--4" >
-          {{inc @index}}.
-          <span property="dct:title">
-            {{clean-spaces @agendapunt.titel}}
-          </span>
-        </h2>
-        {{#if @agendapunt.type}}
-          <span property="besluit:Agendapunt.type" class="au-u-hidden-visually" resource="{{@agendapunt.type.uri}}" typeof="skos:Concept">{{@agendapunt.type.label}}</span>
-        {{/if}}
-        {{#if @agendapunt.beschrijving}}
-          <p property="dct:description"><span class="au-c-help-text--secondary">{{clean-spaces @agendapunt.beschrijving}}</span></p>
-        {{/if}}
-        <span property="besluit:geplandOpenbaar" content={{if @agendapunt.geplandOpenbaar "true" "false"}} class="au-u-hidden"></span>
+        <WithRdfaContext @model={{@agendapunt}} as |agCtx|>
+          <h2 class="au-c-heading--4" >
+            {{inc @index}}.
+            <agCtx.get @prop="titel" as |elements title _|>
+              <span {{rdfa elements}}>{{clean-spaces @agendapunt.titel}}</span>
+            </agCtx.get>
+          </h2>
+          {{#if @agendapunt.type}}
+            <agCtx.get @prop="type" as |elements _ tCtx|>
+              <span {{rdfa elements}} class="au-u-hidden-visually">
+                <tCtx.get @prop="label" />
+              </span>
+            </agCtx.get>
+          {{/if}}
+          {{#if @agendapunt.beschrijving}}
+            <agCtx.get @prop="beschrijving" as |elements beschrijving dCtx|>
+              <p {{rdfa elements}} class="au-c-help-text--secondary">{{clean-spaces beschrijving}}</p>
+            </agCtx.get>
+          {{/if}}
+          {{! Use the following line if ...attributes are supported on ctx.get }}
+            {{!-- <agCtx.get @prop="geplandOpenbaar" class="au-u-hidden" /> --}}
+          {{! Instead of the following block }}
+          <agCtx.get @prop="geplandOpenbaar" as |elements geplandOpenbaar _|>
+            <span {{rdfa elements}} class="au-u-hidden">{{geplandOpenbaar}}</span>
+          </agCtx.get>
+        </WithRdfaContext>
         {{#unless this.uittreksel.inhoud}}
           <p>
             <AuHelpText @skin="secondary">Inhoud niet publiek</AuHelpText>

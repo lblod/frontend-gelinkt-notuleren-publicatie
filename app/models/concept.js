@@ -6,4 +6,9 @@ export default class ConceptModel extends Model {
 
   @hasMany('concept-scheme', { inverse: null }) conceptSchemes;
   @hasMany('concept-scheme', { inverse: null }) topConceptSchemes;
+
+  rdfaBindings = {
+    class: 'skos:Concept',
+    label: 'skos:prefLabel',
+  };
 }

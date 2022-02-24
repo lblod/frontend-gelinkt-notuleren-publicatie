@@ -1,42 +1,49 @@
 {{#if this.fastboot.isFastBoot}}
   {{html-safe @besluitenlijst.inhoud}}
 {{else}}
-      <AuHeading @skin="2" class="au-u-margin-bottom">Besluitenlijst van
-      <span resource={{this.model.zitting.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
-        <span resource={{this.model.zitting.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
-          <span property="skos:prefLabel">{{@zitting.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
+  <WithRdfaContext @model={{@zitting}} as |zCtx|>
+    <AuHeading @skin="2" class="au-u-margin-bottom">Besluitenlijst van
+      <zCtx.get @prop="bestuursorgaan" as |elements _ boCtx|>
+        <span {{rdfa elements}}>
+          <boCtx.get @prop="isTijdsspecialisatieVan" as |elements _ itsvCtx|>
+            <span {{rdfa elements}}>
+              <itsvCtx.get @prop="naam" />
+            </span>
+          </boCtx.get>
         </span>
-      </span>, zitting van
+      </zCtx.get>
+      , zitting van
       {{#if @zitting.gestartOpTijdstip}}
-        <span class="au-u-margin-bottom-tiny" property="prov:startedAtTime" content={{iso-date @zitting.gestartOpTijdstip}} datatype="xsd:dateTime">
-          {{format-date @zitting.gestartOpTijdstip 'd MMMM yyyy, HH:mm'}}
-        </span>
+        <zCtx.get @prop="gestartOpTijdstip" as |elements gestartOpTijdstip _|>
+          <span {{rdfa elements}}>{{format-date gestartOpTijdstip 'd MMMM yyyy, HH:mm'}}</span>
+        </zCtx.get>
       {{else}}
         {{!-- fallback for old data --}}
-        <span class="au-u-margin-bottom-tiny" property="prov:startedAtTime" content={{iso-date @zitting.geplandeStart}} datatype="xsd:dateTime">
-          {{format-date @zitting.geplandeStart 'd MMMM yyyy, HH:mm'}}
-        </span>
+        <zCtx.get @prop="geplandeStart" as |elements geplandeStart _|>
+          <span {{rdfa elements}}>{{format-date geplandeStart 'd MMMM yyyy, HH:mm'}}</span>
+        </zCtx.get>
       {{/if}}
     </AuHeading>
     <ul class="au-c-list au-u-margin-top">
-    {{#each @besluiten as |besluit|}}
-      <li class="au-c-list__item">
-        <BesluitOverviewItem @besluit={{besluit}} />
-      </li>
-    {{/each}}
-    {{#each this.extraBesluiten as |besluit|}}
-      {{!-- using an extra array so the first one above renders properly with fastboot --}}
-      <li class="au-c-list__item">
-        <BesluitOverviewItem @besluit={{besluit}} />
-      </li>
-    {{/each}}
-  </ul>
-  {{#if this.fetchBesluiten.isRunning}}
-    <AuLoader />
-  {{/if}}
-  {{#if this.hasNext}}
-    <AuButton class="au-u-margin-top" {{on "click" (perform this.fetchBesluiten this.nextPage)}}>
-      Meer laden
-    </AuButton>
-  {{/if}}
+      {{#each @besluiten as |besluit|}}
+        <li class="au-c-list__item">
+          <BesluitOverviewItem @besluit={{besluit}} />
+        </li>
+      {{/each}}
+      {{#each this.extraBesluiten as |besluit|}}
+        {{!-- using an extra array so the first one above renders properly with fastboot --}}
+        <li class="au-c-list__item">
+          <BesluitOverviewItem @besluit={{besluit}} />
+        </li>
+      {{/each}}
+    </ul>
+    {{#if this.fetchBesluiten.isRunning}}
+      <AuLoader />
+    {{/if}}
+    {{#if this.hasNext}}
+      <AuButton class="au-u-margin-top" {{on "click" (perform this.fetchBesluiten this.nextPage)}}>
+        Meer laden
+      </AuButton>
+    {{/if}}
+  </WithRdfaContext>
 {{/if}}
