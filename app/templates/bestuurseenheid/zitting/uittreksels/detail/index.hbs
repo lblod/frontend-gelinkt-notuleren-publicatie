@@ -22,9 +22,7 @@
         </ctx.get>
         , zitting van
         <ctx.get @prop="geplandeStart" as |elements geplandeStart gpCtx|>
-          <span {{rdfa elements}}>
-            {{format-date this.model.zitting.geplandeStart 'd MMMM yyyy, HH:mm'}}
-          </span>
+          <span {{rdfa elements}}>{{format-date this.model.zitting.geplandeStart 'd MMMM yyyy, HH:mm'}}</span>
         </ctx.get>
       </AuHeading>
       <p class="au-c-heading au-c-heading--5">
@@ -32,9 +30,7 @@
         {{#if this.model.publication.createdOn}}
           <WithRdfaContext @model={{this.model.publication}} @tagName="span" about={{this.model.uittreksel.uri}} as |pbCtx|>
             <pbCtx.get @prop="createdOn" as |elements createdOn _|>
-              <span {{rdfa elements}}>
-                {{format-date createdOn 'd MMMM yyyy'}}
-              </span>
+              <span {{rdfa elements}}>{{format-date createdOn 'd MMMM yyyy'}}</span>
             </pbCtx.get>
           </WithRdfaContext>
         {{else}}
@@ -46,9 +42,7 @@
         {{#if this.model.uittreksel.inhoud}}
           <WithRdfaContext @model={{this.model.uittreksel}} property="besluit:heeftUittreksel" as |uitCtx|>
             <uitCtx.get @prop="inhoud" as |elements inhoud _|>
-              <div {{rdfa elements}}>
-                {{html-safe inhoud}}
-              </div>
+              <div {{rdfa elements}}>{{html-safe inhoud}}</div>
             </uitCtx.get>
           </WithRdfaContext>
         {{else}}

@@ -20,10 +20,7 @@
     <ul class="au-c-list">
     {{#each this.uittreksels as |uittreksel|}}
       <li class="au-c-list__item">
-        <UittrekselOverviewItem
-          @uittreksel={{uittreksel}}
-          @besluit={{uittreksel.behandelingVanAgendapunt.besluiten.firstObject}}
-        />
+        <UittrekselOverviewItem @uittreksel={{uittreksel}} @besluit={{uittreksel.behandelingVanAgendapunt.besluiten.firstObject}} />
       </li>
     {{else}}
       <li>

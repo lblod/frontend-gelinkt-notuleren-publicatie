@@ -45,9 +45,7 @@
           --}}
           <WithRdfaContext @model={{this.publication}} @tagName="span" as |pbCtx|>
               <pbCtx.get @prop="createdOn" as |elements createdOn _|>
-                <span {{rdfa elements}}>
-                  {{format-date createdOn 'd MMMM yyyy'}}
-                </span>
+                <span {{rdfa elements}}>{{format-date createdOn 'd MMMM yyyy'}}</span>
               </pbCtx.get>
           </WithRdfaContext>
         {{else}}

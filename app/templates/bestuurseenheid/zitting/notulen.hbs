@@ -19,9 +19,7 @@
             {{#if this.model.notulen.publication.createdOn}}
               <notctx.get @prop="publication" as |_ _ pubctx|>
                 <pubctx.get @prop="createdOn" as |elements createdOn _|>
-                  <span {{rdfa elements}}>
-                    {{format-date createdOn 'd MMMM yyyy'}}
-                  </span>
+                  <span {{rdfa elements}}>{{format-date createdOn 'd MMMM yyyy'}}</span>
                 </pubctx.get>
               </notctx.get>
             {{else}}

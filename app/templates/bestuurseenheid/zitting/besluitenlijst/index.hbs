@@ -29,9 +29,7 @@
               Datum publicatie:
               {{#if this.model.besluitenlijst.publicatiedatum}}
                 <bCtx.get @prop="publicatiedatum" as |elements publicatiedatum _|>
-                  <span {{rdfa elements}}>
-                    {{format-date publicatiedatum 'd MMMM yyyy'}}
-                  </span>
+                  <span {{rdfa elements}}>{{format-date publicatiedatum 'd MMMM yyyy'}}</span>
                 </bCtx.get>
               {{else}}
                 {{!-- old data does not have this field --}}
