@@ -21,7 +21,7 @@
         </ctx.get>
         <br>
         op
-        <ctx.get @prop="geplandeStart" as |elements value gsCtx|>
+        <ctx.get @prop="geplandeStart" as |elements value|>
           <span {{rdfa elements}}>{{format-date value 'd MMMM yyyy, HH:mm'}}</span>
         </ctx.get>
       </AuHeading>
@@ -68,7 +68,7 @@
                   <AuHeading @level="2" @skin="4">Bekendmakingen en uittreksels</AuHeading>
                 </div>
                 <span class="au-u-hidden-visually">
-                  <ctx.each @prop="uittreksels" as |elements uittreksel utCtx|>
+                  <ctx.each @prop="uittreksels" as |elements uittreksel|>
                     <a href={{href-to "bestuurseenheid.zitting.uittreksels.detail.raw" uittreksel.id}} property="lblodBesluit:linkToPublication" tabindex="-1">
                       <span {{rdfa elements}} />
                     </a>

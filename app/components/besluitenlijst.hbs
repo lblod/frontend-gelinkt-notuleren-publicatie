@@ -14,12 +14,12 @@
       </zCtx.get>
       , zitting van
       {{#if @zitting.gestartOpTijdstip}}
-        <zCtx.get @prop="gestartOpTijdstip" as |elements gestartOpTijdstip _|>
+        <zCtx.get @prop="gestartOpTijdstip" as |elements gestartOpTijdstip|>
           <span {{rdfa elements}}>{{format-date gestartOpTijdstip 'd MMMM yyyy, HH:mm'}}</span>
         </zCtx.get>
       {{else}}
         {{!-- fallback for old data --}}
-        <zCtx.get @prop="geplandeStart" as |elements geplandeStart _|>
+        <zCtx.get @prop="geplandeStart" as |elements geplandeStart|>
           <span {{rdfa elements}}>{{format-date geplandeStart 'd MMMM yyyy, HH:mm'}}</span>
         </zCtx.get>
       {{/if}}

@@ -28,7 +28,7 @@
             <p class="au-c-heading au-c-heading--5">
               Datum publicatie:
               {{#if this.model.besluitenlijst.publicatiedatum}}
-                <bCtx.get @prop="publicatiedatum" as |elements publicatiedatum _|>
+                <bCtx.get @prop="publicatiedatum" as |elements publicatiedatum|>
                   <span {{rdfa elements}}>{{format-date publicatiedatum 'd MMMM yyyy'}}</span>
                 </bCtx.get>
               {{else}}

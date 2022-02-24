@@ -1,9 +1,9 @@
 <WithRdfaContext @model={{@besluit}} class="au-o-box au-c-card au-c-card--divided" as |bCtx|>
   <div class="au-c-card__header">
-    <bCtx.get @prop="volgendUitBehandelingVanAgendapunt" @property="prov:wasGeneratedBy" as |elements _ _|>
+    <bCtx.get @prop="volgendUitBehandelingVanAgendapunt" @property="prov:wasGeneratedBy" as |elements|>
       <link {{rdfa elements}} />
     </bCtx.get>
-    <bCtx.get @prop="titel" as |elements titel _|>
+    <bCtx.get @prop="titel" as |elements titel|>
       <h3 {{rdfa elements}} class="au-c-heading au-c-heading--4">{{clean-spaces titel}}</h3>
     </bCtx.get>
   </div>
@@ -11,7 +11,7 @@
     <div class="au-o-grid au-o-grid--small">
       <div class="au-o-grid__item au-u-3-4@medium">
         {{#if @besluit.beschrijving}}
-          <bCtx.get @prop="beschrijving" as |elements beschrijving _|>
+          <bCtx.get @prop="beschrijving" as |elements beschrijving|>
             <p {{rdfa elements}} class="au-c-help-text">{{beschrijving}}</p>
           </bCtx.get>
         {{else}}

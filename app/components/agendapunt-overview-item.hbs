@@ -5,7 +5,7 @@
         <WithRdfaContext @model={{@agendapunt}} as |agCtx|>
           <h2 class="au-c-heading--4" >
             {{inc @index}}.
-            <agCtx.get @prop="titel" as |elements title _|>
+            <agCtx.get @prop="titel" as |elements|>
               <span {{rdfa elements}}>{{clean-spaces @agendapunt.titel}}</span>
             </agCtx.get>
           </h2>
@@ -17,16 +17,11 @@
             </agCtx.get>
           {{/if}}
           {{#if @agendapunt.beschrijving}}
-            <agCtx.get @prop="beschrijving" as |elements beschrijving dCtx|>
+            <agCtx.get @prop="beschrijving" as |elements beschrijving|>
               <p {{rdfa elements}} class="au-c-help-text--secondary">{{clean-spaces beschrijving}}</p>
             </agCtx.get>
           {{/if}}
-          {{! Use the following line if ...attributes are supported on ctx.get }}
-            {{!-- <agCtx.get @prop="geplandOpenbaar" class="au-u-hidden" /> --}}
-          {{! Instead of the following block }}
-          <agCtx.get @prop="geplandOpenbaar" as |elements geplandOpenbaar _|>
-            <span {{rdfa elements}} class="au-u-hidden">{{geplandOpenbaar}}</span>
-          </agCtx.get>
+          <agCtx.get @prop="geplandOpenbaar" class="au-u-hidden" />
         </WithRdfaContext>
         {{#unless this.uittreksel.inhoud}}
           <p>

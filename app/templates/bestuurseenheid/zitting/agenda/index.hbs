@@ -11,7 +11,7 @@
   <div class="au-o-region-large">
     <WithRdfaContext @model={{this.model.meeting}} as |ctx|>
       <AuHeading @skin="2" class="au-u-margin-bottom">
-        <ctx.get @prop="agenda" as |elements agenda agCtx|>
+        <ctx.get @prop="agenda" as |elements|>
           <span {{rdfa elements}}>Agenda</span>
         </ctx.get>
         voor
@@ -25,7 +25,7 @@
           </span>
         </ctx.get>
         , zitting van
-        <ctx.get @prop="geplandeStart" as |elements geplandeStart _|>
+        <ctx.get @prop="geplandeStart" as |elements geplandeStart|>
           <span {{rdfa elements}}>{{format-date geplandeStart 'd MMMM yyyy, HH:mm'}}</span>
         </ctx.get>
       </AuHeading>
@@ -44,7 +44,7 @@
           </ctx.get>
           --}}
           <WithRdfaContext @model={{this.publication}} @tagName="span" as |pbCtx|>
-              <pbCtx.get @prop="createdOn" as |elements createdOn _|>
+              <pbCtx.get @prop="createdOn" as |elements createdOn|>
                 <span {{rdfa elements}}>{{format-date createdOn 'd MMMM yyyy'}}</span>
               </pbCtx.get>
           </WithRdfaContext>
