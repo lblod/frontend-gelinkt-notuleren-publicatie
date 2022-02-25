@@ -1,3 +1,11 @@
+## 0.23.0 (2022-02-25)
+
+#### :rocket: Enhancement
+* [#50](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/50) Enhancement/filter meetings (GN-3191) ([@nvdk](https://github.com/nvdk))
+
+#### Committers: 1
+- Niels V ([@nvdk](https://github.com/nvdk))
+
 ## 0.22.1 (2022-02-15)
 
 #### :bug: Bug Fix
