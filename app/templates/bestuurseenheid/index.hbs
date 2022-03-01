@@ -8,9 +8,9 @@
             <AuDatePicker
               @label="Van"
               @value={{this.from}}
-                      @min="2019-01-01"
+              @min="2019-01-01"
               @max={{this.today}}
-                      @onChange={{fn this.updateTimeRange 'from'}}
+              @onChange={{fn this.updateTimeRange 'from'}}
               class="au-u-margin-bottom-small"
             />
           </div>
@@ -18,9 +18,9 @@
             <AuDatePicker
               @label="Tot"
               @value={{this.to}}
-                      @min="2019-01-01"
+              @min="2019-01-01"
               @max={{this.today}}
-                      @onChange={{fn this.updateTimeRange 'to'}}
+              @onChange={{fn this.updateTimeRange 'to'}}
             />
           </div>
         </AuToolbarGroup>
@@ -30,9 +30,9 @@
             <PowerSelect
               @ariaLabel="Zoekbalk"
               @selected={{this.administrativeBodyClass}}
-                          @options={{this.administrativeBodyClassOptions}}
+              @options={{this.administrativeBodyClassOptions}}
               @onChange={{this.selectAdministrativeBodyClass}}
-                          @allowClear={{true}}
+              @allowClear={{true}}
               as |adminBodyClassificationLabel|
             >
               {{adminBodyClassificationLabel.label}}
