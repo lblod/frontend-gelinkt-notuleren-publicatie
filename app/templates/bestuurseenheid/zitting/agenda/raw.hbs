@@ -6,9 +6,9 @@
         <br>
         <a href="http://data.lblod.info/id/document-types/agenda" property="dct:type" class="au-c-link">Agenda document</a>
       </AuHeading>
-      <ctx.get @prop="inhoud" as |elements inhoud|>
-        <div {{rdfa elements}} class="au-c-document-publish">{{html-safe inhoud}}</div>
-      </ctx.get>
+      <ctx.spawn.div @prop="inhoud" class="au-c-document-publish" as |inhoud|>
+        {{html-safe inhoud}}
+      </ctx.spawn.div>
     </WithRdfaContext>
   </div>
 </div>

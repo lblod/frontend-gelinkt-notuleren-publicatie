@@ -4,13 +4,11 @@
       <div class="au-o-grid au-o-grid--small">
         <div class="au-c-content au-o-grid__item au-u-3-4@medium">
           {{!-- TODO add RDFa volgendUitBehandelingVanAgendapunt.onderwerp.zitting when RDFa helpers support inverse relations --}}
-          <bCtx.get @prop="titel" as |elements titel|>
-            <h2 {{rdfa elements}} class="au-c-heading au-c-heading--4">{{clean-spaces titel}}</h2>
-          </bCtx.get>
+          <h2 class="au-c-heading au-c-heading--4">
+            <bCtx.spawn.span @prop="titel" as |titel|>{{clean-spaces titel}}</bCtx.spawn.span>
+          </h2>
           {{#if @besluit.beschrijving}}
-            <bCtx.get @prop="beschrijving" as |elements beschrijving|>
-              <p {{rdfa elements}} class="au-c-help-text au-u-margin-top-small">{{clean-spaces beschrijving}}</p>
-            </bCtx.get>
+            <bCtx.spawn.p @prop="beschrijving" class="au-c-help-text au-u-margin-top-small" as |beschrijving|>{{clean-spaces beschrijving}}</bCtx.spawn.p>
           {{else}}
             <p class="au-c-help-text au-c-help-text--tertiary au-u-margin-top-small">Korte beschrijving niet gevonden</p>
           {{/if}}

@@ -15,6 +15,12 @@ export default class ZittingModel extends Model {
   @belongsTo('besluitenlijst') besluitenlijst;
   @belongsTo('notulen') notulen;
   @alias('agendas.firstObject') agenda; // TODO doesn's seem to work on the template
+
+  //Alias does not work in templates, and also not with RDFa helpers. This getters solves some problems for now
+  get agendaRDFaClean() {
+    return this.agendas.firstObject;
+  }
+
   rdfaBindings = {
     class: 'besluit:Zitting',
     geplandeStart: {
@@ -34,6 +40,7 @@ export default class ZittingModel extends Model {
     agendapunten: 'besluit:behandelt',
     sortedAgendapunten: 'besluit:behandelt',
     agenda: 'besluit:heeftAgenda', // TODO update in backend
+    agendaRDFaClean: 'besluit:heeftAgenda',
     agendas: 'besluit:heeftAgenda', // TODO update in backend
     uittreksels: 'besluit:heeftUittreksel', // TODO update in backend
     besluitenlijst: 'besluit:heeftBesluitenlijst', // TODO update in backend

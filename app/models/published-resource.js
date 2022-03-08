@@ -1,6 +1,7 @@
 import Model, { attr } from '@ember-data/model';
 
 export default class PublishedResourceModel extends Model {
+  @attr('string') uri;
   @attr('datetime') createdOn;
 
   rdfaBindings = {

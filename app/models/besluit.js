@@ -26,6 +26,7 @@ export default class BesluitModel extends Model {
     },
     inhoud: 'prov:value',
     taal: 'eli:language',
+    volgendUitBehandelingVanAgendapunt: 'prov:wasGeneratedBy',
     // volgendUitBehandelingVanAgendapunt: '^prov:generated'  // TODO add support for inverse relations in ember-rdfa-helpers
   };
 }

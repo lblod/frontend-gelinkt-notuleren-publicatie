@@ -5,21 +5,15 @@
         <WithRdfaContext @model={{@agendapunt}} as |agCtx|>
           <h2 class="au-c-heading--4" >
             {{inc @index}}.
-            <agCtx.get @prop="titel" as |elements|>
-              <span {{rdfa elements}}>{{clean-spaces @agendapunt.titel}}</span>
-            </agCtx.get>
+            <agCtx.spawn.span @prop="titel" as |titel|>{{clean-spaces titel}}</agCtx.spawn.span>
           </h2>
           {{#if @agendapunt.type}}
-            <agCtx.get @prop="type" as |elements _ tCtx|>
-              <span {{rdfa elements}} class="au-u-hidden-visually">
-                <tCtx.get @prop="label" />
-              </span>
-            </agCtx.get>
+            <agCtx.spawn.span @prop="type" class="au-u-hidden-visually" as |_ tCtx|>
+              <tCtx.get @prop="label" />
+            </agCtx.spawn.span>
           {{/if}}
           {{#if @agendapunt.beschrijving}}
-            <agCtx.get @prop="beschrijving" as |elements beschrijving|>
-              <p {{rdfa elements}} class="au-c-help-text--secondary">{{clean-spaces beschrijving}}</p>
-            </agCtx.get>
+            <agCtx.spawn.p @prop="beschrijving" class="au-c-help-text--secondary" as |beschrijving|>{{clean-spaces beschrijving}}</agCtx.spawn.p>
           {{/if}}
           <agCtx.get @prop="geplandOpenbaar" class="au-u-hidden" />
         </WithRdfaContext>

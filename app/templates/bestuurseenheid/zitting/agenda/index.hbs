@@ -11,23 +11,18 @@
   <div class="au-o-region-large">
     <WithRdfaContext @model={{this.model.meeting}} as |ctx|>
       <AuHeading @skin="2" class="au-u-margin-bottom">
-        <ctx.get @prop="agenda" as |elements|>
-          <span {{rdfa elements}}>Agenda</span>
-        </ctx.get>
+        {{!-- Next line seems useless --}}
+        <ctx.spawn.span @prop="agendaRDFaClean" as |agenda|>
+          Agenda
+        </ctx.spawn.span>
         voor
-        <ctx.get @prop="bestuursorgaan" as |elements _ boCtx|>
-          <span {{rdfa elements}}>
-            <boCtx.get @prop="isTijdsspecialisatieVan" as |elements _ itsvCtx|>
-              <span {{rdfa elements}}>
-                <itsvCtx.get @prop="naam" />
-              </span>
-            </boCtx.get>
-          </span>
-        </ctx.get>
+        <ctx.spawn.span @prop="bestuursorgaan" as |_ boCtx|>
+          <boCtx.spawn.span @prop="isTijdsspecialisatieVan" as |_ itsvCtx|>
+            <itsvCtx.get @prop="naam" />
+          </boCtx.spawn.span>
+        </ctx.spawn.span>
         , zitting van
-        <ctx.get @prop="geplandeStart" as |elements geplandeStart|>
-          <span {{rdfa elements}}>{{format-date geplandeStart 'd MMMM yyyy, HH:mm'}}</span>
-        </ctx.get>
+        <ctx.spawn.span @prop="geplandeStart" as |geplandeStart|>{{format-date geplandeStart 'd MMMM yyyy, HH:mm'}}</ctx.spawn.span>
       </AuHeading>
       <p class="au-c-heading au-c-heading--5 au-u-margin-bottom">
         Datum publicatie:
@@ -44,9 +39,7 @@
           </ctx.get>
           --}}
           <WithRdfaContext @model={{this.publication}} @tagName="span" as |pbCtx|>
-              <pbCtx.get @prop="createdOn" as |elements createdOn|>
-                <span {{rdfa elements}}>{{format-date createdOn 'd MMMM yyyy'}}</span>
-              </pbCtx.get>
+              <pbCtx.spawn.span @prop="createdOn" as |createdOn|>{{format-date createdOn 'd MMMM yyyy'}}</pbCtx.spawn.span>
           </WithRdfaContext>
         {{else}}
           {{!-- old data does not have this field --}}

@@ -3,25 +3,17 @@
 {{else}}
   <WithRdfaContext @model={{@zitting}} as |zCtx|>
     <AuHeading @skin="2" class="au-u-margin-bottom">Besluitenlijst van
-      <zCtx.get @prop="bestuursorgaan" as |elements _ boCtx|>
-        <span {{rdfa elements}}>
-          <boCtx.get @prop="isTijdsspecialisatieVan" as |elements _ itsvCtx|>
-            <span {{rdfa elements}}>
-              <itsvCtx.get @prop="naam" />
-            </span>
-          </boCtx.get>
-        </span>
-      </zCtx.get>
+      <zCtx.spawn.span @prop="bestuursorgaan" as |_ boCtx|>
+        <boCtx.spawn.span @prop="isTijdsspecialisatieVan" as |_ itsvCtx|>
+          <itsvCtx.get @prop="naam" />
+        </boCtx.spawn.span>
+      </zCtx.spawn.span>
       , zitting van
       {{#if @zitting.gestartOpTijdstip}}
-        <zCtx.get @prop="gestartOpTijdstip" as |elements gestartOpTijdstip|>
-          <span {{rdfa elements}}>{{format-date gestartOpTijdstip 'd MMMM yyyy, HH:mm'}}</span>
-        </zCtx.get>
+        <zCtx.spawn.span @prop="gestartOpTijdstip" as |gestartOpTijdstip|>{{format-date gestartOpTijdstip 'd MMMM yyyy, HH:mm'}}</zCtx.spawn.span>
       {{else}}
         {{!-- fallback for old data --}}
-        <zCtx.get @prop="geplandeStart" as |elements geplandeStart|>
-          <span {{rdfa elements}}>{{format-date geplandeStart 'd MMMM yyyy, HH:mm'}}</span>
-        </zCtx.get>
+        <zCtx.spawn.span @prop="geplandeStart" as |elements geplandeStart|>{{format-date geplandeStart 'd MMMM yyyy, HH:mm'}}</zCtx.spawn.span>
       {{/if}}
     </AuHeading>
     <ul class="au-c-list au-u-margin-top">

@@ -5,16 +5,18 @@ export default class BestuurseenheidZittingUittrekselsIndexRoute extends Route {
   @service store;
 
   async model() {
-    const id = this.modelFor('bestuurseenheid.zitting').get('id');
-    return (
-      await this.store.query('zitting', {
+    const id = await this.modelFor('bestuurseenheid.zitting').get('id');
+    const zittingen = await this.store.query('zitting', {
         // TODO add pagination in template instead of retrieving besluiten through include
         'filter[id]': id,
         include: [
           'uittreksels.behandeling-van-agendapunt.onderwerp',
           'uittreksels.behandeling-van-agendapunt.besluiten',
         ].join(),
-      })
-    ).firstObject;
+      });
+    const zitting = zittingen.firstObject;
+    const bestuursorgaan = await zitting.bestuursorgaan;
+    const isTijdsspecialisatieVan = await bestuursorgaan.isTijdsspecialisatieVan;
+    return zitting;
   }
 }

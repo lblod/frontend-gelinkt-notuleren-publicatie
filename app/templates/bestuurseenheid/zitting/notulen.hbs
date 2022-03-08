@@ -1,8 +1,8 @@
 {{breadcrumb "Notulen" route="bestuurseenheid.zitting.notulen"}}
-{{#let (format-date this.model.zitting.gestartOpTijdstip 'd MMMM yyyy, HH:mm') as |startDate|}}
+{{#let (format-date this.model.gestartOpTijdstip 'd MMMM yyyy, HH:mm') as |startDate|}}
   {{page-title (concat
     "Notulen van "
-    this.model.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam
+    this.model.bestuursorgaan.isTijdsspecialisatieVan.naam
     ", zitting van "
     startDate
     )}}
@@ -10,28 +10,22 @@
 <div class="au-o-layout au-c-document-publish">
   <a class="au-u-hidden" href="http://data.lblod.info/id/document-types/notulen" property="dct:type"></a>
 
-  <div class="au-o-region-large" property="prov:value">
-    <WithRdfaContext @model={{this.model.zitting}} as |ctx|>
-      <ctx.get @prop="notulen" as |elements value notctx|>
-        <div {{rdfa elements}}>
-          <p class="au-c-heading au-c-heading--5">
-            Datum publicatie:
-            {{#if this.model.notulen.publication.createdOn}}
-              <notctx.get @prop="publication" as |_ _ pubctx|>
-                <pubctx.get @prop="createdOn" as |elements createdOn|>
-                  <span {{rdfa elements}}>{{format-date createdOn 'd MMMM yyyy'}}</span>
-                </pubctx.get>
-              </notctx.get>
-            {{else}}
-              {{!-- old data does not have this field --}}
-              ongekend
-            {{/if}}
-          </p>
-          <div property="prov:value">
-            {{html-safe this.model.notulen.inhoud}}
-          </div>
-        </div>
-      </ctx.get>
+  <div class="au-o-region-large">
+    <WithRdfaContext @model={{this.model}} as |ctx|>
+      <ctx.spawn.div @prop="notulen" as |notulen notctx|>
+        <p class="au-c-heading au-c-heading--5">
+          Datum publicatie:
+          {{#if this.model.notulen.publication.createdOn}}
+            <notctx.spawn.span @prop="publication" as |_ pubctx|>
+              <pubctx.spawn.span @prop="createdOn" as |createdOn|>{{format-date createdOn 'd MMMM yyyy'}}</pubctx.spawn.span>
+            </notctx.spawn.span>
+          {{else}}
+            {{!-- old data does not have this field --}}
+            ongekend
+          {{/if}}
+        </p>
+        <notctx.spawn.div @prop="inhoud" as |inhoud|>{{html-safe inhoud}}</notctx.spawn.div>
+      </ctx.spawn.div>
     </WithRdfaContext>
   </div>
 </div>

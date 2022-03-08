@@ -50,23 +50,19 @@
         <li class="au-c-list__item">
           <WithRdfaContext @model={{zitting}} class="au-o-box au-c-card au-c-card--divided" as |ctx|>
             <div class="au-c-card__header">
-              <ctx.get @prop="bestuursorgaan" as |elements _ bInTimeCtx|>
-                <h2 class="au-c-heading au-c-heading--4" {{rdfa elements}}>
-                  <bInTimeCtx.get @prop="isTijdsspecialisatieVan" as |elements _ bCtx|>
-                    <span {{rdfa elements}}>
-                      <bCtx.get @prop="naam" />
-                    </span>
-                  </bInTimeCtx.get>
+              <ctx.spawn.div @prop="bestuursorgaan" as |_ boCtx|>
+                <h2 class="au-c-heading au-c-heading--4">
+                  <boCtx.spawn.span @prop="isTijdsspecialisatieVan" as |_ itsvCtx|>
+                    <itsvCtx.get @prop="naam" />
+                  </boCtx.spawn.span>
                 </h2>
-              </ctx.get>
+              </ctx.spawn.div>
             </div>
             <div class="au-c-card__content au-u-padding-top-small">
               <div class="au-o-grid au-o-grid--small">
                 <div class="au-c-content au-c-content--large au-o-grid__item au-u-3-4@medium">
                   <p>
-                    <ctx.get @prop="geplandeStart" as |elements value|>
-                      <span {{rdfa elements}}>{{format-date value 'd MMMM yyyy, HH:mm'}}</span>
-                    </ctx.get>
+                    <ctx.spawn.span @prop="geplandeStart" as |value|>{{format-date value 'd MMMM yyyy, HH:mm'}}</ctx.spawn.span>
                   </p>
                   <ul class="au-c-list-horizontal au-u-margin-top-small">
                     {{#if zitting.notulen.id}}
