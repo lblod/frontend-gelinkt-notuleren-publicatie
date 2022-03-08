@@ -1,15 +1,15 @@
 <WithRdfaContext @model={{@besluit}} class="au-o-box au-c-card au-c-card--divided" as |bCtx|>
   <div class="au-c-card__header">
-    <bCtx.spawn.link @prop="volgendUitBehandelingVanAgendapunt" />
+    <bCtx.link @prop="volgendUitBehandelingVanAgendapunt" />
     <h3 class="au-c-heading au-c-heading--4">
-      <bCtx.spawn.span @prop="titel" as |titel|>{{clean-spaces titel}}</bCtx.spawn.span>
+      <bCtx.span @prop="titel" as |titel|>{{clean-spaces titel}}</bCtx.span>
     </h3>
   </div>
   <div class="au-c-card__content">
     <div class="au-o-grid au-o-grid--small">
       <div class="au-o-grid__item au-u-3-4@medium">
         {{#if @besluit.beschrijving}}
-          <bCtx.spawn.p @prop="beschrijving" class="au-c-help-text" as |beschrijving|>{{beschrijving}}</bCtx.spawn.p>
+          <bCtx.p @prop="beschrijving" class="au-c-help-text" as |beschrijving|>{{beschrijving}}</bCtx.p>
         {{else}}
           <p class="au-c-help-text au-c-help-text--secondary">Korte beschrijving niet gevonden</p>
         {{/if}}
@@ -18,14 +18,14 @@
         {{/unless}}
         {{#if this.stemmingen.length}}
           <h3 class="au-c-heading au-c-heading--5 au-u-margin-top-small">Stemmingen</h3>
-          <bCtx.spawn.div @prop="volgendUitBehandelingVanAgendapunt" as |_ bvaCtx|>
-            <bvaCtx.spawneach.p @prop="stemmingen" as |stemming stmCtx|>
+          <bCtx.div @prop="volgendUitBehandelingVanAgendapunt" as |_ bvaCtx|>
+            <bvaCtx.each.p @prop="stemmingen" as |stemming stmCtx|>
               <strong>Onderwerp:</strong>
               <stmCtx.get @prop="onderwerp" />
               <strong>Gevolg:</strong>
               <stmCtx.get @prop="gevolg" />
-            </bvaCtx.spawneach.p>
-          </bCtx.spawn.div>
+            </bvaCtx.each.p>
+          </bCtx.div>
         {{/if}}
       </div>
       <div class="au-o-grid__item au-u-1-4@medium">

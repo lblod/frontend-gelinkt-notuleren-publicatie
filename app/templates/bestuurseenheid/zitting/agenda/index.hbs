@@ -12,17 +12,17 @@
     <WithRdfaContext @model={{this.model.meeting}} as |ctx|>
       <AuHeading @skin="2" class="au-u-margin-bottom">
         {{!-- Next line seems useless --}}
-        <ctx.spawn.span @prop="agendaRDFaClean" as |agenda|>
+        <ctx.span @prop="agendaRDFaClean" as |agenda|>
           Agenda
-        </ctx.spawn.span>
+        </ctx.span>
         voor
-        <ctx.spawn.span @prop="bestuursorgaan" as |_ boCtx|>
-          <boCtx.spawn.span @prop="isTijdsspecialisatieVan" as |_ itsvCtx|>
+        <ctx.span @prop="bestuursorgaan" as |_ boCtx|>
+          <boCtx.span @prop="isTijdsspecialisatieVan" as |_ itsvCtx|>
             <itsvCtx.get @prop="naam" />
-          </boCtx.spawn.span>
-        </ctx.spawn.span>
+          </boCtx.span>
+        </ctx.span>
         , zitting van
-        <ctx.spawn.span @prop="geplandeStart" as |geplandeStart|>{{format-date geplandeStart 'd MMMM yyyy, HH:mm'}}</ctx.spawn.span>
+        <ctx.span @prop="geplandeStart" as |geplandeStart|>{{format-date geplandeStart 'd MMMM yyyy, HH:mm'}}</ctx.span>
       </AuHeading>
       <p class="au-c-heading au-c-heading--5 au-u-margin-bottom">
         Datum publicatie:
@@ -39,7 +39,7 @@
           </ctx.get>
           --}}
           <WithRdfaContext @model={{this.publication}} @tagName="span" as |pbCtx|>
-              <pbCtx.spawn.span @prop="createdOn" as |createdOn|>{{format-date createdOn 'd MMMM yyyy'}}</pbCtx.spawn.span>
+              <pbCtx.span @prop="createdOn" as |createdOn|>{{format-date createdOn 'd MMMM yyyy'}}</pbCtx.span>
           </WithRdfaContext>
         {{else}}
           {{!-- old data does not have this field --}}

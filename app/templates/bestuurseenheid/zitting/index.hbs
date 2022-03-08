@@ -10,16 +10,16 @@
     <WithRdfaContext @model={{this.zitting}} as |ctx|>
       <AuHeading @skin="2" class="au-u-margin-bottom">
         Publicaties voor de zitting van
-        <ctx.spawn.span @prop="bestuursorgaan" as |orgaan boCtx|>
-          <boCtx.spawn.span @prop="isTijdsspecialisatieVan" as |tijdspec itsvCtx|>
+        <ctx.span @prop="bestuursorgaan" as |orgaan boCtx|>
+          <boCtx.span @prop="isTijdsspecialisatieVan" as |tijdspec itsvCtx|>
             <itsvCtx.get @prop="naam" />
-          </boCtx.spawn.span>
-        </ctx.spawn.span>
+          </boCtx.span>
+        </ctx.span>
         <br>
         op
-        <ctx.spawn.span @prop="geplandeStart" as |value|>
+        <ctx.span @prop="geplandeStart" as |value|>
           {{format-date value 'd MMMM yyyy, HH:mm'}}
-        </ctx.spawn.span>
+        </ctx.span>
       </AuHeading>
         <ul class="au-c-steps">
           <li class="au-c-steps__item">
@@ -64,9 +64,9 @@
                   <AuHeading @level="2" @skin="4">Bekendmakingen en uittreksels</AuHeading>
                 </div>
                 <span class="au-u-hidden-visually">
-                  <ctx.each @prop="uittreksels" />
+                  <ctx.each.get @prop="uittreksels" />
                   {{!-- This is not ideal --}}
-                  <ctx.spawneach.a @prop="uittreksels" @link-to="bestuurseenheid.zitting.uittreksels.detail.raw" @property="lblodBesluit:linkToPublication" @overrideUri={{true}} tabindex="-1" />
+                  <ctx.each.a @prop="uittreksels" @link-to="bestuurseenheid.zitting.uittreksels.detail.raw" @property="lblodBesluit:linkToPublication" @overrideUri={{true}} tabindex="-1" />
                 </span>
                 <LinkTo @route="bestuurseenheid.zitting.uittreksels" @model={{this.zitting.id}} class="au-c-card__link">
                   <span class="au-u-hidden-visually">Bekijk bekendmakingen en uittreksels</span>

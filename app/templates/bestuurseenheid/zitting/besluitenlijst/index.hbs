@@ -9,28 +9,28 @@
 <div class="au-o-layout">
   <div class="au-o-region-large">
     <WithRdfaContext @model={{this.model.zitting}} as |ctx|>
-      <ctx.spawn.div @prop="besluitenlijst" as |besluitenlijst bCtx|>
+      <ctx.div @prop="besluitenlijst" as |besluitenlijst bCtx|>
         <Besluitenlijst @besluitenlijst={{this.model.besluitenlijst}} @besluiten={{this.model.besluiten}} @zitting={{this.model.zitting}} />
         <div class="au-u-margin-top">
           <p class="au-c-heading au-c-heading--5 au-u-margin-bottom-tiny">
             Besluitenlijst goedgekeurd door
-            <ctx.spawn.span @prop="bestuursorgaan" @property="eli:passed_by" as |_ boCtx|>
-              <boCtx.spawn.span @prop="isTijdsspecialisatieVan" as |_ itsvCtx|>
+            <ctx.span @prop="bestuursorgaan" @property="eli:passed_by" as |_ boCtx|>
+              <boCtx.span @prop="isTijdsspecialisatieVan" as |_ itsvCtx|>
                 <itsvCtx.get @prop="naam" />
-              </boCtx.spawn.span>
-            </ctx.spawn.span>
+              </boCtx.span>
+            </ctx.span>
           </p>
           <p class="au-c-heading au-c-heading--5">
             Datum publicatie:
             {{#if this.model.besluitenlijst.publicatiedatum}}
-              <bCtx.spawn.span @prop="publicatiedatum" as |publicatiedatum|>{{format-date publicatiedatum 'd MMMM yyyy'}}</bCtx.spawn.span>
+              <bCtx.span @prop="publicatiedatum" as |publicatiedatum|>{{format-date publicatiedatum 'd MMMM yyyy'}}</bCtx.span>
             {{else}}
               {{!-- old data does not have this field --}}
               ongekend
             {{/if}}
           </p>
         </div>
-      </ctx.spawn.div>
+      </ctx.div>
     </WithRdfaContext>
   </div>
 </div>
