@@ -8,11 +8,11 @@ export default class BestuurseenheidZittingUittrekselsDetailIndexRoute extends R
     const publication = uittreksel.get('publication');
     const zitting = this.modelFor('bestuurseenheid.zitting');
     const bestuursorgaan = await zitting.bestuursorgaan;
-    const isTijdsspecialisatieVan = await bestuursorgaan.isTijdsspecialisatieVan;
+    await bestuursorgaan.isTijdsspecialisatieVan;
     return {
       uittreksel,
       publication,
-      zitting
+      zitting,
     };
   }
 }

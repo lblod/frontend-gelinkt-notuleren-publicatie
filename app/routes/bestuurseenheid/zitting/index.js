@@ -14,7 +14,7 @@ export default class BestuurseenheidZittingIndexRoute extends Route {
     });
     const zitting = zittingP.firstObject;
     const bestuurseenheid = await zitting.get('bestuursorgaan');
-    const isTijdSpecialisatieVan = await bestuurseenheid.get('isTijdsspecialisatieVan');
+    await bestuurseenheid.get('isTijdsspecialisatieVan');
     return zitting;
   }
 

@@ -16,12 +16,12 @@ export default class BestuurseenheidZittingBesluitenlijstIndexRoute extends Rout
       sort: 'volgend-uit-behandeling-van-agendapunt.position',
       include: 'volgend-uit-behandeling-van-agendapunt',
     });
-    
+
     const bestuursorgaan = await zitting.bestuursorgaan;
-    const isTijdsspecialisatieVan = await bestuursorgaan.isTijdsspecialisatieVan;
-    
+    await bestuursorgaan.isTijdsspecialisatieVan;
+
     for (let i = 0; i < besluiten.length; i++) {
-      let vubva = await besluiten.objectAt(i).volgendUitBehandelingVanAgendapunt;
+      await besluiten.objectAt(i).volgendUitBehandelingVanAgendapunt;
     }
 
     return {

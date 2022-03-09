@@ -17,9 +17,9 @@ export default class BestuurseenheidZittingNotulenRoute extends Route {
     //When this looks easier and works the same:  ?
     const zitting = await this.modelFor('bestuurseenheid.zitting');
     const notulen = await zitting.notulen;
-    const publicatie = await notulen.publication;
+    await notulen.publication;
     const bestuursorgaan = await zitting.bestuursorgaan;
-    const isTijdsspecialisatieVan = await bestuursorgaan.isTijdsspecialisatieVan;
+    await bestuursorgaan.isTijdsspecialisatieVan;
     return zitting;
     //Could have used fastboot.deferRendering, but even in normal mode, we want to wait untill all this data is loaded before rendering the page, so that nothing jumps on screen.
   }

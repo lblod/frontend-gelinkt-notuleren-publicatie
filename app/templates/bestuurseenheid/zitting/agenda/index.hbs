@@ -12,7 +12,7 @@
     <WithRdfaContext @model={{this.model.meeting}} as |ctx|>
       <AuHeading @skin="2" class="au-u-margin-bottom">
         {{!-- Next line seems useless --}}
-        <ctx.span @prop="agendaRDFaClean" as |agenda|>
+        <ctx.span @prop="agendaRDFaClean">
           Agenda
         </ctx.span>
         voor
