@@ -1,11 +1,11 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-module('Unit | Route | bestuurseenheid/zitting/zitting', function (hooks) {
+module('Unit | Route | bestuurseenheid/zitting/index', function (hooks) {
   setupTest(hooks);
 
   test('it exists', function (assert) {
-    let route = this.owner.lookup('route:bestuurseenheid/zitting/zitting');
+    let route = this.owner.lookup('route:bestuurseenheid/zitting/index');
     assert.ok(route);
   });
 });
