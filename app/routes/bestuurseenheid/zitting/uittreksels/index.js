@@ -15,8 +15,6 @@ export default class BestuurseenheidZittingUittrekselsIndexRoute extends Route {
       ].join(),
     });
     const zitting = zittingen.firstObject;
-    const bestuursorgaan = await zitting.bestuursorgaan;
-    await bestuursorgaan.isTijdsspecialisatieVan;
     return zitting;
   }
 }
