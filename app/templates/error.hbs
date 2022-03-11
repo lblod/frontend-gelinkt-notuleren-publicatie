@@ -1,11 +1,25 @@
 {{page-title "Error"}}
+{{breadcrumb "Zoekpagina" route="index"}}
+{{breadcrumb "Error" route="error"}}
 <AuToolbar @size="medium" @skin="tint" @border="bottom" class="au-c-toolbar__breadcrumbs">
   <AuToolbarGroup>
-    <BreadCrumbs @tagName="ul" @linkable={{true}} @crumbClass="au-c-list-horizontal__item" @class="au-c-list-horizontal" as |component route|>
-      <BreadCrumb @route={{route}} @breadCrumbs={{component}} @linkClass="au-c-link">
-        {{route.title}}
-      </BreadCrumb>
-    </BreadCrumbs>
+    <nav aria-label="Breadcrumb">
+      <ol class="au-c-list-horizontal">
+        {{#each (breadcrumbs) as |breadcrumb|}}
+          <li class="au-c-list-horizontal__item">
+            {{#let (has-next breadcrumb (breadcrumbs)) as |isNotLastBreadcrumb|}}
+              {{#if isNotLastBreadcrumb}}
+                <AuLink @route={{breadcrumb.data.route}} @model={{breadcrumb.data.model}}>
+                  {{breadcrumb.title}}
+                </AuLink>
+              {{else}}
+                {{breadcrumb.title}}
+              {{/if}}
+            {{/let}}
+          </li>
+        {{/each}}
+      </ol>
+    </nav>
   </AuToolbarGroup>
 </AuToolbar>
 

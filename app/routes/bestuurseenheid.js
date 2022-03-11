@@ -15,9 +15,6 @@ export default class BestuurseenheidRoute extends Route {
     if (bestuurseenheden.length == 0) {
       return null;
     } else {
-      transition.data.bestuurseenheidNaam = params.bestuurseenheid_naam;
-      transition.data.bestuurseenheidClassificatieLabel =
-        params.bestuurseenheid_classificatie_code_label;
       return bestuurseenheden.get('firstObject');
     }
   }

@@ -7,7 +7,7 @@ export default class BestuurseenheidErrorRoute extends Route {
   async setupController(controller, error) {
     if (error) {
       if (error.isAdapterError && error.errors[0].status === '404') {
-        const model = await this.modelFor('bestuurseenheid');
+        const model = this.modelFor('bestuurseenheid');
         this.transitionTo('bestuurseenheid', model);
       } else {
         this.transitionTo('error');

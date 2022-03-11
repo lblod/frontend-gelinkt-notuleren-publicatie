@@ -19,7 +19,7 @@ module.exports = function (environment) {
     environmentName: '{{ENVIRONMENT_NAME}}',
     fastboot: {
       hostWhitelist: [
-        /^localhost:\d+$/,
+        /^localhost:\d+$/.toString(),
         'localhost',
         'publicatie.gelinkt-notuleren.vlaanderen.be',
         'publicatie.dev.gelinkt-notuleren.lblod.info',

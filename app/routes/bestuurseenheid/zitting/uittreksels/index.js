@@ -5,7 +5,7 @@ export default class BestuurseenheidZittingUittrekselsIndexRoute extends Route {
   @service store;
 
   async model() {
-    const id = await this.modelFor('bestuurseenheid.zitting').get('id');
+    const id = this.modelFor('bestuurseenheid.zitting').get('id');
     const zittingen = await this.store.query('zitting', {
       // TODO add pagination in template instead of retrieving besluiten through include
       'filter[id]': id,
