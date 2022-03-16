@@ -1,18 +1,16 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default class BestuurseenheidZittingNotulenRoute extends Route {
-  breadCrumb = { title: 'Notulen' };
+  @service store;
 
   async model() {
-    const meeting = this.modelFor('bestuurseenheid.zitting');
-    const meetingNotes = await this.store.query('notulen', {
-      "filter[zitting][:id:]": meeting.id,
-      sort: "-publication.created-on",
-      include: "publication"
+    const parentMeeting = this.modelFor('bestuurseenheid.zitting');
+    const meeting = await this.store.findRecord('zitting', parentMeeting.id, {
+      reload: true,
+      sort: '-notulen.publication.created-on',
+      include: 'notulen,notulen.publication',
     });
-
-    const notulen = meetingNotes.firstObject;
-    return { notulen, zitting: meeting };
+    return meeting;
   }
 }
-

@@ -1,9 +1,9 @@
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
-import {inject as service} from '@ember/service';
+import { inject as service } from '@ember/service';
 
 export default class ApplicationAdapter extends JSONAPIAdapter {
   @service fastboot;
-  constructor(){
+  constructor() {
     super(...arguments);
     if (this.fastboot.isFastBoot) {
       this.host = window.BACKEND_URL;

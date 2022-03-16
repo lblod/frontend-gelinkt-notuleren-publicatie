@@ -19,12 +19,12 @@ export default class AgendapuntModel extends Model {
     beschrijving: 'dct:description',
     geplandOpenbaar: {
       property: 'besluit:geplandOpenbaar',
-      datatype: 'xsd:boolean'
+      datatype: 'xsd:boolean',
     },
     titel: 'dct:title',
     type: 'besluit:Agendapunt.type',
     vorigeAgendapunt: 'besluit:aangebrachtNa',
     behandeling: 'dct:subject',
-    publications: 'prov:wasDerivedFrom'
-  }
+    publications: 'prov:wasDerivedFrom',
+  };
 }

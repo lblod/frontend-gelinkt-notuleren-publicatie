@@ -7,30 +7,30 @@
     )}}
 {{/let}}
 <div class="au-o-layout">
-  <div typeof="besluit:Zitting" resource={{this.model.zitting.uri}} class="au-o-region-large">
-    <div property="besluit:heeftBesluitenlijst" resource={{this.model.besluitenlijst.uri}} typeof="https://data.vlaanderen.be/id/concept/BesluitDocumentType/3fa67785-ffdc-4b30-8880-2b99d97b4dee foaf:Document">
-      <Besluitenlijst @besluitenlijst={{this.model.besluitenlijst}} @besluiten={{this.model.besluiten}} @zitting={{this.model.zitting}} />
-      <div class="au-u-margin-top">
-        <p class="au-c-heading au-c-heading--5 au-u-margin-bottom-tiny">
-          Besluitenlijst goedgekeurd door
-          <span property="eli:passed_by" resource={{this.model.zitting.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan">
-            <span resource={{this.model.zitting.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
-              <span property="skos:prefLabel">{{this.model.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
-            </span>
-          </span>
-        </p>
-        <p class="au-c-heading au-c-heading--5">
-          Datum publicatie:
-          {{#if this.model.besluitenlijst.publicatiedatum}}
-            <span property="eli:date_publication" content={{format-date this.model.besluitenlijst.publicatiedatum 'yyyy-MM-dd'}} datatype="xsd:date">
-              {{format-date this.model.besluitenlijst.publicatiedatum 'd MMMM yyyy'}}
-            </span>
-          {{else}}
-            {{!-- old data does not have this field --}}
-            ongekend
-          {{/if}}
-        </p>
-      </div>
-    </div>
+  <div class="au-o-region-large">
+    <WithRdfaContext @model={{this.model.zitting}} as |ctx|>
+      <ctx.div @prop="besluitenlijst" as |besluitenlijst bCtx|>
+        <Besluitenlijst @besluitenlijst={{this.model.besluitenlijst}} @besluiten={{this.model.besluiten}} @zitting={{this.model.zitting}} />
+        <div class="au-u-margin-top">
+          <p class="au-c-heading au-c-heading--5 au-u-margin-bottom-tiny">
+            Besluitenlijst goedgekeurd door
+            <ctx.span @prop="bestuursorgaan" @property="eli:passed_by" as |_ boCtx|>
+              <boCtx.span @prop="isTijdsspecialisatieVan" as |_ itsvCtx|>
+                <itsvCtx.get @prop="naam" />
+              </boCtx.span>
+            </ctx.span>
+          </p>
+          <p class="au-c-heading au-c-heading--5">
+            Datum publicatie:
+            {{#if this.model.besluitenlijst.publicatiedatum}}
+              <bCtx.span @prop="publicatiedatum" as |publicatiedatum|>{{format-date publicatiedatum 'd MMMM yyyy'}}</bCtx.span>
+            {{else}}
+              {{!-- old data does not have this field --}}
+              ongekend
+            {{/if}}
+          </p>
+        </div>
+      </ctx.div>
+    </WithRdfaContext>
   </div>
 </div>

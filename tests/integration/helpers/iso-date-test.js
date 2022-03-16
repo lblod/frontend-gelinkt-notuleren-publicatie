@@ -3,12 +3,12 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Helper | iso-date', function(hooks) {
+module('Integration | Helper | iso-date', function (hooks) {
   setupRenderingTest(hooks);
 
   // Replace this with your real tests.
-  test('it renders', async function(assert) {
-    this.set('inputValue', new Date("2021-07-01"));
+  test('it renders', async function (assert) {
+    this.set('inputValue', new Date('2021-07-01'));
 
     await render(hbs`{{iso-date inputValue}}`);
 

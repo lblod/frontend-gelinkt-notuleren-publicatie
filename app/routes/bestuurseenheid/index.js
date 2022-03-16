@@ -1,23 +1,22 @@
 import Route from '@ember/routing/route';
-import {inject as service} from '@ember/service';
-
+import { inject as service } from '@ember/service';
 
 export default class BestuurseenheidIndexRoute extends Route {
   @service fastboot;
   queryParams = {
     page: {
-      refreshModel: true
+      refreshModel: true,
     },
     to: {
-      refreshModel: false
+      refreshModel: false,
     },
     from: {
-      refreshModel: false
+      refreshModel: false,
     },
     administrativeBodyClassURI: {
-      refreshModel: false
-    }
-  }
+      refreshModel: false,
+    },
+  };
 
   model(params) {
     return params;
@@ -25,11 +24,10 @@ export default class BestuurseenheidIndexRoute extends Route {
 
   setupController(controller, model) {
     super.setupController(controller, model);
-    controller.bestuurseenheid =this.modelFor('bestuurseenheid');
+    controller.bestuurseenheid = this.modelFor('bestuurseenheid');
     if (this.fastboot.isFastBoot) {
       this.fastboot.deferRendering(controller.fetchMeetings.perform());
-    }
-    else {
+    } else {
       controller.fetchMeetings.perform();
     }
   }

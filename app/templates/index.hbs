@@ -34,9 +34,9 @@
             {{/if}}
             {{#if this.bestuurseenheidNaam}}
               <div class="button-group">
-                <LinkTo @route="bestuurseenheid" @models={{array this.bestuurseenheidNaam this.bestuurseenheidClassificatie.label}} class="au-c-button">
+                <AuLink @route="bestuurseenheid" @models={{array this.bestuurseenheidNaam this.bestuurseenheidClassificatie.label}} @skin="button" @icon="search" @iconAlignment="left">
                   Zoek publicaties
-                </LinkTo>
+                </AuLink>
               </div>
             {{/if}}
           </c.content>

@@ -9,7 +9,7 @@ export default class BestuurseenheidZittingUittrekselsIndexController extends Co
 
   bvapSort = [
     'behandelingVanAgendapunt.position',
-    'behandelingVanAgendapunt.onderwerp.position'
+    'behandelingVanAgendapunt.onderwerp.position',
   ];
 
   @sort('model.uittreksels', 'bvapSort') uittreksels;

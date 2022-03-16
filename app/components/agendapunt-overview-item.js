@@ -21,7 +21,8 @@ export default class AgendapuntOverviewItemComponent extends Component {
   @task
   *findUittreksel() {
     let uittreksels = yield this.store.query('uittreksel', {
-      'filter[behandeling-van-agendapunt][onderwerp][id]': this.args.agendapunt.id
+      'filter[behandeling-van-agendapunt][onderwerp][id]':
+        this.args.agendapunt.id,
     });
     this.uittreksel = uittreksels.firstObject;
   }

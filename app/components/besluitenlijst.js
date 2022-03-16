@@ -28,20 +28,16 @@ export default class BesluitenlijstComponent extends Component {
     const besluiten = yield this.store.query('besluit', {
       page: {
         number: page,
-        size: 100
+        size: 100,
       },
-      "filter[besluitenlijst][:id:]": this.args.besluitenlijst.id,
-      sort: "volgend-uit-behandeling-van-agendapunt.position"
+      'filter[besluitenlijst][:id:]': this.args.besluitenlijst.id,
+      sort: 'volgend-uit-behandeling-van-agendapunt.position',
     });
 
-    this.extraBesluiten = [
-      ...this.extraBesluiten,
-      ...besluiten.toArray(),
-    ];
+    this.extraBesluiten = [...this.extraBesluiten, ...besluiten.toArray()];
 
     const meta = besluiten.meta;
     this.lastPage = meta.pagination.last.number;
     this.currentPage = page;
   }
 }
-

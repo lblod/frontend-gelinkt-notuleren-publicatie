@@ -8,41 +8,59 @@
 {{/let}}
 <div class="au-o-layout">
   <a href="http://data.lblod.info/id/document-types/agenda" property="dct:type" class="au-u-hidden"></a>
-  <div class="au-o-region-large" typeof="besluit:Zitting" resource={{this.meeting.uri}}>
-    <AuHeading @skin="2" class="au-u-margin-bottom">
-      <span resource={{this.agenda.uri}} typeof="foaf:Document" property="besluit:heeftAgenda">Agenda</span>
-      voor
-      <span resource={{this.meeting.bestuursorgaan.uri}} typeof="besluit:Bestuursorgaan" property="besluit:isGehoudenDoor">
-        <span resource={{this.meeting.bestuursorgaan.isTijdsspecialisatieVan.uri}} typeof="besluit:Bestuursorgaan" property="mandaat:isTijdspecialisatieVan">
-          <span property="skos:prefLabel">{{this.meeting.bestuursorgaan.isTijdsspecialisatieVan.naam}}</span>
-        </span>
-      </span>
-      , zitting van
-      <span property="besluit:geplandeStart" content={{iso-date this.meeting.geplandeStart}} datatype="xsd:dateTime">{{format-date this.meeting.geplandeStart 'd MMMM yyyy, HH:mm'}}</span>
-    </AuHeading>
-    <p class="au-c-heading au-c-heading--5 au-u-margin-bottom">
-      Datum publicatie:
-      {{#if this.publication.createdOn}}
-        <span property="eli:date_publication" content={{format-date this.publication.createdOn 'YYYY-MM-dd'}} datatype="xsd:date">
-          {{format-date this.publication.createdOn 'd MMMM yyyy'}}
-        </span>
-      {{else}}
-        {{!-- old data does not have this field --}}
-        ongekend
-      {{/if}}
-    </p>
-    <ul class="au-c-list">
+  <div class="au-o-region-large">
+    <WithRdfaContext @model={{this.model.meeting}} as |ctx|>
+      <AuHeading @skin="2" class="au-u-margin-bottom">
+        {{!-- Next line seems useless --}}
+        <ctx.span @prop="agendaRDFaClean">
+          Agenda
+        </ctx.span>
+        voor
+        <ctx.span @prop="bestuursorgaan" as |_ boCtx|>
+          <boCtx.span @prop="isTijdsspecialisatieVan" as |_ itsvCtx|>
+            <itsvCtx.get @prop="naam" />
+          </boCtx.span>
+        </ctx.span>
+        , zitting van
+        <ctx.span @prop="geplandeStart" as |geplandeStart|>{{format-date geplandeStart 'd MMMM yyyy, HH:mm'}}</ctx.span>
+      </AuHeading>
+      <p class="au-c-heading au-c-heading--5 au-u-margin-bottom">
+        Datum publicatie:
+        {{#if this.publication.createdOn}}
+          {{!-- Because the model states the agenda as an alias to the first object in agendas, both the template and the rdfa-helpers are confused apparently. So for this we start with a new context on the agenda from the controller, which is the same. See below.
+          <ctx.get @prop="agenda" as |_ _ agCtx|>
+            <agCtx.get @prop="publication" as |_ _ pbCtx|>
+              <pbCtx.get @prop="createdOn" as |elements createdOn _|>
+                <span {{rdfa elements}}>
+                  {{format-date this.publication.createdOn 'd MMMM yyyy'}}
+                </span>
+              </pbCtx.get>
+            </agCtx.get>
+          </ctx.get>
+          --}}
+          <WithRdfaContext @model={{this.publication}} @tagName="span" as |pbCtx|>
+              <pbCtx.span @prop="createdOn" as |createdOn|>{{format-date createdOn 'd MMMM yyyy'}}</pbCtx.span>
+          </WithRdfaContext>
+        {{else}}
+          {{!-- old data does not have this field --}}
+          ongekend
+        {{/if}}
+      </p>
       {{#if this.sortedAgendapoints.length}}
-        {{#each this.sortedAgendapoints as |agendapunt index|}}
-          <li resource={{agendapunt.uri}} typeof="besluit:Agendapunt" property="besluit:behandelt" class="au-c-list__item">
-            <AgendapuntOverviewItem @agendapunt={{agendapunt}} @index={{index}} />
-          </li>
-        {{/each}}
+        <ul class="au-c-list">
+          {{#each this.sortedAgendapoints as |agendapunt index|}}
+            <li resource={{agendapunt.uri}} typeof="besluit:Agendapunt" property="besluit:behandelt" class="au-c-list__item">
+              <AgendapuntOverviewItem @agendapunt={{agendapunt}} @index={{index}} />
+            </li>
+          {{/each}}
+        </ul>
       {{else}}
-        <li>
-          <p class="au-c-help-text au-c-help-text--tertiary">Geen agendapunten beschikbaar.</p>
-        </li>
+        <ul class="au-c-list">
+          <li>
+            <p class="au-c-help-text au-c-help-text--tertiary">Geen agendapunten beschikbaar.</p>
+          </li>
+        </ul>
       {{/if}}
-    </ul>
+    </WithRdfaContext>
   </div>
 </div>

@@ -9,10 +9,14 @@ export default class BesluitenlijstModel extends Model {
   type = 'http://data.lblod.info/id/document-types/besluitenlijst';
 
   rdfaBindings = {
-    class: 'foaf:Document',
+    class:
+      'foaf:Document https://data.vlaanderen.be/id/concept/BesluitDocumentType/3fa67785-ffdc-4b30-8880-2b99d97b4dee',
     type: 'dct:type',
     inhoud: 'prov:value',
     publication: 'prov:wasDerivedFrom',
-    publicatieDatum: 'eli:date_publication'
-  }
+    publicatiedatum: {
+      property: 'eli:date_publication',
+      datatype: 'xsd:date',
+    },
+  };
 }

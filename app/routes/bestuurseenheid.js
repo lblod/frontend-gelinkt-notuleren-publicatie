@@ -3,40 +3,19 @@ import { inject as service } from '@ember/service';
 
 export default class BestuurseenheidRoute extends Route {
   @service router;
-  breadCrumb = {};
+  @service store;
 
-  async model(params, transition) {
+  async model(params) {
     const bestuurseenheden = await this.store.query('bestuurseenheid', {
-      'include': 'classificatie',
+      include: 'classificatie',
       'filter[:exact:naam]': params.bestuurseenheid_naam,
-      'filter[classificatie][:exact:label]': params.bestuurseenheid_classificatie_code_label
+      'filter[classificatie][:exact:label]':
+        params.bestuurseenheid_classificatie_code_label,
     });
     if (bestuurseenheden.length == 0) {
       return null;
-    }
-    else {
-      transition.data.bestuurseenheidNaam = params.bestuurseenheid_naam;
-      transition.data.bestuurseenheidClassificatieLabel = params.bestuurseenheid_classificatie_code_label;
+    } else {
       return bestuurseenheden.get('firstObject');
-    }
-  }
-
-  async afterModel(bestuurseenheid, transition) {
-    if (bestuurseenheid) {
-      let rootCrumb = {
-        title: 'Zoekpagina',
-        linkable: true,
-        path: 'index',
-        isHead: true
-      };
-
-      let breadCrumb = {
-        title: `${transition.data.bestuurseenheidClassificatieLabel} ${transition.data.bestuurseenheidNaam}`,
-        linkable: true,
-        path: 'bestuurseenheid'
-      };
-
-      this.breadCrumbs = [rootCrumb, breadCrumb];
     }
   }
 }

@@ -2,19 +2,21 @@
   <div class="au-c-card__header">
     <div class="au-o-grid au-o-grid--small">
       <div class="au-o-grid__item au-u-3-4@medium">
-        <h2 class="au-c-heading--4" >
-          {{inc @index}}.
-          <span property="dct:title">
-            {{clean-spaces @agendapunt.titel}}
-          </span>
-        </h2>
-        {{#if @agendapunt.type}}
-          <span property="besluit:Agendapunt.type" class="au-u-hidden-visually" resource="{{@agendapunt.type.uri}}" typeof="skos:Concept">{{@agendapunt.type.label}}</span>
-        {{/if}}
-        {{#if @agendapunt.beschrijving}}
-          <p property="dct:description"><span class="au-c-help-text--secondary">{{clean-spaces @agendapunt.beschrijving}}</span></p>
-        {{/if}}
-        <span property="besluit:geplandOpenbaar" content={{if @agendapunt.geplandOpenbaar "true" "false"}} class="au-u-hidden"></span>
+        <WithRdfaContext @model={{@agendapunt}} as |agCtx|>
+          <h2 class="au-c-heading--4" >
+            {{inc @index}}.
+            <agCtx.span @prop="titel" as |titel|>{{clean-spaces titel}}</agCtx.span>
+          </h2>
+          {{#if @agendapunt.type}}
+            <agCtx.span @prop="type" class="au-u-hidden-visually" as |_ tCtx|>
+              <tCtx.get @prop="label" />
+            </agCtx.span>
+          {{/if}}
+          {{#if @agendapunt.beschrijving}}
+            <agCtx.p @prop="beschrijving" class="au-c-help-text--secondary" as |beschrijving|>{{clean-spaces beschrijving}}</agCtx.p>
+          {{/if}}
+          <agCtx.get @prop="geplandOpenbaar" class="au-u-hidden" />
+        </WithRdfaContext>
         {{#unless this.uittreksel.inhoud}}
           <p>
             <AuHelpText @skin="secondary">Inhoud niet publiek</AuHelpText>
@@ -23,10 +25,9 @@
       </div>
       <div class="au-o-grid__item au-u-1-4@medium">
         {{#if this.uittreksel.inhoud}}
-          <LinkTo @route="bestuurseenheid.zitting.uittreksels.detail" @model={{this.uittreksel.id}} property="lblodBesluit:linkToPublication" class="au-c-button au-c-button--block">
-            Bekijk volledige inhoud
-            <AuIcon @icon="nav-right" @alignment="right" />
-          </LinkTo>
+        <AuLink @route="bestuurseenheid.zitting.uittreksels.detail" @model={{this.uittreksel.id}} property="lblodBesluit:linkToPublication" @skin="button" @icon="nav-right" @iconAlignment="right">
+          Bekijk volledige inhoud
+        </AuLink>
         {{/if}}
       </div>
     </div>

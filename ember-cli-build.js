@@ -6,14 +6,14 @@ module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     // Add options here
     'ember-cli-babel': {
-      includePolyfill: true
+      includePolyfill: false,
     },
     sassOptions: {
       includePaths: [
         'node_modules/@appuniversum/appuniversum',
         'node_modules/@appuniversum/ember-appuniversum/app/styles',
-      ]
-    }
+      ],
+    },
   });
 
   app.import('node_modules/svgxuse/svgxuse.js');

@@ -7,27 +7,29 @@ export default Component.extend({
   tagName: '',
   store: service(),
 
-  findBestuurseenheidNamen: task(function*(search) {
+  findBestuurseenheidNamen: task(function* (search) {
     yield timeout(200); // Timeout for debouncing
 
-    const queryParams =  {
+    const queryParams = {
       sort: 'naam',
       filter: {
         classificatie: {
-          id: this.bestuurseenheidClassificatie.value
-        }
-      }
+          id: this.bestuurseenheidClassificatie.value,
+        },
+      },
     };
 
-    if (search)
-      queryParams['filter[naam]'] = search;
+    if (search) queryParams['filter[naam]'] = search;
 
-    const bestuurseenheden = yield this.store.query('bestuurseenheid', queryParams);
+    const bestuurseenheden = yield this.store.query(
+      'bestuurseenheid',
+      queryParams
+    );
     this.set('bestuurseenheidNamen', bestuurseenheden.getEach('naam'));
   }).restartable(),
 
   didReceiveAttrs() {
     this._super(...arguments);
     this.findBestuurseenheidNamen.perform();
-  }
+  },
 });

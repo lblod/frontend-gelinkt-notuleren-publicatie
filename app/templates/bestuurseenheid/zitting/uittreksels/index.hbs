@@ -1,29 +1,20 @@
 <div class="au-o-layout">
-  <WithRdfaContext @model={{this.zitting}} @class="au-o-region-large" as |ctx|>
+  <WithRdfaContext @model={{this.zitting}} class="au-o-region-large" as |ctx|>
     <AuHeading @skin="2" class="au-u-margin-bottom">
       Bekendmakingen en uittreksels van
-      <ctx.get @prop="bestuursorgaan" as |elements _ bInTimeCtx|>
-        <span {{rdfa elements}}>
-          <bInTimeCtx.get @prop="isTijdsspecialisatieVan" as |elements _ bCtx|>
-            <span {{rdfa elements}}>
-              <bCtx.get @prop="naam" />
-            </span>
-          </bInTimeCtx.get>
-        </span>
-      </ctx.get>
+      <ctx.span @prop="bestuursorgaan" as |_ bInTimeCtx|>
+        <bInTimeCtx.span @prop="isTijdsspecialisatieVan" as |_ bCtx|>
+          <bCtx.get @prop="naam" />
+        </bInTimeCtx.span>
+      </ctx.span>
       , zitting van
-      <ctx.get @prop="geplandeStart" as |elements value|>
-        <span {{rdfa elements}}>{{format-date value 'd MMMM yyyy, HH:mm'}}</span>
-      </ctx.get>
+      <ctx.span @prop="geplandeStart" as |value|>{{format-date value 'd MMMM yyyy, HH:mm'}}</ctx.span>
     </AuHeading>
 
     <ul class="au-c-list">
     {{#each this.uittreksels as |uittreksel|}}
       <li class="au-c-list__item">
-        <UittrekselOverviewItem
-          @uittreksel={{uittreksel}}
-          @besluit={{uittreksel.behandelingVanAgendapunt.besluiten.firstObject}}
-        />
+        <UittrekselOverviewItem @uittreksel={{uittreksel}} @besluit={{uittreksel.behandelingVanAgendapunt.besluiten.firstObject}} />
       </li>
     {{else}}
       <li>

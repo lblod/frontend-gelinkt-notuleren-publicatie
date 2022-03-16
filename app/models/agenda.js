@@ -12,6 +12,6 @@ export default class AgendaModel extends Model {
     class: 'foaf:Document',
     type: 'dct:type',
     inhoud: 'prov:value',
-    publication: 'prov:wasDerivedFrom'
-  })
+    publication: 'prov:wasDerivedFrom',
+  });
 }

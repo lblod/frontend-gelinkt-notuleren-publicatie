@@ -10,7 +10,8 @@ export default class BesluitModel extends Model {
   @attr taal;
   @attr titel;
   @attr score;
-  @belongsTo('behandeling-van-agendapunt', { inverse: 'besluiten' }) volgendUitBehandelingVanAgendapunt;
+  @belongsTo('behandeling-van-agendapunt', { inverse: 'besluiten' })
+  volgendUitBehandelingVanAgendapunt;
   @hasMany('published-resource', { inverse: null }) publications;
 
   rdfaBindings = {
@@ -21,10 +22,11 @@ export default class BesluitModel extends Model {
     motivering: 'besluit:motivering',
     publicatiedatum: {
       property: 'eli:date_publication',
-      datatype: 'xsd:date'
+      datatype: 'xsd:date',
     },
     inhoud: 'prov:value',
-    taal: 'eli:language'
+    taal: 'eli:language',
+    volgendUitBehandelingVanAgendapunt: 'prov:wasGeneratedBy',
     // volgendUitBehandelingVanAgendapunt: '^prov:generated'  // TODO add support for inverse relations in ember-rdfa-helpers
-  }
+  };
 }

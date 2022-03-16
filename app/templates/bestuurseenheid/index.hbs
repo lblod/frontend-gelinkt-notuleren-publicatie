@@ -8,9 +8,9 @@
             <AuDatePicker
               @label="Van"
               @value={{this.from}}
-                      @min="2019-01-01"
+              @min="2019-01-01"
               @max={{this.today}}
-                      @onChange={{fn this.updateTimeRange 'from'}}
+              @onChange={{fn this.updateTimeRange 'from'}}
               class="au-u-margin-bottom-small"
             />
           </div>
@@ -18,9 +18,9 @@
             <AuDatePicker
               @label="Tot"
               @value={{this.to}}
-                      @min="2019-01-01"
+              @min="2019-01-01"
               @max={{this.today}}
-                      @onChange={{fn this.updateTimeRange 'to'}}
+              @onChange={{fn this.updateTimeRange 'to'}}
             />
           </div>
         </AuToolbarGroup>
@@ -30,9 +30,9 @@
             <PowerSelect
               @ariaLabel="Zoekbalk"
               @selected={{this.administrativeBodyClass}}
-                          @options={{this.administrativeBodyClassOptions}}
+              @options={{this.administrativeBodyClassOptions}}
               @onChange={{this.selectAdministrativeBodyClass}}
-                          @allowClear={{true}}
+              @allowClear={{true}}
               as |adminBodyClassificationLabel|
             >
               {{adminBodyClassificationLabel.label}}
@@ -50,23 +50,19 @@
         <li class="au-c-list__item">
           <WithRdfaContext @model={{zitting}} class="au-o-box au-c-card au-c-card--divided" as |ctx|>
             <div class="au-c-card__header">
-              <ctx.get @prop="bestuursorgaan" as |elements _ bInTimeCtx|>
-                <h2 class="au-c-heading au-c-heading--4" {{rdfa elements}}>
-                  <bInTimeCtx.get @prop="isTijdsspecialisatieVan" as |elements _ bCtx|>
-                    <span {{rdfa elements}}>
-                      <bCtx.get @prop="naam" />
-                    </span>
-                  </bInTimeCtx.get>
+              <ctx.div @prop="bestuursorgaan" as |_ boCtx|>
+                <h2 class="au-c-heading au-c-heading--4">
+                  <boCtx.span @prop="isTijdsspecialisatieVan" as |_ itsvCtx|>
+                    <itsvCtx.get @prop="naam" />
+                  </boCtx.span>
                 </h2>
-              </ctx.get>
+              </ctx.div>
             </div>
             <div class="au-c-card__content au-u-padding-top-small">
               <div class="au-o-grid au-o-grid--small">
                 <div class="au-c-content au-c-content--large au-o-grid__item au-u-3-4@medium">
                   <p>
-                    <ctx.get @prop="geplandeStart" as |elements value|>
-                      <span {{rdfa elements}}>{{format-date value 'd MMMM yyyy, HH:mm'}}</span>
-                    </ctx.get>
+                    <ctx.span @prop="geplandeStart" as |value|>{{format-date value 'd MMMM yyyy, HH:mm'}}</ctx.span>
                   </p>
                   <ul class="au-c-list-horizontal au-u-margin-top-small">
                     {{#if zitting.notulen.id}}
@@ -100,10 +96,9 @@
                   </ul>
                 </div>
                 <div class="au-o-grid__item au-u-1-4@medium">
-                  <a property="lblodBesluit:linkToPublication" href={{href-to "bestuurseenheid.zitting.index" zitting.id}} class="au-c-button au-c-button--block">
+                  <AuLink property="lblodBesluit:linkToPublication" @route="bestuurseenheid.zitting.index" @model={{zitting}} @skin="button" @width="block" @icon="arrow-right" @iconAlignment="right">
                     Bekijk publicaties
-                    <AuIcon @icon="arrow-right" @alignment="right" />
-                  </a>
+                  </AuLink>
                 </div>
               </div>
             </div>
@@ -123,12 +118,14 @@
         <ul class="au-c-pagination__list">
           {{#if this.model.meta.page}}
           <li class="au-c-pagination__list-item">
-            <LinkTo property="lblodBesluit:linkToPublication" @query={{hash page=this.model.meta.previousPage}} class="au-c-link"><AuIcon @icon="nav-left" @alignment="left" /> Vorige pagina</LinkTo>
+            {{! The route in the following AuLink could be removed, if supported again. }}
+            <AuLink property="lblodBesluit:linkToPublication" @route="bestuurseenheid" @query={{hash page=this.model.meta.previousPage}} @icon="nav-left" @iconAlignment="left">Vorige pagina</AuLink>
           </li>
           {{/if}}
           {{#if this.model.meta.nextPage}}
           <li class="au-c-pagination__list-item">
-            <LinkTo property="lblodBesluit:linkToPublication" @query={{hash page=this.model.meta.nextPage}} class="au-c-link">Volgende pagina <AuIcon @icon="nav-right" @alignment="right" /></LinkTo>
+            {{! The route in the following AuLink could be removed, if supported again. }}
+            <AuLink property="lblodBesluit:linkToPublication" @route="bestuurseenheid" @query={{hash page=this.model.meta.nextPage}} @icon="nav-right" @iconAlignment="right">Volgende pagina</AuLink>
           </li>
           {{/if}}
         </ul>
@@ -138,9 +135,9 @@
     <AuContent>
       <p>Er werden nog geen publicaties voor {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}} gevonden</p>
       <p>Kom later nog eens terug, of
-        <LinkTo @route="index" class="au-c-link">
+        <AuLink @route="index">
           zoek naar publicaties van een ander bestuur.
-        </LinkTo>
+        </AuLink>
       </p>
     </AuContent>
       {{/if}}
