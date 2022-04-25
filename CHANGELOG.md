@@ -1,3 +1,11 @@
+## 0.24.0 (2022-04-25)
+
+#### :rocket: Enhancement
+* [#51](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/51) Ember upgrade v3.28 and RDFa corrections ([@benjay10](https://github.com/benjay10))
+
+#### Committers: 1
+- Ben ([@benjay10](https://github.com/benjay10))
+
 ## 0.23.0 (2022-02-25)
 
 #### :rocket: Enhancement
