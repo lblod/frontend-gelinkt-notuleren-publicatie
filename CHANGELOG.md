@@ -1,3 +1,13 @@
+## 0.24.1 (2022-05-05)
+
+#### :bug: Bug Fix
+* [#53](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/53) Add deprecated u-hidden class ([@Dietr](https://github.com/Dietr))
+* [#52](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/52) Removed style that displayed article number as block ([@lagartoverde](https://github.com/lagartoverde))
+
+#### Committers: 2
+- Dieter Peirs ([@Dietr](https://github.com/Dietr))
+- Oscar Rodriguez Villalobos ([@lagartoverde](https://github.com/lagartoverde))
+
 ## 0.24.0 (2022-04-25)
 
 #### :rocket: Enhancement
