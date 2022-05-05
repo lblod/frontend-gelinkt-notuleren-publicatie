@@ -176,3 +176,8 @@ body {
     margin-right: 0;
   }
 }
+
+// Deprecated hidden class
+.u-hidden {
+  @extend .au-u-hidden-visually;
+}
