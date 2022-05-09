@@ -164,6 +164,17 @@ body {
   }
 }
 
+div[property="besluit:heeftVoorstander"] {
+  display: none;
+}
+
+[property="besluit:heeftStemming"] {
+  p:last-child {
+    margin-bottom: $au-unit;
+    margin-top: $au-unit-small;
+  }
+}
+
 
 [property="mandaat:isBestuurlijkeAliasVan"] {
   margin-right: -.4ex;
