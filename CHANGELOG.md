@@ -1,3 +1,11 @@
+## 0.24.2 (2022-05-16)
+
+#### :bug: Bug Fix
+* [#54](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/54) Fix/voting result spaces issue ([@Dietr](https://github.com/Dietr))
+
+#### Committers: 1
+- Dieter Peirs ([@Dietr](https://github.com/Dietr))
+
 ## 0.24.1 (2022-05-05)
 
 #### :bug: Bug Fix
