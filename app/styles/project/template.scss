@@ -256,7 +256,8 @@
 
 .au-c-template-list-container {
   & + p,
-  p + & {
+  p + &,
+  & + & {
     margin-top: $au-unit-small;
   }
 
