@@ -1,3 +1,11 @@
+## 0.24.3 (2022-06-10)
+
+#### :bug: Bug Fix
+* [#55](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/55) bump fastboot image ([@nvdk](https://github.com/nvdk))
+
+#### Committers: 1
+- Niels V ([@nvdk](https://github.com/nvdk))
+
 ## 0.24.2 (2022-05-16)
 
 #### :bug: Bug Fix
