@@ -2,7 +2,7 @@
   
   {{#let (config "environmentName") as |environmentName|}}
     {{#if environmentName}}
-    <EnvironmentBanner @environmentName={{environmentName}}/>
+    <EnvironmentBanner @environmentName={{environmentName}} @applicationName='Publicatie Gelinkt Notuleren'/>
     {{/if}}
     <AuMainHeader @brandLink="https://publicatie.gelinkt-notuleren.vlaanderen.be/" @homeRoute="index" @appTitle="publicatie.gelinkt-notuleren.vlaanderen.be" @contactRoute="contact">
     </AuMainHeader>
