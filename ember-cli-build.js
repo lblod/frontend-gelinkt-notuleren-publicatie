@@ -10,7 +10,6 @@ module.exports = function (defaults) {
     },
     sassOptions: {
       includePaths: [
-        'node_modules/@appuniversum/appuniversum',
         'node_modules/@appuniversum/ember-appuniversum/app/styles',
       ],
     },
