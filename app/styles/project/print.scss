@@ -10,27 +10,160 @@
     display: none !important;
   }
 
+  html,
+  body {
+    height: initial !important;
+    overflow: initial !important;
+  }
+
+  // App container
+  .au-c-app,
+  .au-c-main-container {
+    display: initial !important;
+    flex-direction: initial !important;
+    height: initial !important;
+    overflow: initial !important;
+  }
+
+  .au-c-main-container__content--scroll {
+    height: initial !important;
+    overflow: initial !important;
+  }
+
+  .au-c-body-container {
+    display: initial !important;
+    flex-direction: initial !important;
+    flex-grow: initial !important;
+    height: initial !important;
+    overflow: initial !important;
+    position: initial !important;
+  }
+
+  .au-c-body-container--scroll {
+    overflow: initial !important;
+  }
+
+  .au-o-layout {
+    max-width: initial !important;
+  }
+
+  @page {
+    counter-increment: page;
+    counter-reset: page 1;
+    size: auto;
+    margin: 6mm;
+  }
+
+  body {
+    margin: 6mm !important;
+  }
+
+  // Various
+  .au-c-pill {
+    border: none !important;
+    padding: 0 !important;
+    min-height: auto !important;
+  }
+
+  .au-u-margin-bottom,
+  .au-u-margin-bottom-tiny,
+  .au-u-margin-bottom-small,
+  .au-u-margin-bottom-large,
+  .au-u-margin-bottom-huge
+  .au-u-margin-bottom-large,
+  .au-c-meeting-chrome-card {
+    margin-bottom: 5px !important;
+  }
+
+  .au-u-margin-top,
+  .au-u-margin-top-tiny,
+  .au-u-margin-top-small,
+  .au-u-margin-top-large,
+  .au-c-meeting-chrome-card {
+    margin-top: 5px !important;
+  }
+
+  .au-u-margin-top-huge {
+    margin-top: 15px !important;
+  }
+
+  .au-o-box,
+  .au-o-box--large {
+    padding: 5px !important;
+  }
+
+  .au-c-button {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    white-space: nowrap !important;
+    width: 1px !important;
+  }
+
+  // Template
+  * {
+    font-size: 14px !important;
+  }
+
+  .au-o-layout,
   .au-c-template,
+  .c-template-content,
   .au-c-document-publish {
-    h1 {
-      @include au-font-size($au-heading-2);
+    padding: 0 !important;
+
+    .au-o-region-large {
+      padding: 0 !important;
     }
 
-    h2 {
-      @include au-font-size($au-heading-4, $important: true);
+    [property="besluit:geplandOpenbaar"]:before, [property="besluit:openbaar"]:before {
+      display: none !important;
     }
 
-    h3 {
-      @include au-font-size($au-heading-5);
+    .au-c-template p + *, .au-c-document-publish p + * {
+      margin-top: 5px !important;
     }
 
-    h4 {
-      @include au-font-size($au-heading-6);
+    h1,
+    h1 span,
+    h1 > * {
+      font-size: 24px !important;
+      line-height: 28px !important;
+
+      br {
+        display: none !important;
+      }
+    }
+
+    h2,
+    h2 span,
+    h2 > * {
+      font-size: 18px !important;
+    }
+
+    h3,
+    h3 span,
+    h3 > * {
+      font-size: 16px !important;
+    }
+
+    h4,
+    h4 span,
+    h4 > * {
+      font-size: 16px !important;
     }
 
     h5,
-    h6 {
-      @include au-font-size($au-heading-6);
+    h6,
+    h5 > *,
+    h5 span,
+    h6 > *,
+    h6 span {
+      font-size: 16px !important;
     }
   }
 }
