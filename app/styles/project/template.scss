@@ -6,14 +6,14 @@
 .au-c-document-publish {
   h1 {
     @include au-font-size($au-heading-2);
-    font-family: $au-font-secondary;
-    font-weight: $au-light;
+    font-family: $au-font;
+    font-weight: $au-medium;
     color: $au-gray-900;
   }
 
   h2 {
     @include au-font-size($au-heading-3);
-    font-family: $au-font-secondary;
+    font-family: $au-font;
     font-weight: $au-medium;
     color: $au-gray-900;
   }
@@ -210,7 +210,7 @@
 .au-c-document-publish .notulen {
   h2 {
     @include au-font-size($au-heading-3);
-    font-family: $au-font-secondary;
+    font-family: $au-font;
     font-weight: $au-medium;
     color: $au-gray-900;
   }
