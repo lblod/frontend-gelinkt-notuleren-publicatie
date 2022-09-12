@@ -1,3 +1,23 @@
+
+## 0.24.4 (2022-09-12)
+
+#### :rocket: Enhancement
+* [#57](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/57) Add environment banner when environment is defined ([@elpoelma](https://github.com/elpoelma))
+
+#### :bug: Bug Fix
+* [#60](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/60) Fix for Linkebeek print issue ([@Dietr](https://github.com/Dietr))
+
+#### :house: Internal
+* [#61](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/61) set up in repo release-it (`npm run release`) ([@nvdk](https://github.com/nvdk))
+* [#59](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/59) Use the extracted version of the environment banner ([@elpoelma](https://github.com/elpoelma))
+* [#56](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/56) Bump terser from 4.8.0 to 4.8.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### Committers: 3
+- Dieter Peirs ([@Dietr](https://github.com/Dietr))
+- Elena Poelman ([@elpoelma](https://github.com/elpoelma))
+- Niels V ([@nvdk](https://github.com/nvdk))
+
+
 ## 0.24.3 (2022-06-10)
 
 #### :bug: Bug Fix
