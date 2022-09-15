@@ -12,8 +12,8 @@ export default class BestuurseenheidRoute extends Route {
       'filter[classificatie][:exact:label]':
         params.bestuurseenheid_classificatie_code_label,
     });
-    if (bestuurseenheden.length == 0) {
-      return this.router.redirectTo('route-not-found');
+    if (bestuurseenheden.length === 0) {
+      this.transitionTo('route-not-found');
     } else {
       return bestuurseenheden.get('firstObject');
     }
