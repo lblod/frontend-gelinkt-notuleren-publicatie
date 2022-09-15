@@ -1,4 +1,17 @@
 
+
+## 0.24.5 (2022-09-15)
+
+#### :bug: Bug Fix
+* [#63](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/63) Bugfix/not found admin unit ([@nvdk](https://github.com/nvdk))
+
+#### :house: Internal
+* [#62](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/62) use npm ci to speed up builds ([@nvdk](https://github.com/nvdk))
+
+#### Committers: 1
+- Niels V ([@nvdk](https://github.com/nvdk))
+
+
 ## 0.24.4 (2022-09-12)
 
 #### :rocket: Enhancement
