@@ -6,7 +6,8 @@
 @media print {
   .au-c-main-header,
   .au-c-toolbar,
-  .au-c-main-footer {
+  .au-c-main-footer,
+  .au-c-app > .au-c-alert {
     display: none !important;
   }
 
@@ -51,7 +52,7 @@
     counter-increment: page;
     counter-reset: page 1;
     size: auto;
-    margin: 6mm;
+    margin: 12mm 6mm 24mm 6mm;
   }
 
   body {
@@ -108,6 +109,23 @@
   // Template
   * {
     font-size: 14px !important;
+    overflow: visible !important;
+  }
+
+  .au-c-card,
+  .au-c-list {
+    display: block !important;
+  }
+
+  .au-c-card,
+  .au-c-card * {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+  }
+
+  .au-c-card {
+    display: block !important;
   }
 
   .au-o-layout,
