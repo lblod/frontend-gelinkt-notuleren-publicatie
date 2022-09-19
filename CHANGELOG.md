@@ -1,5 +1,15 @@
 
 
+
+## 0.24.6 (2022-09-19)
+
+#### :bug: Bug Fix
+* [#64](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/64) Fix text cutoff on print ([@Dietr](https://github.com/Dietr))
+
+#### Committers: 1
+- Dieter Peirs ([@Dietr](https://github.com/Dietr))
+
+
 ## 0.24.5 (2022-09-15)
 
 #### :bug: Bug Fix
