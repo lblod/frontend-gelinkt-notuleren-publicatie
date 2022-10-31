@@ -3,6 +3,7 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { restartableTask } from 'ember-concurrency';
+
 const PAGE_SIZE = 10;
 
 const UNIT_CLASS_TO_BODY_CLASS_MAP = {
@@ -72,18 +73,21 @@ export default class BestuurseenheidIndexController extends Controller {
   queryParams = ['from', 'to', 'administrativeBodyClassURI', 'page'];
 
   get administrativeBodyClass() {
-    const selected = this.administrativeBodyClassOptions.find(
+    console.log(
+      'this.administrativeBodyClass',
+      this.administrativeBodyClassOptions
+    );
+    return this.administrativeBodyClassOptions.find(
       (record) => record.uri === this.administrativeBodyClassURI
     );
-    return selected;
   }
 
   get administrativeBodyClassOptions() {
-    const options =
+    return (
       UNIT_CLASS_TO_BODY_CLASS_MAP[
         this.bestuurseenheid.get('classificatie.uri')
-      ]; //using get because ember-data
-    return options ? options : [];
+      ] || []
+    );
   }
 
   @action
