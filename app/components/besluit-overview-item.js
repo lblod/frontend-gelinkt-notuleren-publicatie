@@ -31,10 +31,12 @@ export default class BesluitOverviewItemComponent extends Component {
 
   @task
   *findStemmingen() {
-    const behandeling = yield this.args.besluit
-      .volgendUitBehandelingVanAgendapunt;
-    const stemmingen = yield behandeling.stemmingen;
+    const stemmingQuery = {
+      sort: 'title',
+      'filter[behandeling-van-agendapunt][id]': this.args.besluit.id,
+      page: { size: 100 },
+    };
 
-    this.stemmingen = stemmingen;
+    this.stemmingen = yield this.store.query('stemming', stemmingQuery);
   }
 }
