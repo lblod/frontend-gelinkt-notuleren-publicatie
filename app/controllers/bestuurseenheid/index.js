@@ -130,6 +130,10 @@ export default class BestuurseenheidIndexController extends Controller {
         this.administrativeBodyClassURI,
       'fields[zittingen]':
         'geplande-start,gestart-op-tijdstip,notulen,bestuursorgaan,besluitenlijst,uittreksels,agendas',
+      'fields[notulen]': 'id',
+      'fields[besluitenlijsten]': 'id',
+      'fields[uittreksels]': 'id',
+      'fields[agendas]': 'id',
       sort: '-geplande-start',
       page: {
         number: this.page || 0,
