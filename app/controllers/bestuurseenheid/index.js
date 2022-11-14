@@ -3,6 +3,7 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { restartableTask } from 'ember-concurrency';
+
 const PAGE_SIZE = 10;
 
 const UNIT_CLASS_TO_BODY_CLASS_MAP = {
@@ -72,18 +73,17 @@ export default class BestuurseenheidIndexController extends Controller {
   queryParams = ['from', 'to', 'administrativeBodyClassURI', 'page'];
 
   get administrativeBodyClass() {
-    const selected = this.administrativeBodyClassOptions.find(
+    return this.administrativeBodyClassOptions.find(
       (record) => record.uri === this.administrativeBodyClassURI
     );
-    return selected;
   }
 
   get administrativeBodyClassOptions() {
-    const options =
+    return (
       UNIT_CLASS_TO_BODY_CLASS_MAP[
         this.bestuurseenheid.get('classificatie.uri')
-      ]; //using get because ember-data
-    return options ? options : [];
+      ] || []
+    );
   }
 
   @action
@@ -106,15 +106,13 @@ export default class BestuurseenheidIndexController extends Controller {
   @restartableTask
   *fetchMeetings() {
     let startDate;
+    let endDate;
     if (this.from) {
       startDate = new Date(this.from);
       startDate.setDate(startDate.getDate() - 1);
       startDate = startDate.toISOString().substring(0, 10) + 'T00:00:00';
     }
-    let endDate;
-    if (this.to) {
-      endDate = this.to + 'T00:00:00';
-    }
+    if (this.to) endDate = this.to + 'T00:00:00';
     this.model = null;
     const model = yield this.store.query('zitting', {
       include: [
@@ -130,6 +128,12 @@ export default class BestuurseenheidIndexController extends Controller {
       'filter[:lte:gestart-op-tijdstip]': endDate,
       'filter[bestuursorgaan][is-tijdsspecialisatie-van][classificatie][:uri:]':
         this.administrativeBodyClassURI,
+      'fields[zittingen]':
+        'geplande-start,gestart-op-tijdstip,notulen,bestuursorgaan,besluitenlijst,uittreksels,agendas',
+      'fields[notulen]': 'id',
+      'fields[besluitenlijsten]': 'id',
+      'fields[uittreksels]': 'id',
+      'fields[agendas]': 'id',
       sort: '-geplande-start',
       page: {
         number: this.page || 0,
