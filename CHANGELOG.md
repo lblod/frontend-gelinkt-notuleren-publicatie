@@ -1,6 +1,27 @@
 
 
 
+
+## 0.24.7 (2022-12-07)
+
+#### :rocket: Enhancement
+* [#69](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/69) Feature/GN-3787 ([@usrtim](https://github.com/usrtim))
+
+#### :house: Internal
+* [#75](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/75) Bump minimatch from 3.0.4 to 3.1.2 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#74](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/74) Bump @xmldom/xmldom from 0.7.6 to 0.7.9 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#73](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/73) Bump engine.io and socket.io ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#72](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/72) Bump loader-utils from 1.4.0 to 1.4.2 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#71](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/71) Bump socket.io-parser from 4.0.4 to 4.0.5 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#68](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/68) Bump async from 2.6.3 to 2.6.4 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#67](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/67) Bump mout from 1.2.3 to 1.2.4 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#66](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/66) Bump @xmldom/xmldom from 0.7.5 to 0.7.6 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#58](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/58) Bump shell-quote from 1.7.2 to 1.7.3 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### Committers: 1
+- [@usrtim](https://github.com/usrtim)
+
+
 ## 0.24.6 (2022-09-19)
 
 #### :bug: Bug Fix
