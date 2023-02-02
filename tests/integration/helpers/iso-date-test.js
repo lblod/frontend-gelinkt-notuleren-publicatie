@@ -12,6 +12,6 @@ module('Integration | Helper | iso-date', function (hooks) {
 
     await render(hbs`{{iso-date inputValue}}`);
 
-    assert.equal(this.element.textContent.trim(), '2021-07-01T00:00:00.000Z');
+    assert.strictEqual(this.element.textContent.trim(), '2021-07-01T00:00:00.000Z');
   });
 });

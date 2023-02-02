@@ -12,6 +12,6 @@ module('Integration | Helper | format-date', function (hooks) {
 
     await render(hbs`{{format-date inputValue "d MMMM yyyy"}}`);
 
-    assert.equal(this.element.textContent.trim(), '1 juli 2021');
+    assert.strictEqual(this.element.textContent.trim(), '1 juli 2021');
   });
 });
