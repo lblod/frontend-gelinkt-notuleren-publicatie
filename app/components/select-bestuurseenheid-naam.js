@@ -1,11 +1,9 @@
 import { restartableTask, timeout } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
 
 export default class SelectBestuurseenheidNaamComponent extends Component {
   @service store;
-  @tracked bestuurseenheidNamen;
 
   findBestuurseenheidNamen = restartableTask(async (search) => {
     await timeout(200);
@@ -20,10 +18,8 @@ export default class SelectBestuurseenheidNaamComponent extends Component {
     };
 
     if (search) queryParams['filter[naam]'] = search;
-    const bestuurseenheden = await this.store.query(
-      'bestuurseenheid',
-      queryParams
+    return (await this.store.query('bestuurseenheid', queryParams)).getEach(
+      'naam'
     );
-    this.bestuurseenheidNamen = bestuurseenheden.getEach('naam');
   });
 }

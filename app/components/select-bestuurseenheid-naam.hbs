@@ -5,7 +5,7 @@
     @placeholder="Oost-Vlaanderen, Berchem, Hasselt, ..."
     @selected={{@selected}}
     @searchEnabled={{true}}
-    @options={{this.bestuurseenheidNamen}}
+    @options={{this.findBestuurseenheidNamen.last.value}}
     @search={{perform this.findBestuurseenheidNamen}}
     @onChange={{@onSelect}}
     @allowClear={{true}}
