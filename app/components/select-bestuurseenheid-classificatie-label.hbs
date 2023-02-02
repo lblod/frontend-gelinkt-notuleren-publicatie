@@ -1,4 +1,4 @@
-<div>
+<div {{did-insert (perform this.findbestuurseenheidClassificatie)}} {{did-update (perform this.findbestuurseenheidClassificatie) @model}}>
   <PowerSelect
     @ariaLabel="Zoekbalk"
     @placeholder="Gemeente, District, Provincie of OCMW ..."

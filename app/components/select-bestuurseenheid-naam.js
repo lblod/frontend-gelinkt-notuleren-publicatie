@@ -1,35 +1,29 @@
-/* eslint-disable ember/no-classic-components, ember/no-classic-classes, ember/no-component-lifecycle-hooks */
-import Component from '@ember/component';
-import { task, timeout } from 'ember-concurrency';
+import { restartableTask, timeout } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 
-export default Component.extend({
-  tagName: '',
-  store: service(),
+export default class SelectBestuurseenheidNaamComponent extends Component {
+  @service store;
+  @tracked bestuurseenheidNamen;
 
-  findBestuurseenheidNamen: task(function* (search) {
-    yield timeout(200); // Timeout for debouncing
+  findBestuurseenheidNamen = restartableTask(async (search) => {
+    await timeout(200);
 
     const queryParams = {
       sort: 'naam',
       filter: {
         classificatie: {
-          id: this.bestuurseenheidClassificatie.value,
+          id: this.args.bestuurseenheidClassificatie.value,
         },
       },
     };
 
     if (search) queryParams['filter[naam]'] = search;
-
-    const bestuurseenheden = yield this.store.query(
+    const bestuurseenheden = await this.store.query(
       'bestuurseenheid',
       queryParams
     );
-    this.set('bestuurseenheidNamen', bestuurseenheden.getEach('naam'));
-  }).restartable(),
-
-  didReceiveAttrs() {
-    this._super(...arguments);
-    this.findBestuurseenheidNamen.perform();
-  },
-});
+    this.bestuurseenheidNamen = bestuurseenheden.getEach('naam');
+  });
+}
