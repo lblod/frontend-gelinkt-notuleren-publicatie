@@ -2,7 +2,7 @@
 {{breadcrumb this.model.classificatie.label " " this.model.naam route="bestuurseenheid" model=this.model}}
 
 <AuToolbar @size="medium" @skin="tint" @border="bottom" class="au-c-toolbar__breadcrumbs">
-  <AuToolbarGroup>
+  <AuToolbar::Group>
     <nav aria-label="Breadcrumb">
       <ol class="au-c-list-horizontal">
         {{#each (breadcrumbs) as |breadcrumb|}}
@@ -20,7 +20,7 @@
         {{/each}}
       </ol>
     </nav>
-  </AuToolbarGroup>
+  </AuToolbar::Group>
 </AuToolbar>
 
 {{outlet}}

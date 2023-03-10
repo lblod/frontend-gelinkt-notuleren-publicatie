@@ -2,7 +2,7 @@
 {{breadcrumb "Zoekpagina" route="index"}}
 {{breadcrumb "Error" route="error"}}
 <AuToolbar @size="medium" @skin="tint" @border="bottom" class="au-c-toolbar__breadcrumbs">
-  <AuToolbarGroup>
+  <AuToolbar::Group>
     <nav aria-label="Breadcrumb">
       <ol class="au-c-list-horizontal">
         {{#each (breadcrumbs) as |breadcrumb|}}
@@ -20,7 +20,7 @@
         {{/each}}
       </ol>
     </nav>
-  </AuToolbarGroup>
+  </AuToolbar::Group>
 </AuToolbar>
 
 <div class="au-o-region-large">

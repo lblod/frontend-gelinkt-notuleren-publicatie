@@ -3,7 +3,7 @@
   <div class="au-o-layout">
     <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Publicaties van {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}}</AuHeading>
     <AuToolbar @border="bottom" class="au-u-margin-bottom">
-        <AuToolbarGroup>
+        <AuToolbar::Group>
           <div class="au-u-margin-bottom-tiny">
             <AuDatePicker
               @label="Van"
@@ -23,8 +23,8 @@
               @onChange={{fn this.updateTimeRange 'to'}}
             />
           </div>
-        </AuToolbarGroup>
-        <AuToolbarGroup class="au-u-1-1 au-u-1-3@medium">
+        </AuToolbar::Group>
+        <AuToolbar::Group class="au-u-1-1 au-u-1-3@medium">
           <div class="au-u-1-1 au-u-margin-bottom-small">
             <AuLabel>Type bestuursorgaan</AuLabel>
             <PowerSelect
@@ -38,7 +38,7 @@
               {{adminBodyClassificationLabel.label}}
             </PowerSelect>
           </div>
-        </AuToolbarGroup>
+        </AuToolbar::Group>
       </AuToolbar>
 
     {{#if this.fetchMeetings.isRunning}}
