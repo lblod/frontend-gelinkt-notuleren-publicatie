@@ -13,7 +13,7 @@ module.exports = function (defaults) {
       includePolyfill: false,
     },
     '@appuniversum/ember-appuniversum': {
-      disableWormholeElement: true
+      disableWormholeElement: true,
     },
     sassOptions: {
       includePaths: [
