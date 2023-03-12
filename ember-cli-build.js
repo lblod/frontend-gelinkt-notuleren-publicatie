@@ -8,6 +8,9 @@ module.exports = function (defaults) {
     'ember-cli-babel': {
       includePolyfill: false,
     },
+    '@appuniversum/ember-appuniversum': {
+      disableWormholeElement: true
+    },
     sassOptions: {
       includePaths: [
         'node_modules/@appuniversum/ember-appuniversum/app/styles',
