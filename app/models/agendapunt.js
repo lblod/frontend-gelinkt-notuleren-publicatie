@@ -12,7 +12,7 @@ export default class AgendapuntModel extends Model {
   @belongsTo('zitting', { async: true, inverse: 'agendapunten' }) zitting;
   @belongsTo('behandeling-van-agendapunt', {
     async: true,
-    inverse: 'agendapunt',
+    inverse: 'onderwerp',
   })
   behandeling;
   @hasMany('published-resource', { async: true, inverse: null }) publications;

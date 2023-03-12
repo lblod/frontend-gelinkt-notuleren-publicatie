@@ -6,7 +6,8 @@ module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
     // Add options here
     emberData: {
-      compatWith: '4.8',
+      // TODO: uncomment this when deprecations are resolved
+      // compatWith: '4.8',
     },
     'ember-cli-babel': {
       includePolyfill: false,
