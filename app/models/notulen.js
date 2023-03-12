@@ -3,7 +3,7 @@ import Model, { attr, belongsTo } from '@ember-data/model';
 export default class NotulenModel extends Model {
   @attr uri;
   @attr inhoud;
-  @belongsTo('published-resource', { inverse: null }) publication;
+  @belongsTo('published-resource', { async: true, inverse: null }) publication;
 
   type = 'http://data.lblod.info/id/document-types/notulen';
 

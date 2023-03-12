@@ -7,12 +7,16 @@ export default class AgendapuntModel extends Model {
   @attr heeftOntwerpbesluit;
   @attr titel;
   @attr('number') position;
-  @belongsTo('agendapunt', { inverse: null }) vorigeAgendapunt;
-  @hasMany('agendapunt', { inverse: null }) referenties;
-  @belongsTo('zitting') zitting;
-  @belongsTo('behandeling-van-agendapunt') behandeling;
-  @hasMany('published-resource', { inverse: null }) publications;
-  @belongsTo('concept') type;
+  @belongsTo('agendapunt', { async: true, inverse: null }) vorigeAgendapunt;
+  @hasMany('agendapunt', { async: true, inverse: null }) referenties;
+  @belongsTo('zitting', { async: true, inverse: 'agendapunten' }) zitting;
+  @belongsTo('behandeling-van-agendapunt', {
+    async: true,
+    inverse: 'agendapunt',
+  })
+  behandeling;
+  @hasMany('published-resource', { async: true, inverse: null }) publications;
+  @belongsTo('concept', { async: true, inverse: null }) type;
 
   rdfaBindings = {
     class: 'besluit:Agendapunt',

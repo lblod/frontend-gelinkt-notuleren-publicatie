@@ -6,20 +6,27 @@ export default class BehandelingVanAgendapuntModel extends Model {
   @attr afgeleidUit;
   @attr('language-string') gevolg;
   @attr('number') position;
+
   @belongsTo('behandeling-van-agendapunt', {
+    async: true,
     inverse: 'volgendeBehandelingVanAgendapunt',
   })
   vorigeBehandelingVanAgendapunt;
   @belongsTo('behandeling-van-agendapunt', {
+    async: true,
     inverse: 'vorigeBehandelingVanAgendapunt',
   })
   volgendeBehandelingVanAgendapunt;
-  @belongsTo('agendapunt', { inverse: 'behandeling' }) onderwerp;
-  @hasMany('besluit', { inverse: 'volgendUitBehandelingVanAgendapunt' })
+  @belongsTo('agendapunt', { inverse: 'behandeling', async: true }) onderwerp;
+  @belongsTo('zitting', { async: true, inverse: null }) zitting;
+  @belongsTo('published-resource', { async: true, inverse: null }) publication;
+
+  @hasMany('besluit', {
+    async: true,
+    inverse: 'volgendUitBehandelingVanAgendapunt',
+  })
   besluiten;
-  @belongsTo('zitting') zitting;
-  @belongsTo('published-resource', { inverse: null }) publication;
-  @hasMany('stemming', { inverse: null }) stemmingen;
+  @hasMany('stemming', { async: true, inverse: null }) stemmingen;
 
   rdfaBindings = {
     class: 'besluit:BehandelingVanAgendapunt',
