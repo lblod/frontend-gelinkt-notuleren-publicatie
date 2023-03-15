@@ -82,7 +82,7 @@
     "release-it": "^15.4.1",
     "sass": "^1.49.7",
     "svgxuse": "^1.2.6",
-    "webpack": "^5.74.0"
+    "webpack": "^5.76.0"
   },
   "engines": {
     "node": ">= 18"
