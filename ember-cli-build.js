@@ -5,8 +5,15 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
     // Add options here
+    emberData: {
+      // TODO: uncomment this when deprecations are resolved
+      // compatWith: '4.8',
+    },
     'ember-cli-babel': {
       includePolyfill: false,
+    },
+    '@appuniversum/ember-appuniversum': {
+      disableWormholeElement: true,
     },
     sassOptions: {
       includePaths: [

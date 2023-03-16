@@ -8,12 +8,15 @@ export default class ZittingModel extends Model {
   @attr('datetime') gestartOpTijdstip;
   @attr('datetime') geeindigdOpTijdstip;
   @attr opLocatie;
-  @belongsTo('bestuursorgaan', { inverse: null }) bestuursorgaan;
-  @hasMany('agendapunt') agendapunten;
-  @hasMany('agenda') agendas;
-  @hasMany('uittreksel') uittreksels;
-  @belongsTo('besluitenlijst') besluitenlijst;
-  @belongsTo('notulen') notulen;
+
+  @belongsTo('bestuursorgaan', { async: true, inverse: null }) bestuursorgaan;
+  @belongsTo('besluitenlijst', { async: true, inverse: null }) besluitenlijst;
+  @belongsTo('notulen', { async: true, inverse: null }) notulen;
+
+  @hasMany('agendapunt', { async: true, inverse: 'zitting' }) agendapunten;
+  @hasMany('agenda', { async: true, inverse: null }) agendas;
+  @hasMany('uittreksel', { async: true, inverse: null }) uittreksels;
+
   @alias('agendas.firstObject') agenda; // TODO doesn's seem to work on the template
 
   //Alias does not work in templates, and also not with RDFa helpers. This getters solves some problems for now

@@ -10,9 +10,12 @@ export default class BesluitModel extends Model {
   @attr taal;
   @attr titel;
   @attr score;
-  @belongsTo('behandeling-van-agendapunt', { inverse: 'besluiten' })
+  @belongsTo('behandeling-van-agendapunt', {
+    async: true,
+    inverse: 'besluiten',
+  })
   volgendUitBehandelingVanAgendapunt;
-  @hasMany('published-resource', { inverse: null }) publications;
+  @hasMany('published-resource', { async: true, inverse: null }) publications;
 
   rdfaBindings = {
     class: 'besluit:Besluit',

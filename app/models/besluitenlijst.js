@@ -4,7 +4,7 @@ export default class BesluitenlijstModel extends Model {
   @attr uri;
   @attr inhoud;
   @attr('date') publicatiedatum;
-  @hasMany('besluit') besluiten;
+  @hasMany('besluit', { async: true, inverse: null }) besluiten;
 
   type = 'http://data.lblod.info/id/document-types/besluitenlijst';
 
