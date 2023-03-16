@@ -21,20 +21,18 @@ export default class BesluitOverviewItemComponent extends Component {
     }
   }
 
-  @task
-  *findUittreksel() {
-    let uittreksels = yield this.store.query('uittreksel', {
+  findUittreksel = task(async () => {
+    let uittreksels = await this.store.query('uittreksel', {
       'filter[behandeling-van-agendapunt][besluiten][id]': this.args.besluit.id,
     });
     this.uittreksel = uittreksels.firstObject;
-  }
+  });
 
-  @task
-  *findStemmingen() {
-    const behandeling = yield this.args.besluit
+  findStemmingen = task(async () => {
+    const behandeling = await this.args.besluit
       .volgendUitBehandelingVanAgendapunt;
-    const stemmingen = yield behandeling.stemmingen;
+    const stemmingen = await behandeling.stemmingen;
 
     this.stemmingen = stemmingen;
-  }
+  });
 }

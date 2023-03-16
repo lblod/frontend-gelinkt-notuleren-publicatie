@@ -103,8 +103,7 @@ export default class BestuurseenheidIndexController extends Controller {
     this.fetchMeetings.perform();
   }
 
-  @restartableTask
-  *fetchMeetings() {
+  fetchMeetings = restartableTask(async () => {
     let startDate;
     let endDate;
     if (this.from) {
@@ -114,7 +113,7 @@ export default class BestuurseenheidIndexController extends Controller {
     }
     if (this.to) endDate = this.to + 'T00:00:00';
     this.model = null;
-    const model = yield this.store.query('zitting', {
+    const model = await this.store.query('zitting', {
       include: [
         'bestuursorgaan.is-tijdsspecialisatie-van',
         'notulen',
@@ -154,5 +153,5 @@ export default class BestuurseenheidIndexController extends Controller {
       model.meta.nextPage = pageNumber + 1;
     }
     this.model = model;
-  }
+  });
 }
