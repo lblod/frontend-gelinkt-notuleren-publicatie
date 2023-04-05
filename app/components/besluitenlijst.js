@@ -23,9 +23,8 @@ export default class BesluitenlijstComponent extends Component {
     return this.currentPage + 1;
   }
 
-  @task
-  *fetchBesluiten(page = 0) {
-    const besluiten = yield this.store.query('besluit', {
+  fetchBesluiten = task(async (page = 0) => {
+    const besluiten = await this.store.query('besluit', {
       page: {
         number: page,
         size: 100,
@@ -39,5 +38,5 @@ export default class BesluitenlijstComponent extends Component {
     const meta = besluiten.meta;
     this.lastPage = meta.pagination.last.number;
     this.currentPage = page;
-  }
+  });
 }
