@@ -1,0 +1,34 @@
+{{#let (format-date this.model.zitting.gestartOpTijdstip 'd MMMM yyyy, HH:mm') as |startDate|}}
+  {{page-title (concat
+                 "Uittreksel van "
+                 this.model.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam
+                 ", zitting van "
+                 startDate
+               )}}
+{{/let}}
+<div class="au-o-layout">
+  <div class="au-o-region-large">
+    <WithRdfaContext @model={{this.model.uittreksel}} as |ctx|>
+      <p class="au-c-heading au-c-heading--5">
+        Datum publicatie:
+        {{#if this.model.publication.createdOn}}
+          <WithRdfaContext @model={{this.model.publication}} @tagName="span" about={{this.model.uittreksel.uri}} as |pbCtx|>
+            <pbCtx.span @prop="createdOn" as |createdOn|>{{format-date createdOn 'd MMMM yyyy'}}</pbCtx.span>
+          </WithRdfaContext>
+        {{else}}
+        {{!-- old data does not have this field --}}
+          ongekend
+        {{/if}}
+      </p>
+      <div class="au-u-margin-top">
+        {{#if this.model.uittreksel.inhoud}}
+          <WithRdfaContext @model={{this.model.uittreksel}} property="besluit:heeftUittreksel" as |uitCtx|>
+            <uitCtx.div @prop="inhoud" as |inhoud|>{{html-safe inhoud}}</uitCtx.div>
+          </WithRdfaContext>
+        {{else}}
+          <p>Inhoud niet beschikbaar.</p>
+        {{/if}}
+      </div>
+    </WithRdfaContext>
+  </div>
+</div>

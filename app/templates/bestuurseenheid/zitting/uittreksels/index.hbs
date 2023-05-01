@@ -15,7 +15,7 @@
     {{#each this.uittreksels as |uittreksel|}}
       <li class="au-c-list__item">
         {{!-- template-lint-disable no-array-prototype-extensions --}}
-        <UittrekselOverviewItem @uittreksel={{uittreksel}} @besluit={{uittreksel.behandelingVanAgendapunt.besluiten.firstObject}} />
+        <UittrekselOverviewItem @uittreksel={{uittreksel}} @besluit={{uittreksel.behandelingVanAgendapunt.besluiten.firstObject}} @routePath="bestuurseenheid.zitting.uittreksels.detail" />
       </li>
     {{else}}
       <li>
