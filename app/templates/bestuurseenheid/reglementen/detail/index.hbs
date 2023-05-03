@@ -8,7 +8,7 @@
 {{/let}}
 <div class="au-o-layout">
   <div class="au-o-region-large">
-    <WithRdfaContext @model={{this.model.uittreksel}} as |ctx|>
+    <WithRdfaContext @model={{this.model.uittreksel}}>
       <p class="au-c-heading au-c-heading--5">
         Datum publicatie:
         {{#if this.model.publication.createdOn}}
