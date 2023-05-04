@@ -13,9 +13,6 @@ export default class ReglementenIndexRoute extends Route {
     from: {
       refreshModel: false,
     },
-    administrativeBodyClassURI: {
-      refreshModel: false,
-    },
   };
 
   model(params) {

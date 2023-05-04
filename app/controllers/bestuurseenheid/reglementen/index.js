@@ -11,12 +11,10 @@ export default class ReglementenIndexController extends Controller {
   @tracked to;
   @tracked page = 0;
   @tracked bestuurseenheid;
-  @tracked model;
   today = new Date().toISOString().substring(0, 10);
   queryParams = ['page'];
 
   fetchMeetings = restartableTask(async () => {
-    this.model = null;
     const model = await this.store.query('uittreksel', {
       include: ['zitting', 'behandeling-van-agendapunt.besluiten'].join(),
       'filter[zitting][bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][:id:]':

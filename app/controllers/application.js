@@ -9,10 +9,6 @@ export default class ApplicationController extends Controller {
       .environmentName;
   }
 
-  get isRootURL() {
-    return this.router.currentRouteName !== 'index';
-  }
-
   get showEnvironment() {
     return (
       this.environmentName !== '' &&
