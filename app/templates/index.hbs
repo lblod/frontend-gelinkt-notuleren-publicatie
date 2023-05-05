@@ -1,47 +1,71 @@
-<AuContentHeader @titlePartOne="Publicaties" @titlePartTwo="Gelinkt Notuleren" @pictureSize="large">
-  <img
-    sizes="100vw"
-    src="/assets/images/banner-bruges.jpg"
-    srcset="/assets/images/banner-bruges-320.jpg 320w, /assets/images/banner-bruges-1024.jpg 1024w, /assets/images/banner-bruges-1600.jpg 1600w" alt="Foto van Brugge.">
-</AuContentHeader>
+<AuMainContainer as |m|>
+  <m.content @scroll={{true}}>
+    <AuContentHeader @titlePartOne="Publicaties" @titlePartTwo="Gelinkt Notuleren" @pictureSize="large">
+      <img
+        sizes="100vw"
+        src="/assets/images/banner-bruges.jpg"
+        srcset="/assets/images/banner-bruges-320.jpg 320w, /assets/images/banner-bruges-1024.jpg 1024w, /assets/images/banner-bruges-1600.jpg 1600w" alt="Foto van Brugge.">
+    </AuContentHeader>
 
-<div class="au-o-region-large">
-  <div class="au-o-layout">
-    <AuHeading @level="2" @skin="3" class="au-u-margin-bottom">Zoek naar gepubliceerde agenda's, besluiten en notulen van een bestuur</AuHeading>
-    <ul class="au-c-steps">
-      <li class="au-c-steps__item">
-        <AuCard @flex={{true}} @divided={{true}} as |c|>
-          <c.header @badgeNumber="1" @badgeSkin="action">
-            <AuHeading @level="2" @skin="4">
-              Stap 1: Kies het type bestuurseenheid
-            </AuHeading>
-          </c.header>
-          <c.content>
-            <SelectBestuurseenheidClassificatieLabel @model={{this.model}} @selected={{this.bestuurseenheidClassificatie}} @onSelect={{this.setBestuurseenheidClassificatie}} />
-          </c.content>
-        </AuCard>
-      </li>
-      <li class="au-c-steps__item">
-        <AuCard @flex={{true}} @divided={{if this.bestuurseenheidClassificatie true false}} as |c|>
-          <c.header @badgeNumber="2" @badgeSkin={{if this.bestuurseenheidClassificatie "action" ""}}>
-            <AuHeading @level="2" @skin="4">
-              Stap 2: Kies de bestuurseenheid
-            </AuHeading>
-          </c.header>
-          <c.content>
-            {{#if this.bestuurseenheidClassificatie}}
-              <SelectBestuurseenheidNaam @bestuurseenheidClassificatie={{this.bestuurseenheidClassificatie}} @selected={{this.bestuurseenheidNaam}} @onSelect={{fn (mut this.bestuurseenheidNaam)}} />
-            {{/if}}
-            {{#if this.bestuurseenheidNaam}}
-              <div class="button-group">
-                <AuLink @route="bestuurseenheid" @models={{array this.bestuurseenheidNaam this.bestuurseenheidClassificatie.label}} @skin="button" @icon="search" @iconAlignment="left">
-                  Zoek publicaties
-                </AuLink>
-              </div>
-            {{/if}}
-          </c.content>
-        </AuCard>
-      </li>
-    </ul>
-  </div>
-</div>
+    <div class="au-o-region-large">
+      <div class="au-o-layout">
+        <AuHeading @level="2" @skin="3" class="au-u-margin-bottom">Zoek naar gepubliceerde agenda's, besluiten en notulen van een bestuur</AuHeading>
+        <ul class="au-c-steps">
+          <li class="au-c-steps__item">
+            <AuCard @flex={{true}} @divided={{true}} as |c|>
+              <c.header @badgeNumber="1" @badgeSkin="action">
+                <AuHeading @level="2" @skin="4">
+                  Stap 1: Kies het type bestuurseenheid
+                </AuHeading>
+              </c.header>
+              <c.content>
+                <SelectBestuurseenheidClassificatieLabel @model={{this.model}} @selected={{this.bestuurseenheidClassificatie}} @onSelect={{this.setBestuurseenheidClassificatie}} />
+              </c.content>
+            </AuCard>
+          </li>
+          <li class="au-c-steps__item">
+            <AuCard @flex={{true}} @divided={{if this.bestuurseenheidClassificatie true false}} as |c|>
+              <c.header @badgeNumber="2" @badgeSkin={{if this.bestuurseenheidClassificatie "action" ""}}>
+                <AuHeading @level="2" @skin="4">
+                  Stap 2: Kies de bestuurseenheid
+                </AuHeading>
+              </c.header>
+              <c.content>
+                {{#if this.bestuurseenheidClassificatie}}
+                  <SelectBestuurseenheidNaam @bestuurseenheidClassificatie={{this.bestuurseenheidClassificatie}} @selected={{this.bestuurseenheidNaam}} @onSelect={{fn (mut this.bestuurseenheidNaam)}} />
+                {{/if}}
+                {{#if this.bestuurseenheidNaam}}
+                  <div class="button-group">
+                    <AuLink @route="bestuurseenheid" @models={{array this.bestuurseenheidNaam this.bestuurseenheidClassificatie.label}} @skin="button" @icon="search" @iconAlignment="left">
+                      Zoek publicaties
+                    </AuLink>
+                  </div>
+                {{/if}}
+              </c.content>
+            </AuCard>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <AuMainFooter>
+      <AuHeading @level="2" @skin="4">
+        Publicatie.gelinkt-notuleren.vlaanderen.be is een officiële website van de Vlaamse overheid
+      </AuHeading>
+      <AuContent @skin="small">
+        <p>Uitgegeven door <a class="au-c-link" href="https://www.vlaanderen.be/organisaties/administratieve-diensten-van-de-vlaamse-overheid/beleidsdomein-kanselarij-en-bestuur/agentschap-binnenlands-bestuur">Agentschap Binnenlands Bestuur</a></p>
+        <ul class="au-c-list-horizontal">
+          <li class="au-c-list-horizontal__item">
+            <AuLink @route="legaal.disclaimer" @skin="secondary">Disclaimer</AuLink>
+          </li>
+          <li class="au-c-list-horizontal__item">
+            <AuLink @route="legaal.cookieverklaring" @skin="secondary">Cookieverklaring</AuLink>
+          </li>
+          <li class="au-c-list-horizontal__item">
+            <AuLink @route="legaal.toegankelijkheidsverklaring" @skin="secondary">Toegankelijkheid</AuLink>
+          </li>
+        </ul>
+      </AuContent>
+    </AuMainFooter>
+  </m.content>
+</AuMainContainer>
