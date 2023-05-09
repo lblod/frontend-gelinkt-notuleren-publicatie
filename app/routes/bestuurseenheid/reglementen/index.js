@@ -21,7 +21,6 @@ export default class ReglementenIndexRoute extends Route {
 
   async model(params) {
     const bestuurseenheid = this.modelFor('bestuurseenheid');
-    console.log('bestuurseenheid-->', bestuurseenheid.id);
     const model = await this.store.query('uittreksel', {
       include: ['zitting', 'behandeling-van-agendapunt.besluiten'].join(),
       'filter[zitting][bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][:id:]':

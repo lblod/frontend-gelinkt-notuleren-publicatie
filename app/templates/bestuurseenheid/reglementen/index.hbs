@@ -11,8 +11,7 @@
         <ul class="au-c-list">
           {{#each this.meetings as |uittreksel|}}
             <li class="au-c-list__item">
-              {{!-- template-lint-disable no-array-prototype-extensions --}}
-              <UittrekselOverviewItem @uittreksel={{uittreksel}} @besluit={{uittreksel.behandelingVanAgendapunt.besluiten.firstObject}} @routePath="bestuurseenheid.reglementen.detail" />
+              <UittrekselOverviewItem @uittreksel={{uittreksel}} @besluit={{this.getBesluit uittreksel}} @routePath="bestuurseenheid.reglementen.detail" />
             </li>
           {{/each}}
         </ul>
