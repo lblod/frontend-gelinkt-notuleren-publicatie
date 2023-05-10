@@ -7,10 +7,6 @@ export default class BestuurseenheidZittingUittrekselsIndexController extends Co
     return this.model;
   }
 
-  getBesluit(uittreksel) {
-    return uittreksel.behandelingVanAgendapunt.get('besluiten').firstObject;
-  }
-
   bvapSort = [
     'behandelingVanAgendapunt.position',
     'behandelingVanAgendapunt.onderwerp.position',

@@ -1,53 +1,59 @@
-{{#if @besluit.id}}
-  <WithRdfaContext @model={{@besluit}} class="au-o-box au-c-card" as |bCtx|>
-    <div class="au-c-card__header">
-      <div class="au-o-grid au-o-grid--small">
-        <div class="au-c-content au-o-grid__item au-u-3-4@medium">
-          {{!-- TODO add RDFa volgendUitBehandelingVanAgendapunt.onderwerp.zitting when RDFa helpers support inverse relations --}}
-          <h2 class="au-c-heading au-c-heading--4">
-            <bCtx.span @prop="titel" as |titel|>{{clean-spaces titel}}</bCtx.span>
-          </h2>
-          {{#if @besluit.beschrijving}}
-            <bCtx.p @prop="beschrijving" class="au-c-help-text au-u-margin-top-small" as |beschrijving|>{{clean-spaces beschrijving}}</bCtx.p>
-          {{else}}
-            <p class="au-c-help-text au-c-help-text--tertiary au-u-margin-top-small">Korte beschrijving niet gevonden</p>
-          {{/if}}
-          {{#unless @uittreksel.inhoud}}
-            <p class="au-c-help-text au-c-help-text--secondary au-u-margin-top-small">Volledige inhoud niet publiek</p>
-          {{/unless}}
+<div {{did-insert (fn this.getBesluit @uittreksel)}}>
+{{#if this.isLoadingFinished}}
+  {{#if this.besluit.id}}
+    <WithRdfaContext @model={{this.besluit}} class="au-o-box au-c-card" as |bCtx|>
+      <div class="au-c-card__header">
+        <div class="au-o-grid au-o-grid--small">
+          <div class="au-c-content au-o-grid__item au-u-3-4@medium">
+            {{!-- TODO add RDFa volgendUitBehandelingVanAgendapunt.onderwerp.zitting when RDFa helpers support inverse relations --}}
+            <h2 class="au-c-heading au-c-heading--4">
+              <bCtx.span @prop="titel" as |titel|>{{clean-spaces titel}}</bCtx.span>
+            </h2>
+            {{#if this.besluit.beschrijving}}
+              <bCtx.p @prop="beschrijving" class="au-c-help-text au-u-margin-top-small" as |beschrijving|>{{clean-spaces beschrijving}}</bCtx.p>
+            {{else}}
+              <p class="au-c-help-text au-c-help-text--tertiary au-u-margin-top-small">Korte beschrijving niet gevonden</p>
+            {{/if}}
+            {{#unless @uittreksel.inhoud}}
+              <p class="au-c-help-text au-c-help-text--secondary au-u-margin-top-small">Volledige inhoud niet publiek</p>
+            {{/unless}}
+          </div>
+          <div class="au-o-grid__item au-u-1-4@medium">
+            {{#if @uittreksel.inhoud}}
+              <AuLink @route={{@routePath}} @model={{@uittreksel.id}} property="lblodBesluit:linkToPublication" @skin="button" @icon="nav-right" @iconAlignment="right">
+                Bekijk volledige inhoud
+              </AuLink>
+            {{/if}}
+          </div>
         </div>
-        <div class="au-o-grid__item au-u-1-4@medium">
-          {{#if @uittreksel.inhoud}}
-            <AuLink @route={{@routePath}} @model={{@uittreksel.id}} property="lblodBesluit:linkToPublication" @skin="button" @icon="nav-right" @iconAlignment="right">
-              Bekijk volledige inhoud
-            </AuLink>
-          {{/if}}
+      </div>
+    </WithRdfaContext>
+  {{else if @uittreksel.inhoud}}
+    <div class="au-o-box au-c-card {{unless @uittreksel "au-c-card--standout"}}">
+      <div class="au-c-card__header">
+        <div class="au-o-grid au-o-grid--small">
+          <div class="au-c-content au-o-grid__item au-u-3-4@medium">
+            <h2 class="au-c-heading au-c-heading--4">
+              {{@uittreksel.behandelingVanAgendapunt.onderwerp.titel}}
+            </h2>
+            <p class="au-c-help-text au-c-help-text--secondary">Geen korte beschrijving.</p>
+            <span class="au-u-hidden-visually">
+              {{html-safe @uittreksel.inhoud}}
+            </span>
+          </div>
+          <div class="au-o-grid__item au-u-1-4@medium">
+            {{#if @uittreksel.inhoud}}
+              <LinkTo @route={{@routePath}} @model={{@uittreksel.id}} property="lblodBesluit:linkToPublication" class="au-c-button au-c-button--primary">
+                Bekijk volledige inhoud
+                <AuIcon @icon="nav-right" @alignment="right" />
+              </LinkTo>
+            {{/if}}
+          </div>
         </div>
       </div>
     </div>
-  </WithRdfaContext>
-{{else if @uittreksel.inhoud}}
-  <div class="au-o-box au-c-card {{unless @uittreksel "au-c-card--standout"}}">
-    <div class="au-c-card__header">
-      <div class="au-o-grid au-o-grid--small">
-        <div class="au-c-content au-o-grid__item au-u-3-4@medium">
-          <h2 class="au-c-heading au-c-heading--4">
-            {{@uittreksel.behandelingVanAgendapunt.onderwerp.titel}}
-          </h2>
-          <p class="au-c-help-text au-c-help-text--secondary">Geen korte beschrijving.</p>
-          <span class="au-u-hidden-visually">
-            {{html-safe @uittreksel.inhoud}}
-          </span>
-        </div>
-        <div class="au-o-grid__item au-u-1-4@medium">
-          {{#if @uittreksel.inhoud}}
-            <LinkTo @route={{@routePath}} @model={{@uittreksel.id}} property="lblodBesluit:linkToPublication" class="au-c-button au-c-button--primary">
-              Bekijk volledige inhoud
-              <AuIcon @icon="nav-right" @alignment="right" />
-            </LinkTo>
-          {{/if}}
-        </div>
-      </div>
-    </div>
-  </div>
+  {{/if}}
+{{else}}
+  <AuLoader />
 {{/if}}
+</div>

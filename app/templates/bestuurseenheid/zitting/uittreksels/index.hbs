@@ -14,7 +14,7 @@
     <ul class="au-c-list">
     {{#each this.uittreksels as |uittreksel|}}
       <li class="au-c-list__item">
-        <UittrekselOverviewItem @uittreksel={{uittreksel}} @besluit={{this.getBesluit uittreksel}} routePath="bestuurseenheid.zitting.uittreksels.detail" />
+        <UittrekselOverviewItem @uittreksel={{uittreksel}} @routePath="bestuurseenheid.zitting.uittreksels.detail" />
       </li>
     {{else}}
       <li>
