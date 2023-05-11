@@ -6,7 +6,7 @@ export default class UittrekselOverviewItemComponent extends Component {
   @tracked besluit;
   @tracked isLoadingFinished;
   @action
-  async getBesluit(uittreksel) {
+  async fetchBesluit(uittreksel) {
     const behandelingVanAgendapunt = await uittreksel.behandelingVanAgendapunt;
     const besluit = await behandelingVanAgendapunt.besluiten;
     this.isLoadingFinished = true;

@@ -1,4 +1,4 @@
-<div {{did-insert (fn this.getBesluit @uittreksel)}}>
+<div {{did-insert (fn this.fetchBesluit @uittreksel)}}>
 {{#if this.isLoadingFinished}}
   {{#if this.besluit.id}}
     <WithRdfaContext @model={{this.besluit}} class="au-o-box au-c-card" as |bCtx|>
