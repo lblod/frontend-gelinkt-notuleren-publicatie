@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
+import {action} from "@ember/object";
 
 const PAGE_SIZE = 10;
 
@@ -18,6 +19,17 @@ export default class ReglementenIndexRoute extends Route {
       refreshModel: false,
     },
   };
+
+  @action
+  loading(transition) {
+    // eslint-disable-next-line ember/no-controller-access-in-routes
+    let controller = this.controllerFor('bestuurseenheid.reglementen.index');
+    controller.set('isLoadingModel', true);
+
+    transition.finally(function () {
+      controller.set('isLoadingModel', false);
+    });
+  }
 
   async model(params) {
     const bestuurseenheid = this.modelFor('bestuurseenheid');
@@ -53,5 +65,6 @@ export default class ReglementenIndexRoute extends Route {
 
   setupController(controller, { model }) {
     super.setupController(controller, model);
+    controller.bestuurseenheid = this.modelFor('bestuurseenheid');
   }
 }
