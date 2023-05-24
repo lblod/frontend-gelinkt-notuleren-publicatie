@@ -16,7 +16,9 @@ export default class BestuurseenheidZittingAgendaIndexRoute extends Route {
       include: 'agendapunten,bestuursorgaan',
     });
     const agendapunten = await meeting.get('agendapunten');
-    const sortedAgendapoints = agendapunten.sortBy('position');
+    const sortedAgendapoints = agendapunten
+      .slice()
+      .sort((a, b) => a.position - b.position);
     return { meeting, agenda, sortedAgendapoints };
   }
 }
