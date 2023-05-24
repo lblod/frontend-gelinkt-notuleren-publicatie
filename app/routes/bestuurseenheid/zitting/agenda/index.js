@@ -11,7 +11,7 @@ export default class BestuurseenheidZittingAgendaIndexRoute extends Route {
       sort: '-publication.created-on',
       include: 'publication',
     });
-    const agenda = agendas.firstObject;
+    const agenda = agendas[0];
     const meeting = await this.store.findRecord('zitting', zitting.id, {
       include: 'agendapunten,bestuursorgaan',
     });

@@ -15,7 +15,7 @@ export default class BestuurseenheidRoute extends Route {
     if (bestuurseenheden.length === 0) {
       this.transitionTo('route-not-found');
     } else {
-      return bestuurseenheden.get('firstObject');
+      return bestuurseenheden[0];
     }
   }
 }

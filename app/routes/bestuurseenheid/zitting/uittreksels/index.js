@@ -14,7 +14,7 @@ export default class BestuurseenheidZittingUittrekselsIndexRoute extends Route {
         'uittreksels.behandeling-van-agendapunt.besluiten',
       ].join(),
     });
-    const zitting = zittingen.firstObject;
+    const zitting = zittingen[0];
     return zitting;
   }
 }
