@@ -23,6 +23,6 @@ export default class AgendapuntOverviewItemComponent extends Component {
       'filter[behandeling-van-agendapunt][onderwerp][id]':
         this.args.agendapunt.id,
     });
-    this.uittreksel = uittreksels.firstObject;
+    this.uittreksel = uittreksels[0];
   });
 }

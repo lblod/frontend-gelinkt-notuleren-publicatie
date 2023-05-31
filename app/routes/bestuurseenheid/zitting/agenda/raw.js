@@ -11,6 +11,6 @@ export default class BestuurseenheidZittingAgendaRawRoute extends Route {
         size: 1,
       },
     });
-    return agendas.firstObject;
+    return agendas[0];
   }
 }
