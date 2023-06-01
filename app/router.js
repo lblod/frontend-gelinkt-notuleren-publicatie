@@ -14,18 +14,20 @@ Router.map(function () {
     },
     function () {
       this.route('reglementen', function () {
-        this.route('detail', { path: '/:uittreksel_id' }, function () {});
+        this.route('reglement', { path: '/:uittreksel_id' });
       });
-      this.route('zitting', { path: '/:zitting_id' }, function () {
-        this.route('agenda', function () {
-          this.route('raw');
-        });
-        this.route('besluitenlijst', function () {});
-        this.route('notulen', function () {});
-        this.route('uittreksels', function () {
-          this.route('index', { path: '/' });
-          this.route('detail', { path: '/:uittreksel_id' }, function () {
+      this.route('zittingen', function () {
+        this.route('zitting', { path: '/:zitting_id' }, function () {
+          this.route('agenda', function () {
             this.route('raw');
+          });
+          this.route('besluitenlijst', function () {});
+          this.route('notulen', function () {});
+          this.route('uittreksels', function () {
+            this.route('index', { path: '/' });
+            this.route('detail', { path: '/:uittreksel_id' }, function () {
+              this.route('raw');
+            });
           });
         });
       });
@@ -39,4 +41,6 @@ Router.map(function () {
     this.route('toegankelijkheidsverklaring');
   });
   this.route('route-not-found', { path: '/404' });
+
+  this.route('reglementen', function () {});
 });

@@ -1,0 +1,145 @@
+{{page-title (concat this.bestuurseenheid.classificatie.label " " this.bestuurseenheid.naam)}}
+<div class="au-o-region-large">
+  <div class="au-o-layout">
+    <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Publicaties van {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}}</AuHeading>
+    <AuToolbar @border="bottom" class="au-u-margin-bottom">
+      <AuToolbar::Group>
+        <div class="au-u-margin-bottom-tiny">
+          <AuDatePicker
+            @label="Van"
+            @value={{this.from}}
+            @min="2019-01-01"
+            @max={{this.today}}
+            @onChange={{fn this.updateTimeRange 'from'}}
+            class="au-u-margin-bottom-small"
+          />
+        </div>
+        <div class="au-u-margin-bottom-small">
+          <AuDatePicker
+            @label="Tot"
+            @value={{this.to}}
+            @min="2019-01-01"
+            @max={{this.today}}
+            @onChange={{fn this.updateTimeRange 'to'}}
+          />
+        </div>
+      </AuToolbar::Group>
+      <AuToolbar::Group class="au-u-1-1 au-u-1-3@medium">
+        <div class="au-u-1-1 au-u-margin-bottom-small">
+          <AuLabel>Type bestuursorgaan</AuLabel>
+          <PowerSelect
+            @ariaLabel="Zoekbalk"
+            @selected={{this.administrativeBodyClass}}
+            @options={{this.administrativeBodyClassOptions}}
+            @onChange={{this.selectAdministrativeBodyClass}}
+            @allowClear={{true}}
+            as |adminBodyClassificationLabel|
+          >
+            {{adminBodyClassificationLabel.label}}
+          </PowerSelect>
+        </div>
+      </AuToolbar::Group>
+    </AuToolbar>
+
+    {{#if this.fetchMeetings.isRunning}}
+      <AuLoader />
+    {{else}}
+      {{#if this.model.length}}
+        <ul class="au-c-list">
+          {{#each this.model as |zitting|}}
+            <li class="au-c-list__item">
+              <WithRdfaContext @model={{zitting}} class="au-o-box au-c-card au-c-card--divided" as |ctx|>
+                <div class="au-c-card__header">
+                  <ctx.div @prop="bestuursorgaan" as |_ boCtx|>
+                    <h2 class="au-c-heading au-c-heading--4">
+                      <boCtx.span @prop="isTijdsspecialisatieVan" as |_ itsvCtx|>
+                        <itsvCtx.get @prop="naam" />
+                      </boCtx.span>
+                    </h2>
+                  </ctx.div>
+                </div>
+                <div class="au-c-card__content au-u-padding-top-small">
+                  <div class="au-o-grid au-o-grid--small">
+                    <div class="au-c-content au-c-content--large au-o-grid__item au-u-3-4@medium">
+                      <p>
+                        <ctx.span @prop="geplandeStart" as |value|>{{format-date value 'd MMMM yyyy, HH:mm'}}</ctx.span>
+                      </p>
+                      <ul class="au-c-list-horizontal au-u-margin-top-small">
+                        {{#if zitting.notulen.id}}
+                          <li class="au-c-list-horizontal__item">
+                            <AuPill @skin="action" @icon="draft" @iconAlignment="left">
+                              Notulen
+                            </AuPill>
+                          </li>
+                        {{/if}}
+                        {{#if zitting.besluitenlijst.id }}
+                          <li class="au-c-list-horizontal__item">
+                            <AuPill @skin="warning" @icon="draft" @iconAlignment="left">
+                              Besluitenlijst
+                            </AuPill>
+                          </li>
+                        {{/if}}
+                        {{#if zitting.uittreksels.length}}
+                          <li class="au-c-list-horizontal__item">
+                            <AuPill @skin="warning" @icon="draft" @iconAlignment="left">
+                              Bekendmakingen en uittreksels
+                            </AuPill>
+                          </li>
+                        {{/if}}
+                        {{#if zitting.agendas.length}}
+                          <li class="au-c-list-horizontal__item">
+                            <AuPill @icon="draft" @iconAlignment="left">
+                              Agenda
+                            </AuPill>
+                          </li>
+                        {{/if}}
+                      </ul>
+                    </div>
+                    <div class="au-o-grid__item au-u-1-4@medium">
+                      <AuLink property="lblodBesluit:linkToPublication" @route="bestuurseenheid.zittingen.zitting.index" @model={{zitting}} @skin="button" @width="block" @icon="arrow-right" @iconAlignment="right">
+                        Bekijk publicaties
+                      </AuLink>
+                    </div>
+                  </div>
+                </div>
+              </WithRdfaContext>
+            </li>
+          {{/each}}
+        </ul>
+        <div class="au-c-pagination au-u-margin-top">
+          <p>
+            <span class="au-u-hidden-visually">Publicaties</span>
+            <strong>
+              {{this.model.meta.pageStart}} - {{this.model.meta.pageEnd}}
+            </strong>
+            van
+            {{this.model.meta.count}}
+          </p>
+          <ul class="au-c-pagination__list">
+            {{#if this.model.meta.page}}
+              <li class="au-c-pagination__list-item">
+                {{! The route in the following AuLink could be removed, if supported again. }}
+                <AuLink property="lblodBesluit:linkToPublication" @route="bestuurseenheid" @query={{hash page=this.model.meta.previousPage}} @icon="nav-left" @iconAlignment="left">Vorige pagina</AuLink>
+              </li>
+            {{/if}}
+            {{#if this.model.meta.nextPage}}
+              <li class="au-c-pagination__list-item">
+                {{! The route in the following AuLink could be removed, if supported again. }}
+                <AuLink property="lblodBesluit:linkToPublication" @route="bestuurseenheid" @query={{hash page=this.model.meta.nextPage}} @icon="nav-right" @iconAlignment="right">Volgende pagina</AuLink>
+              </li>
+            {{/if}}
+          </ul>
+        </div>
+      {{else}}
+        <AuContent>
+          <p>Er werden nog geen publicaties voor {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}} gevonden</p>
+          <p>Kom later nog eens terug, of
+            <AuLink @route="index">
+              zoek naar publicaties van een ander bestuur.
+            </AuLink>
+          </p>
+        </AuContent>
+      {{/if}}
+    {{/if}}
+  </div>
+</div>

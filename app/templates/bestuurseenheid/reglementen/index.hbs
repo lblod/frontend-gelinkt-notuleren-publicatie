@@ -1,4 +1,3 @@
-{{breadcrumb "Reglementen" route="bestuurseenheid.reglementen"}}
 
 {{page-title (concat this.bestuurseenheid.classificatie.label " " this.bestuurseenheid.naam)}}
 <div class="au-o-region-large">
@@ -14,7 +13,7 @@
           <ul class="au-c-list">
             {{#each this.extracts as |uittreksel|}}
               <li class="au-c-list__item">
-                <UittrekselOverviewItem @uittreksel={{uittreksel}} @routePath="bestuurseenheid.reglementen.detail" />
+                <UittrekselOverviewItem @uittreksel={{uittreksel}} @routePath="bestuurseenheid.reglementen.reglement" />
               </li>
             {{/each}}
           </ul>
@@ -42,7 +41,6 @@
               {{/if}}
             </ul>
           </div>
-          {{outlet}}
         {{else}}
           <AuContent>
             <p>Er werden nog geen publicaties voor {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}} gevonden</p>

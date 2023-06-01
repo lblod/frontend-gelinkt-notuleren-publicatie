@@ -1,10 +1,10 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
-import {action} from "@ember/object";
+import { action } from '@ember/object';
 
 const PAGE_SIZE = 10;
 
-export default class ReglementenIndexRoute extends Route {
+export default class ReglementenRoute extends Route {
   @service store;
   @service fastboot;
 

@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
+import { setupTest } from 'frontend-gelinkt-notuleren-publicatie/tests/helpers';
 
 module('Unit | Route | bestuurseenheid/index', function (hooks) {
   setupTest(hooks);
