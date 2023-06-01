@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 
-export default class BestuurseenheidZittingUittrekselsDetailIndexRoute extends Route {
+export default class BestuurseenheidZittingenZittingUittrekselsDetailIndexRoute extends Route {
   async model() {
     const uittreksel = this.modelFor(
       'bestuurseenheid.zittingen.zitting.uittreksels.detail'

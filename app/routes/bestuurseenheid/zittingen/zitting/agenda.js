@@ -1,3 +1,3 @@
 import Route from '@ember/routing/route';
 
-export default class BestuurseenheidZittingAgendaRoute extends Route {}
+export default class BestuurseenheidZittingenZittingAgendaRoute extends Route {}

@@ -4,7 +4,7 @@ import { action } from '@ember/object';
 
 const PAGE_SIZE = 10;
 
-export default class ReglementenRoute extends Route {
+export default class BestuurseenheidReglementenIndexRoute extends Route {
   @service store;
   @service fastboot;
 

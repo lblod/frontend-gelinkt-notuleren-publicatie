@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 
-export default class BestuurseenheidZittingAgendaIndexController extends Controller {
+export default class BestuurseenheidZittingenZittingAgendaIndexController extends Controller {
   get sortedAgendapoints() {
     return this.model.sortedAgendapoints;
   }

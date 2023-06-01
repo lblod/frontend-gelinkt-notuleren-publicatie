@@ -2,7 +2,7 @@
 import Controller from '@ember/controller';
 import { sort } from '@ember/object/computed';
 
-export default class BestuurseenheidZittingUittrekselsIndexController extends Controller {
+export default class BestuurseenheidZittingenZittingUittrekselsIndexController extends Controller {
   get zitting() {
     return this.model;
   }

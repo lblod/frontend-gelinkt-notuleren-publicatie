@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 
-export default class BestuurseenheidZittingUittrekselsDetailRoute extends Route {
+export default class BestuurseenheidZittingenZittingUittrekselsDetailRoute extends Route {
   @service store;
 
   model(params) {

@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 
-export default class BestuurseenheidZittingAgendaRawRoute extends Route {
+export default class BestuurseenheidZittingenZittingAgendaRawRoute extends Route {
   @service store;
   async model() {
     const id = this.modelFor('bestuurseenheid.zittingen.zitting').get('id');
