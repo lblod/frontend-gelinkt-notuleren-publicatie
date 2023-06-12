@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
-import { service } from '@ember/service';
-import { action } from '@ember/object';
+import {service} from '@ember/service';
+import {action} from '@ember/object';
 
 const PAGE_SIZE = 10;
 
@@ -11,12 +11,6 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
   queryParams = {
     page: {
       refreshModel: true,
-    },
-    to: {
-      refreshModel: false,
-    },
-    from: {
-      refreshModel: false,
     },
   };
 
@@ -33,10 +27,10 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
 
   async model(params) {
     const bestuurseenheid = this.modelFor('bestuurseenheid');
-    const model = await this.store.query('uittreksel', {
+    const uittreksels = await this.store.query('uittreksel', {
       include: ['zitting', 'behandeling-van-agendapunt.besluiten'].join(),
       'filter[zitting][bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][:id:]':
-        bestuurseenheid.id,
+      bestuurseenheid.id,
       'fields[published-resource]': 'id',
       'fields[zitting]': 'id',
       'fields[besluit]': 'id',
@@ -46,25 +40,7 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
         size: PAGE_SIZE,
       },
     });
-    const pageNumber = Number(params.page) || 0;
-    model.meta.page = pageNumber;
-    model.meta.pageStart = pageNumber * PAGE_SIZE + 1;
-    model.meta.pageEnd = (pageNumber + 1) * PAGE_SIZE;
-    if (model.meta.pageEnd > model.meta.count) {
-      model.meta.pageEnd = model.meta.count;
-    }
-    if (pageNumber !== 0) {
-      model.meta.previousPage = pageNumber - 1;
-    }
-    if ((pageNumber + 1) * PAGE_SIZE < model.meta.count) {
-      model.meta.nextPage = pageNumber + 1;
-    }
-
-    return { model };
+    return {bestuurseenheid, uittreksels, pageSize: PAGE_SIZE}
   }
 
-  setupController(controller, { model }) {
-    super.setupController(controller, model);
-    controller.bestuurseenheid = this.modelFor('bestuurseenheid');
-  }
 }

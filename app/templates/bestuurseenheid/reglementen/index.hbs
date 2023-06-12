@@ -1,56 +1,85 @@
-
-{{page-title (concat this.bestuurseenheid.classificatie.label " " this.bestuurseenheid.naam)}}
-<div class="au-o-region-large">
-  <div class="au-o-layout">
-    <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Reglementen van {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}}</AuHeading>
-    {{#if this.fetchMeetings.isRunning}}
+{{page-title
+  (concat
+    @model.bestuurseenheid.classificatie.label ' ' @model.bestuurseenheid.naam
+  )
+}}
+<div class='au-o-region-large'>
+  <div class='au-o-layout'>
+    <AuHeading @level='1' @skin='2' class='au-u-margin-bottom'>Reglementen van
+      {{@model.bestuurseenheid.classificatie.label}}
+      {{@model.bestuurseenheid.naam}}</AuHeading>
+    {{#if this.isLoadingModel}}
       <AuLoader />
     {{else}}
-      {{#if this.isLoadingModel }}
-        <AuLoader />
-      {{else}}
-        {{#if this.extracts.length}}
-          <ul class="au-c-list">
-            {{#each this.extracts as |uittreksel|}}
-              <li class="au-c-list__item">
-                <UittrekselOverviewItem @uittreksel={{uittreksel}} @routePath="bestuurseenheid.reglementen.reglement" />
-              </li>
-            {{/each}}
-          </ul>
-          <div class="au-c-pagination au-u-margin-top">
+      {{#if this.extracts.length}}
+        <ul class='au-c-list'>
+          {{#each this.extracts as |uittreksel|}}
+            <li class='au-c-list__item'>
+              <UittrekselOverviewItem
+                @uittreksel={{uittreksel}}
+                @routePath='bestuurseenheid.reglementen.reglement'
+              />
+            </li>
+          {{/each}}
+        </ul>
+        {{#let
+          (pagination count=this.count pageSize=this.pageSize page=this.page)
+          as |pg|
+        }}
+          <div class='au-c-pagination au-u-margin-top'>
             <p>
-              <span class="au-u-hidden-visually">Uittreksel</span>
+              <span class='au-u-hidden-visually'>Uittreksel</span>
               <strong>
-                {{this.extracts.meta.pageStart}} - {{this.extracts.meta.pageEnd}}
+                {{pg.pageStart}}
+                -
+                {{pg.pageEnd}}
+
               </strong>
               van
-              {{this.extracts.meta.count}}
+              {{pg.count}}
             </p>
-            <ul class="au-c-pagination__list">
-              {{#if this.extracts.meta.page}}
-                <li class="au-c-pagination__list-item">
+            <ul class='au-c-pagination__list'>
+              {{#if pg.hasPreviousPage}}
+                <li class='au-c-pagination__list-item'>
                   {{! The route in the following AuLink could be removed, if supported again. }}
-                  <AuLink property="lblodBesluit:linkToPublication" @route="bestuurseenheid.reglementen" @query={{hash page=this.extracts.meta.previousPage}} @icon="nav-left" @iconAlignment="left">Vorige pagina</AuLink>
+                  <AuLink
+                    property='lblodBesluit:linkToPublication'
+                    @route='bestuurseenheid.reglementen'
+                    @query={{hash page=pg.previousPage}}
+                    @icon='nav-left'
+                    @iconAlignment='left'
+                  >Vorige pagina
+                  </AuLink>
                 </li>
               {{/if}}
-              {{#if this.extracts.meta.nextPage}}
-                <li class="au-c-pagination__list-item">
+              {{#if pg.hasNextPage}}
+                <li class='au-c-pagination__list-item'>
                   {{! The route in the following AuLink could be removed, if supported again. }}
-                  <AuLink property="lblodBesluit:linkToPublication" @route="bestuurseenheid.reglementen" @query={{hash page=this.extracts.meta.nextPage}} @icon="nav-right" @iconAlignment="right">Volgende pagina</AuLink>
+                  <AuLink
+                    property='lblodBesluit:linkToPublication'
+                    @route='bestuurseenheid.reglementen'
+                    @query={{hash page=pg.nextPage}}
+                    @icon='nav-right'
+                    @iconAlignment='right'
+                  >Volgende pagina
+                  </AuLink>
                 </li>
               {{/if}}
             </ul>
           </div>
-        {{else}}
-          <AuContent>
-            <p>Er werden nog geen publicaties voor {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}} gevonden</p>
-            <p>Kom later nog eens terug, of
-              <AuLink @route="index">
-                zoek naar publicaties van een ander bestuur.
-              </AuLink>
-            </p>
-          </AuContent>
-        {{/if}}
+        {{/let}}
+      {{else}}
+        <AuContent>
+          <p>Er werden nog geen publicaties voor
+            {{this.bestuurseenheid.classificatie.label}}
+            {{this.bestuurseenheid.naam}}
+            gevonden</p>
+          <p>Kom later nog eens terug, of
+            <AuLink @route='index'>
+              zoek naar publicaties van een ander bestuur.
+            </AuLink>
+          </p>
+        </AuContent>
       {{/if}}
     {{/if}}
   </div>
