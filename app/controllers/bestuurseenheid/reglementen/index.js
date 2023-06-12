@@ -1,9 +1,11 @@
 import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 
+const DEFAULT_PAGE_SIZE = 10;
 export default class BestuurseenheidReglementenIndexController extends Controller {
-  queryParams = ['page'];
+  queryParams = ['page', 'pageSize'];
   @tracked page = 0;
+  @tracked pageSize = DEFAULT_PAGE_SIZE;
   @tracked isLoadingModel;
 
   get extracts() {
@@ -12,9 +14,5 @@ export default class BestuurseenheidReglementenIndexController extends Controlle
 
   get count() {
     return this.extracts?.meta.count ?? 0;
-  }
-
-  get pageSize() {
-    return this.model?.pageSize ?? 20;
   }
 }

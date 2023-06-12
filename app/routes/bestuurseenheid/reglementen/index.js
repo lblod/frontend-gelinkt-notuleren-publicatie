@@ -1,8 +1,6 @@
 import Route from '@ember/routing/route';
-import {service} from '@ember/service';
-import {action} from '@ember/object';
-
-const PAGE_SIZE = 10;
+import { service } from '@ember/service';
+import { action } from '@ember/object';
 
 export default class BestuurseenheidReglementenIndexRoute extends Route {
   @service store;
@@ -10,6 +8,9 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
 
   queryParams = {
     page: {
+      refreshModel: true,
+    },
+    pageSize: {
       refreshModel: true,
     },
   };
@@ -30,17 +31,16 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
     const uittreksels = await this.store.query('uittreksel', {
       include: ['zitting', 'behandeling-van-agendapunt.besluiten'].join(),
       'filter[zitting][bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][:id:]':
-      bestuurseenheid.id,
+        bestuurseenheid.id,
       'fields[published-resource]': 'id',
       'fields[zitting]': 'id',
       'fields[besluit]': 'id',
       sort: '-zitting.geplande-start',
       page: {
-        number: params.page || 0,
-        size: PAGE_SIZE,
+        number: params.page,
+        size: params.pageSize,
       },
     });
-    return {bestuurseenheid, uittreksels, pageSize: PAGE_SIZE}
+    return { bestuurseenheid, uittreksels };
   }
-
 }
