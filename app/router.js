@@ -41,6 +41,4 @@ Router.map(function () {
     this.route('toegankelijkheidsverklaring');
   });
   this.route('route-not-found', { path: '/404' });
-
-  this.route('reglementen', function () {});
 });
