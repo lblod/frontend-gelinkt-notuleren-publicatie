@@ -1,10 +1,7 @@
 import Controller from '@ember/controller';
-import {action} from '@ember/object';
-import {tracked} from '@glimmer/tracking';
-import {service} from '@ember/service';
-import {restartableTask} from 'ember-concurrency';
-
-const PAGE_SIZE = 10;
+import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
+import { service } from '@ember/service';
 
 const UNIT_CLASS_TO_BODY_CLASS_MAP = {
   'http://data.vlaanderen.be/id/concept/BestuurseenheidClassificatieCode/5ab0e9b8a3b2ca7c5e000001':
@@ -62,16 +59,34 @@ const UNIT_CLASS_TO_BODY_CLASS_MAP = {
 };
 
 export default class BestuurseenheidZittingenIndexController extends Controller {
+  queryParams = [
+    'from',
+    'to',
+    'administrativeBodyClassURI',
+    'page',
+    'pageSize',
+    'sort',
+  ];
   @service store;
   @tracked from;
   @tracked to;
-  @tracked administrativeBodyClassURI;
   @tracked page = 0;
-  @tracked bestuurseenheid;
-  @tracked model;
+  @tracked pageSize = 10;
+  @tracked sort = '-geplande-start';
+  @tracked administrativeBodyClassURI;
   today = new Date().toISOString().substring(0, 10);
-  queryParams = ['from', 'to', 'administrativeBodyClassURI', 'page'];
 
+  get zittingen() {
+    return this.model.zittingen;
+  }
+
+  get count() {
+    return this.zittingen.meta.count;
+  }
+
+  get bestuurseenheid() {
+    return this.model.bestuurseenheid;
+  }
   get administrativeBodyClass() {
     return this.administrativeBodyClassOptions.find(
       (record) => record.uri === this.administrativeBodyClassURI
@@ -82,8 +97,17 @@ export default class BestuurseenheidZittingenIndexController extends Controller 
     return (
       UNIT_CLASS_TO_BODY_CLASS_MAP[
         this.bestuurseenheid.get('classificatie.uri')
-        ] || []
+      ] || []
     );
+  }
+
+
+  get formattedFrom() {
+    return this.from?.substring(0, 10);
+  }
+
+  get formattedTo() {
+    return this.to?.substring(0, 10);
   }
 
   @action
@@ -92,66 +116,18 @@ export default class BestuurseenheidZittingenIndexController extends Controller 
       ? classification.uri
       : undefined;
     this.page = 0;
-    this.fetchMeetings.perform();
   }
 
   @action
   updateTimeRange(fromOrTo, date) {
-    if (fromOrTo === 'from') this.from = date;
-    else this.to = date;
-    this.page = 0;
-    this.fetchMeetings.perform();
-  }
-
-  fetchMeetings = restartableTask(async () => {
-    let startDate;
-    let endDate;
-    if (this.from) {
-      startDate = new Date(this.from);
+    if (fromOrTo === 'from') {
+      let startDate = new Date(date);
       startDate.setDate(startDate.getDate() - 1);
       startDate = startDate.toISOString().substring(0, 10) + 'T00:00:00';
+      this.from = startDate;
+    } else {
+      this.to = date + 'T00:00:00';
     }
-    if (this.to) endDate = this.to + 'T00:00:00';
-    this.model = null;
-    const model = await this.store.query('zitting', {
-      include: [
-        'bestuursorgaan.is-tijdsspecialisatie-van',
-        'notulen',
-        'besluitenlijst',
-        'uittreksels',
-        'agendas',
-      ].join(),
-      'filter[bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][:id:]':
-      this.bestuurseenheid.id,
-      'filter[:gte:gestart-op-tijdstip]': startDate,
-      'filter[:lte:gestart-op-tijdstip]': endDate,
-      'filter[bestuursorgaan][is-tijdsspecialisatie-van][classificatie][:uri:]':
-      this.administrativeBodyClassURI,
-      'fields[zittingen]':
-        'geplande-start,gestart-op-tijdstip,notulen,bestuursorgaan,besluitenlijst,uittreksels,agendas',
-      'fields[notulen]': 'id',
-      'fields[besluitenlijsten]': 'id',
-      'fields[uittreksels]': 'id',
-      'fields[agendas]': 'id',
-      sort: '-geplande-start',
-      page: {
-        number: this.page || 0,
-        size: PAGE_SIZE,
-      },
-    });
-    const pageNumber = Number(this.page) || 0;
-    model.meta.page = pageNumber;
-    model.meta.pageStart = pageNumber * PAGE_SIZE + 1;
-    model.meta.pageEnd = (pageNumber + 1) * PAGE_SIZE;
-    if (model.meta.pageEnd > model.meta.count) {
-      model.meta.pageEnd = model.meta.count;
-    }
-    if (pageNumber !== 0) {
-      model.meta.previousPage = pageNumber - 1;
-    }
-    if ((pageNumber + 1) * PAGE_SIZE < model.meta.count) {
-      model.meta.nextPage = pageNumber + 1;
-    }
-    this.model = model;
-  });
+    this.page = 0;
+  }
 }

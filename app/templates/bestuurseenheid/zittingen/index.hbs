@@ -7,7 +7,7 @@
         <div class="au-u-margin-bottom-tiny">
           <AuDatePicker
             @label="Van"
-            @value={{this.from}}
+            @value={{this.formattedFrom}}
             @min="2019-01-01"
             @max={{this.today}}
             @onChange={{fn this.updateTimeRange 'from'}}
@@ -17,7 +17,7 @@
         <div class="au-u-margin-bottom-small">
           <AuDatePicker
             @label="Tot"
-            @value={{this.to}}
+            @value={{this.formattedTo}}
             @min="2019-01-01"
             @max={{this.today}}
             @onChange={{fn this.updateTimeRange 'to'}}
@@ -44,9 +44,9 @@
     {{#if this.fetchMeetings.isRunning}}
       <AuLoader />
     {{else}}
-      {{#if this.model.length}}
+      {{#if this.zittingen.length}}
         <ul class="au-c-list">
-          {{#each this.model as |zitting|}}
+          {{#each this.zittingen as |zitting|}}
             <li class="au-c-list__item">
               <WithRdfaContext @model={{zitting}} class="au-o-box au-c-card au-c-card--divided" as |ctx|>
                 <div class="au-c-card__header">
@@ -106,30 +106,32 @@
             </li>
           {{/each}}
         </ul>
+      {{#let (pagination page=this.page pageSize=this.pageSize count=this.count) as |pg|}}
         <div class="au-c-pagination au-u-margin-top">
           <p>
             <span class="au-u-hidden-visually">Publicaties</span>
             <strong>
-              {{this.model.meta.pageStart}} - {{this.model.meta.pageEnd}}
+              {{pg.pageStart}} - {{pg.pageEnd}}
             </strong>
             van
-            {{this.model.meta.count}}
+            {{pg.count}}
           </p>
           <ul class="au-c-pagination__list">
-            {{#if this.model.meta.page}}
+            {{#if pg.page}}
               <li class="au-c-pagination__list-item">
                 {{! The route in the following AuLink could be removed, if supported again. }}
-                <AuLink property="lblodBesluit:linkToPublication" @route="bestuurseenheid" @query={{hash page=this.model.meta.previousPage}} @icon="nav-left" @iconAlignment="left">Vorige pagina</AuLink>
+                <AuLink property="lblodBesluit:linkToPublication" @route="bestuurseenheid" @query={{hash page=pg.previousPage}} @icon="nav-left" @iconAlignment="left">Vorige pagina</AuLink>
               </li>
             {{/if}}
-            {{#if this.model.meta.nextPage}}
+            {{#if pg.nextPage}}
               <li class="au-c-pagination__list-item">
                 {{! The route in the following AuLink could be removed, if supported again. }}
-                <AuLink property="lblodBesluit:linkToPublication" @route="bestuurseenheid" @query={{hash page=this.model.meta.nextPage}} @icon="nav-right" @iconAlignment="right">Volgende pagina</AuLink>
+                <AuLink property="lblodBesluit:linkToPublication" @route="bestuurseenheid" @query={{hash page=pg.nextPage}} @icon="nav-right" @iconAlignment="right">Volgende pagina</AuLink>
               </li>
             {{/if}}
           </ul>
         </div>
+      {{/let}}
       {{else}}
         <AuContent>
           <p>Er werden nog geen publicaties voor {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}} gevonden</p>
