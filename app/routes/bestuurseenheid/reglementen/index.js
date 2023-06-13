@@ -13,6 +13,9 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
     pageSize: {
       refreshModel: true,
     },
+    sort: {
+      refreshModel: true
+    }
   };
 
   @action
@@ -32,10 +35,11 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
       include: ['zitting', 'behandeling-van-agendapunt.besluiten'].join(),
       'filter[zitting][bestuursorgaan][is-tijdsspecialisatie-van][bestuurseenheid][:id:]':
         bestuurseenheid.id,
+      'filter[behandeling-van-agendapunt][besluiten][:has:parts]': 'yes',
       'fields[published-resource]': 'id',
       'fields[zitting]': 'id',
       'fields[besluit]': 'id',
-      sort: '-zitting.geplande-start',
+      sort: params.sort,
       page: {
         number: params.page,
         size: params.pageSize,
