@@ -14,8 +14,8 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
       refreshModel: true,
     },
     sort: {
-      refreshModel: true
-    }
+      refreshModel: true,
+    },
   };
 
   @action

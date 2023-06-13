@@ -3,5 +3,5 @@ export function isSome(thing) {
 }
 
 export function isNone(thing) {
-  return !isSome(thing)
+  return !isSome(thing);
 }

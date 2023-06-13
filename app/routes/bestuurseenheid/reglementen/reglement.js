@@ -2,7 +2,8 @@ import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 
 export default class BestuurseenheidReglementenReglementRoute extends Route {
-  @service store
+  @service store;
+
   async model(params) {
     const uittreksel = await this.store.findRecord(
       'uittreksel',

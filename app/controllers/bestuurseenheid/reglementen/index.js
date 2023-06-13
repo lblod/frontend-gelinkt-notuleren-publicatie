@@ -6,9 +6,8 @@ export default class BestuurseenheidReglementenIndexController extends Controlle
   queryParams = ['page', 'pageSize', 'sort'];
   @tracked page = 0;
   @tracked pageSize = DEFAULT_PAGE_SIZE;
-  @tracked sort = '-publication.created-on'
+  @tracked sort = '-publication.created-on';
   @tracked isLoadingModel;
-
 
   get extracts() {
     return this.model?.uittreksels;

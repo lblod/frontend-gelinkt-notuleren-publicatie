@@ -87,6 +87,7 @@ export default class BestuurseenheidZittingenIndexController extends Controller 
   get bestuurseenheid() {
     return this.model.bestuurseenheid;
   }
+
   get administrativeBodyClass() {
     return this.administrativeBodyClassOptions.find(
       (record) => record.uri === this.administrativeBodyClassURI
@@ -100,7 +101,6 @@ export default class BestuurseenheidZittingenIndexController extends Controller 
       ] || []
     );
   }
-
 
   get formattedFrom() {
     return this.from?.substring(0, 10);
