@@ -11,12 +11,14 @@ export default class BestuurseenheidZittingenZittingAgendaIndexRoute extends Rou
       sort: '-publication.created-on',
       include: 'publication',
     });
-    const agenda = agendas.firstObject;
+    const agenda = agendas[0];
     const meeting = await this.store.findRecord('zitting', zitting.id, {
       include: 'agendapunten,bestuursorgaan',
     });
     const agendapunten = await meeting.get('agendapunten');
-    const sortedAgendapoints = agendapunten.sortBy('position');
+    const sortedAgendapoints = agendapunten
+      .slice()
+      .sort((a, b) => a.position - b.position);
     return { meeting, agenda, sortedAgendapoints };
   }
 }

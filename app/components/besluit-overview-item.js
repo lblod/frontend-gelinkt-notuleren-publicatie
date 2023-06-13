@@ -25,7 +25,7 @@ export default class BesluitOverviewItemComponent extends Component {
     let uittreksels = await this.store.query('uittreksel', {
       'filter[behandeling-van-agendapunt][besluiten][id]': this.args.besluit.id,
     });
-    this.uittreksel = uittreksels.firstObject;
+    this.uittreksel = uittreksels[0];
   });
 
   findStemmingen = task(async () => {

@@ -18,8 +18,8 @@ export default class SelectBestuurseenheidNaamComponent extends Component {
     };
 
     if (search) queryParams['filter[naam]'] = search;
-    return (await this.store.query('bestuurseenheid', queryParams)).getEach(
-      'naam'
+    return (await this.store.query('bestuurseenheid', queryParams)).map(
+      (bestuurseenheid) => bestuurseenheid.naam
     );
   });
 }
