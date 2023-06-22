@@ -3,6 +3,37 @@
 
 
 
+
+## 1.0.1 (2023-06-22)
+
+#### :rocket: Enhancement
+* [#91](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/91) Feature: overview page showing all decisions that have a regulation in them ([@usrtim](https://github.com/usrtim))
+
+#### :house: Internal
+* [#98](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/98) feature: use woodpecker ci instead of drone ([@Jan-PieterBaert](https://github.com/Jan-PieterBaert))
+* [#92](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/92) Bump engine.io and socket.io ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#97](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/97) Removal/replacement of deprecated code ([@elpoelma](https://github.com/elpoelma))
+* [#96](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/96) Update ember-cli-fastboot to version 4.1.1 ([@elpoelma](https://github.com/elpoelma))
+* [#95](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/95) Bump socket.io-parser from 4.2.2 to 4.2.3 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#94](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/94) Bump vm2 from 3.9.17 to 3.9.19 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#90](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/90) Bump vm2 from 3.9.16 to 3.9.17 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#89](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/89) Bump vm2 from 3.9.15 to 3.9.16 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#88](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/88) Bump vm2 from 3.9.11 to 3.9.15 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#87](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/87) Use new ember-concurrency api ([@elpoelma](https://github.com/elpoelma))
+* [#85](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/85) chore/modernize ([@abeforgit](https://github.com/abeforgit))
+* [#81](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/81) Bump http-cache-semantics from 4.1.0 to 4.1.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#77](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/77) Bump decode-uri-component from 0.2.0 to 0.2.2 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#83](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/83) Bump minimist from 0.2.1 to 0.2.4 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#80](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/80) Upgrade to ember 4.8.4 ([@elpoelma](https://github.com/elpoelma))
+* [#79](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/79) Convert remaining classic components to glimmer components ([@elpoelma](https://github.com/elpoelma))
+
+#### Committers: 4
+- Arne Bertrand ([@abeforgit](https://github.com/abeforgit))
+- Elena Poelman ([@elpoelma](https://github.com/elpoelma))
+- Jan-Pieter Baert ([@Jan-PieterBaert](https://github.com/Jan-PieterBaert))
+- [@usrtim](https://github.com/usrtim)
+
+
 ## 1.0.0 (2023-06-19)
 
 #### :rocket: Enhancement
