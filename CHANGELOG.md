@@ -5,6 +5,9 @@
 
 ## 1.0.0 (2023-06-19)
 
+#### :rocket: Enhancement
+* [#91](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/91) Feature/overview page showing all decisions that have a regulation in them ([@usrtim](https://github.com/usrtim))
+
 #### :house: Internal
 * [#92](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/92) Bump engine.io and socket.io ([@dependabot[bot]](https://github.com/apps/dependabot))
 * [#97](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/97) Removal/replacement of deprecated code ([@elpoelma](https://github.com/elpoelma))
