@@ -2,6 +2,10 @@
 
 
 
+## 0.24.8 (2023-07-06)
+docs: add link to docs about "register van bekendmakingen"
+
+
 ## 0.24.7 (2022-12-07)
 
 #### :rocket: Enhancement
