@@ -4,6 +4,16 @@
 
 
 
+
+## 1.0.2 (2023-07-07)
+
+#### :rocket: Enhancement
+* [#99](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/99) HOTFIX: docs: add link to docs about "register van bekendmakingen" ([@abeforgit](https://github.com/abeforgit))
+
+#### Committers: 1
+- Arne Bertrand ([@abeforgit](https://github.com/abeforgit))
+
+
 ## 1.0.1 (2023-06-22)
 
 
