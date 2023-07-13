@@ -1,5 +1,9 @@
-<div class="au-o-region-large">
-  <div class="au-o-layout">
-    {{outlet}}
-  </div>
-</div>
+<AuMainContainer as |m|>
+  <m.content @scroll={{true}}>
+    <div class="au-o-region-large">
+      <div class="au-o-layout">
+        {{outlet}}
+      </div>
+    </div>
+  </m.content>
+</AuMainContainer>
