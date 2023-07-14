@@ -5,6 +5,19 @@
 
 
 
+
+## 1.0.3 (2023-07-14)
+
+#### :bug: Bug Fix
+* [#102](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/102) GN-4426: include footer application wide ([@elpoelma](https://github.com/elpoelma))
+* [#101](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/101) GN-4428: ensure legal pages are completely visible and scrolleable ([@elpoelma](https://github.com/elpoelma))
+
+#### :house: Internal
+* [#100](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/100) chore(deps): bump tough-cookie from 4.1.2 to 4.1.3 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### Committers: 1
+- Elena Poelman ([@elpoelma](https://github.com/elpoelma))
+
 ## 1.0.2 (2023-07-07)
 
 #### :rocket: Enhancement
