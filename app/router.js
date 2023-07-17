@@ -32,7 +32,10 @@ Router.map(function () {
         });
       });
       // Route created for backwards compatibility, redirects to `bestuurseenheid.zittingen.zitting`
-      this.route('zitting', { path: '/:zitting_id' });
+      this.route('zitting', { path: '/:zitting_id' }, function () {
+        this.route('index', { path: '/' });
+        this.route('wildcard', { path: '/*path' });
+      });
     }
   );
   this.route('contact');
