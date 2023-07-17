@@ -6,6 +6,15 @@
 
 
 
+
+## 1.0.4 (2023-07-17)
+
+#### :bug: Bug Fix
+* [#103](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/103) GN-4432: add backwards compatible zitting route which redirects to new zitting route ([@elpoelma](https://github.com/elpoelma))
+
+#### Committers: 1
+- Elena Poelman ([@elpoelma](https://github.com/elpoelma))
+
 ## 1.0.3 (2023-07-14)
 
 #### :bug: Bug Fix
