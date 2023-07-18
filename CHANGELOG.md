@@ -7,6 +7,15 @@
 
 
 
+
+## 1.0.5 (2023-07-18)
+
+#### :bug: Bug Fix
+* [#104](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/104) GN-4432: ensure subroutes of old `zitting` route are redirected to subroutes of new `zitting` route ([@elpoelma](https://github.com/elpoelma))
+
+#### Committers: 1
+- Elena Poelman ([@elpoelma](https://github.com/elpoelma))
+
 ## 1.0.4 (2023-07-17)
 
 #### :bug: Bug Fix
