@@ -91,6 +91,7 @@
     "edition": "octane"
   },
   "dependencies": {
+    "@triply/yasgui": "^4.2.28",
     "date-fns": "^2.28.0"
   },
   "volta": {

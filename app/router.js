@@ -45,5 +45,6 @@ Router.map(function () {
     this.route('cookieverklaring');
     this.route('toegankelijkheidsverklaring');
   });
+  this.route('sparql');
   this.route('route-not-found', { path: '/404' });
 });

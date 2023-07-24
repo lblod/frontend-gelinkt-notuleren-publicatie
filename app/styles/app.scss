@@ -19,12 +19,20 @@
  * SHAME: Temporary hacks and quickfixes
  */
 
-@import "ember-appuniversum";
+.yasgui .controlbar {
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.yasgui .autocompleteWrapper {
+  display: none !important;
+}
+@import 'ember-appuniversum';
 
 // PROJECT
 @import 'project/publicatie';
 @import 'project/template';
-@import "project/c-environment-banner";
+@import 'project/c-environment-banner';
 
 // PROJECT UTILITIES
 @import 'project/print';
