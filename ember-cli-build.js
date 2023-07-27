@@ -23,6 +23,7 @@ module.exports = function (defaults) {
     },
   });
 
+  app.import('node_modules/@triply/yasgui/build/yasgui.min.css');
   app.import('node_modules/svgxuse/svgxuse.js');
 
   // Use `app.import` to add additional libraries to the generated
