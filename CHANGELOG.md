@@ -8,6 +8,18 @@
 
 
 
+
+## 1.1.0 (2023-07-27)
+
+#### :rocket: Enhancement
+* [#106](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/106) GN-4299: add sparql route containing yasgui interface ([@elpoelma](https://github.com/elpoelma))
+
+#### :house: Internal
+* [#105](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/105) chore(deps-dev): bump word-wrap from 1.2.3 to 1.2.4 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### Committers: 1
+- Elena Poelman ([@elpoelma](https://github.com/elpoelma))
+
 ## 1.0.5 (2023-07-18)
 
 #### :bug: Bug Fix
