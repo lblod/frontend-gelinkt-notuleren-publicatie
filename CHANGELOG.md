@@ -8,6 +8,15 @@
 
 
 
+
+## 1.0.6 (2023-08-02)
+
+#### :bug: Bug Fix
+* [#107](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/107) GN-4446: fix email-address formatting on error page (hotfix) ([@elpoelma](https://github.com/elpoelma))
+
+#### Committers: 1
+- Elena Poelman ([@elpoelma](https://github.com/elpoelma))
+
 ## 1.0.5 (2023-07-18)
 
 #### :bug: Bug Fix
