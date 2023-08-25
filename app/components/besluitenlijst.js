@@ -1,42 +1,66 @@
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
-import { task } from 'ember-concurrency';
 import { service } from '@ember/service';
 
 export default class BesluitenlijstComponent extends Component {
   @service store;
   @service fastboot;
 
-  @tracked extraBesluiten = [];
-  @tracked currentPage = 0;
-  @tracked lastPage;
+  domParser = new DOMParser();
+  get rawHtmlContent() {
+    return this.args.besluitenlijst.inhoud;
+  }
+  get treatedHtml() {
+    const newDom = this.domParser.parseFromString(
+      this.rawHtmlContent,
+      'text/html'
+    );
+    const decisions = newDom.body.querySelectorAll(
+      '[typeof*="besluit#Besluit"]'
+    );
+    decisions.forEach((decision) => {
+      // the portal element for the button to render in
+      const portalElement = newDom.createElement('div');
+      portalElement.id = this.portalId(decision);
 
-  constructor() {
-    super(...arguments);
-    const meta = this.args.besluiten.meta;
-    this.lastPage = meta.pagination.last.number;
-  }
-  get hasNext() {
-    return this.nextPage <= this.lastPage;
-  }
-  get nextPage() {
-    return this.currentPage + 1;
-  }
+      // a wrapper to hold the decision and the button together
+      const containerElement = newDom.createElement('span');
+      containerElement.classList.add('besluit-container');
 
-  fetchBesluiten = task(async (page = 0) => {
-    const besluiten = await this.store.query('besluit', {
-      page: {
-        number: page,
-        size: 100,
-      },
-      'filter[besluitenlijst][:id:]': this.args.besluitenlijst.id,
-      sort: 'volgend-uit-behandeling-van-agendapunt.position',
+      // replace decision element with wrapper
+      // in this order, otherwise replacing is a bit more clumsy
+      decision.replaceWith(containerElement);
+      containerElement.append(decision, portalElement);
+
+      // check if decision has a description
+      const description = decision.querySelector(
+        '[property="eli:description"]'
+      );
+      if (!description) {
+        // add an explainer message if no description exists
+        const descNotFound = newDom.createElement('p');
+        descNotFound.classList.add(
+          'au-c-help-text',
+          'au-c-help-text--secondary'
+        );
+        descNotFound.appendChild(new Text('Korte beschrijving niet gevonden'));
+        decision.appendChild(descNotFound);
+      }
     });
+    return { html: newDom.body.outerHTML, decisions };
+  }
 
-    this.extraBesluiten = [...this.extraBesluiten, ...besluiten.toArray()];
+  // we need to look for the portals again,
+  // even though we technically already have references to them
+  // this is because the in-element helper only works if the element you give it is already rendered
+  // when we give the refs directly in the template, that's too early cause the elements haven't
+  // yet rendered
+  getWrapper = (decisionElement) => {
+    const id = this.portalId(decisionElement);
+    const element = document.getElementById(id);
+    return element;
+  };
 
-    const meta = besluiten.meta;
-    this.lastPage = meta.pagination.last.number;
-    this.currentPage = page;
-  });
+  portalId(decisionElement) {
+    return `portal-for#${decisionElement.getAttribute('resource')}`;
+  }
 }

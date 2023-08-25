@@ -6,9 +6,55 @@
 /* Style document publish for besluitenlijst, remove when fixed bug
  ========================================================================== */
 
+.besluitenlijst {
+  [typeof='besluit:BehandelingVanAgendapunt'] {
+    border: 0.1rem solid $au-gray-200;
+    padding: 2.4rem;
+    margin-top: 1.2rem;
+  }
+  [property='http://data.vlaanderen.be/ns/besluit#geplandeStart']
+  {
+    display: none;
+  }
+  [typeof='besluit:Zitting'] {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-left: 0;
+  }
+  [property='besluit:openbaar'] {
+    display: none;
+  }
+  [property='eli:title'] {
+    border-bottom: 0.1rem solid $au-gray-200;
+    font-size: $au-h4;
+    line-height: $au-global-line-height;
+  }
+  [property='prov:generated'] {
+    border-bottom: 0;
+  }
+  [property='besluit:heeftStemming'] {
+    display: flex;
+    flex-wrap: true;
+    gap: 2rem;
+    p:last-child {
+      margin: 0;
+    }
+  }
+  .besluit-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+    [typeof*='besluit#Besluit'] {
+      flex-grow: 1;
+    }
+  }
+}
+
 .au-c-document-publish {
-  [typeof="besluit:BehandelingVanAgendapunt"],
-  [property="besluit:behandelt"] {
+  [typeof='besluit:BehandelingVanAgendapunt'],
+  [property='besluit:behandelt'] {
     margin-bottom: 2rem;
     display: block;
   }
@@ -19,15 +65,19 @@ Document text
 Style the text from documents here.
 ========================================================================== */
 
-  /* -------------------- list styles ------------------------- */
+/* -------------------- list styles ------------------------- */
 
 .au-c-document-publish {
   ul {
     list-style: bullet;
   }
 
-  ol:not(.bullet-list):not(.numbered-list):not(.au-c-template-list-inline):not(.au-c-template-list),
-  ul:not(.bullet-list):not(.numbered-list):not(.au-c-template-list-inline):not(.au-c-template-list) {
+  ol:not(.bullet-list):not(.numbered-list):not(.au-c-template-list-inline):not(
+      .au-c-template-list
+    ),
+  ul:not(.bullet-list):not(.numbered-list):not(.au-c-template-list-inline):not(
+      .au-c-template-list
+    ) {
     padding-left: 1.75em;
 
     > li {
@@ -45,7 +95,6 @@ Style the text from documents here.
   }
 
   ul:not(.bullet-list):not(.numbered-list) li {
-
     > ul > li {
       list-style-type: circle;
 
@@ -83,11 +132,10 @@ Style the text from documents here.
     list-style-type: decimal;
   }
 
-  [property="besluit:heeftAgenda"] > ul:not(.bullet-list) li {
+  [property='besluit:heeftAgenda'] > ul:not(.bullet-list) li {
     list-style-type: none;
   }
 }
-
 
 /* Table in editor */
 .au-c-document-publish {

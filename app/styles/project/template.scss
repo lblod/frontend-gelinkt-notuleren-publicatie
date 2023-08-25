@@ -164,9 +164,7 @@
 
   [typeof="besluit:BehandelingVanAgendapunt"] {
     [property="prov:generated"]:not(:last-child) {
-      margin-bottom: $au-unit-small;
       padding-bottom: $au-unit-small;
-      border-bottom: .1rem dotted $au-gray-300;
     }
 
     [property="besluit:openbaar"]:after {
