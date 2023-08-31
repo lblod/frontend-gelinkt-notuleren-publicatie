@@ -10,6 +10,16 @@
 
 
 
+
+## 1.1.2 (2023-08-31)
+
+#### :bug: Bug Fix
+* [#109](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/109) GN-4470: fix(uittreksels): use pre-rendered extract lists ([@abeforgit](https://github.com/abeforgit))
+
+#### Committers: 1
+- Arne Bertrand ([@abeforgit](https://github.com/abeforgit))
+
+
 ## 1.1.1 (2023-08-02)
 
 #### :bug: Bug Fix
