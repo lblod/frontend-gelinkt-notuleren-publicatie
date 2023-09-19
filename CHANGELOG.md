@@ -1,15 +1,4 @@
-
-
-
-
-
-
-
-
-
-
-
-
+# frontend-gelinkt-notuleren-publicatie
 
 ## 1.1.2 (2023-08-31)
 
