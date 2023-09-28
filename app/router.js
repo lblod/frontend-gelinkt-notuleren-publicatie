@@ -1,4 +1,4 @@
-import EmberRouter from '@ember/routing/router';
+import EmberRouter from '@embroider/router';
 import config from 'frontend-gelinkt-notuleren-publicatie/config/environment';
 
 export default class Router extends EmberRouter {
