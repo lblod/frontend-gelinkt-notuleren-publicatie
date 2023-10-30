@@ -1,6 +1,6 @@
 // Workaround for ember-data fastboot compatibility
 // See https://github.com/emberjs/data/issues/8475
-module.exports = function (environment) {
+module.exports = function () {
   return {
     buildSandboxGlobals(defaultGlobals) {
       return Object.assign({}, defaultGlobals, {
