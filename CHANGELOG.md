@@ -1,5 +1,13 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.3.0
+
+### Minor Changes
+
+- [#116](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/116) [`83a06f3`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/83a06f3f596b7129984a01cfc4bfe6b61b56929c) Thanks [@elpoelma](https://github.com/elpoelma)! - Update `ember-data` to 4.12.4
+
+- [#116](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/116) [`83a06f3`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/83a06f3f596b7129984a01cfc4bfe6b61b56929c) Thanks [@elpoelma](https://github.com/elpoelma)! - Update `ember-source` to 4.12.3
+
 ## 1.2.0
 
 ### Minor Changes
