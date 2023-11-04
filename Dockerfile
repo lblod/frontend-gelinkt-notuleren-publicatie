@@ -1,4 +1,4 @@
-FROM madnificent/ember:4.9.2 as builder
+FROM madnificent/ember:4.12.1-node_18 as builder
 
 LABEL maintainer="info@redpencil.io"
 
@@ -10,5 +10,5 @@ COPY . .
 RUN ember build -prod
 
 
-FROM redpencil/fastboot-app-server:1.1.0
+FROM redpencil/fastboot-app-server:latest
 COPY --from=builder /app/dist /app
