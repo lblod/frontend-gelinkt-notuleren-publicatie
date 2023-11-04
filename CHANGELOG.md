@@ -1,5 +1,11 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.3.1
+
+### Patch Changes
+
+- [`21d4b17`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/21d4b17e9641472b2fe2011be5332870639fe585) Thanks [@abeforgit](https://github.com/abeforgit)! - Fix fastboot errors with new ember data
+
 ## 1.3.0
 
 ### Minor Changes
