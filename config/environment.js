@@ -28,6 +28,8 @@ module.exports = function (environment) {
         'publicatie.gebruikerssessie.gelinkt-notuleren.lblod.info',
         'publicatie.gelinkt-notuleren.lblod.info',
         'backend', //mu-semtech
+        'identifier', //for some reason fastboot seems to set the host header
+        //to identifier instead of backend on node 18 (we don't know if it's node related, but that's as far as we got)
       ],
     },
     APP: {
