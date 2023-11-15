@@ -1,5 +1,11 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.3.3
+
+### Patch Changes
+
+- [`04c2a51`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/04c2a512fd10fd3511c2ff6c15e06af862b1d4da) Thanks [@abeforgit](https://github.com/abeforgit)! - whitelist identifier as a fastboot host
+
 ## 1.3.2
 
 ### Patch Changes
