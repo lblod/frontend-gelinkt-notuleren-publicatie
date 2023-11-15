@@ -1,5 +1,11 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.3.2
+
+### Patch Changes
+
+- [`8d40fd4`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/8d40fd447e6cf0e0daa320df09066d3a0a2cde11) Thanks [@abeforgit](https://github.com/abeforgit)! - fix(fastboot): don't use domparser in fastboot context
+
 ## 1.3.1
 
 ### Patch Changes
