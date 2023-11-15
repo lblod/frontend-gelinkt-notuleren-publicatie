@@ -5,12 +5,16 @@ export default class BesluitenlijstComponent extends Component {
   @service store;
   @service fastboot;
 
-  domParser = new DOMParser();
   get rawHtmlContent() {
     return this.args.besluitenlijst.inhoud;
   }
   get treatedHtml() {
-    const newDom = this.domParser.parseFromString(
+    // DO NOT INITIALIZE THIS AHEAD OF TIME!
+    // DOMParser does not exist in a fastboot context, so it will crash
+    // using it here in the getter is fine cause the template doesn't call it when
+    // it's in fastboot mode
+    const domParser = new DOMParser();
+    const newDom = domParser.parseFromString(
       this.rawHtmlContent,
       'text/html'
     );
