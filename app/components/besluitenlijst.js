@@ -14,10 +14,7 @@ export default class BesluitenlijstComponent extends Component {
     // using it here in the getter is fine cause the template doesn't call it when
     // it's in fastboot mode
     const domParser = new DOMParser();
-    const newDom = domParser.parseFromString(
-      this.rawHtmlContent,
-      'text/html'
-    );
+    const newDom = domParser.parseFromString(this.rawHtmlContent, 'text/html');
     const decisions = newDom.body.querySelectorAll(
       '[typeof*="besluit#Besluit"]'
     );
