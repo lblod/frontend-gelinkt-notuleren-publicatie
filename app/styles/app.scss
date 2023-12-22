@@ -28,12 +28,14 @@
   display: none !important;
 }
 @import 'ember-appuniversum';
-@import "ember-rdfa-editor";
 
 // PROJECT
 @import 'project/publicatie';
 @import 'project/template';
 @import 'project/c-environment-banner';
+
+// Editor styling
+@import "editor-styling";
 
 .c-template-content--treatment {
   @include say-content();
