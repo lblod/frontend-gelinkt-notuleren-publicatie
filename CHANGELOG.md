@@ -1,5 +1,13 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.4.0
+
+### Minor Changes
+
+- [#117](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/117) [`9d8dc1b`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/9d8dc1b5f1c170838d2ad3109dd07de83e3f49a7) Thanks [@dkozickis](https://github.com/dkozickis)! - GN-4556: Add editor styling
+
+  Add styles from editor to match the styling in the editor/GN.
+
 ## 1.3.3
 
 ### Patch Changes
