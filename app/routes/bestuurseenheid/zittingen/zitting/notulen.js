@@ -15,19 +15,14 @@ export default class BestuurseenheidZittingenZittingNotulenRoute extends Route {
     });
     const notulen = await meeting.notulen;
 
-
-
     const fileMeta = await notulen.file;
-    console.log("fileMeta", fileMeta);
+    console.log('fileMeta', fileMeta);
     let notulenContent;
     if (fileMeta) {
-      notulenContent = await (
-        await fetch(fileMeta.downloadLink)
-      ).text();
-
+      notulenContent = await (await fetch(fileMeta.downloadLink)).text();
     } else {
       notulenContent = notulen.inhoud;
     }
-    return {meeting, notulen, notulenContent};
+    return { meeting, notulen, notulenContent };
   }
 }
