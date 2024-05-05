@@ -1,5 +1,15 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.5.0
+
+### Minor Changes
+
+- [#123](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/123) [`46428ce`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/46428cefe425ef8be0d461e1ec00fc8384b37057) Thanks [@abeforgit](https://github.com/abeforgit)! - Support notulen content being a file
+
+### Patch Changes
+
+- [#122](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/122) [`354d995`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/354d995069a24c84b446ef4dc936b318651a2a0b) Thanks [@madnificent](https://github.com/madnificent)! - Don't log object directly to avoid memory leaks
+
 ## 1.4.0
 
 ### Minor Changes
