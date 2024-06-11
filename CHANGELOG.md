@@ -1,5 +1,11 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.6.0
+
+### Minor Changes
+
+- [#124](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/124) [`2275388`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/2275388630a93346152e746894e06c3ef87c2544) Thanks [@elpoelma](https://github.com/elpoelma)! - Add styling in order to render hierarchical lists correctly
+
 ## 1.5.0
 
 ### Minor Changes
