@@ -212,6 +212,16 @@
     }
   }
 
+  ol > li[data-list-marker]::marker {
+    content: attr(data-list-marker);
+    font-variant-numeric: tabular-nums;
+  }
+
+  ol > *[data-content-container] > li[data-list-marker]::marker {
+    content: attr(data-list-marker);
+    font-variant-numeric: tabular-nums;
+  }
+
   ul.article-list {
     padding-left: 0;
 
