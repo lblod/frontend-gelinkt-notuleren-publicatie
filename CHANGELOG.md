@@ -1,5 +1,11 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.6.1
+
+### Patch Changes
+
+- [#128](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/128) [`62ace1e`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/62ace1e7b8a55da79aa4e85cbffa96a830278e82) Thanks [@elpoelma](https://github.com/elpoelma)! - Fix links on cookiestatement legal page
+
 ## 1.6.0
 
 ### Minor Changes
