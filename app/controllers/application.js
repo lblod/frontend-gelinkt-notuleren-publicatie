@@ -19,6 +19,7 @@ const PREFIXES = {
   ext: 'http://mu.semte.ch/vocabularies/ext/',
   besluittype: 'https://data.vlaanderen.be/id/concept/BesluitType/',
   lblodBesluit: 'http://lblod.data.gift/vocabularies/besluit/',
+  sign: 'http://mu.semte.ch/vocabularies/ext/signing/',
 };
 
 const VOCAB = 'http://data.vlaanderen.be/ns/besluit#';
