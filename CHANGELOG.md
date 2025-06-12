@@ -1,5 +1,15 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.6.2
+
+### Patch Changes
+
+- [#130](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/130) [`d09a35e`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/d09a35edb2ff8fa11b4ced4e266e10b2e4897daf) Thanks [@piemonkey](https://github.com/piemonkey)! - Add config option to pass an additional ember fastboot allowed host when running in docker
+
+- [#129](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/129) [`954fa8f`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/954fa8fc5af086c36f1d3d3ef5ea6c78e5fc15a6) Thanks [@elpoelma](https://github.com/elpoelma)! - Add missing `sign` (`http://mu.semte.ch/vocabularies/ext/signing/`) prefix
+
+- [#129](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/129) [`5ebb4aa`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/5ebb4aa44262596e8f77bfed305c5f4f995b37dc) Thanks [@elpoelma](https://github.com/elpoelma)! - Set `prefix` and `vocab` attributes using modifiers
+
 ## 1.6.1
 
 ### Patch Changes
