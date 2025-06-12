@@ -30,6 +30,9 @@ module.exports = function (environment) {
         'backend', //mu-semtech
         'identifier', //for some reason fastboot seems to set the host header
         //to identifier instead of backend on node 18 (we don't know if it's node related, but that's as far as we got)
+        ...('{{ADDITIONAL_FASTBOOT_HOST}}'.length !== 0
+          ? ['{{ADDITIONAL_FASTBOOT_HOST}}']
+          : []),
       ],
     },
     APP: {
