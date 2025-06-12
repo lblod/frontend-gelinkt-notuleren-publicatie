@@ -1,5 +1,11 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.6.3
+
+### Patch Changes
+
+- [`cc5543f`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/cc5543f942acc3ad97a7eccb9426b2554a583e0c) Thanks [@abeforgit](https://github.com/abeforgit)! - update ci to new woodpecker configs
+
 ## 1.6.2
 
 ### Patch Changes
