@@ -1,5 +1,11 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.6.4
+
+### Patch Changes
+
+- [#131](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/131) [`c17a261`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/c17a261c9c73a7618669f9560298db075a2c0721) Thanks [@abeforgit](https://github.com/abeforgit)! - Fix prefixes not rendering in fastboot
+
 ## 1.6.3
 
 ### Patch Changes
