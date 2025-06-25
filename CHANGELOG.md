@@ -1,5 +1,11 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.6.6
+
+### Patch Changes
+
+- [`0c7adcf`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/0c7adcf7170877c6078b64a35808d01a1a9815cf) Thanks [@abeforgit](https://github.com/abeforgit)! - pin fastboot docker server
+
 ## 1.6.5
 
 ### Patch Changes
