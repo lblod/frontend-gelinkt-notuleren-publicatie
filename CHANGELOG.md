@@ -1,5 +1,11 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.6.5
+
+### Patch Changes
+
+- [`3fdbe32`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/3fdbe3247181904a99e7848ee807348478b9a628) Thanks [@abeforgit](https://github.com/abeforgit)! - fix: add custom datetime publication value on publications
+
 ## 1.6.4
 
 ### Patch Changes
