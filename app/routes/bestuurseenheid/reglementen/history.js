@@ -34,6 +34,8 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
     const besluit = (
       await uittreksel.behandelingVanAgendapunt.get('besluiten')
     )[0];
+
+    const sortFilter = this.buildSort(params.sort);
     const prefixes = `
       PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
       PREFIX eli: <http://data.europa.eu/eli/ontology#>
@@ -87,7 +89,7 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
         ${prefixes}
         SELECT DISTINCT ?besluitId WHERE {
           ${queryContent}
-        } LIMIT ${pageSize * (page + 1)} OFFSET ${pageSize * page}
+        } ${sortFilter} LIMIT ${pageSize * (page + 1)} OFFSET ${pageSize * page}
     `;
 
     const queryResult = await executeQuery({
@@ -101,10 +103,13 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
     const history = await this.store.query('besluit', {
       'filter[:id:]': besluitIds.join(','),
     });
+    const historySorted = [...history].sort(
+      (a, b) => besluitIds.indexOf(b.id) - besluitIds.indexOf(a.id)
+    );
 
     const historyEnriched = await Promise.all(
-      history.map(async (besluit) => {
-        const bvap = await besluit.volgendUitBehandelingVanAgendapunt;
+      historySorted.map(async (historyBesluit) => {
+        const bvap = await historyBesluit.volgendUitBehandelingVanAgendapunt;
         const uittreksel = (
           await this.store.query('uittreksel', {
             'filter[behandeling-van-agendapunt][:id:]': bvap.id,
@@ -113,21 +118,30 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
         )[0];
         const publication = await uittreksel.publication;
         return {
-          besluit,
+          latest: besluit.uri === historyBesluit.uri,
+          original: !(await historyBesluit.linkedDecision),
+          besluit: historyBesluit,
           uittreksel,
           publication,
         };
       })
     );
-    historyEnriched[historyEnriched.length - 1].original = true;
-    historyEnriched[0].latest = true;
-
-    if (params.sort === '-publication-date') {
-      historyEnriched.reverse();
-    }
     historyEnriched.meta = generateMeta(params, count);
     return {
       history: historyEnriched,
     };
+  }
+  buildSort(sort) {
+    if (!sort) return '';
+    let sortParameter;
+    let sortDirection;
+    if (sort.charAt(0) === '-') {
+      sortParameter = sort.slice(1);
+      sortDirection = 'DESC';
+    } else {
+      sortParameter = sort;
+      sortDirection = 'ASC';
+    }
+    return `ORDER BY ${sortDirection}(?${sortParameter})`;
   }
 }
