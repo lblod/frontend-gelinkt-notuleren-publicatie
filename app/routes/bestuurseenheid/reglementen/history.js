@@ -94,7 +94,7 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
 
     const queryResult = await executeQuery({
       query,
-      endpoint: '/sparql',
+      endpoint: '/raw-sparql',
     });
     const besluitIds = queryResult.results.bindings.map(
       (binding) => binding.besluitId.value

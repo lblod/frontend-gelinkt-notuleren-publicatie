@@ -123,7 +123,7 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
 
     const queryResult = await executeQuery({
       query,
-      endpoint: '/sparql',
+      endpoint: '/raw-sparql',
     });
     const uittrekselIds = queryResult.results.bindings.map(
       (binding) => binding.uittrekselId.value
