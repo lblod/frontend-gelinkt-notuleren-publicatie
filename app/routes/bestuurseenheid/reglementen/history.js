@@ -1,0 +1,133 @@
+import Route from '@ember/routing/route';
+import { service } from '@ember/service';
+import {
+  executeQuery,
+  sparqlEscapeUri,
+  executeCountQuery,
+} from 'frontend-gelinkt-notuleren-publicatie/utils/sparql';
+import generateMeta from 'frontend-gelinkt-notuleren-publicatie/utils/generate-meta';
+
+export default class BestuurseenheidReglementenReglementRoute extends Route {
+  @service store;
+
+  queryParams = {
+    page: {
+      refreshModel: true,
+    },
+    pageSize: {
+      refreshModel: true,
+    },
+    sort: {
+      refreshModel: true,
+    },
+  };
+
+  async model(params) {
+    const uittrekselId = params.uittreksel_id;
+    const { page = 0, pageSize = 20 } = params;
+
+    const uittreksel = await this.store.findRecord('uittreksel', uittrekselId, {
+      include:
+        'publication,behandeling-van-agendapunt,behandeling-van-agendapunt.besluiten',
+    });
+
+    const besluit = (
+      await uittreksel.behandelingVanAgendapunt.get('besluiten')
+    )[0];
+    const prefixes = `
+      PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
+      PREFIX eli: <http://data.europa.eu/eli/ontology#>
+      PREFIX prov: <http://www.w3.org/ns/prov#>
+      PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+      PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+      PREFIX dct: <http://purl.org/dc/terms/>
+    `;
+
+    const queryContent = `
+      ?uri a besluit:Besluit;
+            a ?besluitType;
+            eli:title ?title;
+            mu:uuid ?besluitId.
+          ?bvap prov:generated ?uri.
+          ?uittreksel ext:uittrekselBvap ?bvap;
+            prov:wasDerivedFrom ?publishedResource.
+          ?publishedResource dct:created ?publicationdate.
+          {
+            ?uri (ext:linkedDecision)+ ?originalBesluit.
+          }
+            UNION
+          {
+              ?originalBesluit mu:uuid ?besluitId.
+          }
+          {
+            SELECT DISTINCT ?originalBesluit WHERE {
+              ?originalBesluit a besluit:Besluit;
+                a ?besluitTypeOriginal.
+              ${sparqlEscapeUri(
+                besluit.uri
+              )} (ext:linkedDecision)+ ?originalBesluit
+              FILTER NOT EXISTS {
+                ?originalBesluit ext:linkedDecision ?linkedDecision.
+              }
+          }
+        }
+    `;
+
+    const countQuery = `
+      ${prefixes}
+       SELECT (count( DISTINCT ?besluitId) as ?count) WHERE {
+        ${queryContent}
+      }
+    `;
+    const count = await executeCountQuery({
+      query: countQuery,
+      endpoint: '/raw-sparql',
+    });
+    const query = `
+        ${prefixes}
+        SELECT DISTINCT ?besluitId WHERE {
+          ${queryContent}
+        } LIMIT ${pageSize * (page + 1)} OFFSET ${pageSize * page}
+    `;
+
+    const queryResult = await executeQuery({
+      query,
+      endpoint: '/sparql',
+    });
+    const besluitIds = queryResult.results.bindings.map(
+      (binding) => binding.besluitId.value
+    );
+
+    const history = await this.store.query('besluit', {
+      'filter[:id:]': besluitIds.join(','),
+    });
+
+    const historyEnriched = await Promise.all(
+      history.map(async (besluit) => {
+        const bvap = await besluit.volgendUitBehandelingVanAgendapunt;
+        const uittreksel = (
+          await this.store.query('uittreksel', {
+            'filter[behandeling-van-agendapunt][:id:]': bvap.id,
+            include: 'publication',
+          })
+        )[0];
+        const publication = await uittreksel.publication;
+        return {
+          besluit,
+          uittreksel,
+          publication,
+        };
+      })
+    );
+    historyEnriched[historyEnriched.length - 1].original = true;
+    historyEnriched[0].latest = true;
+
+    if (params.sort === '-publication-date') {
+      historyEnriched.reverse();
+    }
+    historyEnriched.meta = generateMeta(params, count);
+    return {
+      history: historyEnriched,
+    };
+  }
+}

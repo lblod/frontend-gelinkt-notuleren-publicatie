@@ -5,82 +5,68 @@
 }}
 <div class='au-o-region-large'>
   <div class='au-o-layout'>
-    <AuHeading @level='1' @skin='2' class='au-u-margin-bottom'>Reglementen van
-      {{@model.bestuurseenheid.classificatie.label}}
-      {{@model.bestuurseenheid.naam}}</AuHeading>
-    {{#if this.isLoadingModel}}
-      <AuLoader />
-    {{else}}
-      {{#if this.extracts.length}}
-        <ul class='au-c-list'>
-          {{#each this.extracts as |uittreksel|}}
-            <li class='au-c-list__item'>
-              <UittrekselOverviewItem
-                @uittreksel={{uittreksel}}
-                @routePath='bestuurseenheid.reglementen.reglement'
+    <AuDataTable
+      @content={{@model.uittreksels}}
+      @isLoading={{this.isLoadingModel}}
+      @noDataMessage="Er werden nog geen publicaties voor"
+      @sort={{this.sort}}
+      @page={{this.page}}
+      @size={{this.pageSize}}
+      as |table|
+    >
+      <table.menu as |menu|>
+        <menu.general>
+          <AuToolbar class='au-o-box' @size='large' as |Group|>
+            <Group>
+              <AuHeading @skin='2'>
+                Reglementen
+              </AuHeading>
+            </Group>
+            <Group class='au-c-toolbar__group--center au-u-hide-on-print'>
+              <AuInput
+                @icon='search'
+                @iconAlignment='right'
+                value={{this.searchValue}}
+                placeholder="Zoekterm"
+                {{on 'input' (perform this.updateFilter)}}
               />
-            </li>
-          {{/each}}
-        </ul>
-        {{#let
-          (pagination count=this.count pageSize=this.pageSize page=this.page)
-          as |pg|
-        }}
-          <div class='au-c-pagination au-u-margin-top'>
-            <p>
-              <span class='au-u-hidden-visually'>Uittreksel</span>
-              <strong>
-                {{pg.pageStart}}
-                -
-                {{pg.pageEnd}}
 
-              </strong>
-              van
-              {{pg.count}}
-            </p>
-            <ul class='au-c-pagination__list'>
-              {{#if pg.hasPreviousPage}}
-                <li class='au-c-pagination__list-item'>
-                  {{! The route in the following AuLink could be removed, if supported again. }}
-                  <AuLink
-                    property='lblodBesluit:linkToPublication'
-                    @route='bestuurseenheid.reglementen'
-                    @query={{hash page=pg.previousPage}}
-                    @icon='nav-left'
-                    @iconAlignment='left'
-                  >Vorige pagina
-                  </AuLink>
-                </li>
-              {{/if}}
-              {{#if pg.hasNextPage}}
-                <li class='au-c-pagination__list-item'>
-                  {{! The route in the following AuLink could be removed, if supported again. }}
-                  <AuLink
-                    property='lblodBesluit:linkToPublication'
-                    @route='bestuurseenheid.reglementen'
-                    @query={{hash page=pg.nextPage}}
-                    @icon='nav-right'
-                    @iconAlignment='right'
-                  >Volgende pagina
-                  </AuLink>
-                </li>
-              {{/if}}
-            </ul>
-          </div>
-        {{/let}}
-      {{else}}
-        <AuContent>
-          <p>Er werden nog geen publicaties voor
-            {{this.bestuurseenheid.classificatie.label}}
-            {{this.bestuurseenheid.naam}}
-            gevonden</p>
-          <p>Kom later nog eens terug, of
-            <AuLink @route='index'>
-              zoek naar publicaties van een ander bestuur.
-            </AuLink>
-          </p>
-        </AuContent>
-      {{/if}}
-    {{/if}}
+            </Group>
+          </AuToolbar>
+        </menu.general>
+      </table.menu>
+      <table.content as |c|>
+        <c.header>
+          <AuDataTableThSortable
+            @field='title'
+            @currentSorting={{this.sort}}
+            @label="Reglement"
+          />
+          <AuDataTableThSortable
+            @field='publicationdate'
+            @currentSorting={{this.sort}}
+            @label="Publicatiedatum"
+          />
+          <th><span
+              class='au-c-data-table__header-title au-c-data-table__header-title--sortable'
+            ></span></th>
+        </c.header>
+        <c.body as |uittreksel|>
+            <td>
+              <AuLink @route='bestuurseenheid.reglementen.reglement' @model={{uittreksel.id}} property="lblodBesluit:linkToPublication" @skin="link-secondary">
+               {{uittreksel.besluit.titel}}
+              </AuLink>
+            </td>
+            <td>
+               {{format-date uittreksel.publication.createdOn 'dd-MM-yyyy HH:mm'}}
+            </td>
+            <td>
+              <AuLink @route='bestuurseenheid.reglementen.history' @model={{uittreksel.id}} @skin="link-secondary">
+               Bekijk historiek
+              </AuLink>
+            </td>
+        </c.body>
+      </table.content>
+    </AuDataTable>
   </div>
 </div>
