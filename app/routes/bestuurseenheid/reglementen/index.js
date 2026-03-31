@@ -6,6 +6,7 @@ import {
   executeQuery,
   sparqlEscapeUri,
   executeCountQuery,
+  sparqlEscapeString,
 } from 'frontend-gelinkt-notuleren-publicatie/utils/sparql';
 import generateMeta from 'frontend-gelinkt-notuleren-publicatie/utils/generate-meta';
 
@@ -34,6 +35,9 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
     sort: {
       refreshModel: true,
     },
+    searchValue: {
+      refreshModel: true,
+    },
   };
 
   @action
@@ -50,8 +54,14 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
   async model(params) {
     const bestuurseenheid = this.modelFor('bestuurseenheid');
 
-    const { page = 0, pageSize = 20 } = params;
+    const { page = 0, pageSize = 20, searchValue } = params;
     const sortFilter = this.buildSort(params.sort);
+    let searchFilter = '';
+    if (searchValue) {
+      searchFilter = `FILTER(CONTAINS(LCASE(?title), ${sparqlEscapeString(
+        searchValue.toLowerCase()
+      )}))`;
+    }
     const prefixes = `
       PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
       PREFIX eli: <http://data.europa.eu/eli/ontology#>
@@ -78,6 +88,7 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
         VALUES ?besluitType { ${DECISION_TYPES_TO_LINK.map(
           sparqlEscapeUri
         ).join(' ')}}
+        ${searchFilter}
         FILTER NOT EXISTS {
           ?linkedBesluit ext:linkedDecision ?uri.
         }
