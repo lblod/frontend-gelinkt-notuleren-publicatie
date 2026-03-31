@@ -64,10 +64,18 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
           {
             SELECT DISTINCT ?originalBesluit WHERE {
               ?originalBesluit a besluit:Besluit;
+                mu:uuid ?originalBesluitId;
                 a ?besluitTypeOriginal.
-              ${sparqlEscapeUri(
-                besluit.uri
-              )} (ext:linkedDecision)+ ?originalBesluit
+              {
+                ${sparqlEscapeUri(
+                  besluit.uri
+                )} (ext:linkedDecision)+ ?originalBesluit
+              }
+                UNION
+              {
+
+                ${sparqlEscapeUri(besluit.uri)} mu:uuid ?originalBesluitId.
+              }
               FILTER NOT EXISTS {
                 ?originalBesluit ext:linkedDecision ?linkedDecision.
               }
