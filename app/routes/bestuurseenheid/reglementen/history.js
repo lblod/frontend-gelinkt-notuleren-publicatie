@@ -102,6 +102,8 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
 
     const history = await this.store.query('besluit', {
       'filter[:id:]': besluitIds.join(','),
+      include:
+        'linked-decision,volgend-uit-behandeling-van-agendapunt.uittreksel.publication',
     });
     const historySorted = [...history].sort(
       (a, b) => besluitIds.indexOf(b.id) - besluitIds.indexOf(a.id)
@@ -110,12 +112,7 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
     const historyEnriched = await Promise.all(
       historySorted.map(async (historyBesluit) => {
         const bvap = await historyBesluit.volgendUitBehandelingVanAgendapunt;
-        const uittreksel = (
-          await this.store.query('uittreksel', {
-            'filter[behandeling-van-agendapunt][:id:]': bvap.id,
-            include: 'publication',
-          })
-        )[0];
+        const uittreksel = await bvap.uittreksel;
         const publication = await uittreksel.publication;
         return {
           latest: besluit.uri === historyBesluit.uri,

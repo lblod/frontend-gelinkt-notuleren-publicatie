@@ -129,7 +129,7 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
       (binding) => binding.uittrekselId.value
     );
     const uittreksels = await this.store.query('uittreksel', {
-      include: 'behandeling-van-agendapunt.besluiten',
+      include: 'behandeling-van-agendapunt.besluiten,publication',
       'filter[:id:]': uittrekselIds.join(','),
     });
     const uittrekselsSync = await Promise.all(
