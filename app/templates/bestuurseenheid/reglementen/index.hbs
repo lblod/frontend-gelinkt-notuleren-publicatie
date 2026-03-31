@@ -3,70 +3,68 @@
     @model.bestuurseenheid.classificatie.label ' ' @model.bestuurseenheid.naam
   )
 }}
-<div class='au-o-region-large'>
-  <div class='au-o-layout'>
-    <AuDataTable
-      @content={{@model.uittreksels}}
-      @isLoading={{this.isLoadingModel}}
-      @noDataMessage="Er werden nog geen publicaties voor"
-      @sort={{this.sort}}
-      @page={{this.page}}
-      @size={{this.pageSize}}
-      as |table|
-    >
-      <table.menu as |menu|>
-        <menu.general>
-          <AuToolbar class='au-o-box' @size='large' as |Group|>
-            <Group>
-              <AuHeading @skin='2'>
-                Reglementen
-              </AuHeading>
-            </Group>
-            <Group class='au-c-toolbar__group--center au-u-hide-on-print'>
-              <AuInput
-                @icon='search'
-                @iconAlignment='right'
-                value={{this.searchValue}}
-                placeholder="Zoekterm"
-                {{on 'input' (perform this.updateFilter)}}
-              />
+<div class="flex-one">
+  <AuDataTable
+    @content={{@model.uittreksels}}
+    @isLoading={{this.isLoadingModel}}
+    @noDataMessage="Er werden nog geen publicaties voor"
+    @sort={{this.sort}}
+    @page={{this.page}}
+    @size={{this.pageSize}}
+    as |table|
+  >
+    <table.menu as |menu|>
+      <menu.general>
+        <AuToolbar class='au-o-box' @size='large' as |Group|>
+          <Group>
+            <AuHeading @skin='2'>
+              Reglementen
+            </AuHeading>
+          </Group>
+          <Group class='au-c-toolbar__group--center au-u-hide-on-print'>
+            <AuInput
+              @icon='search'
+              @iconAlignment='right'
+              value={{this.searchValue}}
+              placeholder="Zoekterm"
+              {{on 'input' (perform this.updateFilter)}}
+            />
 
-            </Group>
-          </AuToolbar>
-        </menu.general>
-      </table.menu>
-      <table.content as |c|>
-        <c.header>
-          <AuDataTableThSortable
-            @field='title'
-            @currentSorting={{this.sort}}
-            @label="Reglement"
-          />
-          <AuDataTableThSortable
-            @field='publicationdate'
-            @currentSorting={{this.sort}}
-            @label="Publicatiedatum"
-          />
-          <th><span
-              class='au-c-data-table__header-title au-c-data-table__header-title--sortable'
-            ></span></th>
-        </c.header>
-        <c.body as |uittreksel|>
-            <td>
-              <AuLink @route='bestuurseenheid.reglementen.reglement' @model={{uittreksel.id}} property="lblodBesluit:linkToPublication" @skin="link-secondary">
-               {{uittreksel.besluit.titel}}
-              </AuLink>
-            </td>
-            <td>
-               {{format-date uittreksel.publication.createdOn 'dd-MM-yyyy HH:mm'}}
-            </td>
-            <td>
-              <AuLink @route='bestuurseenheid.reglementen.history' @model={{uittreksel.id}} @skin="link-secondary">
-               Bekijk historiek
-              </AuLink>
-            </td>
-        </c.body>
-      </table.content>
-    </AuDataTable>
-  </div>
+          </Group>
+        </AuToolbar>
+      </menu.general>
+    </table.menu>
+    <table.content as |c|>
+      <c.header>
+        <AuDataTableThSortable
+          @field='title'
+          @currentSorting={{this.sort}}
+          @label="Reglement"
+        />
+        <AuDataTableThSortable
+          @field='publicationdate'
+          @currentSorting={{this.sort}}
+          @label="Publicatiedatum"
+        />
+        <th><span
+            class='au-c-data-table__header-title au-c-data-table__header-title--sortable'
+          ></span></th>
+      </c.header>
+      <c.body as |uittreksel|>
+          <td>
+            <AuLink @route='bestuurseenheid.reglementen.reglement' @model={{uittreksel.id}} property="lblodBesluit:linkToPublication" @skin="link-secondary">
+              {{uittreksel.besluit.titel}}
+            </AuLink>
+          </td>
+          <td>
+              {{format-date uittreksel.publication.createdOn 'dd-MM-yyyy HH:mm'}}
+          </td>
+          <td>
+            <AuLink @route='bestuurseenheid.reglementen.history' @model={{uittreksel.id}} @skin="link-secondary">
+              Bekijk historiek
+            </AuLink>
+          </td>
+      </c.body>
+    </table.content>
+  </AuDataTable>
 </div>

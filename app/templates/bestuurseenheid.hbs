@@ -27,8 +27,10 @@
   <m.sidebar>
     <Sidebar />
   </m.sidebar>
-  <m.content @scroll={{true}}>
-    {{outlet}}
-    <Footer/>
+  <m.content>
+    <div class="au-u-flex au-u-flex--column au-u-height-full">
+      {{outlet}}
+      <Footer/>
+    </div>
   </m.content>
 </AuMainContainer>

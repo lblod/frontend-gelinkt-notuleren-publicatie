@@ -192,3 +192,11 @@ div[property="besluit:heeftVoorstander"] {
 .u-hidden {
   @extend .au-u-hidden-visually;
 }
+
+.au-u-height-full {
+  height: 100% !important;
+}
+
+.flex-one {
+  flex: 1
+}
