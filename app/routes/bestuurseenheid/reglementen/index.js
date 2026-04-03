@@ -19,6 +19,33 @@ const DECISION_TYPES_TO_LINK = [
   BESLUIT_TYPES['Oprichting of deelname EVA'],
   BESLUIT_TYPES['Oprichting IGS'],
   BESLUIT_TYPES['Oprichting districtsbestuur'],
+  BESLUIT_TYPES['Retributiereglement'],
+  BESLUIT_TYPES['Personeelsreglement'],
+  BESLUIT_TYPES[
+    'Aanvullend reglement op het wegverkeer m.b.t. gemeentewegen in speciale beschermingszones'
+  ],
+  BESLUIT_TYPES['Gebruikersreglement'],
+  BESLUIT_TYPES['Belastingreglement'],
+  BESLUIT_TYPES['Contantbelasting'],
+  BESLUIT_TYPES['Aanvullende belasting of opcentiem'],
+  BESLUIT_TYPES['Kohierbelasting'],
+  BESLUIT_TYPES['Huishoudelijk reglement'],
+  BESLUIT_TYPES['Deontologische Code'],
+  BESLUIT_TYPES['Reglement Onderwijs'],
+  BESLUIT_TYPES['Subsidie, premie, erkenning'],
+  BESLUIT_TYPES['Tijdelijke politieverordening (op het wegverkeer)'],
+  BESLUIT_TYPES[
+    'Aanvullend reglement op het wegverkeer m.b.t. gemeentewegen in havengebied'
+  ],
+  BESLUIT_TYPES['Politiereglement'],
+  BESLUIT_TYPES[
+    'Aanvullend reglement op het wegverkeer enkel m.b.t. gemeentewegen (niet in havengebied of speciale beschermingszones)'
+  ],
+  BESLUIT_TYPES['Delegatiereglement'],
+  BESLUIT_TYPES['Andere'],
+  BESLUIT_TYPES[
+    'Aanvullend reglement op het wegverkeer m.b.t. één of meerdere gewestwegen'
+  ],
 ];
 
 export default class BestuurseenheidReglementenIndexRoute extends Route {
@@ -84,7 +111,7 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
         ?adminUnit <http://data.vlaanderen.be/ns/mandaat#isTijdspecialisatieVan> ?adminUnitGeneral.
         ?adminUnitGeneral besluit:bestuurt ${sparqlEscapeUri(
           bestuurseenheid.uri
-        )}
+        )}.
         VALUES ?besluitType { ${DECISION_TYPES_TO_LINK.map(
           sparqlEscapeUri
         ).join(' ')}}
@@ -108,9 +135,7 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
             FILTER NOT EXISTS {
               ?originalBesluit ext:linkedDecision ?linkedDecision.
             }
-            VALUES ?besluitTypeOriginal { ${DECISION_TYPES_TO_LINK.map(
-              sparqlEscapeUri
-            ).join(' ')}}
+
           }
         }
     `;
@@ -125,40 +150,48 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
       query: countQuery,
       endpoint: '/raw-sparql',
     });
-    const query = `
-        ${prefixes}
-        SELECT DISTINCT ?uittrekselId WHERE {
-          ${queryContent}
-        } ${sortFilter} LIMIT ${pageSize * (page + 1)} OFFSET ${pageSize * page}
-    `;
+    let uittrekselsSync;
+    if (count !== 0) {
+      const query = `
+          ${prefixes}
+          SELECT DISTINCT ?uittrekselId WHERE {
+            ${queryContent}
+          } ${sortFilter} LIMIT ${pageSize * (page + 1)} OFFSET ${
+        pageSize * page
+      }
+      `;
 
-    const queryResult = await executeQuery({
-      query,
-      endpoint: '/raw-sparql',
-    });
-    const uittrekselIds = queryResult.results.bindings.map(
-      (binding) => binding.uittrekselId.value
-    );
-    const uittreksels = await this.store.query('uittreksel', {
-      include: 'behandeling-van-agendapunt.besluiten,publication',
-      'filter[:id:]': uittrekselIds.join(','),
-    });
-    const uittrekselsSync = await Promise.all(
-      uittreksels.map(async (uittreksel) => {
-        const bvap = await uittreksel.behandelingVanAgendapunt;
-        const besluit = (await bvap.besluiten)[0];
-        const publication = await uittreksel.publication;
-        return {
-          id: uittreksel.id,
-          publication: publication,
-          bvap,
-          besluit,
-        };
-      })
-    );
-    uittrekselsSync.sort(
-      (a, b) => uittrekselIds.indexOf(b.id) - uittrekselIds.indexOf(a.id)
-    );
+      const queryResult = await executeQuery({
+        query,
+        endpoint: '/raw-sparql',
+      });
+      const uittrekselIds = queryResult.results.bindings.map(
+        (binding) => binding.uittrekselId.value
+      );
+      const uittreksels = await this.store.query('uittreksel', {
+        include: 'behandeling-van-agendapunt.besluiten,publication',
+        'filter[:id:]': uittrekselIds.join(','),
+      });
+      uittrekselsSync = await Promise.all(
+        uittreksels.map(async (uittreksel) => {
+          const bvap = await uittreksel.behandelingVanAgendapunt;
+          const besluit = (await bvap.besluiten)[0];
+          const publication = await uittreksel.publication;
+          return {
+            id: uittreksel.id,
+            publication: publication,
+            bvap,
+            besluit,
+          };
+        })
+      );
+      uittrekselsSync.sort(
+        (a, b) => uittrekselIds.indexOf(b.id) - uittrekselIds.indexOf(a.id)
+      );
+    } else {
+      uittrekselsSync = [];
+    }
+
     uittrekselsSync.meta = generateMeta(params, count);
     return { bestuurseenheid, uittreksels: uittrekselsSync };
   }
