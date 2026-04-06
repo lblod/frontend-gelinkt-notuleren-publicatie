@@ -96,8 +96,15 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
       PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
       PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
       PREFIX dct: <http://purl.org/dc/terms/>
+      PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
     `;
     const queryContent = `
+        ?adminUnitGeneral besluit:bestuurt ${sparqlEscapeUri(
+          bestuurseenheid.uri
+        )}.
+        VALUES ?besluitType { ${DECISION_TYPES_TO_LINK.map(
+          sparqlEscapeUri
+        ).join(' ')}}
        ?uri a besluit:Besluit;
           a ?besluitType;
           eli:title ?title.
@@ -108,14 +115,7 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
         ?publishedResource dct:created ?publicationdate.
         ?zitting ext:uittreksel ?uittreksel;
           besluit:isGehoudenDoor ?adminUnit.
-        ?adminUnit <http://data.vlaanderen.be/ns/mandaat#isTijdspecialisatieVan> ?adminUnitGeneral.
-        ?adminUnitGeneral besluit:bestuurt ${sparqlEscapeUri(
-          bestuurseenheid.uri
-        )}.
-        VALUES ?besluitType { ${DECISION_TYPES_TO_LINK.map(
-          sparqlEscapeUri
-        ).join(' ')}}
-        ${searchFilter}
+        ?adminUnit mandaat:isTijdspecialisatieVan ?adminUnitGeneral.
         FILTER NOT EXISTS {
           ?linkedBesluit ext:linkedDecision ?uri.
         }
@@ -128,6 +128,7 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
              ?uri ext:linkedDecision ?childDecision.
           }
         }
+        ${searchFilter}
         {
           SELECT DISTINCT ?originalBesluit WHERE {
             ?originalBesluit a besluit:Besluit;
@@ -138,6 +139,7 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
 
           }
         }
+
     `;
 
     const countQuery = `
