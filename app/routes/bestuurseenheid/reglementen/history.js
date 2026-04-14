@@ -123,7 +123,7 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
         const uittreksel = await bvap.uittreksel;
         const publication = await uittreksel.publication;
         return {
-          latest: besluit.uri === historyBesluit.uri,
+          latest: !(await historyBesluit.isLinkedDecisionOf),
           original: !(await historyBesluit.linkedDecision),
           besluit: historyBesluit,
           uittreksel,

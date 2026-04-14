@@ -17,9 +17,14 @@ export default class BesluitModel extends Model {
   volgendUitBehandelingVanAgendapunt;
   @belongsTo('besluit', {
     async: true,
-    inverse: null,
+    inverse: 'isLinkedDecisionOf',
   })
   linkedDecision;
+  @belongsTo('besluit', {
+    async: true,
+    inverse: 'linkedDecision',
+  })
+  isLinkedDecisionOf;
   @hasMany('published-resource', { async: true, inverse: null }) publications;
 
   rdfaBindings = {

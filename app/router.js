@@ -15,7 +15,9 @@ Router.map(function () {
     function () {
       this.route('reglementen', function () {
         this.route('reglement', { path: '/:uittreksel_id' });
-        this.route('history', { path: '/:uittreksel_id/history' });
+        this.route('history', { path: '/:uittreksel_id/history' }, function () {
+          this.route('history-reglement', { path: '/:uittreksel_id' });
+        });
       });
       this.route('zittingen', function () {
         this.route('zitting', { path: '/:zitting_id' }, function () {
