@@ -6,6 +6,7 @@ import {
   executeCountQuery,
 } from 'frontend-gelinkt-notuleren-publicatie/utils/sparql';
 import generateMeta from 'frontend-gelinkt-notuleren-publicatie/utils/generate-meta';
+import buildSort from 'frontend-gelinkt-notuleren-publicatie/utils/build-sort';
 
 export default class BestuurseenheidReglementenReglementRoute extends Route {
   @service store;
@@ -35,7 +36,7 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
       await uittreksel.behandelingVanAgendapunt.get('besluiten')
     )[0];
 
-    const sortFilter = this.buildSort(params.sort);
+    const sortFilter = buildSort(params.sort);
     const prefixes = `
       PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
       PREFIX eli: <http://data.europa.eu/eli/ontology#>
@@ -135,18 +136,5 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
     return {
       history: historyEnriched,
     };
-  }
-  buildSort(sort) {
-    if (!sort) return '';
-    let sortParameter;
-    let sortDirection;
-    if (sort.charAt(0) === '-') {
-      sortParameter = sort.slice(1);
-      sortDirection = 'DESC';
-    } else {
-      sortParameter = sort;
-      sortDirection = 'ASC';
-    }
-    return `ORDER BY ${sortDirection}(?${sortParameter})`;
   }
 }

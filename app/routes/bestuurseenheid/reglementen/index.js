@@ -9,6 +9,7 @@ import {
   sparqlEscapeString,
 } from 'frontend-gelinkt-notuleren-publicatie/utils/sparql';
 import generateMeta from 'frontend-gelinkt-notuleren-publicatie/utils/generate-meta';
+import buildSort from 'frontend-gelinkt-notuleren-publicatie/utils/build-sort';
 
 const DECISION_TYPES_TO_LINK = [
   BESLUIT_TYPES['Reglementen en verordeningen'],
@@ -82,7 +83,7 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
     const bestuurseenheid = this.modelFor('bestuurseenheid');
 
     const { page = 0, pageSize = 20, searchValue } = params;
-    const sortFilter = this.buildSort(params.sort);
+    const sortFilter = buildSort(params.sort);
     let searchFilter = '';
     if (searchValue) {
       searchFilter = `FILTER(CONTAINS(LCASE(?title), ${sparqlEscapeString(
@@ -196,18 +197,5 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
 
     uittrekselsSync.meta = generateMeta(params, count);
     return { bestuurseenheid, uittreksels: uittrekselsSync };
-  }
-  buildSort(sort) {
-    if (!sort) return '';
-    let sortParameter;
-    let sortDirection;
-    if (sort.charAt(0) === '-') {
-      sortParameter = sort.slice(1);
-      sortDirection = 'DESC';
-    } else {
-      sortParameter = sort;
-      sortDirection = 'ASC';
-    }
-    return `ORDER BY ${sortDirection}(?${sortParameter})`;
   }
 }
