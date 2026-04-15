@@ -124,7 +124,6 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
         const uittreksel = await bvap.uittreksel;
         const publication = await uittreksel.publication;
         return {
-          latest: !(await historyBesluit.isLinkedDecisionOf),
           original: !(await historyBesluit.linkedDecision),
           besluit: historyBesluit,
           uittreksel,
@@ -132,6 +131,19 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
         };
       })
     );
+    let latestHistoryEntry = historyEnriched[0];
+
+    for (let historyEntry of historyEnriched) {
+      if (
+        historyEntry.publication.createdOn >
+        latestHistoryEntry.publication.createdOn
+      ) {
+        latestHistoryEntry = historyEntry;
+      }
+    }
+
+    latestHistoryEntry.latest = true;
+
     historyEnriched.meta = generateMeta(params, count);
     return {
       history: historyEnriched,

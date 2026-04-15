@@ -20,7 +20,7 @@ export default class BesluitModel extends Model {
     inverse: 'isLinkedDecisionOf',
   })
   linkedDecision;
-  @belongsTo('besluit', {
+  @hasMany('besluit', {
     async: true,
     inverse: 'linkedDecision',
   })
