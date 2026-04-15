@@ -46,6 +46,8 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
       PREFIX dct: <http://purl.org/dc/terms/>
     `;
 
+    // The aim of this query is to get all the besluits linked to the original besluit of the requested resource.
+    // In order to do this we first make a subquery for the original besluit, and then we match that the besluit is indeed linked to it
     const queryContent = `
       ?uri a besluit:Besluit;
             a ?besluitType;

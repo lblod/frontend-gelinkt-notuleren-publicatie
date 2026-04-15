@@ -99,6 +99,10 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
       PREFIX dct: <http://purl.org/dc/terms/>
       PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
     `;
+
+    //The aim of this query is to get all the publication that are either the latest version of a tree of besluits or a single besluit with no linked versions
+    // In order to do this, we use a subquery getting every original besluit and their latest publication date so we can match that when we try to get all the
+    // leafs of the besluit tree of that original besluit.
     const queryContent = `
         ?adminUnitGeneral besluit:bestuurt ${sparqlEscapeUri(
           bestuurseenheid.uri
