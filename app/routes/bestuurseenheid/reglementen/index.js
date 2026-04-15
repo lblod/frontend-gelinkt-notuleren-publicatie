@@ -121,25 +121,34 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
           ?linkedBesluit ext:linkedDecision ?uri.
         }
         {
-          ?uri (ext:linkedDecision)+ ?originalBesluit.
-        }
-          UNION
+    		  ?uri (ext:linkedDecision)+ ?originalBesluit.
+          {
+            SELECT DISTINCT ?originalBesluit (MAX(?publicationdate) AS ?maxDate) WHERE {
+              ?originalBesluit a besluit:Besluit;
+                a ?besluitTypeOriginal.
+              FILTER NOT EXISTS {
+                ?originalBesluit ext:linkedDecision ?linkedDecision.
+              }
+              ?uri (ext:linkedDecision)+ ?originalBesluit.
+              ?bvap prov:generated ?uri.
+              ?uittreksel ext:uittrekselBvap ?bvap;
+                mu:uuid ?uittrekselId;
+                prov:wasDerivedFrom ?publishedResource.
+              ?publishedResource dct:created ?publicationdate.
+              } GROUP BY (?originalBesluit)
+            }
+  		  } UNION
         {
           FILTER NOT EXISTS {
-             ?uri ext:linkedDecision ?childDecision.
+            ?uri ext:linkedDecision ?linkedDecision.
           }
+          BIND(?publicationdate AS ?maxDate)
         }
-        ${searchFilter}
-        {
-          SELECT DISTINCT ?originalBesluit WHERE {
-            ?originalBesluit a besluit:Besluit;
-              a ?besluitTypeOriginal.
-            FILTER NOT EXISTS {
-              ?originalBesluit ext:linkedDecision ?linkedDecision.
-            }
 
-          }
-        }
+        FILTER(!bound(?maxDate) || ?maxDate = ?publicationdate)
+
+
+        ${searchFilter}
 
     `;
 
