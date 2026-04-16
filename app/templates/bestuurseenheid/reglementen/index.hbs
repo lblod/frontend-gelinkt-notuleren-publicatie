@@ -3,7 +3,7 @@
     @model.bestuurseenheid.classificatie.label ' ' @model.bestuurseenheid.naam
   )
 }}
-<div class="flex-one overflow-auto">
+<div class="flex-one">
   <AuDataTable
     @content={{@model.uittreksels}}
     @isLoading={{this.isLoadingModel}}
