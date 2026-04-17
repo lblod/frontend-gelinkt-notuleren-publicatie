@@ -20,6 +20,8 @@ export default class BehandelingVanAgendapuntModel extends Model {
   @belongsTo('agendapunt', { inverse: 'behandeling', async: true }) onderwerp;
   @belongsTo('zitting', { async: true, inverse: null }) zitting;
   @belongsTo('published-resource', { async: true, inverse: null }) publication;
+  @belongsTo('uittreksel', { async: true, inverse: 'behandelingVanAgendapunt' })
+  uittreksel;
 
   @hasMany('besluit', {
     async: true,

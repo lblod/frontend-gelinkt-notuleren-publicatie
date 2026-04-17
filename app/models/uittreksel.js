@@ -4,7 +4,10 @@ export default class UittrekselModel extends Model {
   @attr uri;
   @attr inhoud;
 
-  @belongsTo('behandeling-van-agendapunt', { async: true, inverse: null })
+  @belongsTo('behandeling-van-agendapunt', {
+    async: true,
+    inverse: 'uittreksel',
+  })
   behandelingVanAgendapunt;
   @belongsTo('published-resource', { async: true, inverse: null }) publication;
 
