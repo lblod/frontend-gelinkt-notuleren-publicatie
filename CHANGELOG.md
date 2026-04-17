@@ -1,5 +1,11 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.7.0
+
+### Minor Changes
+
+- [#132](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/132) [`0472fb9`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/0472fb9c43e78b70a0402c22946b823d5e849d43) Thanks [@lagartiverde](https://github.com/lagartiverde)! - New reglementen view
+
 ## 1.6.6
 
 ### Patch Changes
