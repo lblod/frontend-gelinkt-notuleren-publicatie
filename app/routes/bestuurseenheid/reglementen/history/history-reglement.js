@@ -21,11 +21,11 @@ export default class BestuurseenheidReglementenHistoryReglementRoute extends Rou
     const publication = await uittreksel.publication;
     const bvap = await uittreksel.behandelingVanAgendapunt;
     const besluit = (await bvap.besluiten)[0];
-    const isLinkedDecisionOf = await besluit.isLinkedDecisionOf;
+    const isLatest = latestVersion.besluit.id === besluit.id;
     return {
       uittreksel,
       publication,
-      isLatest: !isLinkedDecisionOf,
+      isLatest: isLatest,
       latestVersionId: latestVersion.uittreksel.id,
     };
   }
