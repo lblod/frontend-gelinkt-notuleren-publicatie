@@ -122,18 +122,18 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
           besluit:isGehoudenDoor ?adminUnit.
         ?adminUnit mandaat:isTijdspecialisatieVan ?adminUnitGeneral.
         FILTER NOT EXISTS {
-          ?linkedBesluit ext:linkedDecision ?uri.
+          ?linkedBesluit eli:consolidates ?uri.
         }
         {
-    		  ?uri (ext:linkedDecision)+ ?originalBesluit.
+    		  ?uri (eli:consolidates)+ ?originalBesluit.
           {
             SELECT DISTINCT ?originalBesluit (MAX(?publicationdate) AS ?maxDate) WHERE {
               ?originalBesluit a besluit:Besluit;
                 a ?besluitTypeOriginal.
               FILTER NOT EXISTS {
-                ?originalBesluit ext:linkedDecision ?linkedDecision.
+                ?originalBesluit eli:consolidates ?linkedDecision.
               }
-              ?uri (ext:linkedDecision)+ ?originalBesluit.
+              ?uri (eli:consolidates)+ ?originalBesluit.
               ?bvap prov:generated ?uri.
               ?uittreksel ext:uittrekselBvap ?bvap;
                 mu:uuid ?uittrekselId;
@@ -144,7 +144,7 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
   		  } UNION
         {
           FILTER NOT EXISTS {
-            ?uri ext:linkedDecision ?linkedDecision.
+            ?uri eli:consolidates ?linkedDecision.
           }
           BIND(?publicationdate AS ?maxDate)
         }

@@ -58,7 +58,7 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
             prov:wasDerivedFrom ?publishedResource.
           ?publishedResource dct:created ?publicationdate.
           {
-            ?uri (ext:linkedDecision)+ ?originalBesluit.
+            ?uri (eli:consolidates)+ ?originalBesluit.
           }
             UNION
           {
@@ -72,7 +72,7 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
               {
                 ${sparqlEscapeUri(
                   besluit.uri
-                )} (ext:linkedDecision)+ ?originalBesluit
+                )} (eli:consolidates)+ ?originalBesluit
               }
                 UNION
               {
@@ -80,7 +80,7 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
                 ${sparqlEscapeUri(besluit.uri)} mu:uuid ?originalBesluitId.
               }
               FILTER NOT EXISTS {
-                ?originalBesluit ext:linkedDecision ?linkedDecision.
+                ?originalBesluit eli:consolidates ?linkedDecision.
               }
           }
         }
