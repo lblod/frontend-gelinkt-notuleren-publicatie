@@ -1,3 +1,4 @@
+import fetch from 'fetch';
 export const sparqlEscapeString = (value) =>
   '"""' + value.replace(/[\\"]/g, (match) => '\\' + match) + '"""';
 
