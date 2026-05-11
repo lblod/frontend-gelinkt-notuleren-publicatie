@@ -53,7 +53,7 @@
       <c.body as |uittreksel|>
           <td>
             <AuLink @route='bestuurseenheid.reglementen.reglement' @model={{uittreksel.id}} property="lblodBesluit:linkToPublication" @skin="link-secondary">
-              {{uittreksel.besluit.titel}}
+              {{reglement-title uittreksel.besluit.titel}}
             </AuLink>
           </td>
           <td>
