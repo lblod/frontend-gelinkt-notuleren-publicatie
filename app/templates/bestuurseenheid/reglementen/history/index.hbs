@@ -39,7 +39,7 @@
       <c.body as |resource|>
           <td>
             <AuLink @route='bestuurseenheid.reglementen.history.history-reglement' @model={{resource.uittreksel.id}} property="lblodBesluit:linkToPublication" @skin="link-secondary">
-              {{resource.besluit.titel}}
+              {{reglement-title resource.besluit.titel}}
             </AuLink>
             {{#if resource.latest}}
               <AuPill @skin="success">Huidge versie</AuPill>
