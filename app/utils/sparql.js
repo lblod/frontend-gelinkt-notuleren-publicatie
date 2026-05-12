@@ -1,3 +1,4 @@
+// We have to import fetch even if it's included in the browser because fastboot doesn't find it I assume because it runs node
 import fetch from 'fetch';
 export const sparqlEscapeString = (value) =>
   '"""' + value.replace(/[\\"]/g, (match) => '\\' + match) + '"""';
