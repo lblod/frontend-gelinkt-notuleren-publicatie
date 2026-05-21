@@ -1,5 +1,17 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.7.1
+
+### Patch Changes
+
+- [#136](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/136) [`2ec25d3`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/2ec25d32efaf2427fcc2f691ac6815aeba96a120) Thanks [@lagartoverde](https://github.com/lagartoverde)! - Handle missing titles in reglements
+
+- [#134](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/134) [`9609939`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/9609939f53f4976cc5b2f1a5e35f55b2e634b260) Thanks [@lagartoverde](https://github.com/lagartoverde)! - Change linked decision predicate to eli:consolidates
+
+- [#133](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/133) [`5e64602`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/5e646022b1085d6bfbd456e91e88412742d6f471) Thanks [@lagartoverde](https://github.com/lagartoverde)! - Fix detection of latest version in history besluit
+
+- [#135](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/135) [`d4d6ff6`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/d4d6ff6a27f432586ed148eb77c2126b8f52ecbd) Thanks [@lagartoverde](https://github.com/lagartoverde)! - Fix: fastboot didn't find fetch so it failed
+
 ## 1.7.0
 
 ### Minor Changes
