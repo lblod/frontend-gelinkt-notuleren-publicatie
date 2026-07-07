@@ -1,5 +1,7 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
+// We have to import fetch even if it's included in the browser because fastboot doesn't find it I assume because it runs node
+import fetch from 'fetch';
 
 export default class BestuurseenheidZittingenZittingNotulenRoute extends Route {
   @service store;
