@@ -39,9 +39,11 @@
             </agCtx.get>
           </ctx.get>
           --}}
-          <WithRdfaContext @model={{this.publication}} @tagName="span" as |pbCtx|>
-              <pbCtx.span @prop="createdOn" as |createdOn|>{{format-date createdOn 'd MMMM yyyy'}}</pbCtx.span>
-          </WithRdfaContext>
+          {{#if this.publication}}
+            <WithRdfaContext @model={{this.publication}} @tagName="span" as |pbCtx|>
+                <pbCtx.span @prop="createdOn" as |createdOn|>{{format-date createdOn 'd MMMM yyyy'}}</pbCtx.span>
+            </WithRdfaContext>
+        {{/if}}
         {{else}}
           {{!-- old data does not have this field --}}
           ongekend

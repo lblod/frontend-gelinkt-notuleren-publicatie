@@ -21,14 +21,16 @@
       </AuHeading>
       <p class="au-c-heading au-c-heading--5">
         Datum publicatie:
-        {{#if this.model.publication.createdOn}}
-          <WithRdfaContext @model={{this.model.publication}} @tagName="span" about={{this.model.uittreksel.uri}} as |pbCtx|>
-            <pbCtx.span @prop="createdOn" as |createdOn|>{{format-date createdOn 'd MMMM yyyy'}}</pbCtx.span>
-            <span property="ext:createdOnTimestamp" datatype="xsd:dateTime" content="{{iso-date this.model.publication.createdOn }}"></span>
-          </WithRdfaContext>
-        {{else}}
-          {{!-- old data does not have this field --}}
-          ongekend
+        {{#if this.model.publication}}
+          {{#if this.model.publication.createdOn}}
+            <WithRdfaContext @model={{this.model.publication}} @tagName="span" about={{this.model.uittreksel.uri}} as |pbCtx|>
+              <pbCtx.span @prop="createdOn" as |createdOn|>{{format-date createdOn 'd MMMM yyyy'}}</pbCtx.span>
+              <span property="ext:createdOnTimestamp" datatype="xsd:dateTime" content="{{iso-date this.model.publication.createdOn }}"></span>
+            </WithRdfaContext>
+          {{else}}
+            {{!-- old data does not have this field --}}
+            ongekend
+          {{/if}}
         {{/if}}
       </p>
       <div class="au-u-margin-top">
