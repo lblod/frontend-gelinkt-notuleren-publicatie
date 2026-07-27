@@ -1,5 +1,11 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.7.2
+
+### Patch Changes
+
+- [#137](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/137) [`c812d01`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/c812d012b73fa25d2705f48a6c53203dde67d975) Thanks [@lagartoverde](https://github.com/lagartoverde)! - Encountered fetch error when loading notulen in a file
+
 ## 1.7.1
 
 ### Patch Changes
