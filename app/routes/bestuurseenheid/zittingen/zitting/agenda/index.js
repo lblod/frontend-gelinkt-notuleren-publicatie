@@ -12,6 +12,9 @@ export default class BestuurseenheidZittingenZittingAgendaIndexRoute extends Rou
       include: 'publication',
     });
     const agenda = agendas[0];
+    if (!agenda) {
+      throw new Error('no agenda, this route will 404 as normal');
+    }
     const meeting = await this.store.findRecord('zitting', zitting.id, {
       include: 'agendapunten,bestuursorgaan',
     });
