@@ -18,6 +18,9 @@ export default class BestuurseenheidReglementenHistoryReglementRoute extends Rou
           'publication,behandeling-van-agendapunt,behandeling-van-agendapunt.besluiten',
       }
     );
+    console.info(
+      'DEBUGPRINT[17]: history-reglement.js:21 (before const publication = await uittreksel.pub…)'
+    );
     const publication = await uittreksel.publication;
     const bvap = await uittreksel.behandelingVanAgendapunt;
     const besluit = (await bvap.besluiten)[0];

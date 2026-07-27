@@ -124,6 +124,9 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
       historySorted.map(async (historyBesluit) => {
         const bvap = await historyBesluit.volgendUitBehandelingVanAgendapunt;
         const uittreksel = await bvap.uittreksel;
+        console.info(
+          'DEBUGPRINT[19]: history.js:127 (before const publication = await uittreksel.pub…)'
+        );
         const publication = await uittreksel.publication;
         return {
           original: !(await historyBesluit.linkedDecision),
