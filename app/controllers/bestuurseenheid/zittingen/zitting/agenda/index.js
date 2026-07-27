@@ -10,7 +10,6 @@ export default class BestuurseenheidZittingenZittingAgendaIndexController extend
   }
 
   get publication() {
-    console.info('DEBUGPRINT[16]: index.js:13 (after get publication() )');
     return this.model.agenda.publication;
   }
 }
