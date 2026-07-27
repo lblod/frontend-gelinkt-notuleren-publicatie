@@ -41,6 +41,9 @@ export default class BestuurseenheidZittingRoute extends Route {
       //
       // note: we won't trap clients visiting the legitimate /<municipality>/<admin-unit>/zittingen/*any existing subroute* routes, as they are tried first in the router,
       // so wouldn't end up in this place
+      //
+      // note2: if *any* ends up hitting a 404, they'll end up back here through the router's fallback mechanism, but since we check above for the `zittingen` string, we don't
+      // do an unnecessary extra backend request
 
       const baseUrl = this.router.urlFor(
         'bestuurseenheid',
