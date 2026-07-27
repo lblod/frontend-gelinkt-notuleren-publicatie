@@ -35,10 +35,8 @@ Router.map(function () {
         });
       });
       // Route created for backwards compatibility, redirects to `bestuurseenheid.zittingen.zitting`
-      this.route('zitting', { path: '/:zitting_id' }, function () {
-        this.route('index', { path: '/' });
-        this.route('wildcard', { path: '/*path' });
-      });
+      // VERY important that this is tried AFTER the "zittingen" route
+      this.route('zitting', { path: '/*path' });
     }
   );
   this.route('contact');
