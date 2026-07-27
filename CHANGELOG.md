@@ -1,5 +1,11 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.7.3
+
+### Patch Changes
+
+- [#138](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/138) [`39f17e3`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/39f17e346b271fe4363e8356da0b18a3a6d13296) Thanks [@abeforgit](https://github.com/abeforgit)! - Fix infinite routing loop
+
 ## 1.7.2
 
 ### Patch Changes
