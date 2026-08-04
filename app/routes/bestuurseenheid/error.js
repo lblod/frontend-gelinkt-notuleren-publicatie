@@ -4,7 +4,7 @@ export default class BestuurseenheidErrorRoute extends Route {
   /**
    * The model hooks (beforeModel, model, and afterModel) of an error substate are not called.
    * Only the setupController method of the error substate is called with the error as the model.**/
-  async setupController(controller, error) {
+  setupController(controller, error) {
     if (error) {
       if (error.isAdapterError && error.errors[0].status === '404') {
         const model = this.modelFor('bestuurseenheid');

@@ -5,7 +5,7 @@ export default class BestuurseenheidZittingenZittingUittrekselsDetailIndexRoute 
     const uittreksel = this.modelFor(
       'bestuurseenheid.zittingen.zitting.uittreksels.detail'
     );
-    const publication = uittreksel.get('publication');
+    const publication = await uittreksel.publication;
     const zitting = this.modelFor('bestuurseenheid.zittingen.zitting');
     return {
       uittreksel,
