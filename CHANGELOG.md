@@ -1,5 +1,11 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.7.4
+
+### Patch Changes
+
+- [#139](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/139) [`59ab8e7`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/59ab8e734ebf0c084ef3b0ba00eaa8e8f47589f0) Thanks [@abeforgit](https://github.com/abeforgit)! - Correctly throw when visiting agenda page of meeting without agenda
+
 ## 1.7.3
 
 ### Patch Changes
