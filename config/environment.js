@@ -5,7 +5,7 @@ module.exports = function (environment) {
     modulePrefix: 'frontend-gelinkt-notuleren-publicatie',
     environment,
     rootURL: '/',
-    locationType: 'auto',
+    locationType: 'history',
     EmberENV: {
       // Disable prototype extensions once we no longer rely on them
       // (see https://guides.emberjs.com/v3.27.0/configuring-ember/disabling-prototype-extensions/)
