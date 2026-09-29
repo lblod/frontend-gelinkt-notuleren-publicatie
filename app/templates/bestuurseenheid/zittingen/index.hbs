@@ -2,8 +2,8 @@
 <div class="au-o-region-large flex-one">
   <div class="au-o-layout">
     <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Zittingen van {{this.bestuurseenheid.classificatie.label}} {{this.bestuurseenheid.naam}}</AuHeading>
-    <AuToolbar @border="bottom" class="au-u-margin-bottom">
-      <AuToolbar::Group>
+    <AuToolbar @border="bottom" class="au-u-margin-bottom" as |Group|>
+      <Group>
         <div class="au-u-margin-bottom-tiny">
           <AuDatePicker
             @label="Van"
@@ -23,8 +23,8 @@
             @onChange={{fn this.updateTimeRange 'to'}}
           />
         </div>
-      </AuToolbar::Group>
-      <AuToolbar::Group class="au-u-1-1 au-u-1-3@medium">
+      </Group>
+      <Group class="au-u-1-1 au-u-1-3@medium">
         <div class="au-u-1-1 au-u-margin-bottom-small">
           <AuLabel>Type bestuursorgaan</AuLabel>
           <PowerSelect
@@ -38,7 +38,7 @@
             {{adminBodyClassificationLabel.label}}
           </PowerSelect>
         </div>
-      </AuToolbar::Group>
+      </Group>
     </AuToolbar>
 
     {{#if this.fetchMeetings.isRunning}}

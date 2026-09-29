@@ -27,7 +27,7 @@
 .yasgui .autocompleteWrapper {
   display: none !important;
 }
-@import 'ember-appuniversum';
+@import '@appuniversum/ember-appuniversum/styles';
 
 // PROJECT
 @import 'project/publicatie';

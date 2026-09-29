@@ -11,7 +11,7 @@ module.exports = function (defaults) {
       // compatWith: '4.8',
     },
     'ember-cli-babel': {
-      includePolyfill: false,
+      enableTypeScriptTransform: true,
     },
     '@appuniversum/ember-appuniversum': {
       disableWormholeElement: true,
@@ -19,7 +19,13 @@ module.exports = function (defaults) {
     },
     sassOptions: {
       includePaths: [
-        'node_modules/@appuniversum/ember-appuniversum/app/styles',
+        'node_modules/@appuniversum/ember-appuniversum',
+        'node_modules',
+      ],
+    },
+    babel: {
+      plugins: [
+        require.resolve('ember-concurrency/async-arrow-task-transform'),
       ],
     },
   });
