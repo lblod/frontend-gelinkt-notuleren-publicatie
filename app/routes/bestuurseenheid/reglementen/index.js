@@ -3,9 +3,7 @@ import { service } from '@ember/service';
 import { action } from '@ember/object';
 import BESLUIT_TYPES from 'frontend-gelinkt-notuleren-publicatie/utils/besluit-types';
 import {
-  executeQuery,
   sparqlEscapeUri,
-  executeCountQuery,
   sparqlEscapeString,
 } from 'frontend-gelinkt-notuleren-publicatie/utils/sparql';
 import generateMeta from 'frontend-gelinkt-notuleren-publicatie/utils/generate-meta';
@@ -51,7 +49,7 @@ const DECISION_TYPES_TO_LINK = [
 
 export default class BestuurseenheidReglementenIndexRoute extends Route {
   @service store;
-  @service fastboot;
+  @service query;
 
   queryParams = {
     page: {
@@ -162,7 +160,7 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
         ${queryContent}
       }
     `;
-    const count = await executeCountQuery({
+    const count = await this.query.sparqlCountQuery({
       query: countQuery,
       endpoint: '/raw-sparql',
     });
@@ -177,7 +175,7 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
           }
       `;
 
-      const queryResult = await executeQuery({
+      const queryResult = await this.query.sparqlQuery({
         query,
         endpoint: '/raw-sparql',
       });

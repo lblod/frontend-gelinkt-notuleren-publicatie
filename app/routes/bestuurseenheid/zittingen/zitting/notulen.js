@@ -3,7 +3,7 @@ import { service } from '@ember/service';
 
 export default class BestuurseenheidZittingenZittingNotulenRoute extends Route {
   @service store;
-  @service fastboot;
+  @service query;
 
   async model() {
     const parentMeeting = this.modelFor('bestuurseenheid.zittingen.zitting');
@@ -17,14 +17,11 @@ export default class BestuurseenheidZittingenZittingNotulenRoute extends Route {
     const notulen = await meeting.notulen;
 
     const fileMeta = await notulen.file;
-    const ftch =
-      typeof FastBoot !== 'undefined' ? FastBoot.require('node-fetch') : fetch;
     let notulenContent;
     if (fileMeta) {
-      const link = this.fastboot.isFastBoot
-        ? `${this.fastboot.request.protocol}//${this.fastboot.request._host()}${fileMeta.downloadLink}`
-        : fileMeta.downloadLink;
-      notulenContent = await (await ftch(link)).text();
+      notulenContent = await (
+        await this.query.fetch(fileMeta.downloadLink)
+      ).text();
     } else {
       notulenContent = notulen.inhoud ?? 'test';
     }

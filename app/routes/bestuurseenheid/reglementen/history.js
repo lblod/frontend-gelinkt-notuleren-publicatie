@@ -1,15 +1,12 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
-import {
-  executeQuery,
-  sparqlEscapeUri,
-  executeCountQuery,
-} from 'frontend-gelinkt-notuleren-publicatie/utils/sparql';
+import { sparqlEscapeUri } from 'frontend-gelinkt-notuleren-publicatie/utils/sparql';
 import generateMeta from 'frontend-gelinkt-notuleren-publicatie/utils/generate-meta';
 import buildSort from 'frontend-gelinkt-notuleren-publicatie/utils/build-sort';
 
 export default class BestuurseenheidReglementenReglementRoute extends Route {
   @service store;
+  @service query;
 
   queryParams = {
     page: {
@@ -92,7 +89,7 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
         ${queryContent}
       }
     `;
-    const count = await executeCountQuery({
+    const count = await this.query.sparqlCountQuery({
       query: countQuery,
       endpoint: '/raw-sparql',
     });
@@ -103,7 +100,7 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
         } ${sortFilter} LIMIT ${pageSize * (page + 1)} OFFSET ${pageSize * page}
     `;
 
-    const queryResult = await executeQuery({
+    const queryResult = await this.query.sparqlQuery({
       query,
       endpoint: '/raw-sparql',
     });
