@@ -13,7 +13,7 @@ export default class BestuurseenheidRoute extends Route {
         params.bestuurseenheid_classificatie_code_label,
     });
     if (bestuurseenheden.length === 0) {
-      this.transitionTo('route-not-found');
+      this.router.transitionTo('route-not-found');
     } else {
       return bestuurseenheden[0];
     }
