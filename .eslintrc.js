@@ -22,6 +22,9 @@ module.exports = {
   env: {
     browser: true,
   },
+  globals: {
+    FastBoot: 'readonly',
+  },
   rules: {},
   overrides: [
     // node files

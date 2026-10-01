@@ -5,10 +5,22 @@
       <AuLabel for="select">Waar gaat uw bericht over?</AuLabel>
       <ul>
         <li>
-          <AuRadio @label="Een functionaliteit, bug of probleem" @value="GelinktNotuleren@vlaanderen.be?subject=Functionaliteit of bug of probleem" @name="type-vraag" @onChange={{fn (mut this.mailto)}} />
+          <AuRadio
+            @value="GelinktNotuleren@vlaanderen.be?subject=Functionaliteit of bug of probleem"
+            @name="type-vraag"
+            @onChange={{fn (mut this.mailto)}}
+          >
+            Een functionaliteit, bug of probleem
+          </AuRadio>
         </li>
         <li>
-          <AuRadio @label="Een inhoudelijke vraag" @name="type-vraag" @value="GelinktNotuleren@vlaanderen.be?subject=Inhoudelijke vraag" @onChange={{fn (mut this.mailto)}} />
+          <AuRadio
+            @name="type-vraag"
+            @value="GelinktNotuleren@vlaanderen.be?subject=Inhoudelijke vraag"
+            @onChange={{fn (mut this.mailto)}}
+          >
+            Een inhoudelijke vraag
+          </AuRadio>
         </li>
       </ul>
 

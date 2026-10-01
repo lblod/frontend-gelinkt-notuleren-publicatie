@@ -1,5 +1,3 @@
-// We have to import fetch even if it's included in the browser because fastboot doesn't find it I assume because it runs node
-import fetch from 'fetch';
 export const sparqlEscapeString = (value) =>
   '"""' + value.replace(/[\\"]/g, (match) => '\\' + match) + '"""';
 
@@ -20,7 +18,9 @@ export const sparqlEscapeUri = (value) => {
 export async function executeQuery({ query, endpoint, abortSignal }) {
   const encodedQuery = encodeURIComponent(query.trim());
 
-  const response = await fetch(endpoint, {
+  const ftch =
+    typeof FastBoot !== 'undefined' ? FastBoot.require('node-fetch') : fetch;
+  const response = await ftch(endpoint, {
     method: 'POST',
     mode: 'cors',
     headers: {
@@ -35,7 +35,7 @@ export async function executeQuery({ query, endpoint, abortSignal }) {
     return response.json();
   } else {
     throw new Error(
-      `Request to ${endpoint} was unsuccessful: [${response.status}] ${response.statusText}`
+      `Request to ${endpoint} was unsuccessful: [${response.status}] ${response.statusText}`,
     );
   }
 }
@@ -45,7 +45,7 @@ export async function executeQuery({ query, endpoint, abortSignal }) {
  */
 export function bindingToObject(binding) {
   return Object.fromEntries(
-    Object.entries(binding).map(([key, term]) => [key, term.value])
+    Object.entries(binding).map(([key, term]) => [key, term.value]),
   );
 }
 

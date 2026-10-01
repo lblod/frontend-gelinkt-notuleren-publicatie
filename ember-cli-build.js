@@ -6,6 +6,9 @@ const { Webpack } = require('@embroider/webpack');
 module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
     // Add options here
+    autoImport: {
+      watchDependencies: ['@appuniversum/ember-appuniversum'],
+    },
     emberData: {
       // TODO: uncomment this when deprecations are resolved
       // compatWith: '4.8',
@@ -18,12 +21,10 @@ module.exports = function (defaults) {
       dutchDatePickerLocalization: true,
     },
     sassOptions: {
-      includePaths: [
-        'node_modules/@appuniversum/ember-appuniversum',
-        'node_modules',
-      ],
+      includePaths: ['node_modules/@appuniversum/ember-appuniversum'],
     },
     babel: {
+      sourceMaps: 'inline',
       plugins: [
         require.resolve('ember-concurrency/async-arrow-task-transform'),
       ],
@@ -52,5 +53,10 @@ module.exports = function (defaults) {
     staticModifiers: true,
     staticComponents: true,
     // splitAtRoutes: ['route.name'],
+    skipBabel: [
+      {
+        package: 'qunit',
+      },
+    ],
   });
 };
