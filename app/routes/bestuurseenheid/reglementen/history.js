@@ -71,7 +71,7 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
                 a ?besluitTypeOriginal.
               {
                 ${sparqlEscapeUri(
-                  besluit.uri
+                  besluit.uri,
                 )} (eli:consolidates)+ ?originalBesluit
               }
                 UNION
@@ -108,7 +108,7 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
       endpoint: '/raw-sparql',
     });
     const besluitIds = queryResult.results.bindings.map(
-      (binding) => binding.besluitId.value
+      (binding) => binding.besluitId.value,
     );
 
     const history = await this.store.query('besluit', {
@@ -117,7 +117,7 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
         'linked-decision,volgend-uit-behandeling-van-agendapunt.uittreksel.publication',
     });
     const historySorted = [...history].sort(
-      (a, b) => besluitIds.indexOf(b.id) - besluitIds.indexOf(a.id)
+      (a, b) => besluitIds.indexOf(b.id) - besluitIds.indexOf(a.id),
     );
 
     const historyEnriched = await Promise.all(
@@ -131,7 +131,7 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
           uittreksel,
           publication,
         };
-      })
+      }),
     );
     let latestHistoryEntry = historyEnriched[0];
 

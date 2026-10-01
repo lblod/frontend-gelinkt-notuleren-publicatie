@@ -50,7 +50,7 @@ body {
     display: block;
     left: $au-unit * 2;
     bottom: 100%;
-    width: .2rem;
+    width: 0.2rem;
     height: $au-unit;
     background-color: $au-gray-300;
   }
@@ -68,7 +68,7 @@ body {
 
   &:hover,
   &:focus {
-    outline: .4rem solid $au-gray-200;
+    outline: 0.4rem solid $au-gray-200;
   }
 
   .au-c-heading--4 {
@@ -82,7 +82,7 @@ body {
 
   &:focus-within {
     outline: $au-outline;
-    outline-offset: .2rem;
+    outline-offset: 0.2rem;
   }
 }
 
@@ -105,62 +105,63 @@ body {
   }
 }
 
-
-
 //old
 .u-word-break--word-break {
-	word-break: word-break;
+  word-break: word-break;
 }
 
 .small {
-	font-size: 0.9em;
+  font-size: 0.9em;
 }
 
 .smaller {
-	font-size: 0.8em;
+  font-size: 0.8em;
 }
 
 .smallest {
-	font-size: 0.7em;
+  font-size: 0.7em;
 }
 
 .vrije-tekst {
-	[property="ext:behandelt"] {
-		margin: 0;
-	}
+  [property="ext:behandelt"] {
+    margin: 0;
+  }
 
-	[property="ext:behandelt"] > * {
-		display: none;
-	}
+  [property="ext:behandelt"] > * {
+    display: none;
+  }
 
-	[property="dc:subject"] {
-		display: block;
-		font-family: flanders-sans,sans-serif;
+  [property="dc:subject"] {
+    display: block;
+    font-family: flanders-sans, sans-serif;
     font-size: 1.8rem;
-	}
+  }
 }
-
-
-
 
 // Fix title and comma spacing
 [property="dc:title"] {
   [property="http://data.vlaanderen.be/ns/besluit#isGehoudenDoor"] {
-    margin-right: -.4ex;
+    margin-right: -0.4ex;
   }
 }
 
 .h1 [property="skos:prefLabel"],
 .au-c-heading [property="skos:prefLabel"] {
-  margin-right: -.4ex;
+  margin-right: -0.4ex;
 }
 
 // Add comma separator between mandatees
-[property="besluit:heeftAanwezige"] + [property="besluit:heeftAanwezige"] [property="mandaat:isBestuurlijkeAliasVan"],
-[property="besluit:heeftAanwezigeBijStart"] + [property="besluit:heeftAanwezigeBijStart"] [property="mandaat:isBestuurlijkeAliasVan"],
-[typeof="http://data.vlaanderen.be/ns/mandaat#Mandataris"] + [typeof="http://data.vlaanderen.be/ns/mandaat#Mandataris"] [property="mandaat:isBestuurlijkeAliasVan"] {
+[property="besluit:heeftAanwezige"]
+  + [property="besluit:heeftAanwezige"]
+  [property="mandaat:isBestuurlijkeAliasVan"],
+[property="besluit:heeftAanwezigeBijStart"]
+  + [property="besluit:heeftAanwezigeBijStart"]
+  [property="mandaat:isBestuurlijkeAliasVan"],
+[typeof="http://data.vlaanderen.be/ns/mandaat#Mandataris"]
+  + [typeof="http://data.vlaanderen.be/ns/mandaat#Mandataris"]
+  [property="mandaat:isBestuurlijkeAliasVan"] {
   &:before {
-    content: ', ';
+    content: ", ";
   }
 }
 
@@ -175,13 +176,12 @@ div[property="besluit:heeftVoorstander"] {
   }
 }
 
-
 [property="mandaat:isBestuurlijkeAliasVan"] {
-  margin-right: -.4ex;
+  margin-right: -0.4ex;
 }
 
 [property="besluit:heeftAanwezige"] {
-  margin-right: -.4ex;
+  margin-right: -0.4ex;
 
   [property="mandaat:isBestuurlijkeAliasVan"] {
     margin-right: 0;
@@ -198,7 +198,7 @@ div[property="besluit:heeftVoorstander"] {
 }
 
 .flex-one {
-  flex: 1
+  flex: 1;
 }
 
 .overflow-auto {

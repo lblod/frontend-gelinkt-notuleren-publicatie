@@ -3,8 +3,12 @@
     <WithRdfaContext @model={{this.model}} as |ctx|>
       <AuHeading @skin="2" class="au-u-margin-bottom">
         Type document
-        <br>
-        <a href="http://data.lblod.info/id/document-types/agenda" property="dct:type" class="au-c-link">Agenda document</a>
+        <br />
+        <a
+          href="http://data.lblod.info/id/document-types/agenda"
+          property="dct:type"
+          class="au-c-link"
+        >Agenda document</a>
       </AuHeading>
       <ctx.div @prop="inhoud" class="au-c-document-publish" as |inhoud|>
         {{html-safe inhoud}}

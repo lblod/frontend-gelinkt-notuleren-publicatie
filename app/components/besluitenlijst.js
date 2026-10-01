@@ -16,7 +16,7 @@ export default class BesluitenlijstComponent extends Component {
     const domParser = new DOMParser();
     const newDom = domParser.parseFromString(this.rawHtmlContent, 'text/html');
     const decisions = newDom.body.querySelectorAll(
-      '[typeof*="besluit#Besluit"]'
+      '[typeof*="besluit#Besluit"]',
     );
     decisions.forEach((decision) => {
       // the portal element for the button to render in
@@ -34,14 +34,14 @@ export default class BesluitenlijstComponent extends Component {
 
       // check if decision has a description
       const description = decision.querySelector(
-        '[property="eli:description"]'
+        '[property="eli:description"]',
       );
       if (!description) {
         // add an explainer message if no description exists
         const descNotFound = newDom.createElement('p');
         descNotFound.classList.add(
           'au-c-help-text',
-          'au-c-help-text--secondary'
+          'au-c-help-text--secondary',
         );
         descNotFound.appendChild(new Text('Korte beschrijving niet gevonden'));
         decision.appendChild(descNotFound);

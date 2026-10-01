@@ -70,8 +70,7 @@
   .au-u-margin-bottom-tiny,
   .au-u-margin-bottom-small,
   .au-u-margin-bottom-large,
-  .au-u-margin-bottom-huge
-  .au-u-margin-bottom-large,
+  .au-u-margin-bottom-huge .au-u-margin-bottom-large,
   .au-c-meeting-chrome-card {
     margin-bottom: 5px !important;
   }
@@ -138,11 +137,13 @@
       padding: 0 !important;
     }
 
-    [property="besluit:geplandOpenbaar"]:before, [property="besluit:openbaar"]:before {
+    [property="besluit:geplandOpenbaar"]:before,
+    [property="besluit:openbaar"]:before {
       display: none !important;
     }
 
-    .au-c-template p + *, .au-c-document-publish p + * {
+    .au-c-template p + *,
+    .au-c-document-publish p + * {
       margin-top: 5px !important;
     }
 

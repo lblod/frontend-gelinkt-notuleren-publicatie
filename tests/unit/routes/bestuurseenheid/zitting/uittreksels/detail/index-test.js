@@ -8,9 +8,9 @@ module(
 
     test('it exists', function (assert) {
       let route = this.owner.lookup(
-        'route:bestuurseenheid/zitting/uittreksels/detail/index'
+        'route:bestuurseenheid/zitting/uittreksels/detail/index',
       );
       assert.ok(route);
     });
-  }
+  },
 );

@@ -37,7 +37,7 @@ Router.map(function () {
       // Route created for backwards compatibility, redirects to `bestuurseenheid.zittingen.zitting`
       // VERY important that this is tried AFTER the "zittingen" route
       this.route('zitting', { path: '/*path' });
-    }
+    },
   );
   this.route('contact');
 

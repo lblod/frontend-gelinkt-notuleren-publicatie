@@ -7,33 +7,32 @@
  ========================================================================== */
 
 .besluitenlijst {
-  [typeof='besluit:BehandelingVanAgendapunt'] {
+  [typeof="besluit:BehandelingVanAgendapunt"] {
     border: 0.1rem solid $au-gray-200;
     padding: 2.4rem;
     margin-top: 1.2rem;
   }
-  [property='http://data.vlaanderen.be/ns/besluit#geplandeStart']
-  {
+  [property="http://data.vlaanderen.be/ns/besluit#geplandeStart"] {
     display: none;
   }
-  [typeof='besluit:Zitting'] {
+  [typeof="besluit:Zitting"] {
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
     padding-left: 0;
   }
-  [property='besluit:openbaar'] {
+  [property="besluit:openbaar"] {
     display: none;
   }
-  [property='eli:title'] {
+  [property="eli:title"] {
     border-bottom: 0.1rem solid $au-gray-200;
     font-size: $au-h4;
     line-height: $au-global-line-height;
   }
-  [property='prov:generated'] {
+  [property="prov:generated"] {
     border-bottom: 0;
   }
-  [property='besluit:heeftStemming'] {
+  [property="besluit:heeftStemming"] {
     display: flex;
     flex-wrap: true;
     gap: 2rem;
@@ -46,15 +45,15 @@
     flex-direction: row;
     justify-content: space-between;
     gap: 2rem;
-    [typeof*='besluit#Besluit'] {
+    [typeof*="besluit#Besluit"] {
       flex-grow: 1;
     }
   }
 }
 
 .au-c-document-publish {
-  [typeof='besluit:BehandelingVanAgendapunt'],
-  [property='besluit:behandelt'] {
+  [typeof="besluit:BehandelingVanAgendapunt"],
+  [property="besluit:behandelt"] {
     margin-bottom: 2rem;
     display: block;
   }
@@ -132,7 +131,7 @@ Style the text from documents here.
     list-style-type: decimal;
   }
 
-  [property='besluit:heeftAgenda'] > ul:not(.bullet-list) li {
+  [property="besluit:heeftAgenda"] > ul:not(.bullet-list) li {
     list-style-type: none;
   }
 }

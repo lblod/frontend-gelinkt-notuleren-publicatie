@@ -29,8 +29,8 @@ export default class BesluitOverviewItemComponent extends Component {
   });
 
   findStemmingen = task(async () => {
-    const behandeling = await this.args.besluit
-      .volgendUitBehandelingVanAgendapunt;
+    const behandeling =
+      await this.args.besluit.volgendUitBehandelingVanAgendapunt;
     const stemmingen = await behandeling.stemmingen;
 
     this.stemmingen = stemmingen;

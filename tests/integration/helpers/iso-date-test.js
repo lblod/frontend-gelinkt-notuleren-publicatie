@@ -14,7 +14,7 @@ module('Integration | Helper | iso-date', function (hooks) {
 
     assert.strictEqual(
       this.element.textContent.trim(),
-      '2021-07-01T00:00:00.000Z'
+      '2021-07-01T00:00:00.000Z',
     );
   });
 });

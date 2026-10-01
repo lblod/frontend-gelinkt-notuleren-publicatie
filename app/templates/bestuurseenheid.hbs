@@ -1,15 +1,33 @@
 {{breadcrumb "Zoekpagina" route="index"}}
-{{breadcrumb this.model.classificatie.label " " this.model.naam route="bestuurseenheid" model=this.model}}
+{{breadcrumb
+  this.model.classificatie.label
+  " "
+  this.model.naam
+  route="bestuurseenheid"
+  model=this.model
+}}
 
-<AuToolbar @size="medium" @skin="tint" @border="bottom" class="au-c-toolbar__breadcrumbs" as |Group|>
+<AuToolbar
+  @size="medium"
+  @skin="tint"
+  @border="bottom"
+  class="au-c-toolbar__breadcrumbs"
+  as |Group|
+>
   <Group>
     <nav aria-label="Breadcrumb">
       <ol class="au-c-list-horizontal">
         {{#each (breadcrumbs) as |breadcrumb|}}
           <li class="au-c-list-horizontal__item">
-            {{#let (has-next breadcrumb (breadcrumbs)) as |isNotLastBreadcrumb|}}
+            {{#let
+              (has-next breadcrumb (breadcrumbs))
+              as |isNotLastBreadcrumb|
+            }}
               {{#if isNotLastBreadcrumb}}
-                <AuLink @route={{breadcrumb.data.route}} @model={{breadcrumb.data.model}}>
+                <AuLink
+                  @route={{breadcrumb.data.route}}
+                  @model={{breadcrumb.data.model}}
+                >
                   {{breadcrumb.title}}
                 </AuLink>
               {{else}}
@@ -30,7 +48,7 @@
   <m.content>
     <div class="au-u-flex au-u-flex--column au-u-height-full overflow-auto">
       {{outlet}}
-      <Footer/>
+      <Footer />
     </div>
   </m.content>
 </AuMainContainer>

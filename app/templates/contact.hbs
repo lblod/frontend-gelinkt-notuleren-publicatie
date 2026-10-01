@@ -25,16 +25,21 @@
       </ul>
 
       {{#if this.mailto}}
-        <a href={{concat "mailto:" this.mailto}} class="au-c-button">Bericht versturen</a>
+        <a href={{concat "mailto:" this.mailto}} class="au-c-button">Bericht
+          versturen</a>
       {{else}}
         <AuButton @disabled="true">Bericht versturen</AuButton>
       {{/if}}
     </form>
     <AuContent class="au-u-margin-top-small">
       <p>
-        Of neem rechtstreeks contact op via mail <a href="mailto:gelinktnotuleren@vlaanderen.be" class="au-c-link">GelinktNotuleren@vlaanderen.be</a>.
+        Of neem rechtstreeks contact op via mail
+        <a
+          href="mailto:gelinktnotuleren@vlaanderen.be"
+          class="au-c-link"
+        >GelinktNotuleren@vlaanderen.be</a>.
       </p>
     </AuContent>
   </div>
 </section>
-<Footer/>
+<Footer />

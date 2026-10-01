@@ -7,7 +7,7 @@ export default class BestuurseenheidReglementenHistoryReglementRoute extends Rou
   async model(params) {
     const historyModel = this.modelFor('bestuurseenheid.reglementen.history');
     const latestVersion = historyModel.history.find(
-      (version) => version.latest
+      (version) => version.latest,
     );
 
     const uittreksel = await this.store.findRecord(
@@ -16,7 +16,7 @@ export default class BestuurseenheidReglementenHistoryReglementRoute extends Rou
       {
         include:
           'publication,behandeling-van-agendapunt,behandeling-van-agendapunt.besluiten',
-      }
+      },
     );
     const publication = await uittreksel.publication;
     const bvap = await uittreksel.behandelingVanAgendapunt;

@@ -87,7 +87,7 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
     let searchFilter = '';
     if (searchValue) {
       searchFilter = `FILTER(CONTAINS(LCASE(?title), ${sparqlEscapeString(
-        searchValue.toLowerCase()
+        searchValue.toLowerCase(),
       )}))`;
     }
     const prefixes = `
@@ -105,10 +105,10 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
     // leafs of the besluit tree of that original besluit.
     const queryContent = `
         ?adminUnitGeneral besluit:bestuurt ${sparqlEscapeUri(
-          bestuurseenheid.uri
+          bestuurseenheid.uri,
         )}.
         VALUES ?besluitType { ${DECISION_TYPES_TO_LINK.map(
-          sparqlEscapeUri
+          sparqlEscapeUri,
         ).join(' ')}}
        ?uri a besluit:Besluit;
           a ?besluitType;
@@ -173,8 +173,8 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
           SELECT DISTINCT ?uittrekselId WHERE {
             ${queryContent}
           } ${sortFilter} LIMIT ${pageSize * (page + 1)} OFFSET ${
-        pageSize * page
-      }
+            pageSize * page
+          }
       `;
 
       const queryResult = await executeQuery({
@@ -182,7 +182,7 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
         endpoint: '/raw-sparql',
       });
       const uittrekselIds = queryResult.results.bindings.map(
-        (binding) => binding.uittrekselId.value
+        (binding) => binding.uittrekselId.value,
       );
       const uittreksels = await this.store.query('uittreksel', {
         include: 'behandeling-van-agendapunt.besluiten,publication',
@@ -199,10 +199,10 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
             bvap,
             besluit,
           };
-        })
+        }),
       );
       uittrekselsSync.sort(
-        (a, b) => uittrekselIds.indexOf(b.id) - uittrekselIds.indexOf(a.id)
+        (a, b) => uittrekselIds.indexOf(b.id) - uittrekselIds.indexOf(a.id),
       );
     } else {
       uittrekselsSync = [];

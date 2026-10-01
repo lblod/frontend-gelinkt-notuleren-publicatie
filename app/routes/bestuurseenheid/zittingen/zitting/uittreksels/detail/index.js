@@ -3,7 +3,7 @@ import Route from '@ember/routing/route';
 export default class BestuurseenheidZittingenZittingUittrekselsDetailIndexRoute extends Route {
   async model() {
     const uittreksel = this.modelFor(
-      'bestuurseenheid.zittingen.zitting.uittreksels.detail'
+      'bestuurseenheid.zittingen.zitting.uittreksels.detail',
     );
     const publication = await uittreksel.publication;
     const zitting = this.modelFor('bestuurseenheid.zittingen.zitting');

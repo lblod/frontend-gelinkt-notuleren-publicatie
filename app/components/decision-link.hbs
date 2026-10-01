@@ -1,11 +1,11 @@
-<div class='au-c-card__content au-u-margin-bottom-small'>
-  <div class='au-o-grid au-o-grid--small'>
-    <div class='au-o-grid__item au-u-1-4@medium'>
+<div class="au-c-card__content au-u-margin-bottom-small">
+  <div class="au-o-grid au-o-grid--small">
+    <div class="au-o-grid__item au-u-1-4@medium">
       {{#if this.isLoading}}
         <AuButton
-          @skin='button'
-          @icon='nav-right'
-          @iconAlignment='right'
+          @skin="button"
+          @icon="nav-right"
+          @iconAlignment="right"
           @disabled={{true}}
           @loading={{true}}
         >
@@ -14,20 +14,20 @@
       {{else}}
         {{#if this.uittrekselId}}
           <AuLink
-            @skin='button'
-            @route='bestuurseenheid.zittingen.zitting.uittreksels.detail'
+            @skin="button"
+            @route="bestuurseenheid.zittingen.zitting.uittreksels.detail"
             @model={{this.uittrekselId}}
-            property='lblodBesluit:linkToPublication'
-            @icon='nav-right'
-            @iconAlignment='right'
+            property="lblodBesluit:linkToPublication"
+            @icon="nav-right"
+            @iconAlignment="right"
           >
             Bekijk volledige inhoud
           </AuLink>
         {{else}}
           <AuButton
-            @skin='button'
-            @icon='nav-right'
-            @iconAlignment='right'
+            @skin="button"
+            @icon="nav-right"
+            @iconAlignment="right"
             @disabled={{true}}
           >
             Volledige inhoud niet publiek
