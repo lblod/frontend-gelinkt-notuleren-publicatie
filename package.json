@@ -147,6 +147,9 @@
     "webpack": "^5.95.0"
   },
   "overrides": {
+    "ember-rdfa-helpers": {
+      "ember-modifier": "$ember-modifier"
+    },
     "node-fetch": "$node-fetch"
   },
   "engines": {
