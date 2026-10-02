@@ -1,20 +1,33 @@
-{{#let (format-date this.model.zitting.gestartOpTijdstip 'd MMMM yyyy, HH:mm') as |startDate|}}
-  {{page-title (concat
-    "Besluitenlijst van "
-    this.model.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam
-    ", zitting van "
-    startDate
-    )}}
+{{#let
+  (format-date this.model.zitting.gestartOpTijdstip "d MMMM yyyy, HH:mm")
+  as |startDate|
+}}
+  {{page-title
+    (concat
+      "Besluitenlijst van "
+      this.model.zitting.bestuursorgaan.isTijdsspecialisatieVan.naam
+      ", zitting van "
+      startDate
+    )
+  }}
 {{/let}}
 <div class="au-o-layout">
   <div class="au-o-region-large">
     <WithRdfaContext @model={{this.model.zitting}} as |ctx|>
       <ctx.div @prop="besluitenlijst" as |besluitenlijst bCtx|>
-        <Besluitenlijst @besluitenlijst={{this.model.besluitenlijst}} @besluiten={{this.model.besluiten}} @zitting={{this.model.zitting}} />
+        <Besluitenlijst
+          @besluitenlijst={{this.model.besluitenlijst}}
+          @besluiten={{this.model.besluiten}}
+          @zitting={{this.model.zitting}}
+        />
         <div class="au-u-margin-top">
           <p class="au-c-heading au-c-heading--5 au-u-margin-bottom-tiny">
             Besluitenlijst goedgekeurd door
-            <ctx.span @prop="bestuursorgaan" @property="eli:passed_by" as |_ boCtx|>
+            <ctx.span
+              @prop="bestuursorgaan"
+              @property="eli:passed_by"
+              as |_ boCtx|
+            >
               <boCtx.span @prop="isTijdsspecialisatieVan" as |_ itsvCtx|>
                 <itsvCtx.get @prop="naam" />
               </boCtx.span>
@@ -23,9 +36,12 @@
           <p class="au-c-heading au-c-heading--5">
             Datum publicatie:
             {{#if this.model.besluitenlijst.publicatiedatum}}
-              <bCtx.span @prop="publicatiedatum" as |publicatiedatum|>{{format-date publicatiedatum 'd MMMM yyyy'}}</bCtx.span>
+              <bCtx.span
+                @prop="publicatiedatum"
+                as |publicatiedatum|
+              >{{format-date publicatiedatum "d MMMM yyyy"}}</bCtx.span>
             {{else}}
-              {{!-- old data does not have this field --}}
+              {{! old data does not have this field }}
               ongekend
             {{/if}}
           </p>

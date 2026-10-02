@@ -1,5 +1,11 @@
-<div {{did-insert (perform this.findBestuurseenheidNamen null)}} 
-     {{did-update (perform this.findBestuurseenheidNamen null) @bestuurseenheidClassificatie}}>
+{{! template-lint-disable no-at-ember-render-modifiers }}
+<div
+  {{did-insert (perform this.findBestuurseenheidNamen null)}}
+  {{did-update
+    (perform this.findBestuurseenheidNamen null)
+    @bestuurseenheidClassificatie
+  }}
+>
   <PowerSelect
     @ariaLabel="Zoekbalk"
     @placeholder="Oost-Vlaanderen, Berchem, Hasselt, ..."

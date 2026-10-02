@@ -3,11 +3,22 @@
     <WithRdfaContext @model={{this.model}} as |ctx|>
       <AuHeading @skin="2">
         Type document
-        <br>
-        <a href="http://data.lblod.info/id/document-types/uittreksel" property="dct:type">Uittreksel document</a>
-        <span property="ext:createdOnTimestamp" datatype="xsd:dateTime" content="{{iso-date this.model.publication.createdOn }}"></span>
+        <br />
+        <a
+          href="http://data.lblod.info/id/document-types/uittreksel"
+          property="dct:type"
+        >Uittreksel document</a>
+        <span
+          property="ext:createdOnTimestamp"
+          datatype="xsd:dateTime"
+          content="{{iso-date this.model.publication.createdOn}}"
+        ></span>
       </AuHeading>
-      <ctx.div @prop="inhoud" class="au-c-document-publish" as |inhoud|>{{html-safe inhoud}}</ctx.div>
+      <ctx.div
+        @prop="inhoud"
+        class="au-c-document-publish"
+        as |inhoud|
+      >{{html-safe inhoud}}</ctx.div>
     </WithRdfaContext>
   </div>
 </div>

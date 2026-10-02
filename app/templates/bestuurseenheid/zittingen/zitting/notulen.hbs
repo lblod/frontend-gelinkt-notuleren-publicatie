@@ -1,47 +1,47 @@
-{{breadcrumb 'Notulen' route='bestuurseenheid.zittingen.zitting.notulen'}}
+{{breadcrumb "Notulen" route="bestuurseenheid.zittingen.zitting.notulen"}}
 {{#let
-  (format-date this.model.meeting.gestartOpTijdstip 'd MMMM yyyy, HH:mm')
+  (format-date this.model.meeting.gestartOpTijdstip "d MMMM yyyy, HH:mm")
   as |startDate|
 }}
   {{page-title
     (concat
-      'Notulen van '
+      "Notulen van "
       this.model.meeting.bestuursorgaan.isTijdsspecialisatieVan.naam
-      ', zitting van '
+      ", zitting van "
       startDate
     )
   }}
 {{/let}}
-<div class='au-o-layout au-c-document-publish'>
+<div class="au-o-layout au-c-document-publish">
   {{! template-lint-disable no-invalid-link-text }}
   <a
-    class='au-u-hidden'
-    href='http://data.lblod.info/id/document-types/notulen'
-    property='dct:type'
+    class="au-u-hidden"
+    href="http://data.lblod.info/id/document-types/notulen"
+    property="dct:type"
   ></a>
 
-  <div class='au-o-region-large'>
+  <div class="au-o-region-large">
     <div
-      property='besluit:heeftNotulen'
-      typeof='foaf:document'
+      property="besluit:heeftNotulen"
+      typeof="foaf:document"
       resource={{this.model.notulen.uri}}
     >
 
-      <p class='au-c-heading au-c-heading--5'>
+      <p class="au-c-heading au-c-heading--5">
         Datum publicatie:
         {{#if this.model.notulen.publication.createdOn}}
           <span
-            property='prov:wasDerivedFrom'
+            property="prov:wasDerivedFrom"
             resource={{this.model.notulen.publication.uri}}
-            typeof='sign:PublishedResource'
+            typeof="sign:PublishedResource"
           >
             {{#let this.model.notulen.publication.createdOn as |createdOn|}}
               <span
-                property='eli:date_publication'
-                datatype='xsd:date'
-                content={{format-date createdOn 'yyyy-MM-dd'}}
+                property="eli:date_publication"
+                datatype="xsd:date"
+                content={{format-date createdOn "yyyy-MM-dd"}}
               >
-                {{format-date createdOn 'd MMMM yyyy'}}
+                {{format-date createdOn "d MMMM yyyy"}}
               </span>
 
             {{/let}}
@@ -51,7 +51,7 @@
           ongekend
         {{/if}}
       </p>
-      <div property='prov:value'>{{html-safe this.model.notulenContent}}</div>
+      <div property="prov:value">{{html-safe this.model.notulenContent}}</div>
     </div>
   </div>
 </div>

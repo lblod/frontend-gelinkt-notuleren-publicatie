@@ -10,7 +10,7 @@ module('Integration | Helper | clean-spaces', function (hooks) {
   test('it renders', async function (assert) {
     this.set('inputValue', '1234');
 
-    await render(hbs`{{clean-spaces inputValue}}`);
+    await render(hbs`{{clean-spaces this.inputValue}}`);
 
     assert.dom(this.element).hasText('1234');
   });

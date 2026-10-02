@@ -1,15 +1,27 @@
 {{page-title "Error"}}
 {{breadcrumb "Zoekpagina" route="index"}}
 {{breadcrumb "Error" route="error"}}
-<AuToolbar @size="medium" @skin="tint" @border="bottom" class="au-c-toolbar__breadcrumbs">
-  <AuToolbar::Group>
+<AuToolbar
+  @size="medium"
+  @skin="tint"
+  @border="bottom"
+  class="au-c-toolbar__breadcrumbs"
+  as |Group|
+>
+  <Group>
     <nav aria-label="Breadcrumb">
       <ol class="au-c-list-horizontal">
         {{#each (breadcrumbs) as |breadcrumb|}}
           <li class="au-c-list-horizontal__item">
-            {{#let (has-next breadcrumb (breadcrumbs)) as |isNotLastBreadcrumb|}}
+            {{#let
+              (has-next breadcrumb (breadcrumbs))
+              as |isNotLastBreadcrumb|
+            }}
               {{#if isNotLastBreadcrumb}}
-                <AuLink @route={{breadcrumb.data.route}} @model={{breadcrumb.data.model}}>
+                <AuLink
+                  @route={{breadcrumb.data.route}}
+                  @model={{breadcrumb.data.model}}
+                >
                   {{breadcrumb.title}}
                 </AuLink>
               {{else}}
@@ -20,16 +32,21 @@
         {{/each}}
       </ol>
     </nav>
-  </AuToolbar::Group>
+  </Group>
 </AuToolbar>
 
 <div class="au-o-region-large">
   <div class="au-o-layout">
-    <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Er is iets fout gelopen</AuHeading>
+    <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Er is iets fout
+      gelopen</AuHeading>
     <p>Er heeft zich een fout voorgedaan bij het verwerken van uw request.</p>
-    <p>Moest dit probleem aanhouden, neem contact op met <a href="mailto:gelinktnotuleren@vlaanderen.be" class="au-c-link">gelinktnotuleren@vlaanderen.be</a>.</p>
+    <p>Moest dit probleem aanhouden, neem contact op met
+      <a
+        href="mailto:gelinktnotuleren@vlaanderen.be"
+        class="au-c-link"
+      >gelinktnotuleren@vlaanderen.be</a>.</p>
     <p><code>{{this.errorMessage}}</code></p>
   </div>
 </div>
 {{outlet}}
-<Footer/>
+<Footer />

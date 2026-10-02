@@ -90,7 +90,7 @@ export default class BestuurseenheidZittingenIndexController extends Controller 
 
   get administrativeBodyClass() {
     return this.administrativeBodyClassOptions.find(
-      (record) => record.uri === this.administrativeBodyClassURI
+      (record) => record.uri === this.administrativeBodyClassURI,
     );
   }
 

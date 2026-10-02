@@ -6,20 +6,27 @@ const { Webpack } = require('@embroider/webpack');
 module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
     // Add options here
+    autoImport: {
+      watchDependencies: ['@appuniversum/ember-appuniversum'],
+    },
     emberData: {
       // TODO: uncomment this when deprecations are resolved
       // compatWith: '4.8',
     },
     'ember-cli-babel': {
-      includePolyfill: false,
+      enableTypeScriptTransform: true,
     },
     '@appuniversum/ember-appuniversum': {
       disableWormholeElement: true,
       dutchDatePickerLocalization: true,
     },
     sassOptions: {
-      includePaths: [
-        'node_modules/@appuniversum/ember-appuniversum/app/styles',
+      includePaths: ['node_modules/@appuniversum/ember-appuniversum'],
+    },
+    babel: {
+      sourceMaps: 'inline',
+      plugins: [
+        require.resolve('ember-concurrency/async-arrow-task-transform'),
       ],
     },
   });
@@ -46,5 +53,10 @@ module.exports = function (defaults) {
     staticModifiers: true,
     staticComponents: true,
     // splitAtRoutes: ['route.name'],
+    skipBabel: [
+      {
+        package: 'qunit',
+      },
+    ],
   });
 };

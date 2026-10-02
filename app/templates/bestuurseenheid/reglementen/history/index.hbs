@@ -1,6 +1,6 @@
 {{page-title
   (concat
-    @model.bestuurseenheid.classificatie.label ' ' @model.bestuurseenheid.naam
+    @model.bestuurseenheid.classificatie.label " " @model.bestuurseenheid.naam
   )
 }}
 
@@ -16,9 +16,9 @@
   >
     <table.menu as |menu|>
       <menu.general>
-        <AuToolbar class='au-o-box' @size='large' as |Group|>
+        <AuToolbar class="au-o-box" @size="large" as |Group|>
           <Group>
-            <AuHeading @skin='2'>
+            <AuHeading @skin="2">
               Volledig historiek van reglement
             </AuHeading>
           </Group>
@@ -28,30 +28,35 @@
     <table.content as |c|>
       <c.header>
         <th><span
-            class='au-c-data-table__header-title au-c-data-table__header-title--sortable'
+            class="au-c-data-table__header-title au-c-data-table__header-title--sortable"
           >Reglement</span></th>
         <AuDataTableThSortable
-          @field='publicationdate'
+          @field="publicationdate"
           @currentSorting={{this.sort}}
           @label="Publicatiedatum"
         />
       </c.header>
       <c.body as |resource|>
-          <td>
-            <AuLink @route='bestuurseenheid.reglementen.history.history-reglement' @model={{resource.uittreksel.id}} property="lblodBesluit:linkToPublication" @skin="link-secondary">
-              {{reglement-title resource.besluit.titel}}
-            </AuLink>
-            {{#if resource.latest}}
-              <AuPill @skin="success">Huidge versie</AuPill>
-            {{/if}}
+        <td>
+          <AuLink
+            @route="bestuurseenheid.reglementen.history.history-reglement"
+            @model={{resource.uittreksel.id}}
+            property="lblodBesluit:linkToPublication"
+            @skin="link-secondary"
+          >
+            {{reglement-title resource.besluit.titel}}
+          </AuLink>
+          {{#if resource.latest}}
+            <AuPill @skin="success">Huidge versie</AuPill>
+          {{/if}}
 
-            {{#if resource.original}}
-              <AuPill>Eerste publicatie</AuPill>
-            {{/if}}
-          </td>
-          <td>
-            {{format-date resource.publication.createdOn 'dd-MM-yyyy HH:mm'}}
-          </td>
+          {{#if resource.original}}
+            <AuPill>Eerste publicatie</AuPill>
+          {{/if}}
+        </td>
+        <td>
+          {{format-date resource.publication.createdOn "dd-MM-yyyy HH:mm"}}
+        </td>
       </c.body>
     </table.content>
   </AuDataTable>

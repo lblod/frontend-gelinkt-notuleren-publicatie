@@ -18,17 +18,19 @@ Next we clone this repository, install the dependencies, and boot the developmen
 
     git clone git@github.com:lblod/frontend-gelinkt-notuleren-publicatie.git
     cd frontend-gelinkt-notuleren-publicatie
-    
+
     # install the dependencies
     npm install
-    
+
     # run the development server
     ember s --proxy http://localhost
 
 You can visit the live reloading site at http://localhost:4200
 
 ## Configuration via docker environment variables
+
 This frontend can be configured at runtime. It will get the environment variables prefixed by EMBER_ and match them with the variables defined in the frontend's configuration. When the docker container is started it will update /app/index.html to match the provided configuration.
 
 ### other
-* `EMBER_ENVIRONMENT_NAME`: name of the environment, appended to the document title.
+
+- `EMBER_ENVIRONMENT_NAME`: name of the environment, appended to the document title.

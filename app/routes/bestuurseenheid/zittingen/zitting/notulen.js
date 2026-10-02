@@ -1,10 +1,9 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
-// We have to import fetch even if it's included in the browser because fastboot doesn't find it I assume because it runs node
-import fetch from 'fetch';
 
 export default class BestuurseenheidZittingenZittingNotulenRoute extends Route {
   @service store;
+  @service query;
 
   async model() {
     const parentMeeting = this.modelFor('bestuurseenheid.zittingen.zitting');
@@ -20,9 +19,11 @@ export default class BestuurseenheidZittingenZittingNotulenRoute extends Route {
     const fileMeta = await notulen.file;
     let notulenContent;
     if (fileMeta) {
-      notulenContent = await (await fetch(fileMeta.downloadLink)).text();
+      notulenContent = await (
+        await this.query.fetch(fileMeta.downloadLink)
+      ).text();
     } else {
-      notulenContent = notulen.inhoud;
+      notulenContent = notulen.inhoud ?? 'test';
     }
     return { meeting, notulen, notulenContent };
   }
