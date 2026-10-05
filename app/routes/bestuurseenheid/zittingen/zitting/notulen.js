@@ -20,7 +20,7 @@ export default class BestuurseenheidZittingenZittingNotulenRoute extends Route {
     let notulenContent;
     if (fileMeta) {
       notulenContent = await (
-        await this.query.fetch(fileMeta.downloadLink)
+        await fetch(fileMeta.downloadLink)
       ).text();
     } else {
       notulenContent = notulen.inhoud ?? 'test';
