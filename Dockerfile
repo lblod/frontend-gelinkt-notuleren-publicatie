@@ -12,3 +12,4 @@ RUN ember build -prod
 
 FROM redpencil/fastboot-app-server:1.3.0
 COPY --from=builder /app/dist /app
+COPY --from=builder /app/config/fastboot.js /app
