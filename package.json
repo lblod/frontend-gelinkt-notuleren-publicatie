@@ -36,8 +36,7 @@
   },
   "fastbootDependencies": [
     "date-fns",
-    "crypto",
-    "node-fetch"
+    "crypto"
   ],
   "devDependencies": {
     "@appuniversum/ember-appuniversum": "^3.19.0",
@@ -150,8 +149,7 @@
   "overrides": {
     "ember-rdfa-helpers": {
       "ember-modifier": "$ember-modifier"
-    },
-    "node-fetch": "$node-fetch"
+    }
   },
   "engines": {
     "node": ">= 22.19.0"
@@ -161,8 +159,7 @@
   },
   "dependencies": {
     "@triply/yasgui": "^4.2.28",
-    "date-fns": "^2.28.0",
-    "node-fetch": "^2.7.0"
+    "date-fns": "^2.28.0"
   },
   "volta": {
     "node": "22.19.0"
