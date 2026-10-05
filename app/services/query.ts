@@ -25,6 +25,7 @@ export default class QueryService extends Service {
   }: QueryConfig) {
     const encodedQuery = encodeURIComponent(query.trim());
 
+    // eslint-disable-next-line warp-drive/no-external-request-patterns
     const response = await fetch(endpoint, {
       method: 'POST',
       mode: 'cors',

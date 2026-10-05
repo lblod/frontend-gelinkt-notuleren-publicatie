@@ -32,7 +32,10 @@ export default class DecisionLinkComponent extends Component<Sig> {
     }
   });
 
-  publishedExtractData = trackedTask<UittrekselModel | null>(this, this.fetchPublishedExtractTask);
+  publishedExtractData = trackedTask<UittrekselModel | null>(
+    this,
+    this.fetchPublishedExtractTask,
+  );
 
   get uittrekselId() {
     return this.publishedExtractData.value?.id;
