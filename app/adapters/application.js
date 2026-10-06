@@ -6,7 +6,7 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
   constructor() {
     super(...arguments);
     if (this.fastboot.isFastBoot) {
-      this.host = window.BACKEND_URL;
+      this.host = globalThis.BACKEND_URL;
     }
   }
 }
