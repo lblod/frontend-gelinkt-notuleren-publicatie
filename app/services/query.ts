@@ -26,7 +26,7 @@ export default class QueryService extends Service {
     // eslint-disable-next-line warp-drive/no-external-request-patterns
     return fetch(
       this.fastboot.isFastBoot
-        ? `${this.fastboot.request.protocol}//${this.fastboot.request._host()}${url}`
+        ? new URL(url, globalThis.BACKEND_URL)
         : url,
       options,
     );
