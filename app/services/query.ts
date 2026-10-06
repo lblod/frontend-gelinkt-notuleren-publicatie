@@ -18,6 +18,20 @@ export interface QueryResult<Binding = Record<string, RDF.Term>> {
 export default class QueryService extends Service {
   @service declare fastboot: FastBootService;
 
+  /**
+   * This is a hack that assumes we're trying to fetch a relative path. Takes care of making that
+   * absolute so that it works for node's native fetch in fastboot
+   **/
+  fetch(url: string, options: RequestInit) {
+    // eslint-disable-next-line warp-drive/no-external-request-patterns
+    return fetch(
+      this.fastboot.isFastBoot
+        ? `${this.fastboot.request.protocol}//${this.fastboot.request._host()}${url}`
+        : url,
+      options,
+    );
+  }
+
   async sparqlQuery<Binding = Record<string, RDF.Term>>({
     query,
     endpoint,
@@ -25,8 +39,7 @@ export default class QueryService extends Service {
   }: QueryConfig) {
     const encodedQuery = encodeURIComponent(query.trim());
 
-    // eslint-disable-next-line warp-drive/no-external-request-patterns
-    const response = await fetch(endpoint, {
+    const response = await this.fetch(endpoint, {
       method: 'POST',
       mode: 'cors',
       headers: {
