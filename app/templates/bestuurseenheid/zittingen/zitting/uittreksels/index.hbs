@@ -8,19 +8,25 @@
         </bInTimeCtx.span>
       </ctx.span>
       , zitting van
-      <ctx.span @prop="geplandeStart" as |value|>{{format-date value 'd MMMM yyyy, HH:mm'}}</ctx.span>
+      <ctx.span @prop="geplandeStart" as |value|>{{format-date
+          value
+          "d MMMM yyyy, HH:mm"
+        }}</ctx.span>
     </AuHeading>
 
     <ul class="au-c-list">
-    {{#each this.uittreksels as |uittreksel|}}
-      <li class="au-c-list__item">
-        <UittrekselOverviewItem @uittreksel={{uittreksel}} @routePath="bestuurseenheid.zittingen.zitting.uittreksels.detail" />
-      </li>
-    {{else}}
-      <li>
-        <p>Geen bekendmakingen of uittreksels beschikbaar.</p>
-      </li>
-    {{/each}}
+      {{#each this.uittreksels as |uittreksel|}}
+        <li class="au-c-list__item">
+          <UittrekselOverviewItem
+            @uittreksel={{uittreksel}}
+            @routePath="bestuurseenheid.zittingen.zitting.uittreksels.detail"
+          />
+        </li>
+      {{else}}
+        <li>
+          <p>Geen bekendmakingen of uittreksels beschikbaar.</p>
+        </li>
+      {{/each}}
     </ul>
   </WithRdfaContext>
 </div>

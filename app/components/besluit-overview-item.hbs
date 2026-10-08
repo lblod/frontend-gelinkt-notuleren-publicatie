@@ -1,4 +1,8 @@
-<WithRdfaContext @model={{@besluit}} class="au-o-box au-c-card au-c-card--divided" as |bCtx|>
+<WithRdfaContext
+  @model={{@besluit}}
+  class="au-o-box au-c-card au-c-card--divided"
+  as |bCtx|
+>
   <div class="au-c-card__header">
     <bCtx.link @prop="volgendUitBehandelingVanAgendapunt" />
     <h3 class="au-c-heading au-c-heading--4">
@@ -9,15 +13,23 @@
     <div class="au-o-grid au-o-grid--small">
       <div class="au-o-grid__item au-u-3-4@medium">
         {{#if @besluit.beschrijving}}
-          <bCtx.p @prop="beschrijving" class="au-c-help-text" as |beschrijving|>{{beschrijving}}</bCtx.p>
+          <bCtx.p
+            @prop="beschrijving"
+            class="au-c-help-text"
+            as |beschrijving|
+          >{{beschrijving}}</bCtx.p>
         {{else}}
-          <p class="au-c-help-text au-c-help-text--secondary">Korte beschrijving niet gevonden</p>
+          <p class="au-c-help-text au-c-help-text--secondary">Korte beschrijving
+            niet gevonden</p>
         {{/if}}
         {{#unless this.uittreksel}}
-          <p class="sau-c-help-text au-c-help-text--tertiary">Volledige inhoud niet publiek</p>
+          <p class="sau-c-help-text au-c-help-text--tertiary">Volledige inhoud
+            niet publiek</p>
         {{/unless}}
         {{#if this.stemmingen.length}}
-          <h3 class="au-c-heading au-c-heading--5 au-u-margin-top-small">Stemmingen</h3>
+          <h3
+            class="au-c-heading au-c-heading--5 au-u-margin-top-small"
+          >Stemmingen</h3>
           <bCtx.div @prop="volgendUitBehandelingVanAgendapunt" as |_ bvaCtx|>
             <bvaCtx.each.p @prop="stemmingen" as |stemming stmCtx|>
               <strong>Onderwerp:</strong>
@@ -30,9 +42,16 @@
       </div>
       <div class="au-o-grid__item au-u-1-4@medium">
         {{#if this.uittreksel}}
-        <AuLink @route="bestuurseenheid.zittingen.zitting.uittreksels.detail" @model={{this.uittreksel.id}} property="lblodBesluit:linkToPublication" @skin="button" @icon="nav-right" @iconAlignment="right">
-          Bekijk volledige inhoud
-        </AuLink>
+          <AuLink
+            @route="bestuurseenheid.zittingen.zitting.uittreksels.detail"
+            @model={{this.uittreksel.id}}
+            property="lblodBesluit:linkToPublication"
+            @skin="button"
+            @icon="nav-right"
+            @iconAlignment="right"
+          >
+            Bekijk volledige inhoud
+          </AuLink>
         {{/if}}
       </div>
     </div>

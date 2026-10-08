@@ -1,0 +1,13 @@
+{
+  "extends": "@ember/app-tsconfig",
+  "include": ["app", "tests", "types"],
+  "compilerOptions": {
+    "allowJs": true,
+    "paths": {
+      "frontend-gelinkt-notuleren-publicatie/tests/*": ["./tests/*"],
+      "frontend-gelinkt-notuleren-publicatie/*": ["./app/*"],
+      "*": ["./types/*"]
+    },
+    "types": ["ember-source/types", "@glint/ember-tsc/types"]
+  }
+}

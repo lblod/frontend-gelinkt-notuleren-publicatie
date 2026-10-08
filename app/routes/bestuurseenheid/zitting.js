@@ -47,7 +47,7 @@ export default class BestuurseenheidZittingRoute extends Route {
 
       const baseUrl = this.router.urlFor(
         'bestuurseenheid',
-        this.paramsFor('bestuurseenheid')
+        this.paramsFor('bestuurseenheid'),
       );
       const url = `${baseUrl}/zittingen/${transition.to.params.path}`;
 

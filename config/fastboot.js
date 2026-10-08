@@ -1,9 +1,13 @@
+/* I'm not sure how, but this seems to run despite using APIs introduced in node 23 */
+/* eslint-disable n/no-unsupported-features/node-builtins */
 // Workaround for ember-data fastboot compatibility
 // See https://github.com/emberjs/data/issues/8475
 module.exports = function () {
   return {
     buildSandboxGlobals(defaultGlobals) {
       return Object.assign({}, defaultGlobals, {
+        URL,
+        fetch,
         AbortController,
         ReadableStream:
           typeof ReadableStream !== 'undefined'

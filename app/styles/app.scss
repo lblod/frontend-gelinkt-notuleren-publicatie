@@ -27,12 +27,12 @@
 .yasgui .autocompleteWrapper {
   display: none !important;
 }
-@import 'ember-appuniversum';
+@import "@appuniversum/ember-appuniversum/styles";
 
 // PROJECT
-@import 'project/publicatie';
-@import 'project/template';
-@import 'project/c-environment-banner';
+@import "project/publicatie";
+@import "project/template";
+@import "project/c-environment-banner";
 
 // Editor styling
 @import "editor-styling";
@@ -42,7 +42,7 @@
 }
 
 // PROJECT UTILITIES
-@import 'project/print';
+@import "project/print";
 
 // TEMPORARY HACKS AND QUICKFIXES
-@import 'shame';
+@import "shame";

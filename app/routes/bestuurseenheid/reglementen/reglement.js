@@ -10,7 +10,7 @@ export default class BestuurseenheidReglementenReglementRoute extends Route {
       params.uittreksel_id,
       {
         include: 'publication',
-      }
+      },
     );
     const publication = await uittreksel.publication;
 

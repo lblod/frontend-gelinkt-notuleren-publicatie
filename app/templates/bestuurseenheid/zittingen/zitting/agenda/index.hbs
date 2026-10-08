@@ -1,18 +1,27 @@
-{{#let (format-date this.meeting.geplandeStart 'd MMMM yyyy, HH:mm') as |startDate|}}
-  {{page-title (concat
-    "Agenda voor "
-    this.meeting.bestuursorgaan.isTijdsspecialisatieVan.naam
-    ", zitting van "
-    startDate
-    )}}
+{{#let
+  (format-date this.meeting.geplandeStart "d MMMM yyyy, HH:mm")
+  as |startDate|
+}}
+  {{page-title
+    (concat
+      "Agenda voor "
+      this.meeting.bestuursorgaan.isTijdsspecialisatieVan.naam
+      ", zitting van "
+      startDate
+    )
+  }}
 {{/let}}
 <div class="au-o-layout">
-  {{!-- template-lint-disable no-invalid-link-text --}}
-  <a href="http://data.lblod.info/id/document-types/agenda" property="dct:type" class="au-u-hidden"></a>
+  {{! template-lint-disable no-invalid-link-text }}
+  <a
+    href="http://data.lblod.info/id/document-types/agenda"
+    property="dct:type"
+    class="au-u-hidden"
+  ></a>
   <div class="au-o-region-large">
     <WithRdfaContext @model={{this.model.meeting}} as |ctx|>
       <AuHeading @skin="2" class="au-u-margin-bottom">
-        {{!-- Next line seems useless --}}
+        {{! Next line seems useless }}
         <ctx.span @prop="agendaRDFaClean">
           Agenda
         </ctx.span>
@@ -23,7 +32,10 @@
           </boCtx.span>
         </ctx.span>
         , zitting van
-        <ctx.span @prop="geplandeStart" as |geplandeStart|>{{format-date geplandeStart 'd MMMM yyyy, HH:mm'}}</ctx.span>
+        <ctx.span @prop="geplandeStart" as |geplandeStart|>{{format-date
+            geplandeStart
+            "d MMMM yyyy, HH:mm"
+          }}</ctx.span>
       </AuHeading>
       <p class="au-c-heading au-c-heading--5 au-u-margin-bottom">
         Datum publicatie:
@@ -40,27 +52,43 @@
           </ctx.get>
           --}}
           {{#if this.publication}}
-            <WithRdfaContext @model={{this.publication}} @tagName="span" as |pbCtx|>
-                <pbCtx.span @prop="createdOn" as |createdOn|>{{format-date createdOn 'd MMMM yyyy'}}</pbCtx.span>
+            <WithRdfaContext
+              @model={{this.publication}}
+              @tagName="span"
+              as |pbCtx|
+            >
+              <pbCtx.span @prop="createdOn" as |createdOn|>{{format-date
+                  createdOn
+                  "d MMMM yyyy"
+                }}</pbCtx.span>
             </WithRdfaContext>
-        {{/if}}
+          {{/if}}
         {{else}}
-          {{!-- old data does not have this field --}}
+          {{! old data does not have this field }}
           ongekend
         {{/if}}
       </p>
       {{#if this.sortedAgendapoints.length}}
         <ul class="au-c-list">
           {{#each this.sortedAgendapoints as |agendapunt index|}}
-            <li resource={{agendapunt.uri}} typeof="besluit:Agendapunt" property="besluit:behandelt" class="au-c-list__item">
-              <AgendapuntOverviewItem @agendapunt={{agendapunt}} @index={{index}} />
+            <li
+              resource={{agendapunt.uri}}
+              typeof="besluit:Agendapunt"
+              property="besluit:behandelt"
+              class="au-c-list__item"
+            >
+              <AgendapuntOverviewItem
+                @agendapunt={{agendapunt}}
+                @index={{index}}
+              />
             </li>
           {{/each}}
         </ul>
       {{else}}
         <ul class="au-c-list">
           <li>
-            <p class="au-c-help-text au-c-help-text--tertiary">Geen agendapunten beschikbaar.</p>
+            <p class="au-c-help-text au-c-help-text--tertiary">Geen agendapunten
+              beschikbaar.</p>
           </li>
         </ul>
       {{/if}}

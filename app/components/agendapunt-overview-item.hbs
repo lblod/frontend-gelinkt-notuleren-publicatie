@@ -1,11 +1,15 @@
-<div class="au-o-box au-c-card {{unless this.uittreksel "au-c-card--standout"}}">
+<div
+  class="au-o-box au-c-card {{unless this.uittreksel 'au-c-card--standout'}}"
+>
   <div class="au-c-card__header">
     <div class="au-o-grid au-o-grid--small">
       <div class="au-o-grid__item au-u-3-4@medium">
         <WithRdfaContext @model={{@agendapunt}} as |agCtx|>
-          <h2 class="au-c-heading--4" >
+          <h2 class="au-c-heading--4">
             {{inc @index}}.
-            <agCtx.span @prop="titel" as |titel|>{{clean-spaces titel}}</agCtx.span>
+            <agCtx.span @prop="titel" as |titel|>{{clean-spaces
+                titel
+              }}</agCtx.span>
           </h2>
           {{#if @agendapunt.type}}
             <agCtx.span @prop="type" class="au-u-hidden-visually" as |_ tCtx|>
@@ -13,7 +17,11 @@
             </agCtx.span>
           {{/if}}
           {{#if @agendapunt.beschrijving}}
-            <agCtx.p @prop="beschrijving" class="au-c-help-text--secondary" as |beschrijving|>{{clean-spaces beschrijving}}</agCtx.p>
+            <agCtx.p
+              @prop="beschrijving"
+              class="au-c-help-text--secondary"
+              as |beschrijving|
+            >{{clean-spaces beschrijving}}</agCtx.p>
           {{/if}}
           <agCtx.get @prop="geplandOpenbaar" class="au-u-hidden" />
         </WithRdfaContext>
@@ -25,9 +33,16 @@
       </div>
       <div class="au-o-grid__item au-u-1-4@medium">
         {{#if this.uittreksel.inhoud}}
-        <AuLink @route="bestuurseenheid.zittingen.zitting.uittreksels.detail" @model={{this.uittreksel.id}} property="lblodBesluit:linkToPublication" @skin="button" @icon="nav-right" @iconAlignment="right">
-          Bekijk volledige inhoud
-        </AuLink>
+          <AuLink
+            @route="bestuurseenheid.zittingen.zitting.uittreksels.detail"
+            @model={{this.uittreksel.id}}
+            property="lblodBesluit:linkToPublication"
+            @skin="button"
+            @icon="nav-right"
+            @iconAlignment="right"
+          >
+            Bekijk volledige inhoud
+          </AuLink>
         {{/if}}
       </div>
     </div>

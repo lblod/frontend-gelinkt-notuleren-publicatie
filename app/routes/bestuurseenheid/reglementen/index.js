@@ -3,9 +3,7 @@ import { service } from '@ember/service';
 import { action } from '@ember/object';
 import BESLUIT_TYPES from 'frontend-gelinkt-notuleren-publicatie/utils/besluit-types';
 import {
-  executeQuery,
   sparqlEscapeUri,
-  executeCountQuery,
   sparqlEscapeString,
 } from 'frontend-gelinkt-notuleren-publicatie/utils/sparql';
 import generateMeta from 'frontend-gelinkt-notuleren-publicatie/utils/generate-meta';
@@ -51,7 +49,7 @@ const DECISION_TYPES_TO_LINK = [
 
 export default class BestuurseenheidReglementenIndexRoute extends Route {
   @service store;
-  @service fastboot;
+  @service query;
 
   queryParams = {
     page: {
@@ -87,7 +85,7 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
     let searchFilter = '';
     if (searchValue) {
       searchFilter = `FILTER(CONTAINS(LCASE(?title), ${sparqlEscapeString(
-        searchValue.toLowerCase()
+        searchValue.toLowerCase(),
       )}))`;
     }
     const prefixes = `
@@ -105,10 +103,10 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
     // leafs of the besluit tree of that original besluit.
     const queryContent = `
         ?adminUnitGeneral besluit:bestuurt ${sparqlEscapeUri(
-          bestuurseenheid.uri
+          bestuurseenheid.uri,
         )}.
         VALUES ?besluitType { ${DECISION_TYPES_TO_LINK.map(
-          sparqlEscapeUri
+          sparqlEscapeUri,
         ).join(' ')}}
        ?uri a besluit:Besluit;
           a ?besluitType;
@@ -162,7 +160,7 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
         ${queryContent}
       }
     `;
-    const count = await executeCountQuery({
+    const count = await this.query.sparqlCountQuery({
       query: countQuery,
       endpoint: '/raw-sparql',
     });
@@ -173,16 +171,16 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
           SELECT DISTINCT ?uittrekselId WHERE {
             ${queryContent}
           } ${sortFilter} LIMIT ${pageSize * (page + 1)} OFFSET ${
-        pageSize * page
-      }
+            pageSize * page
+          }
       `;
 
-      const queryResult = await executeQuery({
+      const queryResult = await this.query.sparqlQuery({
         query,
         endpoint: '/raw-sparql',
       });
       const uittrekselIds = queryResult.results.bindings.map(
-        (binding) => binding.uittrekselId.value
+        (binding) => binding.uittrekselId.value,
       );
       const uittreksels = await this.store.query('uittreksel', {
         include: 'behandeling-van-agendapunt.besluiten,publication',
@@ -199,10 +197,10 @@ export default class BestuurseenheidReglementenIndexRoute extends Route {
             bvap,
             besluit,
           };
-        })
+        }),
       );
       uittrekselsSync.sort(
-        (a, b) => uittrekselIds.indexOf(b.id) - uittrekselIds.indexOf(a.id)
+        (a, b) => uittrekselIds.indexOf(b.id) - uittrekselIds.indexOf(a.id),
       );
     } else {
       uittrekselsSync = [];
