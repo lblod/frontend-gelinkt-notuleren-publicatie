@@ -1,5 +1,15 @@
 # frontend-gelinkt-notuleren-publicatie
 
+## 1.8.0
+
+### Minor Changes
+
+- [#141](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/141) [`036b7058e1860cdade4fe4fac1e2fc5d15767074`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/036b7058e1860cdade4fe4fac1e2fc5d15767074) Thanks [@piemonkey](https://github.com/piemonkey)! - Upgrade ember to v5.12
+
+- [#141](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/141) [`6459bca299b70c0ff92f4400aab3da26bd15336b`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/6459bca299b70c0ff92f4400aab3da26bd15336b) Thanks [@piemonkey](https://github.com/piemonkey)! - Update ember-appuniversum to v3.19
+
+- [#141](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/pull/141) [`70c526d0c73219cf966cbd964d57ea47c0ef1d70`](https://github.com/lblod/frontend-gelinkt-notuleren-publicatie/commit/70c526d0c73219cf966cbd964d57ea47c0ef1d70) Thanks [@piemonkey](https://github.com/piemonkey)! - Move fetch usage to a service to allow it to work in fastboot
+
 ## 1.7.4
 
 ### Patch Changes
